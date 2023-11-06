@@ -15,11 +15,14 @@ public class HomeController {
         this.homeService = homeService;
     }
 
-
     @RequestMapping("/")
     public String home(Model model){
         int dual = homeService.dual();
         model.addAttribute("dual",dual);
         return "home";
+    }
+
+    public static void main(String[] args) {
+        System.out.println("a");
     }
 }
