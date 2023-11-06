@@ -22,14 +22,13 @@
     <update id="updateMember">
         UPDATE member
         SET
-            id              =#{memPass}
+             id             =#{memId}
             ,name            =#{memName}
-            ,password        =#{memBir}
-            ,address         =#{memZip}
-            ,phnum           =#{memAdd1}
-            ,admin           =#{memAdd2}
-            ,email           =#{memHp}
-            ,birth           =#{memMail}
+            ,password        =#{memPass}
+            ,address         =#{memAdd}
+            ,phnum           =#{memHp}
+            ,email           =#{memMail}
+            ,birth           =#{memBir}
 
 
         WHERE mem_id = #{memId}
@@ -51,7 +50,6 @@
             password,
             address,
             phnum,
-            admin,
             email,
             birth
         ) VALUES (
@@ -60,7 +58,6 @@
                     #{memPass}
                     #{memAdd}
                     #{memHp}
-                    #{isAdmin}
                     #{memMail}
                     #{memBir}
                  );
