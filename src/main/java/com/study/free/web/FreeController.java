@@ -1,15 +1,14 @@
 package com.study.free.web;
 
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
+import com.study.free.dao.IFreeBoardDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.study.free.dao.IFreeBoardDao;
 import com.study.free.vo.FreeBoardVO;
 
 @Controller
