@@ -15,9 +15,9 @@ import com.study.member.MemberVO;
 
 @Controller
 public class LoginController {
+
     @Autowired
     ILoginDao loginDao;
-
 
     @RequestMapping("/login/isLogin.wow")
     public String isLogin() {
