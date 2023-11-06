@@ -22,16 +22,16 @@
     <update id="updateMember">
         UPDATE member
         SET
-            mem_pass   =#{memPass}
-          , mem_name   =#{memName}
-          , mem_bir    =#{memBir}
-          , mem_zip    =#{memZip}
-          , mem_add1   =#{memAdd1}
-          , mem_add2   =#{memAdd2}
-          , mem_hp     =#{memHp}
-          , mem_mail   =#{memMail}
-          , mem_job    =#{memJob}
-          , mem_hobby  =#{memHobby}
+            id              =#{memPass}
+            ,name            =#{memName}
+            ,password        =#{memBir}
+            ,address         =#{memZip}
+            ,phnum           =#{memAdd1}
+            ,admin           =#{memAdd2}
+            ,email           =#{memHp}
+            ,birth           =#{memMail}
+
+
         WHERE mem_id = #{memId}
 
     </update>
