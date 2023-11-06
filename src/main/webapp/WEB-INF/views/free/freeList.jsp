@@ -25,7 +25,7 @@
     <tbody>
     <c:forEach items="${freeBoardList }" var="freeBoard">
         <tr>
-            <td>${freeBoard.freeNum }</td>
+            <td>${freeBoard.freeNum}</td>
             <td><a href="freeView.wow?freeNum=${freeBoard.freeNum }"> ${freeBoard.title } </a> </td>
             <td>${freeBoard.freeCategory }</td>
             <td>${freeBoard.id }</td>
