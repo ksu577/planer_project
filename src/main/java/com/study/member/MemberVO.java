@@ -12,7 +12,7 @@ public class MemberVO {
     private String memAdd;        /* 주소 */
     private String memHp;         /* 연락처 */
     private String memMail;       /* 이메일 */
-    private boolean isAdmin; // 어드민 여부를 나타내는 플래그
+    private boolean isAdmin;      // 어드민 여부를 나타내는 플래그
 
     public String getMemId() {
         return memId;
