@@ -21,13 +21,13 @@ public class LoginService {
         } else {
             //간단하게 특정아이디 하나만 MANAGER로 지정합시다.
             String role="USER";
-            if(member.getMemId().equals("next6")){
+            if(member.getId().equals("next6")){
                 role="MANAGER";
             }
             UserVO user = new UserVO(
-                    member.getMemId()
-                    , member.getMemName()
-                    , member.getMemPass()
+                    member.getId()
+                    , member.getName()
+                    , member.getPassword()
                     , role);
             return user;
         }

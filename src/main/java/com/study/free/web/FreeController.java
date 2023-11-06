@@ -26,8 +26,8 @@ public class FreeController {
     }
 
     @RequestMapping("/free/freeView.wow")
-    public String freeView(Model model, int boNo) {
-        FreeBoardVO freeBoard = freeBoardDao.getBoard(boNo);
+    public String freeView(Model model, int freeNum) {
+        FreeBoardVO freeBoard = freeBoardDao.getBoard(freeNum);
         model.addAttribute("freeBoard", freeBoard);
         return "free/freeView";
     }

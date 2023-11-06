@@ -5,71 +5,69 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class MemberVO {
 
-    private String memId;         /* 회원 아이디 */
-    private String memPass;       /* 회원 비밀번호 */
-    private String memName;       /* 회원 이름 */
-    private String memBir;        /* 회원 생일 */
-    private String memAdd;        /* 주소 */
-    private String memHp;         /* 연락처 */
-    private String memMail;       /* 이메일 */
+    private String Id;         /* 회원 아이디 */
+    private String password;       /* 회원 비밀번호 */
+    private String name;       /* 회원 이름 */
+    private String birth;        /* 회원 생일 */
+    private String address;        /* 주소 */
+    private String phnum;         /* 연락처 */
+    private String email;       /* 이메일 */
 
-
-    public String getMemId() {
-        return memId;
+    public String getId() {
+        return Id;
     }
 
-    public void setMemId(String memId) {
-        this.memId = memId;
+    public void setId(String id) {
+        Id = id;
     }
 
-    public String getMemPass() {
-        return memPass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMemPass(String memPass) {
-        this.memPass = memPass;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getMemName() {
-        return memName;
+    public String getName() {
+        return name;
     }
 
-    public void setMemName(String memName) {
-        this.memName = memName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getMemBir() {
-        return memBir;
+    public String getBirth() {
+        return birth;
     }
 
-    public void setMemBir(String memBir) {
-        this.memBir = memBir;
+    public void setBirth(String birth) {
+        this.birth = birth;
     }
 
-    public String getMemAdd() {
-        return memAdd;
+    public String getAddress() {
+        return address;
     }
 
-    public void setMemAdd(String memAdd) {
-        this.memAdd = memAdd;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getMemHp() {
-        return memHp;
+    public String getPhnum() {
+        return phnum;
     }
 
-    public void setMemHp(String memHp) {
-        this.memHp = memHp;
+    public void setPhnum(String phnum) {
+        this.phnum = phnum;
     }
 
-    public String getMemMail() {
-        return memMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMemMail(String memMail) {
-        this.memMail = memMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
-
 
     @Override
     public String toString() {
