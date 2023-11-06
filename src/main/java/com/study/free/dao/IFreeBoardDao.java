@@ -9,7 +9,7 @@ public interface IFreeBoardDao {
 
     public  int getTotalRowCount();
     public List<FreeBoardVO> getBoardList();
-    public FreeBoardVO getBoard();
+    public FreeBoardVO getBoard(freeN);
     public int increaseLike();
     public int updateBoard();
     public int deleteBoard();

@@ -39,8 +39,8 @@
         SET
             a = b
         WHERE
-            id = :v0
-          AND free_num = :v1
+            id = #{}
+          AND free_num =
           AND free_context = :v2
           AND create_date = :v3
           AND update_date = :v4
