@@ -21,46 +21,40 @@
 
     <update id="updateMember">
         UPDATE member
-        SET
-             id             =#{memId}
-            ,name            =#{memName}
-            ,password        =#{memPass}
-            ,address         =#{memAdd}
-            ,phnum           =#{memHp}
-            ,email           =#{memMail}
-            ,birth           =#{memBir}
-
-
-        WHERE mem_id = #{memId}
-
+        SET id       =#{Id}
+          , name     =#{name}
+          , password =#{password}
+          , address  =#{address}
+          , phnum    =#{phnum}
+          , email    =#{email}
+          , birth    =#{birth}
+        WHERE id = #{Id}
     </update>
 
 
     <delete id="deleteMember" parameterType="String">
-        DELETE FROM member
-        WHERE memId = :currentUserId;
+        DELETE
+        FROM member
+        WHERE memId = :currentUserId
 --      currentUserId를 현재 로그인한 사용자의 아이디를 나타내는 변수 또는 파라미터로 대체
     </delete>
 
 
     <insert id="insertMember">
-        INSERT INTO member (
-            id,
-            name,
-            password,
-            address,
-            phnum,
-            email,
-            birth
-        ) VALUES (
-                    #{memId}
-                    #{memName}
-                    #{memPass}
-                    #{memAdd}
-                    #{memHp}
-                    #{memMail}
-                    #{memBir}
-                 );
+        INSERT INTO member (id,
+                            name,
+                            password,
+                            address,
+                            phnum,
+                            email,
+                            birth)
+        VALUES (#{Id}
+                    #{name}
+                    #{password}
+                    #{address}
+                    #{phnum}
+                    #{email}
+                    #{birth})
     </insert>
 
 

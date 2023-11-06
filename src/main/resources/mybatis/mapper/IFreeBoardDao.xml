@@ -9,9 +9,14 @@
 
     <select id="getBoardList" resultType="com.study.free.vo.FreeBoardVO">
         SELECT
-            id,free_num,free_context,
-            create_date,update_date,view_rate,
-            free_category,free_like,title
+            free_num,
+            free_context,
+            create_date,
+            update_date,
+            view_rate,
+            free_category,
+            free_like,
+            title
         FROM
             free_board;
         ORDER BY free_num desc
@@ -50,7 +55,7 @@
         DELETE FROM free_board
         WHERE
             id = :v0
-          AND free_num = :v1
+          AND free_num = #{}
           AND free_context = :v2
           AND create_date = :v3
           AND update_date = :v4

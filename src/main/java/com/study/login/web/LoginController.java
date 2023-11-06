@@ -33,7 +33,7 @@ public class LoginController {
         MemberVO member=loginDao.getMember(id);
         if(member==null) return "redirect:/login/login.wow";
         else {
-            if(!member.getMemPass().equals(pw)) {
+            if(!member.getPassword().equals(pw)) {
                 return "redirect:/login/login.wow";
             }else {
                 session.setAttribute("MEMBER", member);
