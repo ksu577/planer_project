@@ -4,80 +4,80 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">home</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">게시판 <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="/free/freeList.wow">자유게시판</a></li>
-                <li><a href="#">자료실</a></li>
-                <li><a href="#">공지사항</a></li>
-                 <li><a href="/member/memberList.wow">회원목록</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
 
-              <c:if test="${USER_INFO==null}">
-            <li><a href="/login/login.wow">로그인</a></li>
-            <li><a href="/member/memberForm.wow">회원가입</a></li>
-              </c:if>
-
-            <c:if test="${USER_INFO != null}">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${USER_INFO.userName}님 <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">
-	                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-	                &nbsp;&nbsp;My page
-	                </a></li>
-                <li><a href="#">
-                	<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                	&nbsp;&nbsp;비밀번호 변경
-                	</a></li>
-                <li><a href="#">
-                	<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                	&nbsp;&nbsp;1:1 문의게시판
-                	</a></li>
-                <li class="divider"></li>
-                <li><a href="/login/logout.wow">
-                	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                	&nbsp;&nbsp;로그아웃
-                	</a></li>
-              </ul>
-            </li>
-            </c:if>
-         
-         
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>		 		
+<head>
 
 
+<title>topnavbar</title>
 
-<br><br><br><br><br><br>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+<style>
+  .nav-bar {
+    border: 1px solid red;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .navcategory a{
+    text-decoration: none;
+    margin: 10px;
+    padding: 30px;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- navbar 시작 -->
+<div class="nav-bar">
+  <div class="homepagelogo">
+    <img width="70px" height="70px"
+         src="https://blogpfthumb-phinf.pstatic.net/MjAyMjEwMTZfMTI3/MDAxNjY1OTExMjQzOTEw.UVI-Y_plYDNPSB0xvcf94a312JWd-9G13TGbY5zFLQgg.rB78JXJkmCKSUYARca2qkLUu6NGqdlYCUoIsJ-wmIsAg.PNG.beatitude98/profileImage.png?type=w161"
+         alt="">
+    <a href=""> 왼쪽엔 홈페이지 로고 </a>
+  </div>
+
+  <div class="navcategory">
+
+    <a href=""> 여행지 </a>
+
+    <a href=""> 미니샵 </a>
+
+    <a href=""> 게시판 </a>
+
+  </div>
+
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+      My page
+    </button>
+
+    <ul class="dropdown-menu">
+
+      <li><a class="dropdown-item" href="#"> 내 정보 </a></li>
+      <li><a class="dropdown-item" href="#"> 회원 정보 수정 </a></li>
+      <li><a class="dropdown-item" href="#"> 장바구니 </a></li>
+      <li>
+        <hr class="dropdown-divider">
+      </li>
+      <li><a class="dropdown-item" href="#"> 로그아웃 </a></li>
+    </ul>
+  </div>
+</div>
+<!-- navbar 끝 -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
 
 
 
+</body>
 		
  
