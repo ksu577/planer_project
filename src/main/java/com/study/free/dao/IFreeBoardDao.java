@@ -9,10 +9,10 @@ public interface IFreeBoardDao {
 
     public  int getTotalRowCount();
     public List<FreeBoardVO> getBoardList();
-    public FreeBoardVO getBoard(freeN);
-    public int increaseLike();
-    public int updateBoard();
-    public int deleteBoard();
-    public int insertBoard();
+    public FreeBoardVO getBoard(int freeNum);
+    public int increaseLike(int freeNum);
+    public int updateBoard(FreeBoardVO freeBoardVO);
+    public int deleteBoard(FreeBoardVO freeBoardVO);
+    public int insertBoard(FreeBoardVO freeBoardVO);
 
 }
