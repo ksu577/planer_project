@@ -2,21 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.study.member.IMemberDao">
 
-    <select id="getMember" resultType="com.study.member.MemberVO">
+
+    <select id="getTotalRowCount" resultType="int">
 
     </select>
 
-
-    <select id="getTotalRowCount" resultType="java.lang.Integer">
-
-    </select>
 
     <select id="getMemberList" resultType="com.study.member.MemberVO">
+
+
+    </select>
+
+
+    <select id="getMember" resultType="com.study.member.MemberVO" parameterType="String">
 
     </select>
 
 
     <update id="updateMember">
+        UPDATE member
+        SET
+            mem_pass   =#{memPass}
+          , mem_name   =#{memName}
+          , mem_bir    =#{memBir}
+          , mem_zip    =#{memZip}
+          , mem_add1   =#{memAdd1}
+          , mem_add2   =#{memAdd2}
+          , mem_hp     =#{memHp}
+          , mem_mail   =#{memMail}
+          , mem_job    =#{memJob}
+          , mem_hobby  =#{memHobby}
+        WHERE mem_id = #{memId}
 
     </update>
 
@@ -27,7 +43,25 @@
 
 
     <insert id="insertMember">
-
+        INSERT INTO member (
+            id,
+            name,
+            password,
+            address,
+            phnum,
+            admin,
+            email,
+            birth
+        ) VALUES (
+                    #{memId}
+                    #{memName}
+                    #{memPass}
+                    #{memAdd}
+                    #{memHp}
+                    #{isAdmin}
+                    #{memMail}
+                    #{memBir}
+                 );
     </insert>
 
 
