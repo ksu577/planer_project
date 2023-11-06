@@ -12,7 +12,7 @@ public class MemberVO {
     private String memAdd;        /* 주소 */
     private String memHp;         /* 연락처 */
     private String memMail;       /* 이메일 */
-    private boolean isAdmin;      // 어드민 여부를 나타내는 플래그
+
 
     public String getMemId() {
         return memId;
@@ -70,13 +70,6 @@ public class MemberVO {
         this.memMail = memMail;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
 
     @Override
     public String toString() {
