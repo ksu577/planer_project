@@ -1,5 +1,8 @@
 package com.study.member;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class MemberVO {
 
     private String memId;         /* 회원 아이디 */
@@ -73,5 +76,10 @@ public class MemberVO {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
