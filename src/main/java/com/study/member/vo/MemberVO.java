@@ -12,16 +12,8 @@ public class MemberVO {
     private String address;        /* 주소 */
     private String phnum;         /* 연락처 */
 
-    public boolean admin;
     private String email;       /* 이메일 */
 
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
 
     public String getId() {
         return Id;
