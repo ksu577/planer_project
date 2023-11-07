@@ -9,7 +9,7 @@
     <title>memberList</title>
 </head>
 <body>
-<a href="memberForm.wow">회원가</a> <br>
+<a href="memberForm.wow">회원가입</a> <br>
 <table border="1">
     <thead>
     <tr>

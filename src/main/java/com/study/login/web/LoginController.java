@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.study.login.dao.ILoginDao;
 
+import java.io.IOException;
+
 @Controller
 public class LoginController {
     @Autowired
@@ -39,7 +41,7 @@ public class LoginController {
 
         if(user==null) return "redirect:/login/login.wow";
         else {
-            if(!user.getUserPass().equals(pw)) {
+            if(!user.getPassword().equals(pw)) {
                 return "redirect:/login/login.wow";
             } else {
                 session.setAttribute("member", user);

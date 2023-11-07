@@ -4,10 +4,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class UserVO {
-    private String userId;
-    private String userName;
-    private String userPass;
-    private String userRole;
+    private String Id;
+    private String name;
+    private String password;
+    private String Role;
 
     // toString() 구현
     @Override
@@ -20,42 +20,42 @@ public class UserVO {
 
     }
 
-    public UserVO(String userId, String userName, String userPass, String userRole) {
-        this.userId = userId;
-        this.userName = userName;
-        this.userPass = userPass;
-        this.userRole = userRole;
+    public UserVO(String Id, String name, String password, String Role) {
+        this.Id = Id;
+        this.name = name;
+        this.password = password;
+        this.Role = Role;
     }
 
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return Id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String Id) {
+        this.Id = Id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUserPass() { return userPass; }
+    public String getPassword() { return password; }
 
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getUserRole() {
-        return userRole;
+    public String getRole() {
+        return Role;
     }
 
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
+    public void setRole(String Role) {
+        this.Role = Role;
     }
 
 
