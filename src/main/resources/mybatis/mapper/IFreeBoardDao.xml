@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.free.dao.IFreeBoardDao">
-    <select id="getBoardList" resultType="com.study.free.vo.FreeBoardVO">
-        SELECT
-            id,free_num,free_context,
+
+    <select id="getTotalRowCount" parameterType="com.study.common.vo.PagingVO" resultType="int">
+        SELECT count(*)
+        FROM free_board
+    </select>
+
+    <select id="getBoardList" resultType="com.study.free.vo.FreeBoardVO" parameterType="com.study.common.vo.PagingVO">
+        SELECT * FROM
+         (SELECT a.*,rownum AS rnum FROM(
+        SELECT id
+            ,free_num,free_context,
             create_date,update_date,view_rate,
             free_category,free_like,title
         FROM
             free_board
         WHERE free_like='N'
         ORDER BY free_num desc
+        ) a )b
+        WHERE rnum between #{firstRow} and #{lastRow}
 
     </select>
     <select id="getBoard" resultType="com.study.free.vo.FreeBoardVO" parameterType="string">
