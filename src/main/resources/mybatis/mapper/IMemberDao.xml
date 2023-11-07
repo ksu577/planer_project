@@ -15,7 +15,16 @@
 
 
     <select id="getMember" resultType="com.study.member.MemberVO" parameterType="String">
-
+        SELECT id
+             , name
+             , password
+             , address
+             , phnum
+             , admin
+             , email
+             , to_char(birth, 'YYYY-MM-DD') AS birth
+        FROM member
+        WHERE id = #{Id}
     </select>
 
 

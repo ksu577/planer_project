@@ -1,74 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.free.dao.IFreeBoardDao">
+    <select id="getBoardList" resultType="com.study.free.vo.FreeBoardVO">
+        SELECT
+            id,free_num,free_context,
+            create_date,update_date,view_rate,
+            free_category,free_like,title
+        FROM
+            free_board
+        WHERE free_like='N'
+        ORDER BY free_num desc
+
+    </select>
+    <select id="getBoard" resultType="com.study.free.vo.FreeBoardVO" parameterType="string">
+        SELECT
+            id,free_num,free_context,
+            create_date,update_date,view_rate,
+            free_category,free_like,title
+        FROM
+            free_board
+        where id=#{id}
+    </select>
 
     <select id="getTotalRowCount" resultType="java.lang.Integer">
 
     </select>
 
 
-    <select id="getBoardList" resultType="com.study.free.vo.FreeBoardVO">
-        SELECT
-            free_num,
-            free_context,
-            create_date,
-            update_date,
-            view_rate,
-            free_category,
-            free_like,
-            title
-        FROM
-            free_board;
-        ORDER BY free_num desc
-
-    </select>
+    <update id="updateBoard"
+        parameterType="com.study.free.vo.FreeBoardVO">
+        UPDATE free_board SET
+            title=#{title}
+          , free_Category=#{freeCategory}
+          , free_Context=#{freeContext}
+          , createDate=sysdate
+        WHERE free_Num = #{freeNum}
+    </update>
 
 
-    <select id="getBoard" resultType="com.study.free.vo.FreeBoardVO" parameterType="int">
-
-    </select>
-
-
-    <update id="increaseLike" parameterType="int">
+    <update id="increaseLike">
 
     </update>
 
 
-    <update id="updateBoard" parameterType="com.study.free.vo.FreeBoardVO">
-        UPDATE free_board
-        SET
-            a = b
-        WHERE
-            id = #{}
-          AND free_num =
-          AND free_context = :v2
-          AND create_date = :v3
-          AND update_date = :v4
-          AND view_rate = :v5
-          AND free_category = :v6
-          AND free_like = :v7
-          AND title = :v8;
-    </update>
 
-
-    <delete id="deleteBoard" parameterType="com.study.free.vo.FreeBoardVO">
-        DELETE FROM free_board
-        WHERE
-            id = :v0
-          AND free_num = #{}
-          AND free_context = :v2
-          AND create_date = :v3
-          AND update_date = :v4
-          AND view_rate = :v5
-          AND free_category = :v6
-          AND free_like = :v7
-          AND title = :v8;
+    <delete id="deleteBoard"
+        parameterType="com.study.free.vo.FreeBoardVO">
+        UPDATE free_board SET
+        WHERE id=#{id}
     </delete>
 
 
-    <insert id="insertBoard" parameterType="com.study.free.vo.FreeBoardVO">
 
-    </insert>
+    <insert id="insertBoard" parameterType="com.study.free.vo.FreeBoardVO">
+        INSERT INTO free_board (id, free_num, free_context,
+                                create_date, update_date, view_rate,
+                                free_category,free_like, title)
+        VALUES (#{id},seq_free_board.nextval,#{freeContext},
+                #{createDate}, #{updateDate}, #{viewRate},
+                #{freeCategory},#{freeLike},#{title}
+                </insert>
 
 
 </mapper>

@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ILoginDao {
-    public MemberVO getMember(String memId);
+    public MemberVO getMember(String id);
     public int insertMember(MemberVO member);
 }

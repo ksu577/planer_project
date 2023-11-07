@@ -6,10 +6,13 @@ import java.util.List;
 
 @Mapper
 public interface IFreeBoardDao {
+
+    public  int getTotalRowCount();
     public List<FreeBoardVO> getBoardList();
-    public FreeBoardVO getBoard(int boNo);
-    public int updateBoard(FreeBoardVO freeBoard);
-    public int deleteBoard(FreeBoardVO freeBoard);
-    public int insertBoard(FreeBoardVO freeBoard);
+    public FreeBoardVO getBoard(freeN);
+    public int increaseLike();
+    public int updateBoard();
+    public int deleteBoard();
+    public int insertBoard();
 
 }
