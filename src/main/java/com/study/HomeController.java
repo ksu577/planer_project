@@ -17,8 +17,6 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(Model model){
-        int dual = homeService.dual();
-        model.addAttribute("dual",dual);
         return "home";
     }
 
@@ -26,3 +24,5 @@ public class HomeController {
         System.out.println("a");
     }
 }
+
+

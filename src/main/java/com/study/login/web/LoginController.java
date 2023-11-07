@@ -38,6 +38,7 @@ public class LoginController {
         String pw=memberVO.getPassword();
 
         UserVO user = loginService.getUser(Id);
+        
 
         if(user==null) return "redirect:/login/login.wow";
         else {
