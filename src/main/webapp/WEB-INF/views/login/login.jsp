@@ -127,14 +127,14 @@
     <div class="login-box">
         <div class="login-logo">순자산 3조</div>
         <div class="login-input-box">
-            <form action="login.wow" method="post">
+            <form name="memberVO" action="login.wow" method="post">
                 <p>아이디</p>
                 <div class="login-id-cover">
-                    id : <input id="login-id" type="text">
+                    id : <input id="login-id" name="Id" type="text">
                 </div>
                 <p>비밀번호</p>
                 <div class="login-pw-cover">
-                    pw : <input id="login-pw" type="password">
+                    pw : <input id="login-pw" name="password" type="password">
                 </div>
 
                 <button class="login-btn" onclick="">
