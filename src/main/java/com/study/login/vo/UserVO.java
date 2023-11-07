@@ -44,9 +44,7 @@ public class UserVO {
         this.userName = userName;
     }
 
-    public String getUserPass() {
-        return userPass;
-    }
+    public String getUserPass() { return userPass; }
 
     public void setUserPass(String userPass) {
         this.userPass = userPass;

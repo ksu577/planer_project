@@ -14,8 +14,9 @@
     <thead>
     <tr>
         <td>아이디</td>
-        <td>이름</td>
         <td>비밀번호</td>
+        <td>이름</td>
+        <td>생년월일</td>
         <td>주소</td>
         <td>핸드폰번호</td>
         <td>이메일</td>
@@ -25,8 +26,9 @@
     <c:forEach items="${ memberList }" var="member">
         <tr>
             <td>${member.id}</td>
-            <td>${member.name}</td>
             <td>${member.password}</td>
+            <td>${member.name}</td>
+            <td>${member.birth}</td>
             <td>${member.address}</td>
             <td>${member.phnum}</td>
             <td>${member.email}</td>
