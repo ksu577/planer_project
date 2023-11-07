@@ -10,17 +10,15 @@
 </head>
 <body>
 
-<c:if test="${member eq null}">
-  <% System.out.println("member"); %>
+<c:if test="${user eq null}">
   로그인 안되어있음    <br>
   <a href="login.wow">로그인하러가기</a>  <br>
   <a href="memberForm.wow">회원가입하러 가기</a>
 </c:if>
 
-<c:if test="${member ne null}">
-  <% System.out.println("member"); %>
+<c:if test="${user ne null}">
   로그인 되어 있습니다 <br>
-  id : ${user.Id } <br>
+  id : ${user.id } <br>
   name : ${user.name } <br>
   <a href="logout.wow">로그아웃</a>
 </c:if>

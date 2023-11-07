@@ -44,7 +44,7 @@ public class LoginController {
             if(!user.getPassword().equals(pw)) {
                 return "redirect:/login/login.wow";
             } else {
-                session.setAttribute("member", user);
+                session.setAttribute("user", user);
                 return "redirect:/login/isLogin.wow";
             }
         }

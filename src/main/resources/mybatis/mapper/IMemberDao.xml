@@ -14,11 +14,9 @@
                 , password
                 , address
                 , phnum
-                , admin
                 , email
                 , to_char(birth, 'YYYY-MM-DD') AS bir
         FROM member
-        WHERE admin = 'N'
     </select>
 
 
@@ -28,7 +26,6 @@
              , password
              , address
              , phnum
-             , admin
              , email
              , to_char(birth, 'YYYY-MM-DD') AS birth
         FROM member
