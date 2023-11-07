@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.study.login.dao.ILoginDao;
+import java.net.URLEncoder;
 
 import java.io.IOException;
 
@@ -38,12 +39,12 @@ public class LoginController {
         String pw=memberVO.getPassword();
 
         UserVO user = loginService.getUser(Id);
-        
 
-        if(user==null) return "redirect:/login/login.wow";
+
+        if(user==null) return "redirect:/login/login.wow" +URLEncoder.encode("아이디와 비밀번호를 입력하세요.","utf-8");
         else {
             if(!user.getPassword().equals(pw)) {
-                return "redirect:/login/login.wow";
+                return "redirect:/login/login.wow" +URLEncoder.encode("비밀번호가 다릅니다.","utf-8");
             } else {
                 session.setAttribute("user", user);
                 return "redirect:/login/isLogin.wow";
