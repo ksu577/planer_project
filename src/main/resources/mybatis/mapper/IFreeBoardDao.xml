@@ -22,9 +22,9 @@
         where id=#{id}
     </select>
 
-    <select id="getTotalRowCount" resultType="java.lang.Integer">
+<!--    <select id="getTotalRowCount" resultType="java.lang.Integer">-->
 
-    </select>
+<!--    </select>-->
 
 
     <update id="updateBoard"
