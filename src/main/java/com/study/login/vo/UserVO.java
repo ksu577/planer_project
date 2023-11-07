@@ -15,12 +15,11 @@ public class UserVO {
         return ToStringBuilder.reflectionToString(this,
                 ToStringStyle.MULTI_LINE_STYLE);
     }
-    // 생성자
+
     public UserVO() {
 
     }
 
-    // 생성자
     public UserVO(String userId, String userName, String userPass, String userRole) {
         this.userId = userId;
         this.userName = userName;
@@ -28,8 +27,6 @@ public class UserVO {
         this.userRole = userRole;
     }
 
-
-    // 맴버필드의 get/set 메서드 생성
 
     public String getUserId() {
         return userId;

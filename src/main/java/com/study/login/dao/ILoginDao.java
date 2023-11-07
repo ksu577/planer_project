@@ -1,6 +1,6 @@
 package com.study.login.dao;
 
-import com.study.member.MemberVO;
+import com.study.member.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

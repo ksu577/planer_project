@@ -1,5 +1,6 @@
-package com.study.member;
+package com.study.member.dao;
 
+import com.study.member.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -26,7 +26,7 @@
     .member-box {
         border: 1px solid #98dde3;
         width: 510px;
-        height: 800px;
+        height: 900px;
         background-color: white;
         border-radius: 10px;
         position: absolute;
@@ -144,7 +144,7 @@
     .member-input-box2 {
         width: 100%;
         height: 30%;
-        margin-top: 70px;
+        margin-top: 30px;
     }
 
     .name-cover {
@@ -221,19 +221,39 @@
         left: 397px;
     }
 
+    .address-cover {
+        width: 465px;
+        height: 60px;
+        border-radius: 5px;
+        margin-left: 4%;
+        position: relative;
+        background-color: rgba(220, 220, 220, 0.30);
+        margin-top: 25px;
+    }
+
+    #member-address {
+        border: 1px rgba(220, 220, 220, 0.30);
+        width: 450px;
+        height: 60px;
+        border-radius: 5px;
+        margin-left: 2%;
+        font-size: 18px;
+        background-color: rgba(220, 220, 220, 0);
+    }
+
     .member-input-box2 input:focus {
         outline: none;
     }
 
     .member-btn {
         border: 1px solid #98dde3;
-        width: 470px;
+        width: 465px;
         height: 60px;
-        border-radius: 8px;
+        border-radius: 5px;
         background-color: #98dde3;
         margin-left: 4%;
         cursor: pointer;
-        margin-top: 40px;
+        margin-top: 100px;
     }
 
     .member-btn>p {
@@ -249,28 +269,31 @@
         <div class="member-logo">순자산 3조</div>
         <div class="member-input-box1">
             <div class="id-cover">
-                <input id="member-id" type="text" placeholder="아이디">
+                <input name="Id" id="member-id" type="text" placeholder="아이디">
                 <button class="id-check-btn">중복</button>
             </div>
             <div class="pw-cover">
-                <input id="member-pw" type="password" placeholder="비밀번호">
+                <input name="password" id="member-pw" type="password" placeholder="비밀번호">
             </div>
             <div class="em-cover">
-                <input id="member-em" type="text" placeholder="이메일">
+                <input name="email" id="member-em" type="text" placeholder="이메일">
                 <button class="em-check-btn">인증</button>
             </div>
         </div>
 
         <div class="member-input-box2">
             <div class="name-cover">
-                <input id="member-name" type="text" placeholder="이름">
+                <input name="name" id="member-name" type="text" placeholder="이름">
             </div>
             <div class="birth-cover">
-                <input id="member-birth" type="text" placeholder="생년월일 8자리">
+                <input name="birth" id="member-birth" type="text" placeholder="생년월일 8자리">
             </div>
             <div class="phone-cover">
-                <input id="member-phone" type="text" placeholder="휴대전화번호">
+                <input name="phnum" id="member-phone" type="text" placeholder="휴대전화번호">
                 <button class="phone-check-btn">인증</button>
+            </div>
+            <div class="address-cover">
+                <input name="address" id="member-address" type="text" placeholder="주소">
             </div>
         </div>
         <button class="member-btn" onclick=""><p>회원가입</p></button>

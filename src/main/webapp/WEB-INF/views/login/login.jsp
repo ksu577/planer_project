@@ -130,11 +130,11 @@
             <form name="memberVO" action="login.wow" method="post">
                 <p>아이디</p>
                 <div class="login-id-cover">
-                    id : <input id="login-id" name="Id" type="text">
+                    <input id="login-id" name="Id" type="text">
                 </div>
                 <p>비밀번호</p>
                 <div class="login-pw-cover">
-                    pw : <input id="login-pw" name="password" type="password">
+                    <input id="login-pw" name="password" type="password">
                 </div>
 
                 <button class="login-btn" onclick="">

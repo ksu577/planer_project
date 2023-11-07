@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.study.member.IMemberDao">
+<mapper namespace="com.study.member.dao.IMemberDao">
 
 
     <select id="getTotalRowCount" resultType="int">
@@ -8,13 +8,21 @@
     </select>
 
 
-    <select id="getMemberList" resultType="com.study.member.MemberVO">
-
-
+    <select id="getMemberList" resultType="com.study.member.vo.MemberVO">
+        SELECT id
+                , name
+                , password
+                , address
+                , phnum
+                , admin
+                , email
+                , to_char(birth, 'YYYY-MM-DD') AS bir
+        FROM member
+        WHERE admin = 'N'
     </select>
 
 
-    <select id="getMember" resultType="com.study.member.MemberVO" parameterType="String">
+    <select id="getMember" resultType="com.study.member.vo.MemberVO" parameterType="String">
         SELECT id
              , name
              , password
