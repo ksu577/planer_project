@@ -17,7 +17,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(Model model){
-        return "/mainPage/home";
+        return "/home";
     }
 
     public static void main(String[] args) {

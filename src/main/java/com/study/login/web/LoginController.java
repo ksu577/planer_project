@@ -46,32 +46,20 @@ public class LoginController {
             if(!user.getPassword().equals(pw)) {
                 return "redirect:/login/login.wow?login_error=" +URLEncoder.encode("비밀번호가 다릅니다.","utf-8");
             } else {
-                session.setAttribute("USER_INFO", user);
-                return "redirect:/login/isLogin.wow";
+                session.setAttribute("user", user);
+                return "redirect:/";
             }
         }
     }
 
 
-
-
     @RequestMapping("/login/logout.wow")
     public String logout(HttpSession session) {
-        session.removeAttribute("USER_INFO");
-        return "redirect:/login/isLogin.wow";
+        session.removeAttribute("user");
+        return "redirect:/";
     }
 
 
-    @RequestMapping("/member/memberForm.wow")
-    public String memberForm() {
-        return "member/memberForm";
-    }
-
-    @RequestMapping("/member/memberRegist.wow")
-    public String memberRegist(MemberVO member) {
-        loginDao.insertMember(member);
-        return "redirect:/login/isLogin.wow";
-    }
 
 
 
