@@ -7,7 +7,6 @@ public class FreeBoardVO {
     private String createDate;
     private String updateDate;
     private int viewRate;
-    private String freeCategory;
     private int freeLike;
     private String title;
 
@@ -59,13 +58,6 @@ public class FreeBoardVO {
         this.viewRate = viewRate;
     }
 
-    public String getFreeCategory() {
-        return freeCategory;
-    }
-
-    public void setFreeCategory(String freeCategory) {
-        this.freeCategory = freeCategory;
-    }
 
     public int getFreeLike() {
         return freeLike;

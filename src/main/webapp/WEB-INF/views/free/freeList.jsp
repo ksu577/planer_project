@@ -12,6 +12,7 @@
 <body>
 
 <a href="freeForm.wow">글쓰기</a> <br>
+
 <table border="1">
     <thead>
     <tr>
