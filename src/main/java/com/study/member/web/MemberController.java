@@ -55,6 +55,7 @@ public class MemberController {
     }
 
 
+
     @PostMapping("/member/memberDelete.wow")
     public String delete(Model model, MemberVO member) throws BizException {
         memberService.removeMember(member);

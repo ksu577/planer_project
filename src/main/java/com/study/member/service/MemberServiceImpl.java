@@ -50,6 +50,7 @@ public class MemberServiceImpl implements IMemberService{
         if (count < 1) throw new BizNotEffectedException();
     }
 
+
     @Override
     public void registMember(MemberVO member /* member = 유저가 쓴 아이디 */) throws BizNotEffectedException {
         int count = memberDao.insertMember(member);
