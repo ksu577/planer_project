@@ -17,7 +17,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(Model model){
-        return "/WEB-INF/home.jsp";
+        return "/home";
     }
 
     public static void main(String[] args) {
