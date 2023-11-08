@@ -2,6 +2,7 @@ package com.study.login.web;
 
 import com.study.login.service.LoginService;
 import com.study.login.vo.UserVO;
+import com.study.member.service.IMemberService;
 import com.study.member.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,6 +22,8 @@ public class LoginController {
     private LoginService loginService;
     @Autowired
     ILoginDao loginDao;
+    @Autowired
+    IMemberService memberService;
 
     @RequestMapping("/login/isLogin.wow")
     public String isLogin() {
@@ -61,7 +64,12 @@ public class LoginController {
 
 
     @RequestMapping("/member/memberForm.wow")
-    public String memberForm(@ModelAttribute("memberVO") MemberVO member, HttpSession session) throws Exception {
+    public String memberForm(@ModelAttribute("memberVO") MemberVO memberVO, HttpSession session) throws Exception {
+
+        String Id=memberVO.getId();
+        String pw=memberVO.getPassword();
+        MemberVO member = memberService.getMember(Id);
+        session.setAttribute("member", member);
         return "member/memberForm";
     }
 

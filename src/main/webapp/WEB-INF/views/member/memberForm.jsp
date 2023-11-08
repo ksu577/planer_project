@@ -69,7 +69,7 @@
         background-color: rgba(220, 220, 220, 0);
     }
 
-    .id-check-btn {
+    .idCheck {
         border: 1px solid #98dde3;
         width: 70px;
         height: 60px;
@@ -271,8 +271,8 @@
         <form name="memberVO" action="memberRegist.wow" method="post">
             <div class="member-input-box1">
                 <div class="id-cover">
-                    <input name="Id" id="member-id" type="text" placeholder="아이디">
-                    <button class="id-check-btn">중복</button>
+                    <input name="Id" id="member-id" type="text" placeholder="아이디" pattern="\w{4,}" required="required">
+                    <button type="button" id="idCheck" class="idCheck">중복</button>
                 </div>
                 <div class="pw-cover">
                     <input name="password" id="member-pw" type="password" placeholder="비밀번호">
@@ -302,6 +302,43 @@
         </form>
     </div>
 </div>
-</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    let IdChecked = false;
+    $("input[name='Id']").on("change", function (e) {
+        IdChecked = false;
+    });
 
+    $("#idCheck").on("click", function (e) {
+        let curId = $("input[name='Id']").val();
+        $.ajax({
+            url: "/memberForm/idCheck"
+            , type: "get"
+            , data: {"id": curId}
+            , success: function (data) {
+                alert(data);
+                IdChecked = true;
+            }
+            , error: function (err) {
+                alert("에러");
+            }
+        });
+    });
+
+    $("#email").on("click", function (e) {
+        let mailAddress = $("input[name='email']").val();
+        $.ajax({
+            url: "/memberForm/emailCheck"
+            , type: "get"
+            , data: {"email": mailAddress}
+            , success: function (data) {
+                alert("메일확인");
+            }
+            , error: function (err) {
+                alert("에러");
+            }
+        });
+    });
+</script>
+</body>
 </html>

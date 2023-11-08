@@ -11,7 +11,6 @@ public class MemberVO {
     private String birth;        /* 회원 생일 */
     private String address;        /* 주소 */
     private String phnum;         /* 연락처 */
-
     private String email;       /* 이메일 */
 
 
