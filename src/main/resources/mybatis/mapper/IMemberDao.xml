@@ -64,12 +64,12 @@
                             phnum,
                             email,
                             birth)
-        VALUES (#{Id}
-                    #{name}
-                    #{password}
-                    #{address}
-                    #{phnum}
-                    #{email}
+        VALUES (    #{Id},
+                    #{name},
+                    #{password},
+                    #{address},
+                    #{phnum},
+                    #{email},
                     #{birth})
     </insert>
 

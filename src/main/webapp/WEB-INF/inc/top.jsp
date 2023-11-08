@@ -61,7 +61,7 @@
         <div class="btn-gruop-right">
             <a href="/login/login.wow">로그인</a>
             <a>   </a>
-            <a href="#">회원가입</a>
+            <a href="/member/memberForm.wow">회원가입</a>
         </div>
     </c:if>
 

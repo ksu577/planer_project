@@ -60,16 +60,6 @@ public class LoginController {
     }
 
 
-    @RequestMapping("/member/memberForm.wow")
-    public String memberForm(@ModelAttribute("memberVO") MemberVO member, HttpSession session) throws Exception {
-        return "member/memberForm";
-    }
-
-    @RequestMapping("/member/memberRegist.wow")
-    public String memberRegist(MemberVO member) {
-        loginDao.insertMember(member);
-        return "redirect:/login/isLogin.wow";
-    }
 
 
 
