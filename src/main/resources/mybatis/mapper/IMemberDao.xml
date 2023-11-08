@@ -4,7 +4,9 @@
 
 
     <select id="getTotalRowCount" resultType="int">
-
+        SELECT count(*)
+        FROM member
+        WHERE 1=1
     </select>
 
 
@@ -15,7 +17,7 @@
                 , address
                 , phnum
                 , email
-                , to_char(birth, 'YYYY-MM-DD') AS bir
+                , birth
         FROM member
     </select>
 
@@ -27,7 +29,7 @@
              , address
              , phnum
              , email
-             , to_char(birth, 'YYYY-MM-DD') AS birth
+             , birth
         FROM member
         WHERE id = #{Id}
     </select>
@@ -54,7 +56,7 @@
     </delete>
 
 
-    <insert id="insertMember">
+    <insert id="insertMember" parameterType="com.study.member.vo.MemberVO">
         INSERT INTO member (id,
                             name,
                             password,
