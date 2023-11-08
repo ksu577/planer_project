@@ -30,6 +30,18 @@
     </tr>
 
     <tr>
+      <th>첨부파일
+        <button type="button" id="id_btn_new_file">추가</button>
+      </th>
+      <td class="file_area">
+        <div class="form-inline">
+          <input type="file" name="boFiles" class="form-control">
+          <button type="button" class="btn_delete btn btn-sm">삭제</button>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
       <td>
         <button type="submit" > 등록</button>
       </td>
@@ -39,4 +51,15 @@
 
 
 </body>
+<script>
+  $('#id_btn_new_file').click(function () {
+    $('.file_area').append('<div class="form-inline">'
+            + '<input type="file" name="boFiles" class="form-control">'
+            + ' <button type="button" class="btn_delete btn btn-sm">삭제</button>' + '</div>');
+  });
+
+  $('.file_area').on('click', '.btn_delete', function () {
+    $(this).closest('div').remove();
+  });
+</script>
 </html>
