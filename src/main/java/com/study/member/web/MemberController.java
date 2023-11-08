@@ -1,8 +1,11 @@
 package com.study.member.web;
 
 import com.study.common.vo.PagingVO;
+import com.study.common.vo.ResultMessageVO;
 import com.study.common.vo.SearchVO;
+import com.study.exception.BizDuplicateKeyException;
 import com.study.exception.BizException;
+import com.study.exception.BizNotEffectedException;
 import com.study.member.dao.IMemberDao;
 import com.study.member.service.IMemberService;
 import com.study.member.vo.MemberVO;
@@ -69,9 +72,13 @@ public class MemberController {
     }
 
 
-    @PostMapping("/member/memberRegist.wow")
-    public String memberRegist(Model model, MemberVO member) throws BizException {
+    @RequestMapping("/member/memberRegist.wow")
+    public String memberRegist(Model model,MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException {
+        ResultMessageVO resultMessageVO=new ResultMessageVO();
         memberService.registMember(member);
-        return "member/memberRegist";
+        resultMessageVO.messageSetting(true,"등록","등록성공했어요"
+                ,"/member/memberList.wow" , "목록으로");
+        model.addAttribute("resultMessageVO",resultMessageVO);
+        return "common/message";
     }
 }

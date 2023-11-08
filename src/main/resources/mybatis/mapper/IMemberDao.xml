@@ -64,7 +64,7 @@
                             phnum,
                             email,
                             birth)
-        VALUES (#{Id},
+        VALUES (    #{Id},
                     #{name},
                     #{password},
                     #{address},
