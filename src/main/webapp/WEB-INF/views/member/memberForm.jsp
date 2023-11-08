@@ -256,7 +256,7 @@
         margin-top: 100px;
     }
 
-    .member-btn>p {
+    .member-btn > p {
         margin: auto;
         font-size: 20px;
         color: white;
@@ -267,37 +267,38 @@
 <div class="member-container">
     <div class="member-box">
         <div class="member-logo">순자산 3조</div>
-        <div class="member-input-box1">
-            <div class="id-cover">
-                <input name="Id" id="member-id" type="text" placeholder="아이디">
-                <button class="id-check-btn">중복</button>
+        <form name="memberVO" action="memberRegist.wow" method="post">
+            <div class="member-input-box1">
+                <div class="id-cover">
+                    <input name="Id" id="member-id" type="text" placeholder="아이디">
+                    <button class="id-check-btn">중복</button>
+                </div>
+                <div class="pw-cover">
+                    <input name="password" id="member-pw" type="password" placeholder="비밀번호">
+                </div>
+                <div class="em-cover">
+                    <input name="email" id="member-em" type="text" placeholder="이메일">
+                    <button class="em-check-btn">인증</button>
+                </div>
             </div>
-            <div class="pw-cover">
-                <input name="password" id="member-pw" type="password" placeholder="비밀번호">
-            </div>
-            <div class="em-cover">
-                <input name="email" id="member-em" type="text" placeholder="이메일">
-                <button class="em-check-btn">인증</button>
-            </div>
-        </div>
 
-        <div class="member-input-box2">
-            <div class="name-cover">
-                <input name="name" id="member-name" type="text" placeholder="이름">
+            <div class="member-input-box2">
+                <div class="name-cover">
+                    <input name="name" id="member-name" type="text" placeholder="이름">
+                </div>
+                <div class="birth-cover">
+                    <input name="birth" id="member-birth" type="text" placeholder="생년월일 8자리">
+                </div>
+                <div class="phone-cover">
+                    <input name="phnum" id="member-phone" type="text" placeholder="휴대전화번호">
+                    <button class="phone-check-btn">인증</button>
+                </div>
+                <div class="address-cover">
+                    <input name="address" id="member-address" type="text" placeholder="주소">
+                </div>
             </div>
-            <div class="birth-cover">
-                <input name="birth" id="member-birth" type="text" placeholder="생년월일 8자리">
-            </div>
-            <div class="phone-cover">
-                <input name="phnum" id="member-phone" type="text" placeholder="휴대전화번호">
-                <button class="phone-check-btn">인증</button>
-            </div>
-            <div class="address-cover">
-                <input name="address" id="member-address" type="text" placeholder="주소">
-            </div>
-        </div>
-        <button class="member-btn" onclick=""><p>회원가입</p></button>
-
+            <button class="member-btn" onclick=""><p>회원가입</p></button>
+        </form>
     </div>
 </div>
 </body>

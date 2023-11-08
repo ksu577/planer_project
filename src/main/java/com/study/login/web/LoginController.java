@@ -61,7 +61,7 @@ public class LoginController {
 
 
     @RequestMapping("/member/memberForm.wow")
-    public String memberForm() {
+    public String memberForm(@ModelAttribute("memberVO") MemberVO member, HttpSession session) throws Exception {
         return "member/memberForm";
     }
 
