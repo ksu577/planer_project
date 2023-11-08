@@ -13,7 +13,7 @@
         SELECT id
             ,free_num,free_context,
             create_date,update_date,view_rate,
-            free_category,free_like,title
+            free_like,title
         FROM
             free_board
         WHERE free_like='N'
@@ -26,7 +26,7 @@
         SELECT
             id,free_num,free_context,
             create_date,update_date,view_rate,
-            free_category,free_like,title
+            free_like,title
         FROM
             free_board
         where id=#{id}
@@ -41,7 +41,6 @@
         parameterType="com.study.free.vo.FreeBoardVO">
         UPDATE free_board SET
             title=#{title}
-          , free_Category=#{freeCategory}
           , free_Context=#{freeContext}
           , createDate=sysdate
         WHERE free_Num = #{freeNum}
@@ -65,10 +64,10 @@
     <insert id="insertBoard" parameterType="com.study.free.vo.FreeBoardVO">
         INSERT INTO free_board (id, free_num, free_context,
                                 create_date, update_date, view_rate,
-                                free_category,free_like, title)
+                                free_like, title)
         VALUES (#{id},seq_free_board.nextval,#{freeContext},
                 #{createDate}, #{updateDate}, #{viewRate},
-                #{freeCategory},#{freeLike},#{title}
+                #{freeLike},#{title}
                 </insert>
 
 
