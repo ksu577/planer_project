@@ -41,21 +41,23 @@ public class LoginController {
         UserVO user = loginService.getUser(Id);
 
 
-        if(user==null) return "redirect:/login/login.wow" +URLEncoder.encode("아이디와 비밀번호를 입력하세요.","utf-8");
+        if(user==null) return "redirect:/login/login.wow?login_error=" + URLEncoder.encode("아이디와 비밀번호를 입력하세요.", "utf-8");
         else {
             if(!user.getPassword().equals(pw)) {
-                return "redirect:/login/login.wow" +URLEncoder.encode("비밀번호가 다릅니다.","utf-8");
+                return "redirect:/login/login.wow?login_error=" +URLEncoder.encode("비밀번호가 다릅니다.","utf-8");
             } else {
-                session.setAttribute("user", user);
+                session.setAttribute("USER_INFO", user);
                 return "redirect:/login/isLogin.wow";
             }
         }
     }
 
 
+
+
     @RequestMapping("/login/logout.wow")
     public String logout(HttpSession session) {
-        session.removeAttribute("MEMBER");
+        session.removeAttribute("USER_INFO");
         return "redirect:/login/isLogin.wow";
     }
 
@@ -70,6 +72,8 @@ public class LoginController {
         loginDao.insertMember(member);
         return "redirect:/login/isLogin.wow";
     }
+
+
 
 
 }

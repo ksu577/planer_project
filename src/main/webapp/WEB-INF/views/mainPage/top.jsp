@@ -20,7 +20,7 @@
             cursor: pointer;
         }
 
-        .navcategory a{
+        .navcategory a {
             text-decoration: none;
             margin: 10px;
             padding: 30px;
@@ -49,32 +49,42 @@
 
         <a href=""> 게시판 </a>
 
-    </div>
 
-    <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                aria-expanded="false">
-            My page
-        </button>
+        <%Object lobj_getdata = session.getAttribute("USER_INFO");
+        String ls_getdata = (String)lobj_getdata;%>
 
-        <ul class="dropdown-menu">
+        <%System.out.println(ls_getdata);%>
+        <c:if test="${ls_getdata=null}">
+            <li><a href="/login/login.wow">로그인</a></li>
+            <li><a href="#">회원가입</a></li>
+        </c:if>
 
-            <li><a class="dropdown-item" href="#"> 내 정보 </a></li>
-            <li><a class="dropdown-item" href="#"> 회원 정보 수정 </a></li>
-            <li><a class="dropdown-item" href="#"> 장바구니 </a></li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#"> 로그아웃 </a></li>
-        </ul>
+        <c:if test="${ls_getdata!=null}">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                My page
+            </button>
+
+            <ul class="dropdown-menu">
+
+                <li><a class="dropdown-item" href="#"> 내 정보 </a></li>
+                <li><a class="dropdown-item" href="#"> 회원 정보 수정 </a></li>
+                <li><a class="dropdown-item" href="#"> 장바구니 </a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"> 로그아웃 </a></li>
+            </ul>
+
+        </div>
     </div>
 </div>
 <!-- navbar 끝 -->
-
+</c:if>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-
 
 
 </body>
