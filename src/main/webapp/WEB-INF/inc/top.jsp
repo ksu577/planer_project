@@ -52,6 +52,13 @@
 
   </div>
 
+
+  <c:if test="${user==null}">
+    <li><a href="/login/login.wow">로그인</a></li>
+    <li><a href="#">회원가입</a></li>
+  </c:if>
+
+<c:if test="${user!=null}">
   <div class="btn-group">
     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
@@ -66,12 +73,12 @@
       <li>
         <hr class="dropdown-divider">
       </li>
-      <li><a class="dropdown-item" href="#"> 로그아웃 </a></li>
+      <li><a class="dropdown-item" href=""> 로그아웃 </a></li>
     </ul>
   </div>
 </div>
 <!-- navbar 끝 -->
-
+</c:if>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
