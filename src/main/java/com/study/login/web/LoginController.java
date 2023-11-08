@@ -47,18 +47,16 @@ public class LoginController {
                 return "redirect:/login/login.wow?login_error=" +URLEncoder.encode("비밀번호가 다릅니다.","utf-8");
             } else {
                 session.setAttribute("user", user);
-                return "redirect:/login/isLogin.wow";
+                return "redirect:/";
             }
         }
     }
 
 
-
-
     @RequestMapping("/login/logout.wow")
     public String logout(HttpSession session) {
         session.removeAttribute("user");
-        return "redirect:/login/isLogin.wow";
+        return "redirect:/";
     }
 
 
