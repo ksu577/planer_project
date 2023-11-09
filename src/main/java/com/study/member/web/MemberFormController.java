@@ -32,6 +32,7 @@ public class MemberFormController {
         }
     }
 
+
     @Autowired
     private MailService mailService;
 
