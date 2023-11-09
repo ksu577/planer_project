@@ -44,5 +44,22 @@
     </bean>
     <mybatis-spring:scan base-package="com.study"
                          annotation="org.apache.ibatis.annotations.Mapper" />
+    <bean id="mailSender"
+          class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="shg2667@gmail.com" />  <!--나는 hch930620@gmail.com  -->
+        <property name="password" value="xkdladusrn123!" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+                <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+            </props>
+        </property>
+    </bean>
 
 </beans>

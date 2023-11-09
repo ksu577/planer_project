@@ -21,7 +21,11 @@ public class MemberFormController {
             MemberVO member = memberService.getMember(id);
             return "중복된 아이디 입니다.";
         } catch (BizNotFoundException e) {
-            return "사용 가능한 아이디 입니다.";
+            if (id.length() < 4) {
+                return "최소 4글자 이상 입력해주세요.";
+            } else {
+                return "사용 가능한 아이디 입니다.";
+            }
         }
     }
 }
