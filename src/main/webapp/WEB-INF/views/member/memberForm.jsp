@@ -383,12 +383,12 @@
         $.ajax({
             url: "/memberForm/emailCheck2"
             , type: "get"
-            , data: {"email": mailCheck}
+            , data: {"sendKey": mailCheck}
             , success: function (data) {
-                alert("인증되었습니다.");
+                alert(data);
             }
             , error: function (err) {
-                alert("인증실패");
+                alert(err);
             }
         });
     });

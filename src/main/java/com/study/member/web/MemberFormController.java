@@ -13,6 +13,7 @@ import javax.mail.MessagingException;
 
 @Controller
 public class MemberFormController {
+    private String key;
 
     @Autowired
     private IMemberService memberService;
@@ -38,14 +39,16 @@ public class MemberFormController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/memberForm/emailCheck")
+    @RequestMapping(value = "/memberForm/emailCheck", produces = "text/plain;charset=UTF-8")
     public String emailCheck(String email) throws MessagingException {
-        return mailService.mailSend(email);
+        key = mailService.mailSend(email);
+        return key;
     }
 
-    @RequestMapping(value = "/memberForm/emailCheck2")
-    public String emailCheck2(String email) throws MessagingException {
-        if (emailCheck(email).equals(emailCheck2(email))) {
+    @ResponseBody
+    @RequestMapping(value = "/memberForm/emailCheck2", produces = "text/plain;charset=UTF-8")
+    public String emailCheck2(String sendKey) throws MessagingException {
+        if (key.equals(sendKey)) {
             return "인증성공";
         } else {
             return "인증실패";

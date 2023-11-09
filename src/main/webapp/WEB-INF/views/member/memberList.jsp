@@ -25,7 +25,7 @@
     <tbody>
     <c:forEach items="${ memberList }" var="member">
         <tr>
-            <td>${member.id}</td>
+            <td><a href="memberView.wow?id=${member.id}"> ${member.id} </a></td>
             <td>${member.password}</td>
             <td>${member.name}</td>
             <td>${member.birth}</td>
