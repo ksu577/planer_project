@@ -279,7 +279,7 @@
                 </div>
                 <div class="em-cover">
                     <input name="email" id="member-em" type="text" placeholder="이메일">
-                    <button class="em-check-btn">인증</button>
+                    <button type="button" id="emCheck" class="em-check-btn">인증</button>
                 </div>
             </div>
 
@@ -325,7 +325,7 @@
         });
     });
 
-    $("#email").on("click", function (e) {
+    $("#emCheck").on("click", function (e) {
         let mailAddress = $("input[name='email']").val();
         $.ajax({
             url: "/memberForm/emailCheck"
