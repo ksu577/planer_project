@@ -2,4 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.study.cart.dao.CartDao">
 
+    <select id="getCart" resultType="com.study.cart.vo.CartVO">
+        SELECT *
+        FROM cart
+        WHERE order_num = #{orderNum}
+    </select>
+
+
+    <insert id="insertCartItem">
+        INSERT INTO cart (order_num,
+                          id,
+                          product_Num,
+                          product_Name,
+                          product_Img,
+                          product_Amount,)
+        VALUES (#{orderNum},
+                #{id},
+                #{productNum},
+                #{productName},
+                #{productImg},
+                #{productAmount})
+    </insert>
+
+
+    <delete id="deleteCartItem">
+        DELETE
+        FROM cart
+        WHERE order_no = #{orderNum}
+    </delete>
+
+
+    <update id="updateCartItem">
+        UPDATE cart
+        SET product_Amount = #{productAmount}
+        WHERE order_no = #{orderNum}
+    </update>
+
+
+    <select id="getCartItemsByMember" resultType="com.study.cart.vo.CartVO">
+        SELECT *
+        FROM cart
+        WHERE id = #{Id}
+    </select>
+
+
+    <select id="getCartItemById" resultType="com.study.cart.vo.CartVO">
+        SELECT *
+        FROM cart
+        WHERE order_num = #{orderNum}
+    </select>
+
 </mapper>

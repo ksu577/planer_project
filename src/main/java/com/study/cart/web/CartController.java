@@ -9,32 +9,40 @@ public class CartController {
 
 
 
-    @RequestMapping("/minishop/paypage.wow")
+
+
+
+
+
+
+
+
+    @RequestMapping("/cart/paypage.wow")
     public String paypage() {
         return "/minishop/paypage";
     }
 
-    @RequestMapping("/minishop/minishop.wow")
+    @RequestMapping("/cart/minishop.wow")
     public String minishop() {
         return "/minishop/minishop";
     }
 
-    @RequestMapping("/minishop/productregist.wow")
+    @RequestMapping("/cart/productregist.wow")
     public String productregist() {
         return "/minishop/productregist";
     }
 
-    @RequestMapping("/minishop/productview.wow")
+    @RequestMapping("/cart/productview.wow")
     public String productview() {
         return "/minishop/productview";
     }
 
-    @RequestMapping("/minishop/shoppingcart.wow")
+    @RequestMapping("/cart/shoppingcart.wow")
     public String shoppingcart() {
         return "/minishop/shoppingcart";
     }
 
-    @RequestMapping("/minishop/afterpay.wow")
+    @RequestMapping("/cart/afterpay.wow")
     public String afterpay() {
         return "/minishop/afterpay";
     }
