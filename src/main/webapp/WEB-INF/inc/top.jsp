@@ -15,6 +15,7 @@
 
     <style>
         .nav-bar {
+            font-size: 20px;
             border: 1px solid red;
             height: 70px;
             display: flex;
