@@ -50,10 +50,10 @@
     }
 
     .id-cover {
-        width: 465px;
-        height: 60px;
+        width: 450px;
+        height: 55px;
         border-radius: 5px;
-        margin-left: 4%;
+        margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
         margin-top: 25px;
@@ -61,8 +61,8 @@
 
     #member-id {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 370px;
-        height: 60px;
+        width: 360px;
+        height: 53px;
         border-radius: 5px;
         margin-left: 2%;
         font-size: 18px;
@@ -71,23 +71,23 @@
 
     .idCheck {
         border: 1px solid #98dde3;
-        width: 70px;
-        height: 60px;
+        width: 60px;
+        height: 55px;
         position: absolute;
         background-color: #98dde3;
-        border-radius: 5px;
+        border-radius: 4px;
         cursor: pointer;
         font-size: 20px;
         font-weight: 700;
         color: white;
-        left: 397px;
+        left: 390px;
     }
 
     .pw-cover {
-        width: 468px;
-        height: 60px;
+        width: 450px;
+        height: 55px;
         border-radius: 5px;
-        margin-left: 4%;
+        margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
         margin-top: 25px;
@@ -95,8 +95,8 @@
 
     #member-pw {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 450px;
-        height: 60px;
+        width: 440px;
+        height: 53px;
         border-radius: 5px;
         margin-left: 2%;
         font-size: 18px;
@@ -104,10 +104,10 @@
     }
 
     .em-cover {
-        width: 465px;
-        height: 60px;
+        width: 450px;
+        height: 55px;
         border-radius: 5px;
-        margin-left: 4%;
+        margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
         margin-top: 25px;
@@ -115,8 +115,8 @@
 
     #member-em {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 370px;
-        height: 60px;
+        width: 360px;
+        height: 53px;
         border-radius: 5px;
         margin-left: 2%;
         font-size: 18px;
@@ -125,8 +125,8 @@
 
     .em-check-btn {
         border: 1px solid #98dde3;
-        width: 70px;
-        height: 60px;
+        width: 60px;
+        height: 55px;
         position: absolute;
         background-color: #98dde3;
         border-radius: 5px;
@@ -134,7 +134,41 @@
         font-size: 20px;
         font-weight: 700;
         color: white;
-        left: 397px;
+        left: 390px;
+    }
+
+    .em-cover2 {
+        width: 450px;
+        height: 55px;
+        border-radius: 5px;
+        margin-left: 5.5%;
+        position: relative;
+        background-color: rgba(220, 220, 220, 0.30);
+        margin-top: 25px;
+    }
+
+    #member-em2 {
+        border: 1px rgba(220, 220, 220, 0.30);
+        width: 360px;
+        height: 53px;
+        border-radius: 5px;
+        margin-left: 2%;
+        font-size: 18px;
+        background-color: rgba(220, 220, 220, 0);
+    }
+
+    .em-check-btn2 {
+        border: 1px solid #98dde3;
+        width: 60px;
+        height: 55px;
+        position: absolute;
+        background-color: #98dde3;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 700;
+        color: white;
+        left: 390px;
     }
 
     .member-input-box1 input:focus {
@@ -144,14 +178,14 @@
     .member-input-box2 {
         width: 100%;
         height: 30%;
-        margin-top: 30px;
+        margin-top: 50px;
     }
 
     .name-cover {
-        width: 465px;
-        height: 60px;
+        width: 450px;
+        height: 55px;
         border-radius: 5px;
-        margin-left: 4%;
+        margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
         margin-top: 25px;
@@ -159,8 +193,8 @@
 
     #member-name {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 450px;
-        height: 60px;
+        width: 440px;
+        height: 53px;
         border-radius: 5px;
         margin-left: 2%;
         font-size: 18px;
@@ -168,10 +202,10 @@
     }
 
     .birth-cover {
-        width: 465px;
-        height: 60px;
+        width: 450px;
+        height: 55px;
         border-radius: 5px;
-        margin-left: 4%;
+        margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
         margin-top: 25px;
@@ -179,8 +213,8 @@
 
     #member-birth {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 450px;
-        height: 60px;
+        width: 440px;
+        height: 53px;
         border-radius: 5px;
         margin-left: 2%;
         font-size: 18px;
@@ -188,10 +222,10 @@
     }
 
     .phone-cover {
-        width: 465px;
-        height: 60px;
+        width: 450px;
+        height: 55px;
         border-radius: 5px;
-        margin-left: 4%;
+        margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
         margin-top: 25px;
@@ -199,8 +233,8 @@
 
     #member-phone {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 370px;
-        height: 60px;
+        width: 360px;
+        height: 53px;
         border-radius: 5px;
         margin-left: 2%;
         font-size: 18px;
@@ -209,8 +243,8 @@
 
     .phone-check-btn {
         border: 1px solid #98dde3;
-        width: 70px;
-        height: 60px;
+        width: 60px;
+        height: 55px;
         position: absolute;
         background-color: #98dde3;
         border-radius: 5px;
@@ -218,14 +252,14 @@
         font-size: 20px;
         font-weight: 700;
         color: white;
-        left: 397px;
+        left: 390px;
     }
 
     .address-cover {
-        width: 465px;
-        height: 60px;
+        width: 450px;
+        height: 55px;
         border-radius: 5px;
-        margin-left: 4%;
+        margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
         margin-top: 25px;
@@ -233,8 +267,8 @@
 
     #member-address {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 450px;
-        height: 60px;
+        width: 440px;
+        height: 53px;
         border-radius: 5px;
         margin-left: 2%;
         font-size: 18px;
@@ -247,13 +281,13 @@
 
     .member-btn {
         border: 1px solid #98dde3;
-        width: 465px;
-        height: 60px;
+        width: 450px;
+        height: 55px;
         border-radius: 5px;
         background-color: #98dde3;
-        margin-left: 4%;
+        margin-left: 5.5%;
         cursor: pointer;
-        margin-top: 100px;
+        margin-top: 50px;
     }
 
     .member-btn > p {
@@ -280,6 +314,10 @@
                 <div class="em-cover">
                     <input name="email" id="member-em" type="text" placeholder="이메일">
                     <button type="button" id="emCheck" class="em-check-btn">인증</button>
+                </div>
+                <div class="em-cover2">
+                    <input name="email2" id="member-em2" type="text" placeholder="인증번호">
+                    <button type="button" id="emCheck2" class="em-check-btn2">확인</button>
                 </div>
             </div>
 
@@ -332,13 +370,31 @@
             , type: "get"
             , data: {"email": mailAddress}
             , success: function (data) {
-                alert("메일확인");
+                alert("전송되었습니다.");
             }
             , error: function (err) {
-                alert("에러");
+                alert("전송실패");
             }
         });
     });
+
+    $("#emCheck2").on("click", function (e) {
+        let mailCheck = $("input[name='email2']").val();
+        $.ajax({
+            url: "/memberForm/emailCheck2"
+            , type: "get"
+            , data: {"email": mailCheck}
+            , success: function (data) {
+                alert("인증되었습니다.");
+            }
+            , error: function (err) {
+                alert("인증실패");
+            }
+        });
+    });
+
+
+
 
 </script>
 </body>

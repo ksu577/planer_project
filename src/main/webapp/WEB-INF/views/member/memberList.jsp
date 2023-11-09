@@ -37,5 +37,18 @@
     </tbody>
 </table>
 
+<a href="memberList.wow?curpage=1">&laquo;</a>
+<a href="memberList.wow?curpage=1${paging.curPage-1}">&lt;</a>
+
+<c:forEach begin="${paging.firstPage}" end="${paging.lastPage}" var="i">
+    <a href="memberList.wow?curPage=${i}">
+        <c:if test="${paging.curPage eq i}"><span style="color: red">${i}</span></c:if>
+        <c:if test="${paging.curPage ne i}">${i}</c:if>
+    </a>
+</c:forEach>
+
+<a href="memberList.wow?curPage=${paging.curPage+1}">&gt;</a>
+<a href="memberList.wow?curPage=${paging.totalPageCount}">&raquo;</a>
+
 </body>
 </html>
