@@ -3,7 +3,7 @@ package com.study.attach.web;
 import com.study.attach.service.AttachServiceImpl;
 import com.study.attach.vo.AttachVO;
 import com.study.exception.BizNotFoundException;
-//import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -48,7 +48,7 @@ public class AttachController {
         resp.setHeader("Pragma", "no-cache;");
         resp.setHeader("Expires", "-1;");
         // 저장된 파일을 응답객체의 스트림으로 내보내기,  resp의 outputStream에  해당파일을 복사
-//        FileUtils.copyFile(file, resp.getOutputStream());
+        FileUtils.copyFile(file, resp.getOutputStream());
         resp.getOutputStream().close();
     }
 
