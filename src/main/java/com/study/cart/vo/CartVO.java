@@ -5,18 +5,17 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class CartVO {
 
-    private int buNo;
+    private int cartNo;
     private String id;
-    private int buProductNum;
-    private int productCost;
+    private int productNum;
+    private int cartCost;
 
-
-    public int getBuNo() {
-        return buNo;
+    public int getCartNo() {
+        return cartNo;
     }
 
-    public void setBuNo(int buNo) {
-        this.buNo = buNo;
+    public void setCartNo(int cartNo) {
+        this.cartNo = cartNo;
     }
 
     public String getId() {
@@ -27,20 +26,20 @@ public class CartVO {
         this.id = id;
     }
 
-    public int getBuProductNum() {
-        return buProductNum;
+    public int getProductNum() {
+        return productNum;
     }
 
-    public void setBuProductNum(int buProductNum) {
-        this.buProductNum = buProductNum;
+    public void setProductNum(int productNum) {
+        this.productNum = productNum;
     }
 
-    public int getProductCost() {
-        return productCost;
+    public int getCartCost() {
+        return cartCost;
     }
 
-    public void setProductCost(int productCost) {
-        this.productCost = productCost;
+    public void setCartCost(int cartCost) {
+        this.cartCost = cartCost;
     }
 
     @Override
