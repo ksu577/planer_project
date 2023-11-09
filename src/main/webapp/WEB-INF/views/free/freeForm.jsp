@@ -21,10 +21,6 @@
       <td><input type="text" name="id" value=""></td>
     </tr>
     <tr>
-      <th>분류</th>
-      <td><input type="text" name="freeCategory" value=""></td>
-    </tr>
-    <tr>
       <th>내용</th>
       <td><textarea rows="10" name="freeContent"> </textarea></td>
     </tr>

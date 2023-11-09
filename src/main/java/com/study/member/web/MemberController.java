@@ -72,7 +72,7 @@ public class MemberController {
     }
 
 
-    @RequestMapping("/member/memberRegist.wow")
+    @PostMapping("/member/memberRegist.wow")
     public String memberRegist(Model model,MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException {
         ResultMessageVO resultMessageVO=new ResultMessageVO();
         memberService.registMember(member);

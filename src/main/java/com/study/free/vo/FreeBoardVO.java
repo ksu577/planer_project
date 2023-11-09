@@ -1,6 +1,14 @@
 package com.study.free.vo;
 
+import com.study.attach.vo.AttachVO;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.util.List;
+
 public class FreeBoardVO {
+
+
     private String id;
     private int freeNum;
     private String freeContext;
@@ -9,6 +17,40 @@ public class FreeBoardVO {
     private int viewRate;
     private int freeLike;
     private String title;
+    private String boDelYn;
+
+
+    private List<AttachVO> attaches;
+    private  int[] delAtchNos;
+
+    public List<AttachVO> getAttaches() {
+        return attaches;
+    }
+
+    public void setAttaches(List<AttachVO> attaches) {
+        this.attaches = attaches;
+    }
+
+    public int[] getDelAtchNos() {
+        return delAtchNos;
+    }
+
+    public void setDelAtchNos(int[] delAtchNos) {
+        this.delAtchNos = delAtchNos;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    public String getBoDelYn() {
+        return boDelYn;
+    }
+
+    public void setBoDelYn(String boDelYn) {
+        this.boDelYn = boDelYn;
+    }
 
     public String getId() {
         return id;

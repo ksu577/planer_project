@@ -53,7 +53,7 @@
 
         <a href=""> 미니샵 </a>
 
-        <a href=""> 게시판 </a>
+        <a href="http://localhost:8081/free/freeList.wow"> 게시판 </a>
 
     </div>
 

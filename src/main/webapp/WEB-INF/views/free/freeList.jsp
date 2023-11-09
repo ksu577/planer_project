@@ -18,7 +18,6 @@
     <tr>
         <td>글번호</td>
         <td>제목</td>
-        <td>글 분류</td>
         <td>아이디</td>
         <td>등록일</td>
     </tr>
@@ -28,7 +27,6 @@
         <tr>
             <td>${freeBoard.freeNum}</td>
             <td><a href="freeView.wow?freeNum=${freeBoard.freeNum }"> ${freeBoard.title } </a></td>
-            <td>${freeBoard.freeCategory }</td>
             <td>${freeBoard.id }</td>
             <td>${freeBoard.createDate }</td>
         </tr>
