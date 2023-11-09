@@ -73,12 +73,6 @@ public class LoginController {
         return "member/memberForm";
     }
 
-    @RequestMapping("/member/memberRegist.wow")
-    public String memberRegist(MemberVO member) {
-        loginDao.insertMember(member);
-        return "redirect:/login/isLogin.wow";
-    }
-
 
 
 
