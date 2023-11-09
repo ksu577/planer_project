@@ -12,6 +12,7 @@ public class LoginService {
 
     @Autowired
     private  IMemberDao memberDao;
+
     public UserVO getUser(String Id) throws Exception{
         MemberVO member = memberDao.getMember(Id);
         if (member == null) {

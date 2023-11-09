@@ -9,14 +9,6 @@ public class CartController {
 
 
 
-
-
-
-
-
-
-
-
     @RequestMapping("/cart/paypage.wow")
     public String paypage() {
         return "/minishop/paypage";
