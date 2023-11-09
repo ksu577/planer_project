@@ -12,7 +12,7 @@
                  ,#{atchFileName}, #{atchOriginalName}, #{atchFileSize}
                  ,#{atchFancySize}, #{atchContentType}, #{atchPath}
                  ,#{atchDownHit}, 'N', sysdate
-                 );
+                 )
     </insert>
     <delete id="delAtchNos">
         UPDATE attach

@@ -32,20 +32,10 @@
                         <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}"
                                placeholder="검색어">
                     </div>
-                    <label for="id_searchCategory" class="col-sm-2 col-sm-offset-2 control-label">분류</label>
-                    <div class="col-sm-2">
-                        <select id="id_searchCategory" name="searchCategory" class="form-control input-sm">
-                            <option value="">-- 전체 --</option>
-                            <c:forEach items="${cateList}" var="code">
-                                <option value="${code.commCd}"
-                                    ${searchCategory eq code.commCd ? "selected='selected'" : ""}  >${code.commNm}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2 col-sm-offset-9 text-right">
-                        <button type="button" id="id_btn_reset" class="btn btn-sm btn-default">
+                        <button type="button"  id="id_btn_reset" class="btn btn-sm btn-default">
                             <i class="fa fa-sync"></i> &nbsp;&nbsp;초기화
                         </button>
                     </div>
@@ -92,13 +82,12 @@
             <col width="15%"/>
             <col/>
             <col width="10%"/>
-            <col width="15%"/>
+            <col width="10%"/>
             <col width="10%"/>
         </colgroup>
         <thead>
         <tr>
             <th>글번호</th>
-            <th>분류</th>
             <th>제목</th>
             <th>작성자</th>
             <th>등록일</th>
@@ -107,26 +96,96 @@
         </thead>
         <tbody>
         <c:forEach items="${freeBoardList }" var="freeBoard">
-            <tr>
+            <tr class="text-center">
                 <td>${freeBoard.freeNum}</td>
                 <td><a href="freeView.wow?freeNum=${freeBoard.freeNum }"> ${freeBoard.title } </a></td>
                 <td>${freeBoard.id }</td>
                 <td>${freeBoard.createDate }</td>
+                <td>${freeBoard.viewRate}</td>
             </tr>
         </c:forEach>
 
         </tbody>
     </table>
-    <a href="freeList.wow?curPage=1">&laquo;</a>
-    <a href="freeList.wow?curPage=${paging.curPage-1 }">&lt;</a>
-    <c:forEach begin="${paging.firstPage }" end="${paging.lastPage }" var="i">
-        <a href="freeList.wow?curPage=${i }">
-            <c:if test="${i eq paging.curPage }"> <span style="color: red"> ${i } </span> </c:if>
-            <c:if test="${i ne paging.curPage }">  ${i } </c:if>
-        </a>
-    </c:forEach>
-    <a href="freeList.wow?curPage=${paging.curPage+1 }">&gt;</a>
-    <a href="freeList.wow?curPage=${paging.totalPageCount }">&raquo;</a>
+
+
+    <!-- START : 페이지네이션  -->
+    <nav class="text-center">
+        <ul class="pagination">
+            <!-- 첫 페이지  -->
+            <li><a href="freeList.wow?curPage=1" data-page="1"><span aria-hidden="true">&laquo;</span></a></li>
+            <!-- 이전 페이지 -->
+            <c:if test="${paging.firstPage ne 1}">
+                <li><a href="freeList.wow?curPage=${paging.firstPage-1}" data-page="${paging.firstPage-1}"><span
+                        aria-hidden="true">&lt;</span></a></li>
+            </c:if>
+
+            <!-- 페이지 넘버링  -->
+            <c:forEach begin="${paging.firstPage}" end="${paging.lastPage}" var="i">
+                <c:if test="${paging.curPage ne i}">
+                    <li><a href="freeList.wow?curPage=${i}" data-page="${i}">${i}</a></li>
+                </c:if>
+                <c:if test="${paging.curPage eq i}">
+                    <li class="active"><a href="#">${i}</a></li>
+                </c:if>
+
+            </c:forEach>
+
+            <!-- 다음  페이지  -->
+            <c:if test="${paging.lastPage ne paging.totalPageCount}">
+                <li><a href="freeList.wow?curPage=${paging.lastPage+1}" data-page="${paging.lastPage+1}"><span
+                        aria-hidden="true">&gt;</span></a></li>
+            </c:if>
+
+            <!-- 마지막 페이지 -->
+            <li><a href="freeList.wow?curPage=${paging.totalPageCount}" data-page="${paging.totalPageCount}"><span
+                    aria-hidden="true">&raquo;</span></a></li>
+        </ul>
+    </nav>
+    <!-- END : 페이지네이션  -->
 </div>
 </body>
+<script type="text/javascript">
+    // 변수 정의
+    $form = $("form[name='search']");
+    $curPage = $form.find("input[name='curPage']");
+    // 각 이벤트 등록
+    // 페이지 링크 클릭, event전파방지, data속성값읽고 form태그 내의 input name=curPage값 바꾸기
+    //submit
+    $('ul.pagination li a[data-page]').click(function (e) {
+        e.preventDefault();
+        let curPage = $(this).data('page');
+        $curPage.val(curPage);
+        $form.submit();
+    }); // ul.pagination li a[data-page]
+
+
+    //member까지 다 해보세요....3시간 동안..
+
+    //form태그내의 버튼 클릭
+    //이벤트전파방지, curPage 값 1로
+    //submit
+    $form.find("button[type=submit]").click(function (e) {
+        e.preventDefault();
+        $curPage.val(1);
+        $form.submit();
+    });
+
+    // 목록 갯수 변경
+    // id_rowSizePerPage 변경되었을 때
+    // 페이지 1, 목록수 = 현재값 으로 변경 후 서브밋
+    $('#id_rowSizePerPage').change(function (e) {
+        $curPage.val(1);
+        $form.find("input[name='rowSizePerPage']").val($(this).val());
+        $form.submit();
+    }); // '#id_rowSizePerPage'.change
+
+    // 초기화 버튼 클릭
+    $('#id_btn_reset').click(function () {
+        $("#id_searchType option:eq(0)").prop("selected", "selected");
+        $form.find("input[name='searchWord']").val("");
+        $("#id_searchCategory option:eq(0)").prop("selected", "selected");
+    }); // #id_btn_reset.click
+
+</script>
 </html>

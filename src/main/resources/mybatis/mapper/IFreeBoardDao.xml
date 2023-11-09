@@ -44,16 +44,14 @@
         id,free_num,free_context,
         create_date,update_date,view_rate,
         free_like,title,bo_del_yn
-        ,b. comm_nm AS free_context_nm
-        FROM free_board a, comm_code b
-        WHERE a.free_context = b.comm_cd
+        FROM free_board a
 
         <include refid="searchInFree"/>
         ORDER BY free_num desc) a) b
         WHERE rnum between #{paging.firstRow} and #{paging.lastRow}
 
     </select>
-    <select id="getBoard" resultType="com.study.free.vo.FreeBoardVO" parameterType="string">
+    <select id="getBoard" resultType="com.study.free.vo.FreeBoardVO" parameterType="int">
         SELECT id,free_num,free_context,
                create_date,update_date,view_rate,
                free_like,title
