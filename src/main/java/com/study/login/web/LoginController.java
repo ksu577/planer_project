@@ -73,7 +73,4 @@ public class LoginController {
         return "member/memberForm";
     }
 
-
-
-
 }
