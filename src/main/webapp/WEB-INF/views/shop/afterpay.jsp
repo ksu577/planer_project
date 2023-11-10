@@ -32,36 +32,7 @@
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <div class="container">
-  <!-- navbar 시작 이 부분은 이거 쓰는게 아니고 top.jsp 불러와야됨-->
-  <div class="nav-bar">
-    <div class="homepagelogo">
-      <img width="70px" height="70px"
-           src="https://blogpfthumb-phinf.pstatic.net/MjAyMjEwMTZfMTI3/MDAxNjY1OTExMjQzOTEw.UVI-Y_plYDNPSB0xvcf94a312JWd-9G13TGbY5zFLQgg.rB78JXJkmCKSUYARca2qkLUu6NGqdlYCUoIsJ-wmIsAg.PNG.beatitude98/profileImage.png?type=w161"
-           alt="">
-      <a href=""> 왼쪽엔 홈페이지 로고 </a>
-    </div>
-    <div class="navcategory">
-      <a href=""> 여행지 </a>
-      <a href=""> 미니샵 </a>
-      <a href=""> 게시판 </a>
-    </div>
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-              aria-expanded="false">
-        My page
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#"> 내 정보 </a></li>
-        <li><a class="dropdown-item" href="#"> 회원 정보 수정 </a></li>
-        <li><a class="dropdown-item" href="#"> 장바구니 </a></li>
-        <li>
-          <hr class="dropdown-divider">
-        </li>
-        <li><a class="dropdown-item" href="#"> 로그아웃 </a></li>
-      </ul>
-    </div>
-  </div>
-  <!-- navbar 끝 -->
+
 
   <div class="route mt-3">
     장바구니 > 주문결제 > 주문완료
@@ -74,14 +45,19 @@
       <form>
         <div class="mb-3">
           <label for="deliveryAddress" class="form-label"> 배송지 : </label>
+<%--          여긴 input 타입으로 정보 받아와야됨--%>
+
         </div>
         <div class="mb-3">
+          <%--          회원정보로 DB에서 데이터 받아와야됨--%>
           <label for="recipientName" class="form-label"> 수령인 : </label>
         </div>
         <div class="mb-3">
+        <%--          회원정보로 DB에서 데이터 받아와야됨--%>
           <label for="phoneNumber" class="form-label"> 연락처 : </label>
         </div>
         <div class="mb-3">
+          <%--          여긴 input 타입으로 정보 받아와야됨--%>
           <label for="address" class="form-label"> 주소입력 : </label>
         </div>
 

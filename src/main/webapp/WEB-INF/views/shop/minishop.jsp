@@ -3,10 +3,86 @@
 <html>
 <head>
     <title></title>
+
+    <style>
+        .container {
+            width: 1225px;
+        }
+
+        .selectcategory {
+            text-align: right;
+
+        }
+
+        .carousel{
+            width: 1200px;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .cell {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0px 0px 4px 2px gainsboro;
+        }
+
+        .item-box a {
+            text-decoration: none;
+        }
+
+        .item-box {
+            text-decoration: none;
+            cursor: pointer;
+            margin: auto;
+            width: 1200px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            background-color: green;
+            border-radius: 20px;
+        }
+
+        .item-box>div {
+            width: calc(1200px / 4 - 20px);
+            height: 400px;
+            border: 0;
+            box-shadow: 1px 1px 4px 1px black;
+            border-bottom: 20px;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .top {
+            height: 80%;
+            border-radius: 20px;
+            box-shadow: 0px 0px 4px 2px gainsboro;
+        }
+
+        .bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 20%;
+            background-color: greenyellow;
+            color: rgb(0, 102, 0);
+            flex-direction: column;
+        }
+
+        .bottom a {
+            color: rgb(0, 102, 0);
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 12px;
+            padding-right: 12px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
-
+<div class="container">
 <div id="carouselExample" class="carousel slide">
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -46,131 +122,22 @@
 </div>
 
 <div class="item-box">
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
-
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
-
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
-
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
-
-    <div class="cell">
-        <div class="top">
-            <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-        </div>
-        <div class="bottom">
-            <a href=""> 상품명 </a>
-            <a> 가격 </a>
-        </div>
-    </div>
+<%--여기가 확실하지 않은데 orderNum 인지 productNum인지 id 로 가져와야하는건지 모르겠다 순억아!!--%>
+        <c:forEach var="product" items="${orderNum}">
+            <div class="cell">
+                <div class="top">
+                    <img height="320px" width="328px" src="<c:out value="${productImg}" />" alt="">
+                </div>
+                <div class="bottom">
+<%--                    klink엔 시부레 뭘 넣어야할까 --%>
+                    <a href="<c:out value="${product.link}" />"> <c:out value="${productName}" /> </a>
+                    <a> <c:out value="${productAmount}" /> </a>
+                </div>
+            </div>
+        </c:forEach>
 </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
