@@ -63,7 +63,7 @@
             <version>2.15.2</version>
         </dependency>
 
-        <!-- email -->
+        <!-- email commit -->
         <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
         <dependency>
             <groupId>javax.mail</groupId>
