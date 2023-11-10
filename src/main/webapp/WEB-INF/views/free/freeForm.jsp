@@ -5,7 +5,7 @@
     request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <th>내용</th>
-                <td><textarea rows="10" name="freeContext"> </textarea></td>
+                <td><textarea rows="10"  name="freeContext"> </textarea></td>
             </tr>
 
             <tr>

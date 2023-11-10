@@ -79,7 +79,7 @@ public class FreeController {
 
     @PostMapping("/free/freeModify.wow")
     public String freeModify(Model model, FreeBoardVO freeBoard, @RequestParam(name = "boFiles", required = false) MultipartFile[] boFiles) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException, IOException {
-
+        System.out.println(boFiles);
         if (boFiles != null) {
             List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, "FREE", "free");
             freeBoard.setAttaches(attaches);

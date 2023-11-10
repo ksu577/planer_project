@@ -21,12 +21,6 @@
 
 
 
-    <resultMap id="freeAttaches" type="com.study.free.vo.FreeBoardVO">
-        <collection property="attaches" column="{atchParentNO=free_num, atchCategory=bo_type}"
-                    ofType="com.study.attach.vo.AttachVO"
-                    select="com.study.attach.dao.IAttachDao.getAttachListByParent">
-        </collection>
-    </resultMap>
 
     <select id="getTotalRowCount" resultType="int" parameterType="java.util.Map">
         SELECT  count(*)
@@ -51,6 +45,14 @@
         WHERE rnum between #{paging.firstRow} and #{paging.lastRow}
 
     </select>
+
+    <resultMap id="freeAttaches" type="com.study.free.vo.FreeBoardVO">
+        <collection property="attaches" column="{atchParentNO=free_num, atchCategory=bo_type}"
+                    ofType="com.study.attach.vo.AttachVO"
+                    select="com.study.attach.dao.IAttachDao.getAttachListByParent">
+        </collection>
+    </resultMap>
+
     <select id="getBoard" resultType="com.study.free.vo.FreeBoardVO" parameterType="com.study.free.vo.FreeBoardVO">
         SELECT id,free_num,free_context,
                create_date,update_date,view_rate,

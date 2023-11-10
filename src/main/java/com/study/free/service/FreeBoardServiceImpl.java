@@ -12,8 +12,12 @@ import com.study.exception.BizNotFoundException;
 import com.study.exception.BizPasswordNotMatchedException;
 import com.study.free.dao.IFreeBoardDao;
 import com.study.free.vo.FreeBoardVO;
+import com.study.login.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Service
 public class FreeBoardServiceImpl implements IFreeBoardService {
@@ -24,13 +28,17 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     @Autowired
     IAttachDao attachDao;
 
+    @Autowired
+    private HttpServletRequest request;
+
     @Override
     public List<FreeBoardVO> getBoardList(PagingVO paging, SearchVO search, String searchCategory) {
-        int totalRowCount = freeBoardDao.getTotalRowCount(paging,search,searchCategory);
+        int totalRowCount = freeBoardDao.getTotalRowCount(paging, search, searchCategory);
         paging.setTotalRowCount(totalRowCount);
         paging.pageSetting();
 
-        List<FreeBoardVO> freeBoardList = freeBoardDao.getBoardList(paging,search,searchCategory);
+
+        List<FreeBoardVO> freeBoardList = freeBoardDao.getBoardList(paging, search, searchCategory);
         return freeBoardList;
     }
 
@@ -38,11 +46,12 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     @Override
     public FreeBoardVO getBoard(int freeNum) throws BizNotFoundException {
         FreeBoardVO freeBoard = freeBoardDao.getBoard(freeNum);
-        if (freeBoard == null) throw new BizNotFoundException();
-
+        if (freeBoard == null) {
+            throw new BizNotFoundException();
+        }
         //reslutMap을 통해 이미 freeBoard에는 attaches가 세팅되어있다.
-        //List<AttachVO> attaches = attachDao.getAttachListByParent("FREE",freeBoard.getBoNo());
-        //freeBoard.setAttaches(attaches);
+        List<AttachVO> attaches = attachDao.getAttachListByParent("FREE",freeBoard.getFreeNum());
+        freeBoard.setAttaches(attaches);
         return freeBoard;
     }
 
@@ -65,14 +74,29 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         // vo는 DB에 있는 데이터
         if (vo == null)
             throw new BizNotFoundException();
-//        if (freeBoard.getBoPass().equals(vo.getBoPass())) {
 
-            int cnt = freeBoardDao.updateBoard(freeBoard);
-            if (cnt == 0)
-                throw new BizNotEffectedException();
-//        } else {
-//            throw new BizPasswordNotMatchedException();
-//        }
+        HttpSession session = request.getSession();
+        UserVO sessiongUserId = (UserVO) session.getAttribute("user");
+
+        if (!vo.getId().equals(sessiongUserId.getId()))
+            throw new BizPasswordNotMatchedException();
+
+        int cnt = freeBoardDao.updateBoard(freeBoard);
+        if (cnt == 0)
+            throw new BizNotEffectedException();
+        //추가된 첨부파일 DB에 넣는건 regist랑 똑같이...
+        List<AttachVO> attaches = freeBoard.getAttaches();
+        if (attaches != null) {
+            for (AttachVO attach : attaches) {
+                attach.setAtchParentNo(freeBoard.getFreeNum());
+                attachDao.insertAttach(attach);
+            }
+        }
+        //휴지통버튼에 의해 삭제될 첨부파일들을 처리해야함
+        int[] delAtchNos = freeBoard.getDelAtchNos();
+        if (delAtchNos != null && delAtchNos.length > 0) {
+            attachDao.delAtchNos(delAtchNos);
+        }
     }
 
 
@@ -83,9 +107,9 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         if (vo == null)
             throw new BizNotFoundException();
 //        if (freeBoard.getBoPass().equals(vo.getBoPass())) {
-            int cnt = freeBoardDao.deleteBoard(freeBoard);
-            if (cnt == 0)
-                throw new BizNotEffectedException();
+        int cnt = freeBoardDao.deleteBoard(freeBoard);
+        if (cnt == 0)
+            throw new BizNotEffectedException();
 //        } else {
 //            throw new BizPasswordNotMatchedException();
 //        }
@@ -115,8 +139,8 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
             throw new BizNotEffectedException();
 
         List<AttachVO> attaches = freeBoard.getAttaches();
-        if (attaches != null){
-            for (AttachVO attach : attaches){
+        if (attaches != null) {
+            for (AttachVO attach : attaches) {
                 attach.setAtchParentNo(freeBoard.getFreeNum());
                 attachDao.insertAttach(attach);
             }
