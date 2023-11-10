@@ -10,6 +10,24 @@
 </head>
 <body>
 <a href="memberForm.wow">회원가입</a> <br>
+<div class="panel panel-default collapse in" id="id_search_area">
+    <div class="panel-body">
+        <form name="search" action="memberList.wow" method="post" class="form-horizontal">
+            <input type="hidden" name="curPage" value="${paging.curPage}"> <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <select id="id_searchType" name="searchType" class="form-control input-sm">
+                        <option value="NAME" ${search.searchType=='NAME' ? "selected='selected'" :""} >이름</option>
+                        <option value="ID" ${search.searchType=='ID' ? "selected='selected'" :""} >아이디</option>
+                    </select>
+                    <div class="col-sm-2">
+                        <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}" placeholder="검색어">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <table border="1">
     <thead>
     <tr>

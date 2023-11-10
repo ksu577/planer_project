@@ -15,7 +15,7 @@
     <tr> <td>이름</td>        <td>${member.name}       </td></tr>
     <tr> <td>생년월일</td>    <td>${member.birth}      </td></tr>
     <tr> <td>주소</td>        <td>${member.address}    </td></tr>
-    <tr> <td>핸드폰번호</td>  <td>${member.phnum}      </td></tr>
+    <tr> <td>휴대전화번호</td>  <td>${member.phnum}      </td></tr>
     <tr> <td>이메일</td>      <td>${member.email}      </td></tr>
 
     <tr>

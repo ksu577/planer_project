@@ -374,7 +374,7 @@
                     <input name="address" id="member-address" type="text" placeholder="주소">
                 </div>
             </div>
-            <button class="member-btn" onclick=""><p>회원가입</p></button>
+            <button class="member-btn" onclick="" formaction="memberRegist.wow"><p>회원가입</p></button>
         </form>
     </div>
 </div>

@@ -3,9 +3,7 @@ package com.study.member.web;
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.ResultMessageVO;
 import com.study.common.vo.SearchVO;
-import com.study.exception.BizDuplicateKeyException;
-import com.study.exception.BizException;
-import com.study.exception.BizNotEffectedException;
+import com.study.exception.*;
 import com.study.member.dao.IMemberDao;
 import com.study.member.service.IMemberService;
 import com.study.member.vo.MemberVO;
@@ -22,8 +20,17 @@ public class MemberController {
     @Autowired
     IMemberService memberService;
 
+    @ExceptionHandler(value = {BizNotFoundException.class, BizNotEffectedException.class, BizPasswordNotMatchedException.class, BizException.class})
+    public String exception(Model model, BizException e) {
+        e.printStackTrace();
+        ResultMessageVO resultMessageVO = new ResultMessageVO();
+        resultMessageVO.messageSetting(false, "에러", "에러", "/", "홈으로 갑니다.");
+        model.addAttribute("resultMessageVO", resultMessageVO);
+        return "common/message";
+    }
+
     @RequestMapping("/member/memberList.wow")
-    public String memberList(Model model, @ModelAttribute("paging") PagingVO paging, @ModelAttribute("search") SearchVO search) {
+    public String memberList(Model model, @ModelAttribute("paging") PagingVO paging, @ModelAttribute("search") SearchVO search, @ModelAttribute("searchId") String searchId) {
         List<MemberVO> memberList = memberService.getMemberList(paging, search);
         model.addAttribute("memberList", memberList);
         return "member/memberList";
@@ -48,21 +55,23 @@ public class MemberController {
 
     @PostMapping("/member/memberModify.wow")
     public String memberModify(Model model, MemberVO member) throws BizException {
+        ResultMessageVO resultMessageVO = new ResultMessageVO();
         memberService.modifyMember(member);
-        return "member/memberModify";
-
-        // 만약 오류나면 Modify, delete, Regist.jsp 를 생성후
-        // MemberVO member = memberService.getMember(Id);
-        // model.addAttribute("member", member);
-        // return "member/memberModify" 로 대체 할것.
+        resultMessageVO.messageSetting(true, "수정", "수정 되었습니다."
+                , "/member/memberList.wow", "목록으로");
+        model.addAttribute("resultMessageVO",resultMessageVO);
+        return "common/message";
     }
 
 
 
     @PostMapping("/member/memberDelete.wow")
     public String delete(Model model, MemberVO member) throws BizException {
+        ResultMessageVO resultMessageVO = new ResultMessageVO();
         memberService.removeMember(member);
-        return "member/memberDelete";
+        resultMessageVO.messageSetting(true, "탈퇴", "회원탈퇴 되었습니다."
+                , "/member/memberList.wow", "탈퇴완료.");
+        return "common/message";
     }
 
 
@@ -76,7 +85,7 @@ public class MemberController {
     public String memberRegist(Model model,MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException {
         ResultMessageVO resultMessageVO=new ResultMessageVO();
         memberService.registMember(member);
-        resultMessageVO.messageSetting(true,"등록","등록성공했어요"
+        resultMessageVO.messageSetting(true,"등록","회원가입 되었습니다."
                 ,"/member/memberList.wow" , "목록으로");
         model.addAttribute("resultMessageVO",resultMessageVO);
         return "common/message";

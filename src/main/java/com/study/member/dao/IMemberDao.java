@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface IMemberDao {
     public int getTotalRowCount(@Param("paging") PagingVO paging, @Param("search") SearchVO search);
-    public List<MemberVO> getMemberList(@Param("paging") PagingVO paging,@Param("search") SearchVO search);
+    public List<MemberVO> getMemberList(@Param("paging") PagingVO paging, @Param("search") SearchVO search);
     public MemberVO getMember(String Id);
     public int updateMember(MemberVO member);
     public int deleteMember(MemberVO member);
