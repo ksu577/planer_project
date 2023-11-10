@@ -46,7 +46,7 @@
         /* border: 1px solid red; */
         width: 100%;
         height: 30%;
-        margin-top: 40px;
+        margin-top: 30px;
     }
 
     .id-cover {
@@ -56,7 +56,7 @@
         margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     #member-id {
@@ -90,7 +90,7 @@
         margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     #member-pw {
@@ -110,7 +110,7 @@
         margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     #member-em {
@@ -144,7 +144,7 @@
         margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     #member-em2 {
@@ -178,7 +178,7 @@
     .member-input-box2 {
         width: 100%;
         height: 30%;
-        margin-top: 50px;
+        margin-top: 30px;
     }
 
     .name-cover {
@@ -188,7 +188,7 @@
         margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     #member-name {
@@ -208,7 +208,7 @@
         margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     #member-birth {
@@ -228,7 +228,7 @@
         margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     #member-phone {
@@ -255,6 +255,40 @@
         left: 390px;
     }
 
+    .phone-cover2 {
+        width: 450px;
+        height: 55px;
+        border-radius: 5px;
+        margin-left: 5.5%;
+        position: relative;
+        background-color: rgba(220, 220, 220, 0.30);
+        margin-top: 20px;
+    }
+
+    #member-phone2 {
+        border: 1px rgba(220, 220, 220, 0.30);
+        width: 360px;
+        height: 53px;
+        border-radius: 5px;
+        margin-left: 2%;
+        font-size: 18px;
+        background-color: rgba(220, 220, 220, 0);
+    }
+
+    .phone-check-btn2 {
+        border: 1px solid #98dde3;
+        width: 60px;
+        height: 55px;
+        position: absolute;
+        background-color: #98dde3;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 700;
+        color: white;
+        left: 390px;
+    }
+
     .address-cover {
         width: 450px;
         height: 55px;
@@ -262,7 +296,7 @@
         margin-left: 5.5%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     #member-address {
@@ -287,7 +321,7 @@
         background-color: #98dde3;
         margin-left: 5.5%;
         cursor: pointer;
-        margin-top: 50px;
+        margin-top: 40px;
     }
 
     .member-btn > p {
@@ -329,8 +363,12 @@
                     <input name="birth" id="member-birth" type="text" placeholder="생년월일 8자리">
                 </div>
                 <div class="phone-cover">
-                    <input name="phnum" id="member-phone" type="text" placeholder="휴대전화번호">
+                    <input name="phnum" id="member-phone" type="text" placeholder="휴대전화번호 (-없이 입력)">
                     <button class="phone-check-btn">인증</button>
+                </div>
+                <div class="phone-cover2">
+                    <input name="phnum2" id="member-phone2" type="text" placeholder="인증번호">
+                    <button class="phone-check-btn2">확인</button>
                 </div>
                 <div class="address-cover">
                     <input name="address" id="member-address" type="text" placeholder="주소">
