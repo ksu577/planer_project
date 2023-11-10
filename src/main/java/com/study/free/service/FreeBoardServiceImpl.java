@@ -1,7 +1,5 @@
 package com.study.free.service;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 
@@ -12,13 +10,10 @@ import com.study.common.vo.SearchVO;
 import com.study.exception.BizNotEffectedException;
 import com.study.exception.BizNotFoundException;
 import com.study.exception.BizPasswordNotMatchedException;
-import com.study.exception.DaoException;
 import com.study.free.dao.IFreeBoardDao;
 import com.study.free.vo.FreeBoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.inject.Inject;
 
 @Service
 public class FreeBoardServiceImpl implements IFreeBoardService {
@@ -43,9 +38,11 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     @Override
     public FreeBoardVO getBoard(int freeNum) throws BizNotFoundException {
         FreeBoardVO freeBoard = freeBoardDao.getBoard(freeNum);
-        if (freeBoard == null) {
-            throw new BizNotFoundException();
-        }
+        if (freeBoard == null) throw new BizNotFoundException();
+
+        //reslutMap을 통해 이미 freeBoard에는 attaches가 세팅되어있다.
+        //List<AttachVO> attaches = attachDao.getAttachListByParent("FREE",freeBoard.getBoNo());
+        //freeBoard.setAttaches(attaches);
         return freeBoard;
     }
 
@@ -92,6 +89,17 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 //        } else {
 //            throw new BizPasswordNotMatchedException();
 //        }
+    }
+
+    @Override
+    public int increaseLike(int freeNum) throws BizNotFoundException {
+        // 게시글이 존재하지 않을 경우 예외를 던집니다.
+        if (freeBoardDao.getBoard(freeNum) == null) {
+            throw new BizNotFoundException("해당하는 게시글이 존재하지 않습니다.");
+        }
+
+        // 게시글이 존재하면 좋아요를 증가시킵니다.
+        return freeBoardDao.increaseLike(freeNum);
     }
 
 

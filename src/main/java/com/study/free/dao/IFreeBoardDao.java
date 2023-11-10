@@ -16,7 +16,7 @@ public interface IFreeBoardDao {
     public List<FreeBoardVO> getBoardList(@Param("paging") PagingVO paging
             , @Param("search") SearchVO search, @Param("searchCategory") String searchCategory);
     public FreeBoardVO getBoard(int freeNum);
-    public int increaseLike(int freeLike);
+    public int increaseLike(int freeNum);
     public int updateBoard(FreeBoardVO freeBoard);
     public int deleteBoard(FreeBoardVO freeBoard);
     public int insertBoard(FreeBoardVO freeBoard);
