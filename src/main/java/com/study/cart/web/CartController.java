@@ -4,29 +4,39 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/cart")
 public class CartController {
 
 
+    // 카트 보기
+    @RequestMapping("/cart/shoppingcart.wow")
+    public String shoppingcart() {
+        return "/cart/shoppingcart";
+    }
 
 
-    @RequestMapping("/cart/paypage.wow")
+
+
+
+
+
+
+
+
+
+
+    // ---------------------샵 페이지------------
+    @RequestMapping("/shop/paypage.wow")
     public String paypage() {
         return "shop/paypage";
     }
 
-    @RequestMapping("/minishop.wow")
+    @RequestMapping("/shop/minishop.wow")
     public String minishop() {
         return "shop/minishop";
     }
 
 
-    @RequestMapping("/shoppingcart.wow")
-    public String shoppingcart() {
-        return "/cart/shoppingcart";
-    }
-
-    @RequestMapping("/afterpay.wow")
+    @RequestMapping("/shop/afterpay.wow")
     public String afterpay() {
         return "shop/afterpay";
     }

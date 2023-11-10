@@ -17,5 +17,15 @@ public class ProductControler {
         return "product/productview";
     }
 
+    @RequestMapping("/productupdate.wow")
+    public String productupdate(){
+        return "product/productupdate";
+    }
+
+    @RequestMapping("/productdelete.wow")
+    public String productdelete(){
+        return "product/productdelete";
+    }
+
 
 }
