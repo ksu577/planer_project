@@ -8,13 +8,28 @@ public class CartController {
 
 
     // 카트 보기
-    @RequestMapping("/cart/shoppingcart.wow")
-    public String shoppingcart() {
-        return "/cart/shoppingcart";
+    @RequestMapping("/cart/shoppingcartview.wow")
+    public String shoppingcartview() {
+        return "/cart/shoppingcartview";
     }
 
 
+    @RequestMapping("/cart/shoppingcartdelete.wow")
+    public String shoppingcartdelete() {
+        return "/cart/shoppingcartdelete";
+    }
 
+
+    @RequestMapping("/cart/shoppingcartcreate.wow")
+    public String shoppingcartcreate() {
+        return "/cart/shoppingcartcreate";
+    }
+
+
+    @RequestMapping("/cart/shoppingcartupdate.wow")
+    public String shoppingcartupdate() {
+        return "/cart/shoppingcartupdate";
+    }
 
 
 
