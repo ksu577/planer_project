@@ -1,4 +1,4 @@
 package com.study.plan.dao;
 
-public class planDao {
+public class PlanDao {
 }
