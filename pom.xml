@@ -63,7 +63,7 @@
             <version>2.15.2</version>
         </dependency>
 
-        <!-- email -->
+        <!-- email commit -->
         <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
         <dependency>
             <groupId>javax.mail</groupId>
@@ -233,6 +233,12 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version> <!-- 사용 가능한 최신 버전으로 업데이트 -->
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>compile</scope>
         </dependency>
 
 

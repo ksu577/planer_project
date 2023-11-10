@@ -20,8 +20,8 @@
 
     <tr>
         <td>
-            <a href="memberEdit.wow?id=${member.id}">수정</a>&nbsp;|
-            <a href="memberDelete.wow?id=${member.id}">삭제</a>
+            <a href="memberEdit.wow?Id=${member.id}">수정</a>&nbsp;|
+            <a href="memberDelete.wow?Id=${member.id}">삭제</a>
         </td>
     </tr>
 </table>

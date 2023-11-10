@@ -10,25 +10,13 @@
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <style>
-        .nav-bar {
-            border: 1px solid red;
-            height: 70px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-        }
+
         .paycontainer {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .navcategory a {
-            text-decoration: none;
-            margin: 10px;
-            padding: 30px;
-        }
 
         .container {
             margin-top: 20px;
