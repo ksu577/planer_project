@@ -49,9 +49,9 @@
 
     <div class="navcategory">
 
-        <a href="#"> 여행지 </a>
+        <a href="/place/place.wow"> 여행지 </a>
 
-        <a href="#"> 미니샵 </a>
+        <a href="/shop/minishop.wow"> 미니샵 </a>
 
         <a href="/free/freeList.wow"> 게시판 </a>
 
