@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/cart/")
+@RequestMapping("/cart")
 public class CartController {
 
 
@@ -12,25 +12,14 @@ public class CartController {
 
     @RequestMapping("/cart/paypage.wow")
     public String paypage() {
-
-
-        return "/cart/paypage";
+        return "shop/paypage";
     }
 
     @RequestMapping("/minishop.wow")
     public String minishop() {
-        return "/cart/minishop";
+        return "shop/minishop";
     }
 
-    @RequestMapping("/productregist.wow")
-    public String productregist() {
-        return "/cart/productregist";
-    }
-
-    @RequestMapping("/productview.wow")
-    public String productview() {
-        return "/cart/productview";
-    }
 
     @RequestMapping("/shoppingcart.wow")
     public String shoppingcart() {
@@ -39,7 +28,7 @@ public class CartController {
 
     @RequestMapping("/afterpay.wow")
     public String afterpay() {
-        return "/cart/afterpay";
+        return "shop/afterpay";
     }
 
 }

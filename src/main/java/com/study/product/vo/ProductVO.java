@@ -1,8 +1,11 @@
 package com.study.product.vo;
 
+import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+
+@Data
 public class ProductVO {
 
 
@@ -12,46 +15,6 @@ public class ProductVO {
     private String productName;
     private String productCategory;
     private int productCost;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getProductNum() {
-        return productNum;
-    }
-
-    public void setProductNum(int productNum) {
-        this.productNum = productNum;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getProductCategory() {
-        return productCategory;
-    }
-
-    public void setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
-    }
-
-    public int getProductCost() {
-        return productCost;
-    }
-
-    public void setProductCost(int productCost) {
-        this.productCost = productCost;
-    }
 
     @Override
     public String toString() {
