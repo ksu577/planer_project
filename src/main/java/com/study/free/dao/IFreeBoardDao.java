@@ -11,14 +11,19 @@ import java.util.List;
 @Mapper
 public interface IFreeBoardDao {
 
-    public  int getTotalRowCount(@Param("paging") PagingVO paging
+    public int getTotalRowCount(@Param("paging") PagingVO paging
             , @Param("search") SearchVO search, @Param("searchCategory") String searchCategory);
+
     public List<FreeBoardVO> getBoardList(@Param("paging") PagingVO paging
             , @Param("search") SearchVO search, @Param("searchCategory") String searchCategory);
+
     public FreeBoardVO getBoard(int freeNum);
-    public int increaseLike(int freeNum);
+
     public int updateBoard(FreeBoardVO freeBoard);
+
     public int deleteBoard(FreeBoardVO freeBoard);
+
     public int insertBoard(FreeBoardVO freeBoard);
 
+    public int increaseView(int freeNum);
 }

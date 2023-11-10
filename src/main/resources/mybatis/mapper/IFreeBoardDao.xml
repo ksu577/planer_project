@@ -5,17 +5,17 @@
     <sql id="searchInFree">
         <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
             <if test='search.searchType=="T"'>
-                AND bo_title LIKE '%' || #{search.searchWord} || '%'
+                AND title LIKE '%' || #{search.searchWord} || '%'
             </if>
             <if test='search.searchType=="W"'>
-                AND bo_writer LIKE '%' || #{search.searchWord} || '%'
+                AND id LIKE '%' || #{search.searchWord} || '%'
             </if>
             <if test='search.searchType=="C"'>
-                AND bo_content LIKE '%' || #{search.searchWord} || '%'
+                AND free_context LIKE '%' || #{search.searchWord} || '%'
             </if>
         </if>
         <if test='!@org.apache.commons.lang3.StringUtils@isBlank(searchCategory)'>
-            AND bo_category = #{searchCategory}
+            AND title = #{searchCategory}
         </if>
     </sql>
 
@@ -45,9 +45,9 @@
         create_date,update_date,view_rate,
         free_like,title,bo_del_yn
         FROM free_board a
-
+        where 1=1
         <include refid="searchInFree"/>
-        ORDER BY free_num desc) a) b
+        ORDER BY free_num desc) a)
         WHERE rnum between #{paging.firstRow} and #{paging.lastRow}
 
     </select>
@@ -65,15 +65,14 @@
             parameterType="com.study.free.vo.FreeBoardVO">
         UPDATE free_board
         SET title=#{title}
-          , free_Context=#{freeContext}
-          , createDate=sysdate
+          , free_context = #{freeContext}
         WHERE free_Num = #{freeNum}
     </update>
 
 
-    <update id="increaseLike">
+    <update id="increaseView">
         UPDATE free_board
-        SET free_like = free_like + 1
+        SET view_rate = view_rate + 1
         WHERE free_num = #{freeNum}
     </update>
 

@@ -72,8 +72,6 @@ public class FreeController {
 
     @GetMapping("/free/freeEdit.wow")
     public String freeEdit(Model model, int freeNum) throws BizNotFoundException {
-        List<CodeVO> codeList = codeService.getCodeListByParent("BC00");
-        model.addAttribute("codeList", codeList);
         FreeBoardVO freeBoard = freeBoardService.getBoard(freeNum);
         model.addAttribute("freeBoard", freeBoard);
         return "free/freeEdit";
@@ -111,8 +109,6 @@ public class FreeController {
 
     @GetMapping("/free/freeForm.wow")
     public String freeForm(Model model) {
-        List<CodeVO> cateList = codeService.getCodeListByParent("BC00");
-        model.addAttribute("cateList", cateList);
         return "free/freeForm";
     }
 

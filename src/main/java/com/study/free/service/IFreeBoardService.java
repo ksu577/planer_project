@@ -24,7 +24,9 @@ public interface IFreeBoardService {
     public void removeBoard(FreeBoardVO freeBoard)
             throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException;
 
-    public int increaseLike(int freeNum) throws BizNotFoundException;
+    public int increaseView(int freeNum) throws BizNotFoundException;
+
+    int increaseLike(int freeNum) throws BizNotFoundException;
 
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException;
 }

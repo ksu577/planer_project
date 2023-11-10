@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <th>내용</th>
-                <td><textarea rows="10" name="freeContent"> </textarea></td>
+                <td><textarea rows="10" name="freeContext"> </textarea></td>
             </tr>
 
             <tr>

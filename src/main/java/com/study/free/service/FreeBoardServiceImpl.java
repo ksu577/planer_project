@@ -50,7 +50,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     @Override
     public void increaseHit(int freeNum) throws BizNotEffectedException {
 
-        int cnt = freeBoardDao.increaseLike(freeNum); // update된 행 수가 return 됨
+        int cnt = freeBoardDao.increaseView(freeNum); // update된 행 수가 return 됨
         if (cnt == 0) { // 업데이트가 제대로 안됬다.. 근데 사실 일어날수가 없는 일인데..
             throw new BizNotEffectedException();
         }
@@ -92,14 +92,18 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     }
 
     @Override
-    public int increaseLike(int freeNum) throws BizNotFoundException {
-        // 게시글이 존재하지 않을 경우 예외를 던집니다.
+    public int increaseView(int freeNum) throws BizNotFoundException {
         if (freeBoardDao.getBoard(freeNum) == null) {
             throw new BizNotFoundException("해당하는 게시글이 존재하지 않습니다.");
         }
 
         // 게시글이 존재하면 좋아요를 증가시킵니다.
-        return freeBoardDao.increaseLike(freeNum);
+        return freeBoardDao.increaseView(freeNum);
+    }
+
+    @Override
+    public int increaseLike(int freeNum) throws BizNotFoundException {
+        return 0;
     }
 
 

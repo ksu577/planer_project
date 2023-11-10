@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <th>내용</th>
-            <td><textarea rows="10" name="freeContent">${freeBoard.freeContext } </textarea></td>
+            <td><textarea rows="10" name="freeContext">${freeBoard.freeContext } </textarea></td>
         </tr>
         <tr>
             <th>조회수</th>
