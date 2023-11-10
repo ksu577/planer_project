@@ -6,6 +6,7 @@ import com.study.common.vo.SearchVO;
 import com.study.member.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 

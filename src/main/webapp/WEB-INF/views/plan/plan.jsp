@@ -5,6 +5,8 @@
     <% request.setCharacterEncoding("UTF-8"); %>
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
     <style>
         .map_wrap,
         .map_wrap * {
@@ -212,8 +214,7 @@
             background-size: cover;
         }
 
-        .first>div:nth-child(1) {
-            width: 7%;
+        .first > div:nth-child(1) {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -222,14 +223,13 @@
         .box {
             align-items: center;
             height: 50px;
-            width: 50px;
+            width: 100px;
             padding: 10px;
             text-align: center;
             margin: 15px;
             border-radius: 17px;
             cursor: pointer;
         }
-
 
 
         .edit {
@@ -247,9 +247,7 @@
             background-color: lightgray;
         }
 
-        #addedbox>div {
-            height: 200px;
-            width: 250px;
+        #addedbox > div {
             margin-bottom: 10px;
             text-align: center;
             border-radius: 17px;
@@ -271,7 +269,8 @@
         }
 
         .choice-box {
-            width: 20%;
+            width: 200px;
+            font-size: 15px;
         }
 
         #addedbox span {
@@ -284,6 +283,16 @@
 
         .draggable .dragging {
             opacity: 0.5;
+            height: 100px;
+        }
+
+        .data {
+            font-size: 15px;
+        }
+
+        .delete {
+            width: 50px;
+            font-size: 15px;
         }
     </style>
 </head>
@@ -310,7 +319,7 @@
         </div>
         <div>
             <div class="edit">편집</div>
-            <div class="edit">저장</div>
+            <div class="edit" onclick="f_send()">저장</div>
         </div>
     </div>
 
@@ -342,6 +351,7 @@
 </body>
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dea7138cdf709909de935ce835cefee1&libraries=services"></script>
+
 <script>
     // 마커를 담을 배열입니다
     var markers = [];
@@ -360,7 +370,7 @@
 
 
     // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-    var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+    var infowindow = new kakao.maps.InfoWindow({zIndex: 1});
 
     // 키워드로 장소를 검색합니다
     searchPlaces();
@@ -386,7 +396,10 @@
             // 정상적으로 검색이 완료됐으면
             // 검색 목록과 마커를 표출합니다
             displayPlaces(data);
-            console.log(data);
+            Array.from(data).forEach(item => {
+                console.log(item.x);
+            })
+            // console.log(data[0].x);
 
             // 페이지 번호를 표출합니다
             displayPagination(pagination);
@@ -563,10 +576,9 @@
     }
 
 
-
     function f_search() {
         const info_data = document.getElementsByClassName("info");
-        console.log(info_data);
+
     }
 
 
@@ -576,19 +588,19 @@
 
     $(document).on("click", ".info", function () {
         // 버튼을 클릭할 때 발생하는 이벤트
-        console.log($(this)[0]);
+
 
         const button_id = "minus" + buttonpointer;
         const box_id = "plus" + buttonpointer;
 
 
-        addedbox.innerHTML += "<div class='draggable' draggable='true' id ='" + box_id + "'> <div>" + $(this)[0].innerHTML + "</div><button id='" + button_id +
+        addedbox.innerHTML += "<div class='draggable' draggable='true' id ='" + box_id + "'> <div class='data'>" + $(this)[0].innerHTML + "</div><button class='delete' id='" + button_id +
             "'  onclick=\"f_minus('" + box_id + "')\" > 제거 </button></div>";
         buttonpointer = buttonpointer + 1
     });
 
     function f_minus(box_id) {
-        console.log("제발 잘하자..!" + box_id);
+
         const deleteb = document.getElementById(box_id);
         deleteb.remove();
     };
@@ -607,7 +619,7 @@
         const enddate_date = new Date(enddate);
 
         diff = Math.ceil(((enddate_date - startdate_date) / (60 * 60 * 24) / 1000)) + 1;
-        console.log(diff);
+
 
         // const headerTag = document.createElement('h1');
         // const textNode = document.createTextNode('textNode of headerTag');
@@ -651,14 +663,12 @@
             day1 = [];
 
             const addressInfo = $("#addedbox").find("div").find("div")[i];
-            // console.log(addressInfo);
+
 
             const childrens = addressInfo.children;
-            // const key = childrens[0].innerHTML;
 
 
             for (j = 0; j < childrens.length; j++) {
-                console.log(childrens[j].innerHTML);
                 day1.push(childrens[j].innerHTML);
             }
 
@@ -682,13 +692,13 @@
         for (let i = 0; i < Object.keys(schedule).length; i++) {
             let day_schedule = schedule[i];
             html += '<div class="draggable" draggable="true" id="plus' + i + '">';
-            html += '<div>';
+            html += '<div class="data">';
             html += '<h5>' + day_schedule[0] + '</h5>'
             html += '<span>' + day_schedule[1] + '</span>'
             html += '<span class="jibun gray">' + day_schedule[2] + '</span>'
             html += '<span class="tel"></span>' + day_schedule[3] + '</span>'
             html += '</div>'
-            html += '<button id="minus' + i + '" onclick="f_minus(\'plus' + i + '\')"> 제거 </button>'
+            html += '<button class="delete" id="minus' + i + '" onclick="f_minus(\'plus' + i + '\')"> 제거 </button>'
             html += '</div>'
         }
 
@@ -697,53 +707,19 @@
 
     }
 
-    const draggables = document.querySelectorAll(".draggable");
-    const containers = document.querySelectorAll("#addedbox");
-
-    draggables.forEach(draggable => {
-        draggable.addEventListener("dragstart", () => {
-            draggable.classList.add("dragging");
-        });
-
-        draggable.addEventListener("dragend", () => {
-            draggable.classList.remove("dragging");
-        });
-    });
-
-    containers.forEach(container => {
-        container.addEventListener("dragover", e => {
-            e.preventDefault();
-            const afterElement = getDragAfterElement(container, e.clientX);
-            const draggable = document.querySelector(".dragging");
-            if (afterElement === undefined) {
-                container.appendChild(draggable);
-            } else {
-                container.insertBefore(draggable, afterElement);
+    function f_send() {
+        $.ajax({
+            type: "post",
+            url: "plan/plan.wow",
+            contentType: 'application/json',
+            data: JSON.stringify(plan_json),
+            success: function (data) {
+                console.log(plan_json);
+            }, error: function (err) {
+                console.log("error: " + err)
             }
         });
-    });
-
-    function getDragAfterElement(container, x) {
-        const draggableElements = [
-            ...container.querySelectorAll(".draggable:not(.dragging)"),
-        ];
-
-        return draggableElements.reduce(
-            (closest, child) => {
-                const box = child.getBoundingClientRect();
-                const offset = x - box.left - box.width / 2;
-                // console.log(offset);
-                if (offset < 0 && offset > closest.offset) {
-                    return { offset: offset, element: child };
-                } else {
-                    return closest;
-                }
-            },
-            { offset: Number.NEGATIVE_INFINITY },
-        ).element;
     }
-
-
 
 
     // headerTag.appendChild(textNode);
