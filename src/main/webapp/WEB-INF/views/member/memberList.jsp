@@ -39,7 +39,7 @@
         <td>핸드폰번호</td>
         <td>이메일</td>
         <td>회원가입일</td>
-        <td>삭제여부</td>
+        <td hidden="true">삭제여부</td>
     </tr>
     </thead>
     <tbody>
@@ -53,7 +53,7 @@
             <td>${member.phnum}</td>
             <td>${member.email}</td>
             <td>${member.createDate}</td>
-            <td>${member.delYn}</td>
+            <td id="resign" hidden="true">${member.delYn}</td>
         </tr>
     </c:forEach>
     </tbody>

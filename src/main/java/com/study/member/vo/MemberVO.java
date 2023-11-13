@@ -16,7 +16,6 @@ public class MemberVO {
     private String createDate; /* 가입일 */
 
 
-
     public String getId() {
         return Id;
     }
