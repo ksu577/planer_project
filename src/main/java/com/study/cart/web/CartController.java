@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
@@ -21,7 +22,7 @@ public class CartController {
     ICartService cartService;
 
     // 1. 장바구니에 추가
-    @RequestMapping("/shoppingcartview")
+    @RequestMapping("/shoppingcartinsert")
     public String insert(@ModelAttribute CartVO cartVO, HttpSession session) {
         String userId = (String) session.getAttribute("user");
         cartVO.setCartId(Integer.parseInt(userId));
@@ -50,11 +51,15 @@ public class CartController {
     };
 
     // 3. 장바구니 삭제
-    @RequestMapping
-
+    @RequestMapping("shoppingCartDelete")
+    public String delete(@RequestParam ()int cardId){
+        cartService.delete(cardId);
+        return "redirect: /cart/shoppingcartview";
+    };
 
 
     // 4. 장바구니 수정
+    @RequestMapping("/shopingcartupdate")
 
 
 
