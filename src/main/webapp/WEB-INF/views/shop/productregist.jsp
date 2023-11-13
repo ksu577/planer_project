@@ -39,7 +39,7 @@
       </div>
       <div class="mb-3">
         <label for="productPrice" class="form-label">가격</label>
-        <input type="number" class="form-control" id="productPrice" required>
+        <input type="number" class="form-control" id="productPrice" required placeholder="-과 원빼고 입력하세요 ex.10000">
       </div>
       <div class="mb-3">
         <label for="productDescription" class="form-label">상품 설명</label>

@@ -63,7 +63,9 @@
                 <div id="carouselExample" class="carousel slide">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="/resources/images/보조배터리.jpeg" class="d-block w-100" alt="...">
+
+                            <img src="${IMG}" class="d-block w-100" alt="...">
+<%--                            이 부분을 잘 모르겠는데 DB에서  이미지 넣는거?--%>
                         </div>
                         <div class="carousel-item">
                             <img src="/resources/images/보조배터리.jpeg" class="d-block w-100" alt="...">
@@ -84,20 +86,11 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="product-title">상품명: 보조배터리</div>
-            <div class="product-price">가격 : 23000원 </div>
+            <div class="product-title">상품명: ${product.name}</div>
+            <div class="product-price">가격 : ${product.price}원 </div>
             <div class="product-description">
-                상품 설명: 이 상품은 휴대용 보조배터리로, 휴대폰이나 태블릿을 충전할 때 유용합니다. 고객들에게 매우 인기 있는 제품입니다.
+                ${product.product_desc}
             </div>
-
-<%--            <div class="product-options">--%>
-<%--                <label for="product-options">색상 선택 </label>--%>
-<%--                <select id="product-options">--%>
-<%--                    <option value="option1">빨간색</option>--%>
-<%--                    <option value="option2">파랑색</option>--%>
-<%--                    <option value="option3">검은색</option>--%>
-<%--                </select>--%>
-<%--            </div>--%>
 
             <div class="product-quantity">
                 <label for="product-quantity">수량 </label>
