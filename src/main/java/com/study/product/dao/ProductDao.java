@@ -19,7 +19,7 @@ public interface ProductDao {
     public void update(ProductVO productVO);
 
     // 4.물건 확인 (상세 페이지 확인)
-    public void getporduct(int id);
+    public ProductVO getporduct(int id);
 
     // 5.물건 목록 확인
      public List<ProductVO> getpordList(ProductVO productVO);

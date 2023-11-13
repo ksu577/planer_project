@@ -9,17 +9,20 @@ import java.util.List;
 
 
 @Service
+
 public class ProductServiceImple implements IproductService {
 
-    @Autowired
-    ProductDao productDao;
+    private final ProductDao productDao;
+
+    public ProductServiceImple(ProductDao productDao) {
+        this.productDao = productDao;
+    }
 
     // 1. 상품 추가
     @Override
     public void insert(ProductVO productVO) {
 
     }
-
 
     // 2. 상품 목록 ( 미니샾 )
     @Override
@@ -42,7 +45,8 @@ public class ProductServiceImple implements IproductService {
 
     // 5. 상품 상세
     @Override
-    public void getproduct(int productId) {
-
+    public ProductVO getproduct(int productId) {
+        ProductVO productVO = productDao.getporduct(productId);
+        return productVO;
     }
 }

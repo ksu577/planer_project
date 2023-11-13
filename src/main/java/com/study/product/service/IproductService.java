@@ -21,7 +21,7 @@ public interface IproductService {
     public void modify(ProductVO productVO);
 
     // 5. 물건 확인
-    public void getproduct(int productId);
+    public ProductVO getproduct(int productId);
 
 
 
