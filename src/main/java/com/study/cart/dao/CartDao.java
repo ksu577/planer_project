@@ -2,7 +2,7 @@ package com.study.cart.dao;
 
 import com.study.cart.vo.CartVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 
