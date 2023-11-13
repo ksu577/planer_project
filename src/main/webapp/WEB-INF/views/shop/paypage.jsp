@@ -49,12 +49,12 @@
                 <hr>
                 <form>
                     <div class="mb-3">
-                        <label for="recipientName" class="form-label">받는사람</label>
-                        <input type="text" class="form-control" id="recipientName">
+                        <label for="recipientName" class="form-label">수령인</label>
+                        <input type="text" class="form-control" id="recipientName"> ${member.name}
                     </div>
                     <div class="mb-3">
                         <label for="phoneNumber" class="form-label">휴대폰 번호</label>
-                        <input type="tel" class="form-control" id="phoneNumber" placeholder="숫자만 입력">
+                        <input type="tel" class="form-control" id="phoneNumber" placeholder="-를 제외한 숫자만 입력 (ex.01012345678)"> ${member.phnum}
                     </div>
                     <div class="mb-3">
                         <label for="sample6_address" class="form-label">주소입력</label>
@@ -77,13 +77,24 @@
                 </form>
             </div>
             <div class="bill col-md-4">
+                <div>
+                    <span>1 ${product.name} : ${product.price}</span>
+                </div>
+                <div>
+                    <span>2 ${product.name} : ${product.price}</span>
+                </div>
+                <div>
+                    <span>3 ${product.name} : ${product.price}</span>
+                </div>
+                <br>
                 <div class="mb-3 d-flex justify-content-between">
-                    <span>총 상품금액 : </span>
-                    <span>배송비 : </span>
+<%--                    <span>물품 : ${product.name} ${product.price}</span>--%>
+                    <span>총 상품금액 : ${sumMoney}</span>
+                    <span>배송비 : 3000 원</span>
                 </div>
                 <hr>
                 <div class="mb-3">
-                    <span>결제 예정 금액 : </span>
+                    <span>결제 예정 금액 :  ${sumMoney + 3000}</span>
                 </div>
                 <button class="btn btn-primary" style="width: 100%;">결제하기</button>
             </div>
