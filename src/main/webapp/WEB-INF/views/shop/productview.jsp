@@ -90,14 +90,14 @@
                 상품 설명: 이 상품은 휴대용 보조배터리로, 휴대폰이나 태블릿을 충전할 때 유용합니다. 고객들에게 매우 인기 있는 제품입니다.
             </div>
 
-            <div class="product-options">
-                <label for="product-options">색상 선택 </label>
-                <select id="product-options">
-                    <option value="option1">빨간색</option>
-                    <option value="option2">파랑색</option>
-                    <option value="option3">검은색</option>
-                </select>
-            </div>
+<%--            <div class="product-options">--%>
+<%--                <label for="product-options">색상 선택 </label>--%>
+<%--                <select id="product-options">--%>
+<%--                    <option value="option1">빨간색</option>--%>
+<%--                    <option value="option2">파랑색</option>--%>
+<%--                    <option value="option3">검은색</option>--%>
+<%--                </select>--%>
+<%--            </div>--%>
 
             <div class="product-quantity">
                 <label for="product-quantity">수량 </label>
