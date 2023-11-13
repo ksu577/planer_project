@@ -1,16 +1,15 @@
 package com.study.cart.dao;
 
 import com.study.cart.vo.CartVO;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
 
 
-@Repository
+@Mapper
 public interface CartDao {
-//추가하기 위한 추
-
 
 
     // 1. 장바구니 추가

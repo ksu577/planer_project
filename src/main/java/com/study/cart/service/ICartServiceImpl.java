@@ -2,6 +2,7 @@ package com.study.cart.service;
 
 import com.study.cart.dao.CartDao;
 import com.study.cart.vo.CartVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -10,7 +11,7 @@ import java.util.List;
 @Service
 public class ICartServiceImpl implements ICartService {
 
-    @Inject
+    @Autowired
     CartDao cartDao;
 
     // 1. 장바구니 추가

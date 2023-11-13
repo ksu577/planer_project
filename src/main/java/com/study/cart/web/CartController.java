@@ -40,11 +40,9 @@ public class CartController {
     @RequestMapping("/shoppingcartview")
     public Model list(HttpSession session, Model model) {
         String userId = (String) session.getAttribute("user"); // session에 저장된 거
-        Map<String, Object> map = new HashMap<String, Object>();
         List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
         int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
         model.addAttribute("list", list);
-        model.addAttribute("map", map);
         model.addAttribute("sumMoney", sumMoney);
         model.addAttribute("list", list);
         return model;
@@ -58,9 +56,13 @@ public class CartController {
     };
 
 
-    // 4. 장바구니 수정
-    @RequestMapping("/shopingcartupdate")
-
+//    // 4. 장바구니 수정
+//    @RequestMapping("/shopingcartupdate")
+//    public String update(@RequestParam ()int amount, @RequestParam int product_id, HttpSession session){
+//        String userId = (String) session.getAttribute("user");
+//        for (int i=0; i<product_id.length; )
+//
+//    }
 
 
 
