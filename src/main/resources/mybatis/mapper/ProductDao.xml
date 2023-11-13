@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.product.dao.ProductDao">
+
+
+    <!-- 1. 물건 등록   -->
+    <insert id="insertpublic">
+        insert into product (id, name, price, product_desc, img)
+        values (seq_cart.nextval, #{productName}, #{productPrice}, #{productDesc}, #{img})
+    </insert>
+
+    <!-- 2. 물건 삭제-->
+    <delete id="delete">
+        delete
+        from product
+        where id = #{productId}
+    </delete>
+
+    <!--3. 물건 변경-->
+    <update id="update">
+update product
+set
+
+    </update>
+
+    <!-- 4. 물건 보기 (상세 피이지)   -->
+    <select id="getporduct">
+
+    </select>
+
+</mapper>

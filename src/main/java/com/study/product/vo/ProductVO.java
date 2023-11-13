@@ -1,24 +1,15 @@
 package com.study.product.vo;
 
 import lombok.Data;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 @Data
 public class ProductVO {
 
-
-
-    private String id;
-    private int productNum;
-    private String productName;
-    private String productCategory;
-    private int productCost;
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
+    private int productId; // 물품 아이디
+    private String productName; // 물품 이름
+    private int productPrice; // 물품 가격
+    private String productDesc; //물품 설명
+    private String img; // 물품 이미지
 
 }
