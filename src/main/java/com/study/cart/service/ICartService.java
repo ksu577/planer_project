@@ -5,6 +5,7 @@ import com.study.cart.vo.CartVO;
 import java.util.List;
 
 public interface ICartService {
+
     // 1. 장바구니 추가
     public void insert(CartVO cartVO);
 

@@ -32,7 +32,9 @@ public class CartController {
             cartService.updateCart(cartVO);
         }
         return "redirect: /cart/shoppingcartview";
-    };
+    }
+
+    ;
 
     // 2. 장바구니 목록
     @RequestMapping("/shoppingcartview")
@@ -44,29 +46,35 @@ public class CartController {
         model.addAttribute("sumMoney", sumMoney);
         model.addAttribute("list", list);
         return model;
-    };
+    }
 
-    // 3. 장바구니 삭제
-    @RequestMapping("shoppingCartDelete")
-    public String delete(@RequestParam ()int cardId){
-        cartService.delete(cardId);
-        return "redirect: /cart/shoppingcartview";
-    };
+    ;
 
+        // 3. 장바구니 삭제
+        @RequestMapping("shoppingCartDelete")
+        public String delete(@RequestParam() int cardId) {
+            cartService.delete(cardId);
+            return "redirect: /cart/shoppingcartview";
+        }
 
-//    // 4. 장바구니 수정
-//    @RequestMapping("/shopingcartupdate")
-//    public String update(@RequestParam ()int amount, @RequestParam int product_id, HttpSession session){
-//        String userId = (String) session.getAttribute("user");
-//        for (int i=0; i<product_id.length; )
-//
-//    }
+        ;
 
 
+        // 4. 장바구니 수정
+        @RequestMapping("/shoppingcartupdate")
+        public String update(@RequestParam() int[] amount, @RequestParam int[] product_id, HttpSession session) {
+            String userId = (String) session.getAttribute("user");
+            for (int i = 0; i < product_id.length; i++) {
+                CartVO cartVO = new CartVO();
+                cartVO.setUserId(userId);
+                cartVO.setAmount(amount[i]);
+                cartVO.setProduct_id(product_id[i]);
+                cartService.modify(cartVO);
+            }
+            return "redirect:/cart/shoppingcartview";
+        }
 
-
-
-
+        ;
 
 
     // ---------------------샵 페이지------------
