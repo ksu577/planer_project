@@ -91,7 +91,7 @@
                             email,
                             birth,
                             createDate,
-                            delYn
+                            delYn)
         VALUES (    #{Id},
                     #{name},
                     #{password},

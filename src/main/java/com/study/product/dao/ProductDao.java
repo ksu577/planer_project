@@ -1,17 +1,27 @@
 package com.study.product.dao;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import com.study.product.vo.ProductVO;
 
-public class ProductDao {
+import org.apache.ibatis.annotations.Mapper;
 
-    //물건 등록
+import java.util.List;
 
-    //물건 삭제
+@Mapper
+public interface ProductDao {
 
-    //물건 변경
+    // 1. 물건 등록
+    public void insertpublic(ProductVO productVO);
 
-    //물건 확인
+    // 2.물건 삭제
+    public void delete(int id);
 
+    // 3.물건 변경
+    public void update(ProductVO productVO);
+
+    // 4.물건 확인 (상세 페이지 확인)
+    public void getporduct(int id);
+
+    // 5.물건 목록 확인
+     public List<ProductVO> getpordList(ProductVO productVO);
 
 }
