@@ -40,6 +40,7 @@
               FROM member a
               WHERE 1=1
               <include refid="searchInMember" />
+              AND delYn != 'Y'
               ORDER BY id desc) a )
               WHERE rnum between #{paging.firstRow} and #{paging.lastRow}
     </select>

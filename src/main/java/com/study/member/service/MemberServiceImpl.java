@@ -23,8 +23,8 @@ public class MemberServiceImpl implements IMemberService{
         int totalRowCount = memberDao.getTotalRowCount(paging, search);
         paging.setTotalRowCount(totalRowCount);
         paging.pageSetting();
-
         List<MemberVO> memberList = memberDao.getMemberList(paging, search);
+
         return memberList;
     }
 
