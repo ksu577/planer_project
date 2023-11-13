@@ -88,7 +88,7 @@
                         <button type="submit"  class="btn btn-sm btn-primary">
                             <span class="glyphicon glyphicon-save" aria-hidden="true"></span> &nbsp;&nbsp;저장
                         </button>
-록
+
 
 
                     </div>

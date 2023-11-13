@@ -10,7 +10,7 @@ import java.util.List;
 public interface IAttachDao {
     public int insertAttach(AttachVO attach);
 
-    public List<AttachVO> getAttachListByParent(@Param("atchCategory") String atchCategory,@Param("atchParentNo")int atchParentNo);
+    public List<AttachVO> getAttachListByParent(@Param(value = "atchParentNo")int atchParentNo);
 
     public int delAtchNos(@Param("delAtchNos") int[] delAtchNos);
 

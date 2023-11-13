@@ -113,14 +113,12 @@ public class FreeController {
     }
 
     @PostMapping("/free/freeRegist.wow")
-    public String freeRegist(Model model, FreeBoardVO freeBoard, @RequestParam(required = false, name = "boFiles") MultipartFile[] boFiles) throws BizException, IOException {
+    public String freeRegist(Model model, FreeBoardVO freeBoard, @RequestParam(name = "boFiles" ,required = false) MultipartFile[] boFiles) throws BizException, IOException {
         if (boFiles != null) {
-            //이때 이미 파일들이 업로드 됐죠
+
             List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, "FREE", "free");
             freeBoard.setAttaches(attaches);
-            //DB에 저장하면 좋겠는데...
-        } //파일 업로드
-        //파일에 대한 정보를 AttachVO에 담아서 DB에 저장
+        }
 
         ResultMessageVO resultMessageVO = new ResultMessageVO();
         freeBoardService.registBoard(freeBoard);

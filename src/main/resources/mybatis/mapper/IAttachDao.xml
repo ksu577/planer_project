@@ -31,7 +31,6 @@
         FROM
             attach
         WHERE atch_parent_no = #{atchParentNo}
-          AND atch_category=#{atchCategory}
           AND atch_del_yn='N'
     </select>
     <select id="getAttach" resultType="com.study.attach.vo.AttachVO">

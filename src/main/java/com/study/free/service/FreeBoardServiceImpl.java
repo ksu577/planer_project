@@ -50,8 +50,8 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
             throw new BizNotFoundException();
         }
         //reslutMap을 통해 이미 freeBoard에는 attaches가 세팅되어있다.
-        List<AttachVO> attaches = attachDao.getAttachListByParent("FREE",freeBoard.getFreeNum());
-        freeBoard.setAttaches(attaches);
+        //List<AttachVO> attaches = attachDao.getAttachListByParent("FREE",freeBoard.getFreeNum());
+        //freeBoard.setAttaches(attaches);
         return freeBoard;
     }
 

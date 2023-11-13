@@ -15,7 +15,7 @@
     <div class="page-header">
         <h3>자유게시판 - <small>글 등록</small></h3>
     </div>
-    <form action="freeRegist.wow" method="post" enctype="multipart/form-data">
+    <form action="freeRegist.wow" method="post" modelAttribute="freeBoard" enctype="multipart/form-data">
 
         <table class="table table-striped table-bordered">
             <colgroup>
@@ -57,7 +57,7 @@
 
 </div>
 </body>
-<script>
+<script type="text/javascript">
     $('#id_btn_new_file').click(function () {
         $('.file_area').append('<div class="form-inline">'
             + '<input type="file" name="boFiles" class="form-control">'

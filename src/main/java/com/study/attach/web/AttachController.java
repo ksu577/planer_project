@@ -3,10 +3,14 @@ package com.study.attach.web;
 import com.study.attach.service.AttachServiceImpl;
 import com.study.attach.vo.AttachVO;
 import com.study.exception.BizNotFoundException;
-//import org.apache.commons.io.FileUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 
 @Controller
@@ -50,6 +55,21 @@ public class AttachController {
         // 저장된 파일을 응답객체의 스트림으로 내보내기,  resp의 outputStream에  해당파일을 복사
 //        FileUtils.copyFile(file, resp.getOutputStream());
         resp.getOutputStream().close();
+    }
+    //img파일 썸네일
+    @RequestMapping("/attach/showImg.wow")
+    @ResponseBody
+    public ResponseEntity<byte[]> showImage(String fileName, String filePath) {
+        File file = new File(uploadPath + File.separatorChar + filePath, fileName);
+        ResponseEntity<byte[]> result = null;
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", Files.probeContentType(file.toPath()));
+            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }
