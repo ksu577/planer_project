@@ -5,24 +5,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/prodct")
-public class ProductControler {
+public class ProductController {
 
-    @RequestMapping("/productregist.wow")
+    @RequestMapping("/shop/productregist.wow")
     public String productregist() {
         return "product/productregist";
     }
 
-    @RequestMapping("/productview.wow")
+    @RequestMapping("/shop/productview.wow")
     public String productview() {
         return "product/productview";
     }
 
-    @RequestMapping("/productupdate.wow")
+    @RequestMapping("/shop/productupdate.wow")
     public String productupdate(){
         return "product/productupdate";
     }
 
-    @RequestMapping("/productdelete.wow")
+    @RequestMapping("/shop/productdelete.wow")
     public String productdelete(){
         return "product/productdelete";
     }

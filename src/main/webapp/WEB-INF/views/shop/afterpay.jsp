@@ -43,11 +43,10 @@
       <h2>주문정보</h2>
       <hr>
       <form>
-        <div class="mb-3">
-          <label for="deliveryAddress" class="form-label"> 배송지 : </label>
-<%--          여긴 input 타입으로 정보 받아와야됨--%>
-
-        </div>
+<%--        <div class="mb-3"> 여기 지울예정--%>
+<%--&lt;%&ndash;          <label for="deliveryAddress" class="form-label"> 배송지 : </label>&ndash;%&gt;--%>
+<%--&lt;%&ndash;          여긴 input 타입으로 정보 받아와야됨&ndash;%&gt;--%>
+<%--        </div>--%>
         <div class="mb-3">
           <%--          회원정보로 DB에서 데이터 받아와야됨--%>
           <label for="recipientName" class="form-label"> 수령인 : ${member.name}</label>
@@ -58,7 +57,7 @@
         </div>
         <div class="mb-3">
           <%--          여긴 input 타입으로 정보 받아와야됨--%>
-          <label for="address" class="form-label"> 주소입력 : </label>
+          <label for="address" class="form-label"> 배송지 : </label>
         </div>
 
         <div class="mb-3">
@@ -68,12 +67,12 @@
     </div>
     <div class="bill col-md-4">
       <div class="mb-3" style="display: flex; flex-direction: column;">
-        <span>총 상품금액 : </span>
+        <span>총 상품금액 : ${sumMoney}</span>
         <span>배송비 : 3000원</span>
       </div>
       <hr>
       <div class="mb-3">
-        <span>결제 예정 금액 : </span>
+        <span>결제된 금액 : ${sumMoney + 3000} 원</span>
       </div>
     </div>
   </div>
