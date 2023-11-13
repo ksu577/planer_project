@@ -4,6 +4,8 @@ import com.study.product.vo.ProductVO;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface ProductDao {
 
@@ -19,5 +21,7 @@ public interface ProductDao {
     // 4.물건 확인 (상세 페이지 확인)
     public void getporduct(int id);
 
+    // 5.물건 목록 확인
+     public List<ProductVO> getpordList(ProductVO productVO);
 
 }

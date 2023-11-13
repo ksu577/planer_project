@@ -18,13 +18,26 @@
 
     <!--3. 물건 변경-->
     <update id="update">
-update product
-set
+        update product
+        set name         =#{productName}
+          , price        =#{productPrice}
+          , product_desc =#{productDesc}
+          , img          = #{img}
+        where id = #{productId}
 
     </update>
 
-    <!-- 4. 물건 보기 (상세 피이지)   -->
+    <!-- 4. 물건 보기 (상세 페이지)   -->
     <select id="getporduct">
+        SELECT name,
+               price,
+               product_desc,
+               img
+        from product
+        where id = #{productId}
+    </select>
+
+    <select id="getpordList" resultType="com.study.product.vo.ProductVO">
 
     </select>
 

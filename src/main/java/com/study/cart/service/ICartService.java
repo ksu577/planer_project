@@ -10,7 +10,7 @@ public interface ICartService {
     public void insert(CartVO cartVO);
 
     // 2. 장바구니 목록
-    public  List<CartVO> listCart(String userId);
+    public List<CartVO> listCart(String userId);
 
     // 3. 장바구니 삭제
     public void delete(int cartId);
