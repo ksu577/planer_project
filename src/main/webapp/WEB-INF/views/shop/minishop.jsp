@@ -126,11 +126,11 @@
         <c:forEach var="product" items="${orderNum}">
             <div class="cell">
                 <div class="top">
-                    <img height="320px" width="328px" src="<c:out value="${productImg}" />" alt="">
+                    <img height="320px" width="328px" src="<c:out value="${product.img}" />" alt="">
                 </div>
                 <div class="bottom">
 <%--                    klink엔 시부레 뭘 넣어야할까 --%>
-                    <a href="<c:out value="${product.link}" />"> <c:out value="${productName}" /> </a>
+                    <a href="<c:out value="${product.link}" />"> <c:out value="${product.name}" /> </a>
                     <a> <c:out value="${productAmount}" /> </a>
                 </div>
             </div>
