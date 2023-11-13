@@ -29,12 +29,14 @@
                   (
               SELECT
                 to_char(birth, 'YYYY-MM-DD') AS birth
+                , to_char(createDate, 'YYYY-MM-DD') AS createDate
                 , id
                 , name
                 , password
                 , address
                 , phnum
                 , email
+                , delYn
               FROM member a
               WHERE 1=1
               <include refid="searchInMember" />
@@ -45,13 +47,15 @@
 
     <select id="getMember" resultType="com.study.member.vo.MemberVO" parameterType="String">
         SELECT
-            to_char(birth, 'YYYY-MM-DD') AS birth
-             , id
-             , name
-             , password
-             , address
-             , phnum
-             , email
+          id
+        , name
+        , password
+        , address
+        , phnum
+        , email
+        , delYn
+        , to_char(birth, 'YYYY-MM-DD') AS birth
+        , to_char(createDate, 'YYYY-MM-DD') AS createDate
         FROM member
         WHERE id = #{Id}
     </select>
@@ -60,8 +64,7 @@
     <update id="updateMember" parameterType="com.study.member.vo.MemberVO">
         UPDATE member
         SET
-            id       = #{Id}
-          , name     = #{name}
+           name     = #{name}
           , password = #{password}
           , address  = #{address}
           , phnum    = #{phnum}
@@ -72,10 +75,9 @@
 
 
     <delete id="deleteMember" parameterType="String">
-        DELETE
-        FROM member
-        WHERE Id = :currentUserId
---      currentUserId를 현재 로그인한 사용자의 아이디를 나타내는 변수 또는 파라미터로 대체
+        UPDATE member
+        SET delYn = 'Y'
+        WHERE id = #{Id}
     </delete>
 
 
@@ -86,14 +88,18 @@
                             address,
                             phnum,
                             email,
-                            birth)
+                            birth,
+                            createDate,
+                            delYn
         VALUES (    #{Id},
                     #{name},
                     #{password},
                     #{address},
                     #{phnum},
                     #{email},
-                    #{birth})
+                    #{birth},
+                    sysdate,
+                    'N')
     </insert>
 
 </mapper>

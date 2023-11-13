@@ -66,11 +66,12 @@ public class MemberController {
 
 
     @PostMapping("/member/memberDelete.wow")
-    public String delete(Model model, MemberVO member) throws BizException {
+    public String memberDelete(Model model, MemberVO member) throws BizException {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
         memberService.removeMember(member);
         resultMessageVO.messageSetting(true, "탈퇴", "회원탈퇴 되었습니다."
                 , "/member/memberList.wow", "탈퇴완료.");
+        model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
     }
 

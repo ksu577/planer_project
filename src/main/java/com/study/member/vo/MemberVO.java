@@ -12,6 +12,8 @@ public class MemberVO {
     private String address;        /* 주소 */
     private String phnum;         /* 연락처 */
     private String email;       /* 이메일 */
+    private String delYn;      /* 삭제여부 */
+    private String createDate; /* 가입일 */
 
 
 
@@ -69,6 +71,22 @@ public class MemberVO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getDelYn() {
+        return delYn;
+    }
+
+    public void setDelYn(String delYn) {
+        this.delYn = delYn;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 
     @Override

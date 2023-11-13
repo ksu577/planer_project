@@ -13,7 +13,7 @@
     <table border="1">
         <tr>
             <th>아이디</th>
-            <td><input type="text" readonly name="id" value="${member.id}" required="required"></td>
+            <td><input type="text" readonly name="id" value="${member.id}" required="required" style="border: 0"></td>
         </tr>
 
         <tr>
@@ -28,7 +28,7 @@
 
         <tr>
             <th>생년월일</th>
-            <td><input type="text" name="birth" value="${member.birth}" required="required"></td>
+            <td><input type="date" name="birth" value="${member.birth}" required="required"></td>
         </tr>
 
         <tr>
