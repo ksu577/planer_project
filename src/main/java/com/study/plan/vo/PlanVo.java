@@ -1,32 +1,13 @@
 package com.study.plan.vo;
 
+import lombok.ToString;
+
+@ToString
 public class PlanVo {
-    private String id;
-    private int plannum;
     private String placeName;
-    private int xLab;
-    private int yLab;
+    private String placeLoadAddress;
     private String placeAddress;
-    private String startDate;
-    private String endDate;
-    private int totalDay;
-    private int day;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getPlannum() {
-        return plannum;
-    }
-
-    public void setPlannum(int plannum) {
-        this.plannum = plannum;
-    }
+    private String planNum;
 
     public String getPlaceName() {
         return placeName;
@@ -36,20 +17,12 @@ public class PlanVo {
         this.placeName = placeName;
     }
 
-    public int getxLab() {
-        return xLab;
+    public String getPlaceLoadAddress() {
+        return placeLoadAddress;
     }
 
-    public void setxLab(int xLab) {
-        this.xLab = xLab;
-    }
-
-    public int getyLab() {
-        return yLab;
-    }
-
-    public void setyLab(int yLab) {
-        this.yLab = yLab;
+    public void setPlaceLoadAddress(String placeLoadAddress) {
+        this.placeLoadAddress = placeLoadAddress;
     }
 
     public String getPlaceAddress() {
@@ -60,35 +33,11 @@ public class PlanVo {
         this.placeAddress = placeAddress;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getPlanNum() {
+        return planNum;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public int getTotalDay() {
-        return totalDay;
-    }
-
-    public void setTotalDay(int totalDay) {
-        this.totalDay = totalDay;
-    }
-
-    public int getDay() {
-        return day;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
+    public void setPlanNum(String planNum) {
+        this.planNum = planNum;
     }
 }

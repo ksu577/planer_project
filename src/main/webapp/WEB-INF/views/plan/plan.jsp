@@ -624,7 +624,7 @@
         // const headerTag = document.createElement('h1');
         // const textNode = document.createTextNode('textNode of headerTag');
 
-        if (diff >= 7) {
+        if (diff > 7) {
             alert("7일 이상은 지정할 수 없습니다.");
 
         } else if (diff <= 0) {
@@ -645,58 +645,70 @@
     }
 
     // 전체 플랜 1-n일차
-    let plan_json = {}
+    let plan_Array = []
 
     // n일차 장소 순서
-    let schedule = {}
+    let schedule1 = []
 
-    let day1 = [];
+    let day1 = {};
 
 
     function f_day1() {
-
-        schedule = {};
+        // if(schedule1[date-1] 가 비어있으면 넣고 비어있지않으며녀 for문쓰고 어쩌구  )
+        schedule1 = [];
 
         for (i = 0; i < $("#addedbox").find("div").find("div").length; i++) {
 
             // init
-            day1 = [];
+            day1 = {};
 
             const addressInfo = $("#addedbox").find("div").find("div")[i];
 
 
             const childrens = addressInfo.children;
+            console.log(childrens[0])
 
 
-            for (j = 0; j < childrens.length; j++) {
-                day1.push(childrens[j].innerHTML);
-            }
 
-            schedule[i] = day1
+            day1["placeName"]=(childrens[0].innerHTML);
+            day1["placeLoadAddress"]=(childrens[1].innerHTML);
+            day1["placeAddress"]=(childrens[2].innerHTML);
+            day1["planNum"] = (childrens[3].innerHTML);
+
+
+            schedule1.push(day1)
         }
-        plan_json[day_count] = schedule
-        console.log(plan_json);
+
+        plan_Array[day_count] = schedule1;
+
+
+        console.log(plan_Array);
         alert(day_count + '일차 임시 저장 완료');
     }
 
+
+
     function makeSchedulePlace(day) {
-        const schedule = plan_json[day];
+        const schedule = plan_Array[day];
 
         if (typeof schedule === 'undefined') {
             console.log("해당 일자 스케줄 없음")
             return;
         }
 
+        console.log(schedule)
         let html = "";
+
 
         for (let i = 0; i < Object.keys(schedule).length; i++) {
             let day_schedule = schedule[i];
+            console.log(schedule);
             html += '<div class="draggable" draggable="true" id="plus' + i + '">';
             html += '<div class="data">';
-            html += '<h5>' + day_schedule[0] + '</h5>'
-            html += '<span>' + day_schedule[1] + '</span>'
-            html += '<span class="jibun gray">' + day_schedule[2] + '</span>'
-            html += '<span class="tel"></span>' + day_schedule[3] + '</span>'
+            html += '<h5>' + day_schedule["placeName"] + '</h5>'
+            html += '<span>' + day_schedule["placeLoadAddress"] + '</span>'
+            html += '<span class="jibun gray">' + day_schedule["placeAddress"] + '</span>'
+            html += '<span class="tel"></span>' + day_schedule["planNum"] + '</span>'
             html += '</div>'
             html += '<button class="delete" id="minus' + i + '" onclick="f_minus(\'plus' + i + '\')"> 제거 </button>'
             html += '</div>'
@@ -708,19 +720,18 @@
     }
 
     function f_send() {
+        console.log(plan_Array);
         $.ajax({
             type: "post",
-            url: "plan/plan.wow",
-            contentType: 'application/json',
-            data: JSON.stringify(plan_json),
+            url: "/plan/plan.wow",
+            data: { "plan" : JSON.stringify(plan_Array)   },
             success: function (data) {
-                console.log(plan_json);
+                console.log(data);
             }, error: function (err) {
                 console.log("error: " + err)
             }
         });
     }
-
 
     // headerTag.appendChild(textNode);
 </script>
