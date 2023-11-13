@@ -350,10 +350,10 @@
 <div class="member-container">
     <div class="member-box">
         <div class="member-logo">순자산 3조</div>
-        <form name="memberVO" action="memberRegist.wow" method="post">
+        <form name="memberVO" method="post">
             <div class="member-input-box1">
                 <div class="id-cover">
-                    <input name="Id" id="member-id" type="text" placeholder="아이디" pattern="\w{4,}" required="required">
+                    <input name="id" id="member-id" type="text" placeholder="아이디" pattern="\w{4,}">
                     <button type="button" id="idCheck" class="idCheck">중복</button>
                 </div>
                 <div class="pw-cover">
@@ -390,14 +390,15 @@
                     <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
                 </div>
             </div>
-            <button class="member-btn" onclick="" formaction="memberRegist.wow"><p>회원가입</p></button>
+            <button class="member-btn" id="member-btn" type="button"><p>회원가입</p></button>
         </form>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 API KEY를 사용하세요&libraries=services"></script>
+<%--<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c5554b04079322ffc3fe43c2cf3f2f5e&libraries=services"></script>--%>
 <script>
+
     let IdChecked = false;
     $("input[name='Id']").on("change", function (e) {
         IdChecked = false;
@@ -449,32 +450,32 @@
         });
     });
 
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-        mapOption = {
-            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-            level: 5 // 지도의 확대 레벨
-        };
-
-    //지도를 미리 생성
-    var map = new daum.maps.Map(mapContainer, mapOption);
-    //주소-좌표 변환 객체를 생성
-    var geocoder = new daum.maps.services.Geocoder();
-    //마커를 미리 생성
-    var marker = new daum.maps.Marker({
-        position: new daum.maps.LatLng(37.537187, 127.005476),
-        map: map
-    });
+    // var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    //     mapOption = {
+    //         center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+    //         level: 5 // 지도의 확대 레벨
+    //     };
+    //
+    // //지도를 미리 생성
+    // var map = new daum.maps.Map(mapContainer, mapOption);
+    // //주소-좌표 변환 객체를 생성
+    // var geocoder = new daum.maps.services.Geocoder();
+    // //마커를 미리 생성
+    // var marker = new daum.maps.Marker({
+    //     position: new daum.maps.LatLng(37.537187, 127.005476),
+    //     map: map
+    // });
 
 
     function sample5_execDaumPostcode() {
         new daum.Postcode({
-            oncomplete: function(data) {
+            oncomplete: function (data) {
                 var addr = data.address; // 최종 주소 변수
 
                 // 주소 정보를 해당 필드에 넣는다.
                 document.getElementById("member-address").value = addr;
                 // 주소로 상세 정보를 검색
-                geocoder.addressSearch(data.address, function(results, status) {
+                geocoder.addressSearch(data.address, function (results, status) {
                     // 정상적으로 검색이 완료됐으면
                     if (status === daum.maps.services.Status.OK) {
 
@@ -494,6 +495,49 @@
             }
         }).open();
     }
+
+    $("#emCheck2").on("click", function (e) {
+        let mailCheck = $("input[name='email2']").val();
+        $.ajax({
+            url: "/memberForm/emailCheck2"
+            , type: "get"
+            , data: {"sendKey": mailCheck}
+            , success: function (data) {
+                alert(data);
+            }
+            , error: function (err) {
+                alert(err);
+            }
+        });
+    });
+
+    let PasswordinputCheck = $("input[name=password]").val();
+    let EmailinputCheck = $("input[name=email]").val();
+    let Email2inputCheck = $("input[name=email2]").val();
+    let NameinputCheck = $("input[id=member-name]").val();
+    let BirthinputCheck = $("input[name=birth]").val();
+    let PhnuminputCheck = $("input[name=phnum]").val();
+    let AddressinputCheck = $("input[name=address]").val();
+
+    $("#member-btn").on("click", function (e) {
+        if (curId == null) {
+            alert("아이디를 입력해주세요.");
+        } else if (PasswordinputCheck == null) {
+            alert("비밀번호를 입력해주세요.")
+        } else if (EmailinputCheck == null) {
+            alert("이메일을 입력해주세요.")
+        } else if (Email2inputCheck == null) {
+            alert("인증번호를 입력해주세요.")
+        } else if (NameinputCheck == null) {
+            alert("이름을 입력해주세요.")
+        } else if (BirthinputCheck == null) {
+            alert("생일을 입력해주세요.")
+        } else if (PhnuminputCheck == null) {
+            alert("휴대전화번호를 입력해주세요.")
+        } else if (AddressinputCheck == null) {
+            alert("주소를 입력해주세요.")
+        }
+    });
 
 
 </script>
