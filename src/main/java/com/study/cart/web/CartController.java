@@ -1,36 +1,60 @@
 package com.study.cart.web;
 
+import com.study.cart.service.ICartService;
+import com.study.cart.vo.CartVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class CartController {
 
+    @Inject
+    ICartService cartService;
 
-    // 카트 보기
-    @RequestMapping("/cart/shoppingcartview.wow")
-    public String shoppingcartview() {
-        return "/cart/shoppingcartview";
-    }
+    // 1. 장바구니에 추가
+    @RequestMapping("/shoppingcartview")
+    public String insert(@ModelAttribute CartVO cartVO, HttpSession session) {
+        String userId = (String) session.getAttribute("user");
+        cartVO.setCartId(Integer.parseInt(userId));
+        //장바구니에 상품 체크
+        int count = cartService.CountCart(cartVO.getProduct_id(), userId);
+        if (count == 0) {
+            cartService.insert(cartVO);
+        } else {
+            cartService.updateCart(cartVO);
+        }
+        return "redirect: /cart/shoppingcartview";
+    };
+
+    // 2. 장바구니 목록
+    @RequestMapping("/shoppingcartview")
+    public Model list(HttpSession session, Model model) {
+        String userId = (String) session.getAttribute("user"); // session에 저장된 거
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
+        int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
+        model.addAttribute("list", list);
+        model.addAttribute("map", map);
+        model.addAttribute("sumMoney", sumMoney);
+        model.addAttribute("list", list);
+        return model;
+    };
+
+    // 3. 장바구니 삭제
+    @RequestMapping
 
 
-    @RequestMapping("/cart/shoppingcartdelete.wow")
-    public String shoppingcartdelete(Model model) {
-        return "/cart/shoppingcartdelete";
-    }
 
-
-    @RequestMapping("/cart/shoppingcartcreate.wow")
-    public String shoppingcartcreate() {
-        return "/cart/shoppingcartcreate";
-    }
-
-
-    @RequestMapping("/cart/shoppingcartupdate.wow")
-    public String shoppingcartupdate() {
-        return "/cart/shoppingcartupdate";
-    }
+    // 4. 장바구니 수정
 
 
 

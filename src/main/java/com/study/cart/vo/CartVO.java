@@ -1,25 +1,20 @@
 package com.study.cart.vo;
 
+import com.study.product.vo.ProductVO;
 import lombok.Data;
-import lombok.Getter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+
 
 @Data
-public class CartVO {
+public class CartVO extends ProductVO {
 
-    private String orderNum;
-    private String id;
-    private int productNum;
-    private String productName;
-    private String productImg;
-    private int productAmount;
-
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
+    private int cartId; //장바구니 번호
+    private String userId; // 사용자 아이다
+    private String username; // 사용자 이름
+    private int product_id; // 상품 번호
+    private String product_name; // 상품 이름
+    private int price; //상품 단가
+    private int money; // 상품 가격
+    private int amount; // 구매 수량
 
 }
 
