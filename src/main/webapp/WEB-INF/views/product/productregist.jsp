@@ -4,6 +4,7 @@
 <head>
     <% request.setCharacterEncoding("UTF-8"); %>
     <%@include file="/WEB-INF/inc/header.jsp" %>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <style>
@@ -11,6 +12,7 @@
             width: 80%;
             margin: auto;
         }
+
         .form-container {
             margin: 20px;
             padding: 20px;
@@ -21,14 +23,14 @@
 
     </style>
 
-
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
+
+
+
 <div class="container">
     <h1 class="text-center">상품 등록</h1>
-
-
     <div class="form-container">
         <form>
             <div class="mb-3">
@@ -37,7 +39,7 @@
             </div>
             <div class="mb-3">
                 <label for="productPrice" class="form-label">가격</label>
-                <input type="number" class="form-control" id="productPrice" required>
+                <input type="number" class="form-control" id="productPrice" required placeholder="-과 원빼고 입력하세요 ex.10000">
             </div>
             <div class="mb-3">
                 <label for="productDescription" class="form-label">상품 설명</label>
@@ -52,10 +54,7 @@
     </div>
 </div>
 
+<!-- Bootstrap JS 및 Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-</body>
-
-
-
 </body>
 </html>

@@ -12,4 +12,7 @@ public class ProductVO {
     private String productDesc; //물품 설명
     private String img; // 물품 이미지
 
+
+
+
 }

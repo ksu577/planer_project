@@ -12,7 +12,7 @@
     <select id="CartList" resultType="com.study.cart.vo.CartVO">
         select c.cart_id    as      cartId,
                c.user_id    as      userId,
-               p.product_id as      productId,
+               p.id as      productId,
                p.name       as      productName,
                m.name       as      userName,
                c.amount,
@@ -42,7 +42,7 @@
 
     <!--5. 장바구니 금액 합계-->
     <select id="sumMoney" resultType="int">
-        select NVL{SUM(p.price * c.amount) , 0} money
+        select NVL(SUM(p.price * c.amount) , 0) money
         from cart c, product p
         where c.product_id = p.id and c.user_id = #{userId}
     </select>
