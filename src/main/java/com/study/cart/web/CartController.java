@@ -37,7 +37,7 @@ public class CartController {
     ;
 
     // 2. 장바구니 목록
-    @RequestMapping("/shoppingcartview")
+    @RequestMapping("/cart/shoppingcartview")
     public Model list(HttpSession session, Model model) {
         String userId = (String) session.getAttribute("user"); // session에 저장된 거
         List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
