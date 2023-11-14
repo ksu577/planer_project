@@ -44,7 +44,6 @@ public class CartController {
         int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
         model.addAttribute("list", list);
         model.addAttribute("sumMoney", sumMoney);
-        model.addAttribute("list", list);
         return model;
     }
 
