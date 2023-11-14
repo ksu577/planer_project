@@ -34,7 +34,8 @@
         </tr>
         <tr>
             <td>내용</td>
-            <td><textarea rows="10" name="freeContext" class="form-control input-sm" readonly="readonly">${freeBoard.freeContext }</textarea></td>
+            <td><textarea rows="10" name="freeContext" class="form-control input-sm"
+                          readonly="readonly">${freeBoard.freeContext }</textarea></td>
         </tr>
         <tr>
             <th>조회수</th>
@@ -46,7 +47,6 @@
         </tr>
 
 
-
         <tr>
             <th>첨부파일</th>
             <td>
@@ -55,7 +55,9 @@
                         <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ${f.atchOriginalName}
                     </a> Size : ${f.atchFancySize} Down : ${f.atchDownHit}
 
-                        <img alt="" src="<%=request.getContextPath()%>/attach/showImg.wow?fileName=${f.atchFileName}&filePath=${f.atchPath}" width="100px" height="100px">
+                        <img alt=""
+                             src="<%=request.getContextPath()%>/attach/showImg.wow?fileName=${f.atchFileName}&filePath=${f.atchPath}"
+                             width="100px" height="100px">
                     </div>
                 </c:forEach>
             </td>
@@ -64,13 +66,17 @@
         <tr>
             <td colspan="2">
                 <div class="pull-left">
-                    <a href="freeList.wow" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp;&nbsp;목록
+                    <a href="freeList.wow" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-list"
+                                                                                 aria-hidden="true"></span> &nbsp;&nbsp;목록
                     </a>
                 </div>
-                <div class="pull-right">
-                    <a href="freeEdit.wow?freeNum=${freeBoard.freeNum }" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
-                    </a>
-                </div>
+                <c:if test="${canEdit}">
+                    <div class="pull-right">
+                        <a href="freeEdit.wow?freeNum=${freeBoard.freeNum }" class="btn btn-success btn-sm"> <span
+                                class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;&nbsp;수정
+                        </a>
+                    </div>
+                </c:if>
             </td>
         </tr>
         </tbody>

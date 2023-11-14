@@ -19,7 +19,7 @@ public class LoginService {
             return null;
         } else {
             String role="USER";
-            if(member.getId().equals("next6")){
+            if(member.getId().equals("1234")){
                 role="MANAGER";
             }
             UserVO user = new UserVO(

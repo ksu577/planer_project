@@ -48,6 +48,7 @@
                 <span>${productName}</span>
                 <span>${productAmount}원</span>
                 <form action="updateCartItem" method="post">
+                    <!-- Add a form for updating quantity 라는디...? -->
                     <input type="hidden" name="productId" value="${productNum}" />
                     <label for="quantity">수량:</label>
                     <input type="number" name="quantity" id="quantity" value="${cartItem.quantity}" min="1" />
@@ -85,14 +86,9 @@
             <span>결제 예정 금액</span>
             <span>"로직짜야됨 총합 금액" + 3000원</span>
         </div>
-        <button class="btn btn-primary" style="width: 100%;" onclick="payment()">결제하기</button>
+        <button class="btn btn-primary" style="width: 100%;">결제하기</button>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<script>
-    function payment() {
-        window.location.href = "/shop/paypage.wow"
-    }
-</script>
+
 </body>
 </html>

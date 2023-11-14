@@ -18,6 +18,15 @@ public class FreeBoardVO {
     private int freeLike;
     private String title;
     private String boDelYn;
+    private String thumbnailImagePath;
+
+    public String getThumbnailImagePath() {
+        return thumbnailImagePath;
+    }
+
+    public void setThumbnailImagePath(String thumnailImagePath) {
+        this.thumbnailImagePath = thumnailImagePath;
+    }
 
 
     private List<AttachVO> attaches;

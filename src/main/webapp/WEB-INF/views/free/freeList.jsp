@@ -98,7 +98,13 @@
         <c:forEach items="${freeBoardList }" var="freeBoard">
             <tr class="text-center">
                 <td>${freeBoard.freeNum}</td>
-                <td><a href="freeView.wow?freeNum=${freeBoard.freeNum }"> ${freeBoard.title } </a></td>
+                <!-- 이미지 표시 -->
+                <td>
+                    <!-- 이미지 표시 -->
+                    <img src="${"/pc34/Aupload/"}" alt="" width="50" height="50">
+                    <!-- 게시글 제목 링크 -->
+                    <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a>
+                </td>
                 <td>${freeBoard.id }</td>
                 <td>${freeBoard.createDate }</td>
                 <td>${freeBoard.viewRate}</td>
