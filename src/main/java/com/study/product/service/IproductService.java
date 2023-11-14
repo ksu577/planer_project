@@ -5,22 +5,23 @@ import com.study.product.vo.ProductVO;
 
 import java.util.List;
 
+
 public interface IproductService {
 
 
-    // 1. 물건 추가
+    // 1. 상품 추가
     public void insert(ProductVO productVO);
 
-    // 2. 물건 목록
+    // 2. 상품 목록
     public List<ProductVO> getprodList();
 
-    // 3. 물건 삭제
+    // 3. 상품 삭제
     public void delete(int productId);
 
-    // 4. 물건 수정
-    public void modify(ProductVO productVO);
+    // 4. 싱품 수정
+    public void update(ProductVO productVO);
 
-    // 5. 물건 확인
+    // 5. 상품 상세
     public ProductVO getproduct(int productId);
 
 

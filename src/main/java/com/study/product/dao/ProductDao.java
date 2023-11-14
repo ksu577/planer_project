@@ -10,18 +10,18 @@ import java.util.List;
 public interface ProductDao {
 
     // 1. 물건 등록
-    public void insertpublic(ProductVO productVO);
+    public void insertproduct(ProductVO productVO);
 
     // 2.물건 삭제
-    public void delete(int id);
+    public void delete(int productId);
 
-    // 3.물건 변경
+    // 3.물건 수정
     public void update(ProductVO productVO);
 
     // 4.물건 확인 (상세 페이지 확인)
-    public ProductVO getporduct(int id);
+    public ProductVO getproduct(int productId);
 
     // 5.물건 목록 확인
-     public List<ProductVO> getpordList(ProductVO productVO);
+     public List<ProductVO> getprodList();
 
 }

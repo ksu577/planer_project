@@ -59,9 +59,13 @@
         margin-top: 20px;
     }
 
+    .warning {
+        border: 1px solid red;
+    }
+
     #member-id {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 360px;
+        width: 380px;
         height: 53px;
         border-radius: 5px;
         margin-left: 2%;
@@ -115,7 +119,7 @@
 
     #member-em {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 360px;
+        width: 380px;
         height: 53px;
         border-radius: 5px;
         margin-left: 2%;
@@ -149,7 +153,7 @@
 
     #member-em2 {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 360px;
+        width: 380px;
         height: 53px;
         border-radius: 5px;
         margin-left: 2%;
@@ -213,12 +217,13 @@
 
     #member-birth {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 440px;
+        width: 420px;
         height: 53px;
         border-radius: 5px;
         margin-left: 2%;
         font-size: 18px;
         background-color: rgba(220, 220, 220, 0);
+        color: #777777;
     }
 
     .phone-cover {
@@ -233,7 +238,7 @@
 
     #member-phone {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 360px;
+        width: 380px;
         height: 53px;
         border-radius: 5px;
         margin-left: 2%;
@@ -267,7 +272,7 @@
 
     #member-phone2 {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 360px;
+        width: 380px;
         height: 53px;
         border-radius: 5px;
         margin-left: 2%;
@@ -301,7 +306,7 @@
 
     #member-address {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 360px;
+        width: 380px;
         height: 53px;
         border-radius: 5px;
         margin-left: 2%;
@@ -343,6 +348,7 @@
         font-size: 20px;
         color: white;
     }
+
 </style>
 
 
@@ -350,34 +356,34 @@
 <div class="member-container">
     <div class="member-box">
         <div class="member-logo">순자산 3조</div>
-        <form name="memberVO" method="post">
+        <form id="memForm" name="memberVO" action="memberRegist.wow" method="post">
             <div class="member-input-box1">
                 <div class="id-cover">
-                    <input name="id" id="member-id" type="text" placeholder="아이디" pattern="\w{4,}">
+                    <input name="id" id="member-id" type="text" placeholder="아이디" pattern="\w{4,}" required="required">
                     <button type="button" id="idCheck" class="idCheck">중복</button>
                 </div>
                 <div class="pw-cover">
-                    <input name="password" id="member-pw" type="password" placeholder="비밀번호">
+                    <input name="password" id="member-pw" type="password" placeholder="비밀번호" required="required">
                 </div>
                 <div class="em-cover">
-                    <input name="email" id="member-em" type="text" placeholder="이메일">
+                    <input name="email" id="member-em" type="text" placeholder="이메일" required="required">
                     <button type="button" id="emCheck" class="em-check-btn">인증</button>
                 </div>
                 <div class="em-cover2">
-                    <input name="email2" id="member-em2" type="text" placeholder="인증번호">
+                    <input name="email2" id="member-em2" type="text" placeholder="인증번호" required="required">
                     <button type="button" id="emCheck2" class="em-check-btn2">확인</button>
                 </div>
             </div>
 
             <div class="member-input-box2">
                 <div class="name-cover">
-                    <input name="name" id="member-name" type="text" placeholder="이름">
+                    <input name="name" id="member-name" type="text" placeholder="이름" required="required">
                 </div>
                 <div class="birth-cover">
-                    <input name="birth" id="member-birth" type="text" placeholder="생년월일 8자리">
+                    <input name="birth" id="member-birth" type="date" placeholder="date" required="required">
                 </div>
                 <div class="phone-cover">
-                    <input name="phnum" id="member-phone" type="text" placeholder="휴대전화번호 (-없이 입력)">
+                    <input name="phnum" id="member-phone" type="text" placeholder="휴대전화번호 (-없이 입력)" required="required">
                     <button class="phone-check-btn">인증</button>
                 </div>
                 <div class="phone-cover2">
@@ -385,7 +391,7 @@
                     <button class="phone-check-btn2">확인</button>
                 </div>
                 <div class="address-cover">
-                    <input name="address" id="member-address" type="text" placeholder="주소">
+                    <input name="address" id="member-address" type="text" placeholder="주소" required="required">
                     <input class="add-check-btn" type="button" onclick="sample5_execDaumPostcode()" value="검색"><br>
                     <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
                 </div>
@@ -399,26 +405,27 @@
 <%--<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c5554b04079322ffc3fe43c2cf3f2f5e&libraries=services"></script>--%>
 <script>
 
-    let IdChecked = false;
-    $("input[name='Id']").on("change", function (e) {
-        IdChecked = false;
-    });
+    let idCheckIdentify = false;
+    let emailCheckIdentify = false;
 
     $("#idCheck").on("click", function (e) {
-        let curId = $("input[name='Id']").val();
+        let curId = $("input[name=id]").val();
+        e.preventDefault();
         $.ajax({
             url: "/memberForm/idCheck"
             , type: "get"
             , data: {"id": curId}
             , success: function (data) {
+                idCheckIdentify = true;
                 alert(data);
-                IdChecked = true;
             }
             , error: function (err) {
-                alert("에러");
+                idCheckIdentify = false;
+                alert(err);
             }
         });
     });
+
 
     $("#emCheck").on("click", function (e) {
         let mailAddress = $("input[name='email']").val();
@@ -435,6 +442,7 @@
         });
     });
 
+
     $("#emCheck2").on("click", function (e) {
         let mailCheck = $("input[name='email2']").val();
         $.ajax({
@@ -442,29 +450,50 @@
             , type: "get"
             , data: {"sendKey": mailCheck}
             , success: function (data) {
+                emailCheckIdentify = true;
                 alert(data);
             }
             , error: function (err) {
+                emailCheckIdentify = false;
                 alert(err);
             }
         });
     });
 
-    // var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-    //     mapOption = {
-    //         center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-    //         level: 5 // 지도의 확대 레벨
-    //     };
-    //
-    // //지도를 미리 생성
-    // var map = new daum.maps.Map(mapContainer, mapOption);
-    // //주소-좌표 변환 객체를 생성
-    // var geocoder = new daum.maps.services.Geocoder();
-    // //마커를 미리 생성
-    // var marker = new daum.maps.Marker({
-    //     position: new daum.maps.LatLng(37.537187, 127.005476),
-    //     map: map
-    // });
+    $("#member-btn").on("click", function (e) {
+        if (!idCheckIdentify) {
+            alert("아이디 중복을 확인해주세요.")
+            return;
+        }
+        if (!emailCheckIdentify) {
+            alert("인증번호를 확인해주세요.")
+            return;
+        }
+
+        document.getElementById('memForm').submit();
+
+        // $.ajax({
+        //     url: "/member/memberRegist.wow"
+        //     , type: "post"
+        //     , data : { "Id" : $("#member-id").val(),
+        //         "name" : $("#member-name").val(),
+        //         "password" : $("#member-pw").val(),
+        //         "address" : $("#member-address").val(),
+        //         "phnum" : $("#member-phone").val(),
+        //         "email" : $("#member-em").val(),
+        //         "birth" : $("#member-birth").val()
+        //     }
+        //     , success: function (data) {
+        //         emailCheckIdentify = false;
+        //         idCheckIdentify = false;
+        //
+        //         console.log(data);
+        //
+        //         // js 로 common/message 로 보내기
+        //     }
+        // });
+    });
+
 
 
     function sample5_execDaumPostcode() {
@@ -495,49 +524,6 @@
             }
         }).open();
     }
-
-    $("#emCheck2").on("click", function (e) {
-        let mailCheck = $("input[name='email2']").val();
-        $.ajax({
-            url: "/memberForm/emailCheck2"
-            , type: "get"
-            , data: {"sendKey": mailCheck}
-            , success: function (data) {
-                alert(data);
-            }
-            , error: function (err) {
-                alert(err);
-            }
-        });
-    });
-
-    let PasswordinputCheck = $("input[name=password]").val();
-    let EmailinputCheck = $("input[name=email]").val();
-    let Email2inputCheck = $("input[name=email2]").val();
-    let NameinputCheck = $("input[id=member-name]").val();
-    let BirthinputCheck = $("input[name=birth]").val();
-    let PhnuminputCheck = $("input[name=phnum]").val();
-    let AddressinputCheck = $("input[name=address]").val();
-
-    $("#member-btn").on("click", function (e) {
-        if (curId == null) {
-            alert("아이디를 입력해주세요.");
-        } else if (PasswordinputCheck == null) {
-            alert("비밀번호를 입력해주세요.")
-        } else if (EmailinputCheck == null) {
-            alert("이메일을 입력해주세요.")
-        } else if (Email2inputCheck == null) {
-            alert("인증번호를 입력해주세요.")
-        } else if (NameinputCheck == null) {
-            alert("이름을 입력해주세요.")
-        } else if (BirthinputCheck == null) {
-            alert("생일을 입력해주세요.")
-        } else if (PhnuminputCheck == null) {
-            alert("휴대전화번호를 입력해주세요.")
-        } else if (AddressinputCheck == null) {
-            alert("주소를 입력해주세요.")
-        }
-    });
 
 
 </script>

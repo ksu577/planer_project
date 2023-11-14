@@ -4,7 +4,7 @@
 
 
     <!-- 1. 물건 등록   -->
-    <insert id="insertpublic">
+    <insert id="insertproduct">
         insert into product (id, name, price, product_desc, img)
         values (seq_cart.nextval, #{productName}, #{productPrice}, #{productDesc}, #{img})
     </insert>
@@ -28,17 +28,23 @@
     </update>
 
     <!-- 4. 물건 보기 (상세 페이지)   -->
-    <select id="getporduct" parameterType="Integer" resultType="com.study.product.vo.ProductVO">
-        SELECT name,
-               price,
+    <select id="getproduct" parameterType="Integer" resultType="com.study.product.vo.ProductVO">
+        SELECT name as product_name,
+               price as product_price,
                product_desc,
                img
         from product
         where id = #{productId}
     </select>
 
-    <select id="getpordList" resultType="com.study.product.vo.ProductVO">
-
+    <select id="getprodList" resultType="com.study.product.vo.ProductVO">
+        select id as product_id,
+        name as product_name,
+        price as product_price,
+        product_desc as product_desc,
+        img as img
+        from product
+        order by name
     </select>
 
 </mapper>

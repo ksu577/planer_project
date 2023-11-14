@@ -5,48 +5,42 @@ import com.study.product.vo.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
 import java.util.List;
 
-
 @Service
-
 public class ProductServiceImple implements IproductService {
 
-    private final ProductDao productDao;
-
-    public ProductServiceImple(ProductDao productDao) {
-        this.productDao = productDao;
-    }
+    @Inject
+    ProductDao productDao;
 
     // 1. 상품 추가
     @Override
     public void insert(ProductVO productVO) {
-
+        productDao.insertproduct(productVO);
     }
 
     // 2. 상품 목록 ( 미니샾 )
     @Override
     public List<ProductVO> getprodList() {
-        return null;
+        return productDao.getprodList();
     }
 
     // 3. 상품 지우기
     @Override
     public void delete(int productId) {
-
+        productDao.delete(productId);
     }
 
-
-    // 4. 상품 변경
+    // 4. 상품 수정
     @Override
-    public void modify(ProductVO productVO) {
-
+    public void update(ProductVO productVO) {
+        productDao.update(productVO);
     }
 
     // 5. 상품 상세
     @Override
     public ProductVO getproduct(int productId) {
-        ProductVO productVO = productDao.getporduct(productId);
-        return productVO;
+        return productDao.getproduct(productId);
     }
 }
