@@ -605,6 +605,9 @@
         deleteb.remove();
     };
 
+    let startdate_date = new Date();
+    let enddate_date = new Date();
+
     function f_date() {
         for (i = 1; i <= 6; i++) {
             document.querySelector(".day" + i + "").classList.add("none");
@@ -615,8 +618,8 @@
         const startdate = document.getElementById("startdate").value;
         const enddate = document.getElementById("enddate").value;
 
-        const startdate_date = new Date(startdate);
-        const enddate_date = new Date(enddate);
+        startdate_date = new Date(startdate);
+        enddate_date = new Date(enddate);
 
         diff = Math.ceil(((enddate_date - startdate_date) / (60 * 60 * 24) / 1000)) + 1;
 
@@ -653,31 +656,69 @@
     let day1 = {};
 
 
+    Date.prototype.yyyymmdd = function () {
+        var yyyy = this.getFullYear().toString();
+        var mm = (this.getMonth() + 1).toString();
+        var dd = this.getDate().toString();
+
+        return yyyy + "-" + (mm[1] ? mm : '0' + mm[0]) + "-" + (dd[1] ? dd : '0' + dd[0]);
+    }
+
+
     function f_day1() {
+
         // if(schedule1[date-1] 가 비어있으면 넣고 비어있지않으며녀 for문쓰고 어쩌구  )
         schedule1 = [];
 
-        for (i = 0; i < $("#addedbox").find("div").find("div").length; i++) {
+        const geocoder = new kakao.maps.services.Geocoder();
+        const addressSearch = address => {
+            return new Promise((resolve, reject) => {
+                geocoder.addressSearch(address, function (result, status) {
+                    if (status === kakao.maps.services.Status.OK) {
 
-            // init
-            day1 = {};
-
-            const addressInfo = $("#addedbox").find("div").find("div")[i];
-
-
-            const childrens = addressInfo.children;
-            console.log(childrens[0])
-
-
-
-            day1["placeName"]=(childrens[0].innerHTML);
-            day1["placeLoadAddress"]=(childrens[1].innerHTML);
-            day1["placeAddress"]=(childrens[2].innerHTML);
-            day1["planNum"] = (childrens[3].innerHTML);
+                        resolve({result});
+                    } else {
+                        reject(status);
+                    }
+                });
+            });
+        };
 
 
-            schedule1.push(day1)
-        }
+        (async () => {
+            try {
+                for (i = 0; i < $("#addedbox").find("div").find("div").length; i++) {
+                    // init
+                    day1 = {};
+
+
+                    const addressInfo = $("#addedbox").find("div").find("div")[i];
+
+
+                    const childrens = addressInfo.children;
+                    console.log(childrens[0])
+
+
+                    day1["placeName"] = (childrens[0].innerHTML);
+                    day1["placeLoadAddress"] = (childrens[1].innerHTML);
+                    day1["placeAddress"] = (childrens[2].innerHTML);
+                    day1["planNum"] = (childrens[3].innerHTML);
+                    day1["totalDay"] = (day_count);
+                    day1["startDate"] = ((startdate_date).yyyymmdd)();
+                    day1["endDate"] = ((enddate_date).yyyymmdd());
+
+
+                    const data = await addressSearch(childrens[1].innerHTML);
+                    day1["xlab"] = data.result[0].x;  //data.result[0].y, data.result[0].x
+                    day1["ylab"] = data.result[0].y;
+
+                    schedule1.push(day1)
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        })();
+
 
         plan_Array[day_count] = schedule1;
 
@@ -686,6 +727,12 @@
         alert(day_count + '일차 임시 저장 완료');
     }
 
+    // 동기 지연 함수
+    function sleep(ms) {
+        var start = Date.now() + ms;
+        while (Date.now() < start) {
+        }
+    }
 
 
     function makeSchedulePlace(day) {
@@ -724,7 +771,7 @@
         $.ajax({
             type: "post",
             url: "/plan/plan.wow",
-            data: { "plan" : JSON.stringify(plan_Array)   },
+            data: {"plan": JSON.stringify(plan_Array)},
             success: function (data) {
                 console.log(data);
             }, error: function (err) {
