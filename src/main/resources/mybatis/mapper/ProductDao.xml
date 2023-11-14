@@ -29,8 +29,8 @@
 
     <!-- 4. 물건 보기 (상세 페이지)   -->
     <select id="getproduct" parameterType="Integer" resultType="com.study.product.vo.ProductVO">
-        SELECT name,
-               price,
+        SELECT name as product_name,
+               price as product_price,
                product_desc,
                img
         from product

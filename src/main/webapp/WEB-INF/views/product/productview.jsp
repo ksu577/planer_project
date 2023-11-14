@@ -86,13 +86,11 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div class="product-title">상품명: ${product.name}</div>
-      <div class="product-price">가격 : ${product.price}원 </div>
-      <div class="product-description">
-        ${product.product_desc}
-      </div>
+      <div class="product-title">상품명: ${product.productName}</div>
+      <div class="product-price">가격 : ${product.productPrice}원 </div>
+      <div class="product-description">${product.productDesc}</div>
 
-      <div class="product-quantity">
+      <div class="product-quantity">랴
         <label for="product-quantity">수량 </label>
         <select id="product-options">
           <option value="1"> 1</option>
@@ -109,7 +107,7 @@
       </div>
 
       <div class="product-buttons">
-        <button class="btn btn-primary">장바구니에 담기</button>
+        <button class="btn btn-primary" onclick="cartlist()">장바구니에 담기</button>
         <button class="btn btn-primary">구매하기</button>
       </div>
     </div>
@@ -117,5 +115,11 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script>
+    function detailView(productId) {
+        window.location.href = "/cart/cartshoppinglist.wow=" + productId;
+    }
+</script>
+
 </body>
 </html>

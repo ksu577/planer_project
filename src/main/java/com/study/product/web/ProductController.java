@@ -19,19 +19,21 @@ public class ProductController {
     }
 
     // 1. 상품 전체 목록
-    @RequestMapping("/minishop")
+    @RequestMapping("shop/minishop.wow")
     public String list(Model model) {
         List<ProductVO> productList = iproductService.getprodList();
         model.addAttribute("list", productList);
-        return "shop/minishop";
+        return "/shop/minishop";
     }
 
     //     2. 상품 상세보기
-    @RequestMapping("detail/{productId}")
-    public String detail(@RequestParam int productId, Model model) {
-        model.addAttribute("product", iproductService.getproduct(productId));
+    @RequestMapping("product/productview.wow")
+    public String viewdetail(@RequestParam int productId, Model model) {
+        ProductVO detail = iproductService.getproduct(productId);
+        model.addAttribute("product", detail);
         return "product/productview";
     }
+
 
     // 3. 상품 등록페이지 이동
     @RequestMapping("/productregist")
@@ -67,4 +69,17 @@ public class ProductController {
         iproductService.delete(productId);
         return "product/productdelete";
     }
+
+    // ---------------------샵 페이지------------
+    @RequestMapping("/shop/paypage.wow")
+    public String paypage() {
+        return "shop/paypage";
+    }
+
+
+    @RequestMapping("/shop/afterpay.wow")
+    public String afterpay() {
+        return "shop/afterpay";
+    }
+
 }
