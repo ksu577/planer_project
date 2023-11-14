@@ -87,8 +87,9 @@ public class MemberController {
         ResultMessageVO resultMessageVO=new ResultMessageVO();
         memberService.registMember(member);
         resultMessageVO.messageSetting(true,"등록","회원가입 되었습니다."
-                ,"/member/memberList.wow" , "목록으로");
+                ,"/member/memberRegist.wow" , "목록으로");
         model.addAttribute("resultMessageVO",resultMessageVO);
         return "common/message";
+//        return resultMessageVO.getUrl();
     }
 }
