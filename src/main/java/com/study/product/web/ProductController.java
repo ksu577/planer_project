@@ -43,6 +43,7 @@ public class ProductController {
     public String productinsert(ProductVO productVO)
     {
         return "product/productregist";
+
     }
 
 
