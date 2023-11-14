@@ -4,13 +4,9 @@ import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.inject.Inject;
-import java.util.List;
 
 @Controller
 public class ProductController {
@@ -28,17 +24,24 @@ public class ProductController {
         return "shop/minishop";
     }
 
-    // 2. 상품 상세보기
-//    @RequestMapping("detail/{productId}")
-//    public Model detail(@RequestParam int productId, Model model){
-//       model.addAttribute("product", iproductService.getproduct(productId));
-//        return "shop/productviwe";
-//    }
+    //     2. 상품 상세보기
+    @RequestMapping("detail/{productId}")
+    public String detail(@RequestParam int productId, Model model) {
+        model.addAttribute("product", iproductService.getproduct(productId));
+        return "shop/productviwe";
+    }
+
+    // 3. 상품 등록페이지 이동
+    @RequestMapping("/productregist")
+    public String productregist() {
+        return "/shop/productregist";
+    }
 
 
-
+    // 4. 상품 등록 페이지 작성
     @RequestMapping("/shop/productregist.wow")
-    public String productinsert() {
+    public String productinsert(ProductVO productVO)
+    {
         return "product/productregist";
     }
 
