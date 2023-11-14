@@ -85,20 +85,20 @@ public class CartController {
 
 
     // ---------------------샵 페이지------------
-    @RequestMapping("/shop/paypage.wow")
-    public String paypage() {
-        return "shop/paypage";
-    }
-
-    @RequestMapping("/shop/minishop.wow")
-    public String minishop() {
-        return "shop/minishop";
-    }
-
-
-    @RequestMapping("/shop/afterpay.wow")
-    public String afterpay() {
-        return "shop/afterpay";
-    }
+//    @RequestMapping("/shop/paypage.wow")
+//    public String paypage() {
+//        return "shop/paypage";
+//    }
+//
+//    @RequestMapping("/shop/minishop.wow")
+//    public String minishop() {
+//        return "shop/minishop";
+//    }
+//
+//
+//    @RequestMapping("/shop/afterpay.wow")
+//    public String afterpay() {
+//        return "shop/afterpay";
+//    }
 
 }
