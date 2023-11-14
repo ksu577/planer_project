@@ -102,17 +102,15 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 
     @Override
     public void removeBoard(FreeBoardVO freeBoard)
-            throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException {
+            throws BizNotFoundException, BizNotEffectedException {
         FreeBoardVO vo = freeBoardDao.getBoard(freeBoard.getFreeNum());
         if (vo == null)
             throw new BizNotFoundException();
-//        if (freeBoard.getBoPass().equals(vo.getBoPass())) {
+
         int cnt = freeBoardDao.deleteBoard(freeBoard);
         if (cnt == 0)
             throw new BizNotEffectedException();
-//        } else {
-//            throw new BizPasswordNotMatchedException();
-//        }
+
     }
 
     @Override

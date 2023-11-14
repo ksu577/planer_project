@@ -90,24 +90,17 @@
       <div class="product-price">가격 : ${product.productPrice}원 </div>
       <div class="product-description">${product.productDesc}</div>
 
-      <div class="product-quantity">랴
-        <label for="product-quantity">수량 </label>
-        <select id="product-options">
-          <option value="1"> 1</option>
-          <option value="2"> 2</option>
-          <option value="3"> 3</option>
-          <option value="4"> 4</option>
-          <option value="5"> 5</option>
-          <option value="6"> 6</option>
-          <option value="7"> 7</option>
-          <option value="8"> 8</option>
-          <option value="9"> 9</option>
-          <option value="10"> 10</option>
-        </select> 개
-      </div>
+        <div class="product-quantity">
+            <label for="product-quantity">수량 </label>
+            <select id="product-options">
+                <c:forEach begin="1" end="10" var="quantity">
+                    <option value="${quantity}">${quantity}</option>
+                </c:forEach>
+            </select> 개
+        </div>
 
       <div class="product-buttons">
-        <button class="btn btn-primary" onclick="cartlist()">장바구니에 담기</button>
+        <button formaction="" class="btn btn-primary" onclick="cartlist()">장바구니에 담기</button>
         <button class="btn btn-primary">구매하기</button>
       </div>
     </div>
@@ -116,8 +109,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script>
-    function detailView(productId) {
-        window.location.href = "/cart/cartshoppinglist.wow=" + productId;
+    function cartlist() {
+        window.location.href = "/cart/shoppingcartview.wow"
     }
 </script>
 

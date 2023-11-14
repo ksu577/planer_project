@@ -39,21 +39,19 @@
     장바구니 > 주문결제 > 주문완료
 </div>
 
-
-<%-------------------------------------------%>
 <div class="cart-container mt-3">
     <div class="cart-items">
         <h2>장바구니</h2>
         <hr>
-        <c:forEach var="cart" items="${list}">
+        <c:forEach var="cartItem" items="${cartItems}">
             <div class="cart-item">
-                <span>${product_name}</span>
-                <span>${price}원</span>
+                <span>${productName}</span>
+                <span>${productAmount}원</span>
                 <form action="updateCartItem" method="post">
                     <!-- Add a form for updating quantity 라는디...? -->
-                    <input type="hidden" name="product_id" value="${cart.product_id}" />
-                    <label for="amount">수량:</label>
-                    <input type="number" name="amount" id="amount" value="${cart.amount}" min="1" />
+                    <input type="hidden" name="productId" value="${productNum}" />
+                    <label for="quantity">수량:</label>
+                    <input type="number" name="quantity" id="quantity" value="${cartItem.quantity}" min="1" />
                     <button type="submit">수량 업데이트</button>
                 </form>
             </div>
@@ -61,12 +59,9 @@
         <hr>
         <div class="cart-item">
             <span>합 산</span>
-            <span>${sumMoney}원</span>
+            <span>${productAmount}원</span>
         </div>
     </div>
-
-<%-----------------------------------------------%>
-
 
     <div class="cart-summary">
         <h2>영수증</h2>
@@ -91,7 +86,7 @@
             <span>결제 예정 금액</span>
             <span>"로직짜야됨 총합 금액" + 3000원</span>
         </div>
-        <button class="btn btn-primary" onclick="location.href='/shop/paypage.wow'" style="width: 100%;">결제하기</button>
+        <button class="btn btn-primary" style="width: 100%;">결제하기</button>
     </div>
 </div>
 
