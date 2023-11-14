@@ -89,6 +89,9 @@
                             <span class="glyphicon glyphicon-save" aria-hidden="true"></span> &nbsp;&nbsp;저장
                         </button>
 
+                        <button type="submit" formaction="freeDelete.wow" class="btn btn-sm btn-danger">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> &nbsp;&nbsp;삭제
+                        </button>
 
 
                     </div>
