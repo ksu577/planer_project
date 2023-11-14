@@ -32,5 +32,7 @@ public interface CartDao {
 
     // 7. 장바구니 상품수량 변경
     public void updateCart(CartVO cartVo);
+
+    // 임의 장바구니 제품이름 가격보기
 }
 
