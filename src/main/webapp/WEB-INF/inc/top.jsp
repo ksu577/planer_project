@@ -77,7 +77,7 @@
 
             <li><a class="dropdown-item" href="#"> 내 정보 </a></li>
             <li><a class="dropdown-item" href="#"> 회원 정보 수정 </a></li>
-            <li><a class="dropdown-item" href="#"> 장바구니 </a></li>
+            <li><a class="dropdown-item" href="/cart/shoppingcartview.wow"> 장바구니 </a></li>
             <li>
                 <hr class="dropdown-divider">
             </li>

@@ -66,6 +66,7 @@
     <div class="cart-summary">
         <h2>영수증</h2>
         <hr>
+
         <div class="mb-3 d-flex justify-content-between">
             <span>${cartItem.productName}</span>
             <span>${cartItem.productAmount}원</span>

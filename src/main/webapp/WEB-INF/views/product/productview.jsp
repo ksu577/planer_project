@@ -65,13 +65,13 @@
             <div class="carousel-item active">
 
               <img src="${product.img}" class="d-block w-100" alt="...">
-              <%--                            이 부분을 잘 모르겠는데 DB에서  이미지 넣는거?--%>
             </div>
             <div class="carousel-item">
-              <img src="/resources/images/보조배터리.jpeg" class="d-block w-100" alt="...">
+              <img src="${product.img}" class="d-block w-100" alt="...">
+<%--              여기선 두번째 다른 사진이 나와야되는 부분이긴한데.. 어떻게 해야되냐..--%>
             </div>
             <div class="carousel-item">
-              <img src="/resources/images/보조배터리.jpeg" class="d-block w-100" alt="...">
+              <img src="${product.img}" class="d-block w-100" alt="...">
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

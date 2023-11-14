@@ -19,6 +19,7 @@ public class ProductController {
     // 1. 상품 전체 목록
     @RequestMapping("/minishop")
     public String list(Model model) {
+        iproductService.getprodList();
         model.addAttribute("list", iproductService.getprodList());
         return "shop/minishop";
     }

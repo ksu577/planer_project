@@ -131,7 +131,7 @@
                 <div class="bottom">
 <%--                    klink엔 시부레 뭘 넣어야할까 --%>
                     <a href="<c:out value="${product.link}" />"> <c:out value="${product.name}" /> </a>
-                    <a> <c:out value="${productAmount}" /> </a>
+                    <a> <c:out value="${product.price}" /> </a>
                 </div>
             </div>
         </c:forEach>
