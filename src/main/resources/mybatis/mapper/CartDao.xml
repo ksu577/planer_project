@@ -24,7 +24,7 @@
              cart c
         where m.id = c.user_id
           and p.id = c.product_id
-            and m.id = 'qwer'
+            and m.id = #{userId}
     </select>
 
     <!-- 3. 장바구니 삭제 -->

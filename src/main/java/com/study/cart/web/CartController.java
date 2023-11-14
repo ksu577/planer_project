@@ -2,6 +2,7 @@ package com.study.cart.web;
 
 import com.study.cart.service.ICartService;
 import com.study.cart.vo.CartVO;
+import com.study.login.vo.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,22 +39,22 @@ public class CartController {
 
     ;
 
-//    // 2. 장바구니 목록
-//    @RequestMapping("/cart/shoppingcartview")
-//    public Model list(HttpSession session, Model model) {
-//        String userId = (String) session.getAttribute("user"); // session에 저장된 거
-//        List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
-//        int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
-//        model.addAttribute("list", list);
-//        model.addAttribute("sumMoney", sumMoney);
-//        return model;
-//    };
-
+    // 2. 장바구니 목록
     @RequestMapping("/cart/shoppingcartview.wow")
-    public String cartList(Model model, @RequestParam String userId){
-       List<CartVO> list = cartService.listCart(userId);
-       model.addAttribute("list", list);
-        return "redirect:/cart/shoppingcartview.wow?userId=" + userId;
+    public String cartList(Model model, HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+
+
+        if (user != null) {
+            String userId = user.getId();
+            List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
+            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
+            model.addAttribute("list", list);
+            model.addAttribute("sumMoney", sumMoney);
+            return "redirect:/cart/shoppingcartview.wow?userId=" + userId;
+        } else {
+            return "redirect:/login/login.wow";
+        }
     }
 
 
@@ -80,25 +81,4 @@ public class CartController {
         }
         return "redirect:/cart/shoppingcartview";
     }
-
-    ;
-
-
-    // ---------------------샵 페이지------------
-    @RequestMapping("/shop/paypage.wow")
-    public String paypage() {
-        return "shop/paypage";
-    }
-
-    @RequestMapping("/shop/minishop.wow")
-    public String minishop() {
-        return "shop/minishop";
-    }
-
-
-    @RequestMapping("/shop/afterpay.wow")
-    public String afterpay() {
-        return "shop/afterpay";
-    }
-
 }
