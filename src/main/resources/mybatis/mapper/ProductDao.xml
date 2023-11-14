@@ -38,10 +38,10 @@
     </select>
 
     <select id="getpordList" resultType="com.study.product.vo.ProductVO">
-        select id as productId,
-        name as productName,
-        price as productPrice,
-        product_desc as productDesc,
+        select id as product_id,
+        name as product_name,
+        price as product_price,
+        product_desc as product_desc,
         img as img
         from product
         order by name

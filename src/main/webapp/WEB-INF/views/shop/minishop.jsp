@@ -123,15 +123,14 @@
 
 <div class="item-box">
 <%--여기가 확실하지 않은데 orderNum 인지 productNum인지 id 로 가져와야하는건지 모르겠다 순억아!!--%>
-        <c:forEach var="product" items="${orderNum}">
+        <c:forEach var="product" items="${list}">
             <div class="cell">
                 <div class="top">
-                    <img height="320px" width="328px" src="<c:out value="${product.img}" />" alt="">
+                    <img height="320px" width="328px" src="${product.img}" alt="">
                 </div>
                 <div class="bottom">
-<%--                    klink엔 시부레 뭘 넣어야할까 --%>
-                    <a href="<c:out value="${product.link}" />"> <c:out value="${product.name}" /> </a>
-                    <a> <c:out value="${product.price}" /> </a>
+                    <a href="#"> ${product.productName} </a>
+                    <a href="#"> "${product.productPrice}" </a>
                 </div>
             </div>
         </c:forEach>

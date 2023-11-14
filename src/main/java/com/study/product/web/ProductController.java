@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class ProductController {
 
@@ -19,8 +21,8 @@ public class ProductController {
     // 1. 상품 전체 목록
     @RequestMapping("/minishop")
     public String list(Model model) {
-        iproductService.getprodList();
-        model.addAttribute("list", iproductService.getprodList());
+        List<ProductVO> productList = iproductService.getprodList();
+        model.addAttribute("list", productList);
         return "shop/minishop";
     }
 
@@ -53,11 +55,11 @@ public class ProductController {
     };
 
     // 6. 상품 수정 페이지 (기능)  -- 사진 db에 변경하기
-    @RequestMapping("/shop/productdelete.wow")
-    public String edit(ProductVO productVO) {
-        iproductService.update(productVO);
-        return "redirect:/shop/minishop";
-    }
+//    @RequestMapping("/shop/productupdate.wow")
+//    public String edit(ProductVO productVO) {
+//        iproductService.update(productVO);
+//        return "redirect:/shop/minishop";
+//    }
 
     // 7. 상품 삭제 기능
     @RequestMapping("/shop/productdelete.wow")
