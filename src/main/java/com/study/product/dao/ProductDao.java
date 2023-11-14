@@ -19,9 +19,9 @@ public interface ProductDao {
     public void update(ProductVO productVO);
 
     // 4.물건 확인 (상세 페이지 확인)
-    public ProductVO getporduct(int productId);
+    public ProductVO getproduct(int productId);
 
     // 5.물건 목록 확인
-     public List<ProductVO> getpordList();
+     public List<ProductVO> getprodList();
 
 }

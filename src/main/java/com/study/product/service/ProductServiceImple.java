@@ -23,7 +23,7 @@ public class ProductServiceImple implements IproductService {
     // 2. 상품 목록 ( 미니샾 )
     @Override
     public List<ProductVO> getprodList() {
-        return productDao.getpordList();
+        return productDao.getprodList();
     }
 
     // 3. 상품 지우기
@@ -41,6 +41,6 @@ public class ProductServiceImple implements IproductService {
     // 5. 상품 상세
     @Override
     public ProductVO getproduct(int productId) {
-        return productDao.getporduct(productId);
+        return productDao.getproduct(productId);
     }
 }
