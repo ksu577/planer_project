@@ -31,7 +31,7 @@ public class CartController {
         } else {
             cartService.updateCart(cartVO);
         }
-        return "redirect: /cart/shoppingcartview";
+        return "redirect:/cart/shoppingcartview";
     }
 
     ;

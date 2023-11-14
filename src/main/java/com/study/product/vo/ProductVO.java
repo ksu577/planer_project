@@ -6,10 +6,10 @@ import lombok.Data;
 @Data
 public class ProductVO {
 
-    private int id; // 물품 아이디
-    private String name; // 물품 이름
-    private int price; // 물품 가격
-    private String product_desc; //물품 설명
+    private int productId; // 물품 아이디
+    private String productName; // 물품 이름
+    private int productPrice; // 물품 가격
+    private String productDesc; //물품 설명
     private String img; // 물품 이미지
 
 }

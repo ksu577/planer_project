@@ -40,8 +40,7 @@ public class ProductController {
 
     // 4. 상품 등록 페이지 작성
     @RequestMapping("/shop/productregist.wow")
-    public String productinsert(ProductVO productVO)
-    {
+    public String productinsert(ProductVO productVO) {
         return "product/productregist";
 
     }
@@ -57,12 +56,4 @@ public class ProductController {
         return "product/productdelete";
     }
 
-    @RequestMapping(value = "/shop/productview.wow", method = RequestMethod.GET)
-    public String getProduct(int productId, Model model) {
-
-        ProductVO productVO = iproductService.getproduct(productId);
-        model.addAttribute("product", productVO);
-
-        return "shop/productview";
-    }
 }

@@ -13,15 +13,15 @@ public interface ProductDao {
     public void insertpublic(ProductVO productVO);
 
     // 2.물건 삭제
-    public void delete(int id);
+    public void delete(int productId);
 
     // 3.물건 변경
     public void update(ProductVO productVO);
 
     // 4.물건 확인 (상세 페이지 확인)
-    public ProductVO getporduct(int id);
+    public ProductVO getporduct(int productId);
 
     // 5.물건 목록 확인
-     public List<ProductVO> getpordList(ProductVO productVO);
+     public List<ProductVO> getpordList();
 
 }
