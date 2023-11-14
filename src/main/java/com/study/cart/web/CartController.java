@@ -37,60 +37,42 @@ public class CartController {
     ;
 
     // 2. 장바구니 목록
-    @RequestMapping("/cart/shoppingcartview")
-    public Model list(HttpSession session, Model model) {
+    @RequestMapping("/cart/shoppingcartview.wow")
+    public String list(HttpSession session, Model model) {
         String userId = (String) session.getAttribute("user"); // session에 저장된 거
         List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
         int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
         model.addAttribute("list", list);
         model.addAttribute("sumMoney", sumMoney);
-        return model;
+        return "cart/shoppingcartview";
     }
 
     ;
 
-        // 3. 장바구니 삭제
-        @RequestMapping("shoppingCartDelete")
-        public String delete(@RequestParam() int cardId) {
-            cartService.delete(cardId);
-            return "redirect: /cart/shoppingcartview";
-        }
-
-        ;
-
-
-        // 4. 장바구니 수정
-        @RequestMapping("/shoppingcartupdate")
-        public String update(@RequestParam() int[] amount, @RequestParam int[] product_id, HttpSession session) {
-            String userId = (String) session.getAttribute("user");
-            for (int i = 0; i < product_id.length; i++) {
-                CartVO cartVO = new CartVO();
-                cartVO.setUserId(userId);
-                cartVO.setAmount(amount[i]);
-                cartVO.setProduct_id(product_id[i]);
-                cartService.modify(cartVO);
-            }
-            return "redirect:/cart/shoppingcartview";
-        }
-
-        ;
-
-
-    // ---------------------샵 페이지------------
-    @RequestMapping("/shop/paypage.wow")
-    public String paypage() {
-        return "shop/paypage";
+    // 3. 장바구니 삭제
+    @RequestMapping("shoppingCartDelete")
+    public String delete(@RequestParam() int cardId) {
+        cartService.delete(cardId);
+        return "redirect: /cart/shoppingcartview";
     }
 
-    @RequestMapping("/shop/minishop.wow")
-    public String minishop() {
-        return "shop/minishop";
-    }
+    ;
 
 
-    @RequestMapping("/shop/afterpay.wow")
-    public String afterpay() {
-        return "shop/afterpay";
+    // 4. 장바구니 수정
+    @RequestMapping("/shoppingcartupdate")
+    public String update(@RequestParam() int[] amount, @RequestParam int[] product_id, HttpSession session) {
+        String userId = (String) session.getAttribute("user");
+        for (int i = 0; i < product_id.length; i++) {
+            CartVO cartVO = new CartVO();
+            cartVO.setUserId(userId);
+            cartVO.setAmount(amount[i]);
+            cartVO.setProduct_id(product_id[i]);
+            cartService.modify(cartVO);
+        }
+        return "redirect:/cart/shoppingcartview";
     }
 
 }
+
+
