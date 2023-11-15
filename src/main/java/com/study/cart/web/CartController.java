@@ -54,8 +54,8 @@ public class CartController {
             String userId = user.getId();
             List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
             int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
-            model.addAttribute("list", list);
-
+            model.addAttribute("list", list); // 장바구니 정보 추가
+            model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
             return "redirect:/cart/shoppingcartview.wow";
         } else {
             return "redirect:/login/login.wow";
