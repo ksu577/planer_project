@@ -42,21 +42,19 @@
 <div class="cart-container mt-3">
     <div class="cart-items">
         <h2>장바구니</h2>
-<%--        ?userId=" + userId;--%>
+        <%--        ?userId=" + userId;--%>
         <hr>
 
 
-
-
-        <c:forEach var="cartItem" items="${cartItems}">
+        <c:forEach var="list" items="${list}}">
             <div class="cart-item">
                 <span>${productName}</span>
-                <span>${productAmount}원</span>
+                <span>${price}원</span>
                 <form action="updateCartItem" method="post">
                     <!-- Add a form for updating quantity 라는디...? -->
-                    <input type="hidden" name="productId" value="${productNum}" />
-                    <label for="quantity">수량:</label>
-                    <input type="number" name="quantity" id="quantity" value="${cartItem.quantity}" min="1" />
+                    <input type="hidden" name="productId" value="${productId}"/>
+                    <label for="amount">수량:</label>
+                    <input type="number" name="amount" id="amount" value="${amount}" min="1"/>
                     <button type="submit">수량 업데이트</button>
                 </form>
             </div>
@@ -64,7 +62,7 @@
         <hr>
         <div class="cart-item">
             <span>합 산</span>
-            <span>${productAmount}원</span>
+            <span>${sumMoney}원</span>
         </div>
     </div>
 
@@ -96,20 +94,9 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $('input[name="quantity"]').on('change', function() {
-            var quantity = $(this).val();
-            var pricePerItem = parseFloat("${cartItem.productAmount}"); // 아이템 당 가격이라 가정합니다.
-
-            // 수량과 아이템 당 가격을 기반으로 총 가격 계산
-            var totalPrice = quantity * pricePerItem;
-            // 화면에 총 가격 업데이트
-            $('#totalPrice').text(totalPrice + "원");
-        });
-
-
+    $(document).ready(function () {
+        cartlist();
     });
-
 </script>
 
 </body>

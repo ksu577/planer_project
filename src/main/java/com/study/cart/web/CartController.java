@@ -29,7 +29,8 @@ public class CartController {
 
         if (user != null) {
             String userId = user.getId();
-            cartVO.setCartId(Integer.parseInt(userId));
+
+            cartVO.setUserId(userId);
             //장바구니에 상품 체크
             int count = cartService.CountCart(cartVO.getProductId(), userId);
             if (count == 0) {
@@ -56,7 +57,7 @@ public class CartController {
             int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
             model.addAttribute("list", list); // 장바구니 정보 추가
             model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
-            return "redirect:/cart/shoppingcartview.wow";
+            return "redirect:/cart/shoppingcartview.wow?userId=" + userId;
         } else {
             return "redirect:/login/login.wow";
         }
