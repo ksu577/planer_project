@@ -47,20 +47,23 @@ public class CartController {
     ;
 
     // 2. 장바구니 목록(장바구니 전체)
-    @PostMapping("/shoppingcartview")
+    @GetMapping("/shoppingcartview")
     public String cartList(Model model, HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
 
         if (user != null) {
             String userId = user.getId();
+            System.out.println(userId);
             List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
             int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
+            System.out.println(list);
             model.addAttribute("listCart", list); // 장바구니 정보 추가
             model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
-            return "cart/shoppingcartview.wow" ;
+            return "cart/shoppingcartview" ;
         } else {
             return "redirect:/login/login.wow";
         }
+
     }
 
 
@@ -89,11 +92,13 @@ public class CartController {
     }
 
 
-    @GetMapping("/shoppingcartview")
+    @PostMapping("/shoppingcartview")
     public String page(HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
 
         if (user != null) {
+
+
             return "cart/shoppingcartview";
         } else {
             return "redirect: /login/login.wow";

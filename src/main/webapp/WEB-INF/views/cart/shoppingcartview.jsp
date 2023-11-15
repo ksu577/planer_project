@@ -42,14 +42,14 @@
 <div class="cart-container mt-3">
     <div class="cart-items">
         <h2>장바구니</h2>
-        <%--        ?userId=" + userId;--%>
+
         <hr>
 
 
         <c:forEach var="cartItem" items="${listCart}">
             <div class="cart-item">
-                <span>${productName}</span>
-                <span>${price}원</span>
+                <span>${cartItem.productName}</span>
+                <span>${cartItem.price}원</span>
                 <form action="updateCartItem" method="post">
                     <input type="hidden" name="productId" value="${cartItem.productId}"/>
                     <label for="amount">수량:</label>
@@ -92,15 +92,6 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        cartlist();
-    });
-
-    function cartlist() {
-        location.href="/cart/shoppingcartview";
-    }
-</script>
 
 </body>
 </html>
