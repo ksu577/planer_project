@@ -120,7 +120,7 @@
         outline: none;
     }
 </style>
-
+<%session.invalidate();%>
 <body>
 
 <div class="login-container">
