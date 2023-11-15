@@ -16,12 +16,9 @@
             justify-content: space-between;
             align-items: center;
         }
-
-
         .container {
             margin-top: 20px;
         }
-
         .address {
             border: 1px solid #ddd;
             padding: 20px;

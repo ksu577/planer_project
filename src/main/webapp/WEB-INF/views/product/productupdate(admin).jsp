@@ -11,11 +11,6 @@
             margin: auto;
         }
 
-        .product-image {
-            max-width: 100%;
-            height: auto;
-        }
-
         .product-title {
             display: flex;
             justify-content: space-between;
