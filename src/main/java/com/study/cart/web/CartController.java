@@ -5,10 +5,7 @@ import com.study.cart.vo.CartVO;
 import com.study.login.vo.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -45,10 +42,11 @@ public class CartController {
             return "redirect:/login/login.wow";
         }
     }
+
     ;
 
     // 2. 장바구니 목록(장바구니 전체)
-    @RequestMapping("/shoppingcartview")
+    @PostMapping("/shoppingcartview")
     public String cartList(Model model, HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
 
@@ -90,7 +88,15 @@ public class CartController {
     }
 
 
-
     @GetMapping("/shoppingcartview")
-    public String page(){return "cart/shoppingcartview";}
+    public String page(HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+
+        if (user != null) {
+            String userId = user.getId();
+            return "cart/shoppingcartview";
+        } else {
+            return "redirect: /login/login.wow";
+        }
+    }
 }
