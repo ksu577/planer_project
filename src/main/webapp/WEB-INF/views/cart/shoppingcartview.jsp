@@ -96,6 +96,19 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('input[name="quantity"]').on('change', function() {
+            var quantity = $(this).val();
+            var pricePerItem = parseFloat("${cartItem.productAmount}"); // 아이템 당 가격이라 가정합니다.
+
+            // 수량과 아이템 당 가격을 기반으로 총 가격 계산
+            var totalPrice = quantity * pricePerItem;
+            // 화면에 총 가격 업데이트
+            $('#totalPrice').text(totalPrice + "원");
+        });
+
+
+    });
 
 </script>
 
