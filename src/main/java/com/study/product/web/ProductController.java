@@ -23,6 +23,7 @@ public class ProductController {
     public String list(Model model) {
         List<ProductVO> productList = iproductService.getprodList();
         model.addAttribute("list", productList);
+
         return "/shop/minishop";
     }
 
@@ -33,7 +34,6 @@ public class ProductController {
         model.addAttribute("product", detail);
         return "product/productview";
     }
-
 
     // 3. 상품 등록페이지 이동
     @RequestMapping("/productregist")
