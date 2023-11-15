@@ -46,15 +46,15 @@
         <hr>
 
 
-        <c:forEach var="list" items="${list}}">
+        <c:forEach var="cartItem" items="${listCart}">
             <div class="cart-item">
-                <span>${productName}</span>
-                <span>${price}원</span>
+                <span>${cartItem.productName}</span>
+                <span>${cartItem.price}원</span>
                 <form action="updateCartItem" method="post">
                     <!-- Add a form for updating quantity 라는디...? -->
-                    <input type="hidden" name="productId" value="${productId}"/>
+                    <input type="hidden" name="productId" value="${cartItem.productId}"/>
                     <label for="amount">수량:</label>
-                    <input type="number" name="amount" id="amount" value="${amount}" min="1"/>
+                    <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="1"/>
                     <button type="submit">수량 업데이트</button>
                 </form>
             </div>
@@ -97,6 +97,12 @@
     $(document).ready(function () {
         cartlist();
     });
+
+    function cartlist()
+    {
+
+
+    }
 </script>
 
 </body>

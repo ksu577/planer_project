@@ -2,9 +2,13 @@ package com.study.cart.vo;
 
 import com.study.product.vo.ProductVO;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
-@Data
+@Getter
+@Setter
 public class CartVO extends ProductVO {
 
     private int cartId; //장바구니 번호
