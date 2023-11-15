@@ -42,7 +42,12 @@
 <div class="cart-container mt-3">
     <div class="cart-items">
         <h2>장바구니</h2>
+<%--        ?userId=" + userId;--%>
         <hr>
+
+
+
+
         <c:forEach var="cartItem" items="${cartItems}">
             <div class="cart-item">
                 <span>${productName}</span>

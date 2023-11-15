@@ -17,6 +17,7 @@ import java.util.List;
 
 
 @Controller
+@RequestMapping("/cart")
 public class CartController {
 
     @Inject
@@ -27,32 +28,37 @@ public class CartController {
     // 1. 장바구니에(물품) 추가
     @RequestMapping("/shoppingcartinsert")
     public String insert(@ModelAttribute CartVO cartVO, HttpSession session) {
-        String userId = (String) session.getAttribute("user");
-        cartVO.setCartId(Integer.parseInt(userId));
-        //장바구니에 상품 체크
-        int count = cartService.CountCart(cartVO.getProductId(), userId);
-        if (count == 0) {
-            cartService.insert(cartVO);
-        } else {
-            cartService.updateCart(cartVO);
-        }
-        return "redirect:/cart/shoppingcartview";
-    }
+        UserVO user = (UserVO) session.getAttribute("user");
 
+        if (user != null) {
+            String userId = user.getId();
+            cartVO.setCartId(Integer.parseInt(userId));
+            //장바구니에 상품 체크
+            int count = cartService.CountCart(cartVO.getProductId(), userId);
+            if (count == 0) {
+                cartService.insert(cartVO);
+            } else {
+                cartService.updateCart(cartVO);
+            }
+            return "redirect:/cart/shoppingcartview.wow";
+        } else {
+            return "redirect:/login/login.wow";
+        }
+    }
     ;
 
     // 2. 장바구니 목록(장바구니 전체)
-    @RequestMapping("/cart/shoppingcartview.wow")
+    @RequestMapping("/shoppingcartview")
     public String cartList(Model model, HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
-
 
         if (user != null) {
             String userId = user.getId();
             List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
+            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
             model.addAttribute("list", list);
 
-            return "redirect:/cart/shoppingcartview.wow?userId=" + userId;
+            return "redirect:/cart/shoppingcartview.wow";
         } else {
             return "redirect:/login/login.wow";
         }
@@ -60,7 +66,7 @@ public class CartController {
 
 
     // 3. 장바구니(담은 물품) 삭제
-    @RequestMapping("shoppingCartDelete")
+    @RequestMapping("/shoppingCartDelete")
     public String delete(int cardId, @RequestParam String userId) {
         cartService.delete(cardId);
         return "redirect:/cart/shoppingcartview.wow";
@@ -82,4 +88,9 @@ public class CartController {
         }
         return "redirect:/cart/shoppingcartview";
     }
+
+
+
+    @GetMapping("/shoppingcartview")
+    public String page(){return "cart/shoppingcartview";}
 }
