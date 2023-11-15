@@ -1,6 +1,5 @@
 package com.study.product.web;
 
-import com.study.login.vo.UserVO;
 import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
 import org.springframework.stereotype.Controller;
@@ -8,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -31,12 +29,9 @@ public class ProductController {
 
     // 2. 상품 상세보기
     @RequestMapping("product/productview.wow")
-    public String viewdetail(@RequestParam int productId, Model model, HttpSession session) {
-        UserVO user = (UserVO) session.getAttribute("user");
-        if (user != null) {
-            ProductVO detail = iproductService.getproduct(productId);
-            model.addAttribute("product", detail);
-        }
+    public String viewdetail(@RequestParam int productId, Model model) {
+        ProductVO detail = iproductService.getproduct(productId);
+        model.addAttribute("product", detail);
         return "product/productview";
     }
 
