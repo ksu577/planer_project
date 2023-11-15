@@ -53,7 +53,6 @@ public class CartController {
 
         if (user != null) {
             String userId = user.getId();
-            System.out.println(userId);
             List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
             int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
             model.addAttribute("listCart", list); // 장바구니 정보 추가
