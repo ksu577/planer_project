@@ -22,7 +22,7 @@ public interface ICartService {
     public int sumMoney(String userId);
 
     // 6. 장바구니 상품 확인
-    public int CountCart(int product_id, String userId);
+    public int countCart(int product_id, String userId);
 
     // 7. 장바구니 상품 수량 변경
     public void updateCart(CartVO cartVO);

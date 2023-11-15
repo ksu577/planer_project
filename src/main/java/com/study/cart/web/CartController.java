@@ -31,17 +31,12 @@ public class CartController {
             String userId = user.getId();
 
             cartVO.setUserId(userId);
-            //장바구니에 상품 체크
-            int count = cartService.CountCart(cartVO.getProductId(), userId);
-            if (count == 0) {
-                cartService.insert(cartVO);
-            } else {
-                cartService.updateCart(cartVO);
-            }
+            cartService.insert(cartVO);
             return "redirect:/cart/shoppingcartview.wow";
-        } else {
-            return "redirect:/login/login.wow";
         }
+
+        return "redirect:/login/login.wow";
+
     }
 
     ;

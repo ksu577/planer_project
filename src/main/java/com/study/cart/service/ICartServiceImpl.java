@@ -2,6 +2,7 @@ package com.study.cart.service;
 
 import com.study.cart.dao.CartDao;
 import com.study.cart.vo.CartVO;
+import com.study.product.dao.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,20 +11,35 @@ import java.util.List;
 @Service
 public class ICartServiceImpl implements ICartService {
 
+    private final CartDao cartDao;
+
     @Autowired
-    CartDao cartDao;
-    
+    public ICartServiceImpl(CartDao cartDao) {
+        this.cartDao = cartDao;
+    }
 
     // 1. 장바구니(물품) 추가
     @Override
     public void insert(CartVO cartVO) {
+
+        // 기존 수량 체크
+        int amount = cartDao.getProductAmountInCart(cartVO.getProductId(), cartVO.getUserId());
+
+        if(amount > 0) {
+            // 기존 수량 + 추가 수량 업데이트
+            cartVO.addAmount(amount);
+            cartDao.updateCart(cartVO);
+            return;
+        }
+
+        // 없으면 새로운 상품으로 추가
         cartDao.insertCart(cartVO);
     }
 
     // 2. 장바구니 목록 ===> 이게 진짜 장바구니
     @Override
     public List<CartVO> listCart(String userId) {
-        return cartDao.CartList(userId);
+        return cartDao.cartList(userId);
     }
 
     // 3. 장바구니 삭제 (물품 삭제)
@@ -46,8 +62,8 @@ public class ICartServiceImpl implements ICartService {
 
     // 6. 장바구니 상품 확인
     @Override
-    public int CountCart(int product_id, String userId) {
-        return cartDao.CountCart(product_id, userId);
+    public int countCart(int product_id, String userId) {
+        return cartDao.countCart(product_id, userId);
     }
 
     // 7. 장바구니 상품 수량 변경

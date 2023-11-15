@@ -2,6 +2,7 @@ package com.study.cart.dao;
 
 import com.study.cart.vo.CartVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface CartDao {
     public void insertCart(CartVO cartVO);
 
     // 2. 장바구니 목록
-    public List<CartVO> CartList(String userId);
+    public List<CartVO> cartList(String userId);
 
     // 3. 장바구니 삭제
     public void delete(int cartId);
@@ -28,7 +29,8 @@ public interface CartDao {
     public int sumMoney(String userId);
 
     // 6. 장바구니에 있는 것과 동일한 상품 코드 확인
-    public int CountCart(int prodcut_id, String userId);
+    public int countCart(@Param("product_id") int prodcut_id
+            , @Param("userId") String userId);
 
     // 7. 장바구니 상품수량 변경
     public void updateCart(CartVO cartVo);
@@ -37,5 +39,8 @@ public interface CartDao {
     public void clearCart(String userId);
 
     // 임의 장바구니 제품이름 가격보기
+
+    public int getProductAmountInCart(@Param("product_id") int prodcut_id
+            , @Param("userId") String userId);
 }
 

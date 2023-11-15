@@ -46,7 +46,7 @@
         <c:forEach var="cartItem" items="${listCart}"> <%--CartController 2번 항목 listCart 호--%>출
             <div class="cart-item">
                 <span>${cartItem.productName}</span>
-                <span>${cartItem.price * cartItem.amount}t원</span>
+                <span>${cartItem.price * cartItem.amount}원</span>
                 <form action="/cart/shoppingcartupdate" method="post">
                     <input type="hidden" name="productId" value="${cartItem.productId}">
                     <label for="amount">수량:</label>

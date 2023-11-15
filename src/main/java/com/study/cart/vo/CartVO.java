@@ -20,6 +20,9 @@ public class CartVO extends ProductVO {
     private int money; // 상품 가격
     private int amount; // 구매 수량
 
+    public void addAmount(int amount) {
+        this.amount += amount;
+    }
 }
 
 

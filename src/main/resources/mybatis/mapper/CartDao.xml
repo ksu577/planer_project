@@ -5,11 +5,11 @@
     <!-- 1. 장바구니 추가 -->
     <insert id="insertCart">
         insert into cart (cart_id, user_id, product_id, amount)
-        values (seq_cart.nextval, #{userId}, #{product_id}, #{amount})
+        values (seq_cart.nextval, #{userId}, #{productId}, #{amount})
     </insert>
 
     <!-- 2. 장바구니 목록 -->
-    <select id="CartList" resultType="com.study.cart.vo.CartVO">
+    <select id="cartList" resultType="com.study.cart.vo.CartVO">
         select c.cart_id    as      cart_id,
                c.user_id    as      user_id,
                p.id         as      product_id,
@@ -55,7 +55,7 @@
     </select>
 
     <!--6. 장바구니에 있는 것과 동일한 상품 코드 확인-->
-    <select id="CountCart" resultType="int">
+    <select id="countCart" resultType="int">
         select count(*)
         from cart
         where user_id = #{userId}
@@ -70,5 +70,13 @@
           and product_id = #{productId}
     </update>
 
-
+    <!--6. 장바구니에 있는 것과 동일한 상품 코드 확인-->
+    <select id="getProductAmountInCart" resultType="int">
+        SELECT NVL(
+                       (SELECT amount
+                        from cart
+                        where user_id = #{userId}
+                          and product_id = #{product_id}), 0)
+        FROM DUAL
+    </select>
 </mapper>
