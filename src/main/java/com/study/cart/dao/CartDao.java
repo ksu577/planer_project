@@ -33,6 +33,9 @@ public interface CartDao {
     // 7. 장바구니 상품수량 변경
     public void updateCart(CartVO cartVo);
 
+    //8. 장바구니 전체 삭제
+    public void clearCart(String userId);
+
     // 임의 장바구니 제품이름 가격보기
 }
 

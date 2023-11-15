@@ -100,7 +100,7 @@
         </div>
 
       <div class="product-buttons">
-        <button formaction="" class="btn btn-primary" onclick="cartlist()">장바구니에 담기</button>
+        <button formaction="/cart/shoppingcartinsert" class="btn btn-primary" onclick="listCart()">장바구니에 담기</button>
         <button class="btn btn-primary">구매하기</button>
       </div>
     </div>

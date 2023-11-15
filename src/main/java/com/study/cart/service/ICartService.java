@@ -26,4 +26,7 @@ public interface ICartService {
 
     // 7. 장바구니 상품 수량 변경
     public void updateCart(CartVO cartVO);
+
+    //8. 장바구니 전체 삭제
+    public void clearCart(String userId);
 }

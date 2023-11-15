@@ -55,4 +55,10 @@ public class ICartServiceImpl implements ICartService {
     public void updateCart(CartVO cartVO) {
         cartDao.updateCart(cartVO);
     }
-}
+
+    //8. 장바구니 전체 삭제
+    @Override
+    public void clearCart(String userId) { cartDao.clearCart(userId);}
+
+    }
+

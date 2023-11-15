@@ -56,7 +56,6 @@ public class CartController {
             System.out.println(userId);
             List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
             int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
-            System.out.println(list);
             model.addAttribute("listCart", list); // 장바구니 정보 추가
             model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
             return "cart/shoppingcartview" ;
@@ -67,9 +66,9 @@ public class CartController {
     }
 
 
-    // 3. 장바구니(담은 물품) 삭제
+    // 3. 장바구니(담은 물품) 삭제 --업데이트랑 겹쳐서 고민 좀
     @RequestMapping("/shoppingCartDelete")
-    public String delete(int cardId, @RequestParam String userId) {
+    public String delete(int cardId) {
         cartService.delete(cardId);
         return "redirect:/cart/shoppingcartview.wow";
     }
@@ -79,26 +78,47 @@ public class CartController {
 
     // 4. 장바구니 수정
     @RequestMapping("/shoppingcartupdate")
-    public String update(@RequestParam() int[] amount, @RequestParam int[] product_id, HttpSession session) {
-        String userId = (String) session.getAttribute("user");
-        for (int i = 0; i < product_id.length; i++) {
-            CartVO cartVO = new CartVO();
-            cartVO.setUserId(userId);
-            cartVO.setAmount(amount[i]);
-            cartVO.setProductId(product_id[i]);
-            cartService.modify(cartVO);
+    public String updateCartItem(@RequestParam() int[] amount, @RequestParam int[] productId, HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+
+        if (user != null) {
+            String userId = user.getId();
+            for (int i = 0; i < productId.length; i++) {
+                CartVO cartVO = new CartVO();
+                cartVO.setUserId(userId);
+                cartVO.setAmount(amount[i]);
+                cartVO.setProductId(productId[i]);
+                if (amount[i] == 0) {
+                    // 수량이 0이면 해당 상품 삭제
+                    cartService.delete(productId[i]);
+                } else {
+                    // 아니면 업데이트
+                    cartService.modify(cartVO);
+                }
+            }
+            return "redirect:/cart/shoppingcartview";
         }
-        return "redirect:/cart/shoppingcartview";
+        return "redirect:/login/login.wow";
+    }
+
+    // 4. 전체 삭제
+    @RequestMapping("/shoppingCartClear")
+    public String clear(HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+
+        if (user != null) {
+            String userId = user.getId();
+            cartService.clearCart(userId);
+        }
+
+        return "redirect:/cart/shoppingcartview.wow";
     }
 
 
     @PostMapping("/shoppingcartview")
     public String page(HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
-
         if (user != null) {
-
-
             return "cart/shoppingcartview";
         } else {
             return "redirect: /login/login.wow";

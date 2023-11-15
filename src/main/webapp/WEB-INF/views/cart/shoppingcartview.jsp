@@ -47,10 +47,10 @@
             <div class="cart-item">
                 <span>${cartItem.productName}</span>
                 <span>${cartItem.price * cartItem.amount}t원</span>
-                <form action="updateCartItem" method="post">
+                <form action="/cart/shoppingcartupdate" method="post">
                     <input type="hidden" name="productId" value="${cartItem.productId}">
                     <label for="amount">수량:</label>
-                    <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="1"/>
+                    <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="0"/>
                     <button type="submit">수량 업데이트</button>
                 </form>
             </div>
@@ -60,6 +60,8 @@
             <span>합 산</span>
             <span>${sumMoney}원</span>
         </div>
+
+<%--        <div> 전체 삭제 버튼--%>
     </div>
 
     <div class="cart-summary">
