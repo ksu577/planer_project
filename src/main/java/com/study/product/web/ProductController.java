@@ -42,7 +42,7 @@ public class ProductController {
     }
 
     // 4. 상품 등록 페이지 (기능) -- 사진 db에 삽입하기
-    @RequestMapping("/shop/productregist.wow")
+    @RequestMapping("/product/productregist.wow")
     public String productinsert(ProductVO productVO) {
         iproductService.insert(productVO);
         return "product/productregist";
@@ -50,10 +50,10 @@ public class ProductController {
 
 
     // 5. 상품 수정 페이지 이동 ------------ 수정 페이지 필요, 만들어야 함
-    @RequestMapping("/shop/productupdate.wow")
+    @RequestMapping("/product/productupdate(admin).wow")
     public String update(@RequestParam int productId, Model model){
         model.addAttribute("updatepage", iproductService.getproduct(productId));
-        return "product/productupdate";
+        return "product/productupdate(admin)";
     };
 
     // 6. 상품 수정 페이지 (기능)  -- 사진 db에 변경하기
@@ -64,7 +64,7 @@ public class ProductController {
 //    }
 
     // 7. 상품 삭제 기능
-    @RequestMapping("/shop/productdelete.wow")
+    @RequestMapping("/product/productdelete.wow")
     public String productdelete(@RequestParam int productId) {
         iproductService.delete(productId);
         return "product/productdelete";
