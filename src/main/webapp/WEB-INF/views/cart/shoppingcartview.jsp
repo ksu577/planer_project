@@ -42,16 +42,13 @@
 <div class="cart-container mt-3">
     <div class="cart-items">
         <h2>장바구니</h2>
-
         <hr>
-
-
-        <c:forEach var="cartItem" items="${listCart}">
+        <c:forEach var="cartItem" items="${listCart}"> <%--CartController 2번 항목 listCart 호--%>출
             <div class="cart-item">
                 <span>${cartItem.productName}</span>
-                <span>${cartItem.price}원</span>
+                <span>${cartItem.price * cartItem.amount}t원</span>
                 <form action="updateCartItem" method="post">
-                    <input type="hidden" name="productId" value="${cartItem.productId}"/>
+                    <input type="hidden" name="productId" value="${cartItem.productId}">
                     <label for="amount">수량:</label>
                     <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="1"/>
                     <button type="submit">수량 업데이트</button>
