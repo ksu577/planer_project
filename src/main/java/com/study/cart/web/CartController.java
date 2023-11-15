@@ -22,7 +22,9 @@ public class CartController {
     @Inject
     ICartService cartService;
 
-    // 1. 장바구니에 추가
+    //카트 테이블 자체가 장바구니로 보는게 편하다.
+
+    // 1. 장바구니에(물품) 추가
     @RequestMapping("/shoppingcartinsert")
     public String insert(@ModelAttribute CartVO cartVO, HttpSession session) {
         String userId = (String) session.getAttribute("user");
@@ -39,7 +41,7 @@ public class CartController {
 
     ;
 
-    // 2. 장바구니 목록
+    // 2. 장바구니 목록(장바구니 전체)
     @RequestMapping("/cart/shoppingcartview.wow")
     public String cartList(Model model, HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
@@ -48,9 +50,8 @@ public class CartController {
         if (user != null) {
             String userId = user.getId();
             List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
-            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
             model.addAttribute("list", list);
-            model.addAttribute("sumMoney", sumMoney);
+
             return "redirect:/cart/shoppingcartview.wow?userId=" + userId;
         } else {
             return "redirect:/login/login.wow";
@@ -58,7 +59,7 @@ public class CartController {
     }
 
 
-    // 3. 장바구니 삭제
+    // 3. 장바구니(담은 물품) 삭제
     @RequestMapping("shoppingCartDelete")
     public String delete(int cardId, @RequestParam String userId) {
         cartService.delete(cardId);

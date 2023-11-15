@@ -14,19 +14,19 @@ public class ICartServiceImpl implements ICartService {
     CartDao cartDao;
     
 
-    // 1. 장바구니 추가
+    // 1. 장바구니(물품) 추가
     @Override
     public void insert(CartVO cartVO) {
         cartDao.insertCart(cartVO);
     }
 
-    // 2. 장바구니 목록
+    // 2. 장바구니 목록 ===> 이게 진짜 장바구니
     @Override
     public List<CartVO> listCart(String userId) {
         return cartDao.CartList(userId);
     }
 
-    // 3. 장바구니 삭제
+    // 3. 장바구니 삭제 (물품 삭제)
     @Override
     public void delete(int cartId) {
         cartDao.delete(cartId);

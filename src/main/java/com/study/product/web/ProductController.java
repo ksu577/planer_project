@@ -26,7 +26,7 @@ public class ProductController {
         return "/shop/minishop";
     }
 
-    //     2. 상품 상세보기
+    // 2. 상품 상세보기
     @RequestMapping("product/productview.wow")
     public String viewdetail(@RequestParam int productId, Model model) {
         ProductVO detail = iproductService.getproduct(productId);

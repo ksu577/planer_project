@@ -15,7 +15,7 @@
                p.id         as      product_id,
                p.name       as      product_name,
                m.name       as      user_name,
-               c.amount,    as      amount,
+               c.amount     as      amount,
                p.price      as      price,
 
                (p.price * c.amount) money
