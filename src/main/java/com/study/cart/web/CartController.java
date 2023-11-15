@@ -57,7 +57,7 @@ public class CartController {
             int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
             model.addAttribute("listCart", list); // 장바구니 정보 추가
             model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
-            return "redirect:/cart/shoppingcartview.wow?userId=" + userId;
+            return "cart/shoppingcartview.wow" ;
         } else {
             return "redirect:/login/login.wow";
         }
@@ -94,7 +94,6 @@ public class CartController {
         UserVO user = (UserVO) session.getAttribute("user");
 
         if (user != null) {
-            String userId = user.getId();
             return "cart/shoppingcartview";
         } else {
             return "redirect: /login/login.wow";
