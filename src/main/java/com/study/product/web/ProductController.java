@@ -1,12 +1,19 @@
 package com.study.product.web;
 
+import com.study.cart.service.ICartService;
+import com.study.cart.vo.CartVO;
+import com.study.login.vo.UserVO;
 import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -17,6 +24,10 @@ public class ProductController {
     public ProductController(IproductService iproductService) {
         this.iproductService = iproductService;
     }
+
+
+    @Autowired
+    ICartService cartService;
 
     // 1. 상품 전체 목록
     @RequestMapping("shop/minishop.wow")
@@ -71,15 +82,39 @@ public class ProductController {
     }
 
     // ---------------------샵 페이지------------
-    @RequestMapping("/shop/paypage.wow")
-    public String paypage() {
-        return "shop/paypage";
-    }
+    ;
 
+    // 2. 장바구니 목록(장바구니 전체 - 카트 페이지)
+    @GetMapping("/shop/paypage.wow")
+    public String cartList(Model model, HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+
+        if (user != null) {
+            String userId = user.getId();
+            List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
+            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
+            model.addAttribute("listCart", list); // 장바구니 정보 추가
+            model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
+            return "shop/paypage" ;
+        } else {
+            return "redirect:/login/login.wow";
+        }
+
+    }
 
     @RequestMapping("/shop/afterpay.wow")
     public String afterpay() {
         return "shop/afterpay";
     }
 
+    //페이 페이지에 데이터 보내기
+    @PostMapping("/shop/paypage.wow")
+    public String paypage(HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+        if (user != null) {
+            return "shop/paypage";
+        } else {
+            return "redirect: /login/login.wow";
+        }
+    }
 }

@@ -73,16 +73,13 @@
                     </div>
                 </form>
             </div>
+            <form action="paypage.wow" method="post">
             <div class="bill col-md-4">
-                <div>
-                    <span>1 ${product.name} : ${product.price}</span>
+                <c:forEach var="cartItem" items="${listCart}">
+                <div class="cart-item">
+                    <span>1 ${cartItem.productName} : ${cartItem.price}</span>
                 </div>
-                <div>
-                    <span>2 ${product.name} : ${product.price}</span>
-                </div>
-                <div>
-                    <span>3 ${product.name} : ${product.price}</span>
-                </div>
+                </c:forEach>
                 <br>
                 <div class="mb-3 d-flex justify-content-between">
 <%--                    <span>물품 : ${product.name} ${product.price}</span>--%>
@@ -95,6 +92,7 @@
                 </div>
                 <button class="btn btn-primary" style="width: 100%;">결제하기</button>
             </div>
+            </form>
         </div>
     </div>
 
