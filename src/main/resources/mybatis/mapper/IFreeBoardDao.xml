@@ -29,7 +29,7 @@
         <include refid="searchInFree"  />
     </select>
 
-    <select id="getBoardList" resultType="com.study.free.vo.FreeBoardVO">
+    <select id="getBoardList" resultType="com.study.free.vo.FreeBoardVO" resultMap="freeAttaches">
         SELECT *
         FROM (SELECT a.*, rownum AS rnum
         FROM

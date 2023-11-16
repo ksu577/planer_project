@@ -49,9 +49,9 @@ public class MemberFormController {
     @RequestMapping(value = "/memberForm/emailCheck2", produces = "text/plain;charset=UTF-8")
     public String emailCheck2(String sendKey) throws MessagingException {
         if (key.equals(sendKey)) {
-            return "인증성공";
+            return "인증 되었습니다.";
         } else {
-            return "인증실패";
+            return "인증번호를 확인해주세요.";
         }
     }
 }
