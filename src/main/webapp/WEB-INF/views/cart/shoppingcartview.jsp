@@ -53,7 +53,7 @@
                 <form action="/cart/shoppingcartupdate" method="post">
                     <input type="hidden" name="productId" value="${cartItem.productId}">
                     <label for="amount">수량:</label>
-                    <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="1" onchange="checkAndUpdateAmount()" style="width: 10%" /> 개
+                    <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="1" onchange="checkAndUpdateAmount()" style="width: 20%" /> 개
                     <span> = ${cartItem.price * cartItem.amount}원</span>
                     <button type="submit" class="btn btn-primary">저장</button>
                 </form>
