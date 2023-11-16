@@ -32,7 +32,7 @@ public class CartController {
 
             cartVO.setUserId(userId);
             cartService.insert(cartVO);
-            return "redirect:/cart/shoppingcartview.wow";
+            return "redirect:/cart/paypage.wow";
         }
 
         return "redirect:/login/login.wow";
