@@ -43,15 +43,20 @@
     <div class="cart-items">
         <h2>장바구니</h2>
         <hr>
-        <c:forEach var="cartItem" items="${listCart}"> <%--CartController 2번 항목 listCart 호--%>출
+        <c:forEach var="cartItem" items="${listCart}"> <%--CartController 2번 항목 listCart 호출--%>
             <div class="cart-item">
+                상품명 :
                 <span>${cartItem.productName}</span>
-                <span>${cartItem.price * cartItem.amount}원</span>
+
+                <span>${cartItem.price}원 </span>
                 <form action="/cart/shoppingcartupdate" method="post">
                     <input type="hidden" name="productId" value="${cartItem.productId}">
                     <label for="amount">수량:</label>
                     <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="0"/>
-                    <button type="submit">수량 업데이트</button>
+<%--                    수량 체크하는 사이즈좀 줄이기--%>
+                    <button type="submit" class="btn btn-primary">개</button>
+<%--                    <button type="submit" class="btn btn-primary" style="width: 100%;">결제하기</button>--%>
+                    <span> = ${cartItem.price * cartItem.amount}원</span>
                 </form>
             </div>
         </c:forEach>
@@ -62,20 +67,15 @@
         </div>
 
 <%--        <div> 전체 삭제 버튼--%>
+        <button class="btn btn-primary" style="width: 100%">결제하기</button>
     </div>
 
     <div class="cart-summary">
-        <h2>영수증</h2>
-        <hr>
-
-        <div class="mb-3 d-flex justify-content-between">
-            <span>${cartItem.productName}</span>
-            <span>${cartItem.productAmount}원</span>
-        </div>
+        <h2>주문목록</h2>
         <hr>
         <div class="mb-3 d-flex justify-content-between">
             <span>총 상품금액</span>
-            <span>로직짜야됨 총합 금액</span>
+            <span>${sumMoney}</span>
         </div>
         <hr>
         <div class="mb-3 d-flex justify-content-between">
@@ -85,7 +85,7 @@
         <hr>
         <div class="mb-3 d-flex justify-content-between">
             <span>결제 예정 금액</span>
-            <span>"로직짜야됨 총합 금액" + 3000원</span>
+            <span>${sumMoney + 3000}</span>
         </div>
         <button class="btn btn-primary" style="width: 100%;">결제하기</button>
     </div>
