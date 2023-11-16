@@ -82,15 +82,15 @@ public class CartController {
                 cartVO.setUserId(userId);
                 cartVO.setAmount(amount[i]);
                 cartVO.setProductId(productId[i]);
-                if (amount[i] == 0) {
-                    // 수량이 0이면 해당 상품 삭제
-                    cartService.delete(productId[i]);
+                if (amount[i] < 1) {
+                    amount[i] = 1;
+                    cartVO.setAmount(amount[i]);
                 } else {
                     // 아니면 업데이트
                     cartService.modify(cartVO);
                 }
             }
-            return "redirect:/cart/shoppingcartview";
+            return "redirect:/cart/shoppingcartview.wow";
         }
         return "redirect:/login/login.wow";
     }

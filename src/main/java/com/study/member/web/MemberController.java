@@ -4,6 +4,7 @@ import com.study.common.vo.PagingVO;
 import com.study.common.vo.ResultMessageVO;
 import com.study.common.vo.SearchVO;
 import com.study.exception.*;
+import com.study.login.vo.UserVO;
 import com.study.member.dao.IMemberDao;
 import com.study.member.service.IMemberService;
 import com.study.member.vo.MemberVO;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -38,18 +40,30 @@ public class MemberController {
 
 
     @GetMapping("/member/memberView.wow")
-    public String memberView(Model model, @RequestParam(name = "Id") String Id) throws BizException {
-        MemberVO member = memberService.getMember(Id);
-        model.addAttribute("member", member);
-        return "member/memberView";
+    public String memberView(HttpSession session, Model model) throws BizException {
+        UserVO user = (UserVO) session.getAttribute("user");
+        if (user != null) {
+            String Id = user.getId();
+            MemberVO member = memberService.getMember(Id);
+            model.addAttribute("member", member);
+            return "member/memberView";
+        } else {
+            return "redirect:/login/login.wow";
+        }
     }
 
 
     @GetMapping("/member/memberEdit.wow")
-    public String memberEdit(Model model, String Id) throws BizException {
-        MemberVO member = memberService.getMember(Id);
-        model.addAttribute("member", member);
-        return "member/memberEdit";
+    public String memberEdit(Model model, HttpSession session) throws BizException {
+        UserVO user = (UserVO) session.getAttribute("user");
+        if (user != null) {
+            String Id = user.getId();
+            MemberVO member = memberService.getMember(Id);
+            model.addAttribute("member", member);
+            return "member/memberEdit";
+        } else {
+            return "redirect:/login/login.wow";
+        }
     }
 
 
@@ -59,10 +73,9 @@ public class MemberController {
         memberService.modifyMember(member);
         resultMessageVO.messageSetting(true, "수정", "수정 되었습니다."
                 , "/member/memberList.wow", "목록으로");
-        model.addAttribute("resultMessageVO",resultMessageVO);
+        model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
     }
-
 
 
     @PostMapping("/member/memberDelete.wow")
@@ -83,12 +96,12 @@ public class MemberController {
 
 
     @PostMapping("/member/memberRegist.wow")
-    public String memberRegist(Model model,MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException {
-        ResultMessageVO resultMessageVO=new ResultMessageVO();
+    public String memberRegist(Model model, MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException {
+        ResultMessageVO resultMessageVO = new ResultMessageVO();
         memberService.registMember(member);
-        resultMessageVO.messageSetting(true,"등록","회원가입 되었습니다."
-                ,"/member/memberRegist.wow" , "회원가입");
-        model.addAttribute("resultMessageVO",resultMessageVO);
+        resultMessageVO.messageSetting(true, "등록", "회원가입 되었습니다."
+                , "/member/memberRegist.wow", "회원가입");
+        model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
 //        return resultMessageVO.getUrl();
     }

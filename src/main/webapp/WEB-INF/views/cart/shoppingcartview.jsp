@@ -49,17 +49,20 @@
                 <span>${cartItem.productName}</span>
 
                 <span>${cartItem.price}원 </span>
+
+
                 <form action="/cart/shoppingcartupdate" method="post">
                     <input type="hidden" name="productId" value="${cartItem.productId}">
                     <label for="amount">수량:</label>
-                    <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="0" style="width: 10%"/> 개
+                    <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="1"  onchange="checkAndUpdateAmount()"  style="width: 10%"/> 개
 <%--                    <button type="submit" class="btn btn-primary">개</button>--%>
-
                     <span> = ${cartItem.price * cartItem.amount}원</span>
 
                     <button type="submit" class="btn btn-primary">저장</button>
-                    <button class="btn btn-primary">삭제</button>
+                    <button onclick="/cart/shoppingCartDelete" class="btn btn-primary">삭제</button>
                 </form>
+
+
             </div>
         </c:forEach>
         <hr>
@@ -99,6 +102,17 @@
     function addressbeforepay() {
         console.log("amount = ", $('#product-options').val());
         window.location.href = "/cart/shoppingcartinsert?productId=${product.productId}&amount="+$('#product-options').val();
+    }
+
+    function checkAndUpdateAmount() {
+        let amountInput = document.getElementById('amount');
+        let amountValue = parseInt(amountInput.value);
+
+        if (amountValue < 1) {
+            alert('최소값은 1보다 커야합니다.');
+            // 입력된 값이 0보다 작으면 값을 1로 변경하도록 설정
+            amountInput.value = 1;
+        }
     }
 </script>
 
