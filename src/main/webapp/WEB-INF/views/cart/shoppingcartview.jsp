@@ -52,11 +52,13 @@
                 <form action="/cart/shoppingcartupdate" method="post">
                     <input type="hidden" name="productId" value="${cartItem.productId}">
                     <label for="amount">수량:</label>
-                    <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="0"/>
-<%--                    수량 체크하는 사이즈좀 줄이기--%>
-                    <button type="submit" class="btn btn-primary">개</button>
-<%--                    <button type="submit" class="btn btn-primary" style="width: 100%;">결제하기</button>--%>
+                    <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="0" style="width: 10%"/> 개
+<%--                    <button type="submit" class="btn btn-primary">개</button>--%>
+
                     <span> = ${cartItem.price * cartItem.amount}원</span>
+
+                    <button type="submit" class="btn btn-primary">저장</button>
+                    <button class="btn btn-primary">삭제</button>
                 </form>
             </div>
         </c:forEach>
@@ -67,11 +69,13 @@
         </div>
 
 <%--        <div> 전체 삭제 버튼--%>
-        <button class="btn btn-primary" style="width: 100%">결제하기</button>
+        <button class="btn btn-primary" style="width: 100%">장바구니 비우기</button>
     </div>
 
     <div class="cart-summary">
         <h2>주문목록</h2>
+        <hr>
+
         <hr>
         <div class="mb-3 d-flex justify-content-between">
             <span>총 상품금액</span>
@@ -87,9 +91,17 @@
             <span>결제 예정 금액</span>
             <span>${sumMoney + 3000}</span>
         </div>
-        <button class="btn btn-primary" style="width: 100%;">결제하기</button>
+        <button class="btn btn-primary" style="width: 100%;" onclick="addressbeforepay()">결제하기</button>
     </div>
 </div>
+
+<script>
+    function addressbeforepay() {
+        console.log("amount = ", $('#product-options').val());
+        window.location.href = "/cart/shoppingcartinsert?productId=${product.productId}&amount="+$('#product-options').val();
+    }
+</script>
+
 
 
 </body>
