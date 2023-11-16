@@ -124,7 +124,7 @@
     .message {
         color: red;
         margin-left: 110px;
-        margin-top: 10px;
+        margin-top: 30px;
     }
 </style>
 <%session.invalidate();%>
