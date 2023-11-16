@@ -59,36 +59,35 @@ public class LoginController {
 
 
     @PostMapping("/login/login.wow")
-    public String loginPost(@RequestParam("Id") String id, @RequestParam("password") String pw
-            , String saveId
-            , HttpServletRequest req
-            , HttpServletResponse response
-            , HttpSession session) throws  IOException {
+    public String loginPost(@ModelAttribute("memberVO") MemberVO memberVO, String saveId, HttpServletRequest req, HttpServletResponse response, HttpSession session) throws  IOException {
+
+        String Id=memberVO.getId();
+        String pw=memberVO.getPassword();
+
+        UserVO user = loginService.getUser(Id);
 
         if (saveId == null) {
             CookieUtils cookieUtils = new CookieUtils(req);
             if (cookieUtils.exists("SAVE_ID")) {
-                Cookie cookie = CookieUtils.createCookie("SAVE_ID", id, "/", 0);
+                Cookie cookie = CookieUtils.createCookie("SAVE_ID", Id, "/", 0);
                 response.addCookie(cookie);
             }
             saveId = "";
         }
 
-        if ((id == null || id.isEmpty()) || (pw == null || pw.isEmpty())) {
+        if ((Id == null) || (pw == null)) {
             return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 입력해주세요.", "utf-8");
         } else {
-            UserVO user = loginService.getUser(id);
-
             if (user == null) {
                 return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 확인해주세요.", "utf-8");
             } else {
                 if (user.getPassword().equals(pw)) {
                     if (saveId.equals("Y")) {
-                        response.addCookie(CookieUtils.createCookie("SAVE_ID", id, "/", 3600 * 24 * 7));
+                        response.addCookie(CookieUtils.createCookie("SAVE_ID", Id, "/", 3600 * 24 * 7));
                     }
                     session.setAttribute("user", user);
                     return "redirect:/";
-                } else {//  비번만 틀린경우
+                } else {
                     return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 확인해주세요.", "utf-8");
                 }
             }
@@ -100,5 +99,14 @@ public class LoginController {
     public String logout(HttpSession session) {
         session.removeAttribute("user");
         return "redirect:/";
+    }
+
+    @RequestMapping("/member/memberForm.wow")
+    public String memberForm(@ModelAttribute("memberVO") MemberVO memberVO, HttpSession session) throws Exception {
+        String Id=memberVO.getId();
+        String pw=memberVO.getPassword();
+        MemberVO member = memberService.getMember(Id);
+        session.setAttribute("member", member);
+        return "member/memberForm";
     }
 }
