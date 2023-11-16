@@ -91,7 +91,7 @@
       <div class="product-description">${product.productDesc}</div>
 
         <div class="product-quantity">
-            <label for="product-quantity">수량 </label>
+            <label>수량 </label>
             <select id="product-options">
                 <c:forEach begin="1" end="10" var="quantity">
                     <option value="${quantity}">${quantity}</option>

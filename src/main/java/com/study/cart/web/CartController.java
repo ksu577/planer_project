@@ -41,7 +41,7 @@ public class CartController {
 
     ;
 
-    // 2. 장바구니 목록(장바구니 전체)
+    // 2. 장바구니 목록(장바구니 전체 - 카트 페이지)
     @GetMapping("/shoppingcartview")
     public String cartList(Model model, HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
@@ -60,10 +60,12 @@ public class CartController {
     }
 
 
-    // 3. 장바구니(담은 물품) 삭제 --업데이트랑 겹쳐서 고민 좀
-    @RequestMapping("/shoppingCartDelete")
-    public String delete(int cardId) {
-        cartService.delete(cardId);
+
+
+    // 3. 장바구니(담은 물품) 삭제
+    @RequestMapping(value = "/shoppingCartDelete", method = RequestMethod.POST)
+    public String delete(@RequestParam("cartId") int cartId) {
+        cartService.delete(cartId);
         return "redirect:/cart/shoppingcartview.wow";
     }
 
@@ -109,8 +111,9 @@ public class CartController {
     }
 
 
+    // 카트 페이지에 데이터 보내기
     @PostMapping("/shoppingcartview")
-    public String page(HttpSession session) {
+    public String cartpage(HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
         if (user != null) {
             return "cart/shoppingcartview";
@@ -118,4 +121,5 @@ public class CartController {
             return "redirect: /login/login.wow";
         }
     }
+
 }
