@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <title>loginpage</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
     body {
         margin: 0;
@@ -17,7 +18,7 @@
     p {
         color: gray;
         margin-left: 30px;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
     .login-container {
@@ -58,13 +59,13 @@
         margin-left: 4%;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
 
     #login-id {
         border: 1px rgba(220, 220, 220, 0.20);
-        width: 370px;
-        height: 60px;
+        width: 450px;
+        height: 58px;
         border-radius: 5px;
         margin-left: 2%;
         position: relative;
@@ -84,8 +85,8 @@
 
     #login-pw {
         border: 1px rgba(220, 220, 220, 0.20);
-        width: 370px;
-        height: 60px;
+        width: 450px;
+        height: 58px;
         border-radius: 5px;
         margin-left: 2%;
         position: relative;
@@ -100,7 +101,7 @@
         border-radius: 8px;
         background-color: #98dde3;
         margin-left: 4%;
-        margin-top: 20px;
+        margin-top: 40px;
         cursor: pointer;
     }
 
@@ -119,6 +120,12 @@
     .login-input-box input:focus {
         outline: none;
     }
+
+    .message {
+        color: red;
+        margin-left: 110px;
+        margin-top: 10px;
+    }
 </style>
 <%session.invalidate();%>
 <body>
@@ -135,9 +142,10 @@
                 <p>비밀번호</p>
                 <div class="login-pw-cover">
                     <input id="login-pw" name="password" type="password">
+                    <p class="message">${msg}</p>
                 </div>
 
-                <button class="login-btn" onclick="">
+                <button class="login-btn" id="login-btn">
                     <p>로그인</p>
                 </button>
             </form>
@@ -147,6 +155,6 @@
         </div>
     </div>
 </div>
-</body>
 
+</body>
 </html>

@@ -223,7 +223,6 @@
         margin-left: 2%;
         font-size: 18px;
         background-color: rgba(220, 220, 220, 0);
-        color: #777777;
     }
 
     .phone-cover {
@@ -352,7 +351,7 @@
                     <input name="name" id="member-name" type="text" placeholder="이름" required="required">
                 </div>
                 <div class="birth-cover">
-                    <input name="birth" id="member-birth" type="date" placeholder="생년월일" required="required">
+                    <input name="birth" id="member-birth" type="text" placeholder="생년월일 ex)19981231" required="required">
                 </div>
                 <div class="phone-cover">
                     <input name="phnum" id="member-phone" type="text" placeholder="휴대전화번호 (-없이 입력)" required="required">
@@ -425,7 +424,7 @@
             }
             , error: function (err) {
                 emailCheckIdentify = false;
-                alert(err);
+                alert("인증번호를 확인해주세요.");
             }
         });
     });
