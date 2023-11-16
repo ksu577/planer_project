@@ -98,14 +98,14 @@
             <span>결제 예정 금액</span>
             <span>${sumMoney + 3000}</span>
         </div>
-        <button class="btn btn-primary" style="width: 100%;" onclick="addressbeforepay()">결제하기</button>
+        <button formaction="/shop/paypage.wow" class="btn btn-primary" style="width: 100%;">결제하기</button>
     </div>
 </div>
 
 <script>
     function addressbeforepay() {
         console.log("amount = ", $('#product-options').val());
-        window.location.href = "/cart/shoppingcartinsert?productId=${product.productId}&amount="+$('#product-options').val();
+        window.location.href = "/shop/paypage.wow?productId=${product.productId}&amount="+$('#product-options').val();
     }
 
 

@@ -86,7 +86,7 @@ public class LoginController {
                     if (saveId.equals("Y")) {
                         response.addCookie(CookieUtils.createCookie("SAVE_ID", id, "/", 3600 * 24 * 7));
                     }
-                    session.setAttribute("USER_INFO", user);
+                    session.setAttribute("user", user);
                     return "redirect:/";
                 } else {//  비번만 틀린경우
                     return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 확인해주세요.", "utf-8");
