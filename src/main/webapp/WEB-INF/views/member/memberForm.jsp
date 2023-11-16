@@ -238,60 +238,12 @@
 
     #member-phone {
         border: 1px rgba(220, 220, 220, 0.30);
-        width: 380px;
+        width: 440px;
         height: 53px;
         border-radius: 5px;
         margin-left: 2%;
         font-size: 18px;
         background-color: rgba(220, 220, 220, 0);
-    }
-
-    .phone-check-btn {
-        border: 1px solid #98dde3;
-        width: 60px;
-        height: 55px;
-        position: absolute;
-        background-color: #98dde3;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 20px;
-        font-weight: 700;
-        color: white;
-        left: 390px;
-    }
-
-    .phone-cover2 {
-        width: 450px;
-        height: 55px;
-        border-radius: 5px;
-        margin-left: 5.5%;
-        position: relative;
-        background-color: rgba(220, 220, 220, 0.30);
-        margin-top: 20px;
-    }
-
-    #member-phone2 {
-        border: 1px rgba(220, 220, 220, 0.30);
-        width: 380px;
-        height: 53px;
-        border-radius: 5px;
-        margin-left: 2%;
-        font-size: 18px;
-        background-color: rgba(220, 220, 220, 0);
-    }
-
-    .phone-check-btn2 {
-        border: 1px solid #98dde3;
-        width: 60px;
-        height: 55px;
-        position: absolute;
-        background-color: #98dde3;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 20px;
-        font-weight: 700;
-        color: white;
-        left: 390px;
     }
 
     .address-cover {
@@ -326,6 +278,26 @@
         font-weight: 700;
         color: white;
         left: 390px;
+    }
+
+    .address-cover2 {
+        width: 450px;
+        height: 55px;
+        border-radius: 5px;
+        margin-left: 5.5%;
+        position: relative;
+        background-color: rgba(220, 220, 220, 0.30);
+        margin-top: 20px;
+    }
+
+    #member-address2 {
+        border: 1px rgba(220, 220, 220, 0.30);
+        width: 380px;
+        height: 53px;
+        border-radius: 5px;
+        margin-left: 2%;
+        font-size: 18px;
+        background-color: rgba(220, 220, 220, 0);
     }
 
     .member-input-box2 input:focus {
@@ -380,20 +352,18 @@
                     <input name="name" id="member-name" type="text" placeholder="이름" required="required">
                 </div>
                 <div class="birth-cover">
-                    <input name="birth" id="member-birth" type="date" placeholder="date" required="required">
+                    <input name="birth" id="member-birth" type="date" placeholder="생년월일" required="required">
                 </div>
                 <div class="phone-cover">
                     <input name="phnum" id="member-phone" type="text" placeholder="휴대전화번호 (-없이 입력)" required="required">
-                    <button class="phone-check-btn">인증</button>
-                </div>
-                <div class="phone-cover2">
-                    <input name="phnum2" id="member-phone2" type="text" placeholder="인증번호">
-                    <button class="phone-check-btn2">확인</button>
                 </div>
                 <div class="address-cover">
                     <input name="address" id="member-address" type="text" placeholder="주소" required="required">
                     <input class="add-check-btn" type="button" onclick="sample5_execDaumPostcode()" value="검색"><br>
                     <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+                </div>
+                <div class="address-cover2">
+                    <input name="address2" id="member-address2" type="text" placeholder="상세주소">
                 </div>
             </div>
             <button class="member-btn" id="member-btn" type="button"><p>회원가입</p></button>
@@ -472,26 +442,6 @@
 
         document.getElementById('memForm').submit();
 
-        // $.ajax({
-        //     url: "/member/memberRegist.wow"
-        //     , type: "post"
-        //     , data : { "Id" : $("#member-id").val(),
-        //         "name" : $("#member-name").val(),
-        //         "password" : $("#member-pw").val(),
-        //         "address" : $("#member-address").val(),
-        //         "phnum" : $("#member-phone").val(),
-        //         "email" : $("#member-em").val(),
-        //         "birth" : $("#member-birth").val()
-        //     }
-        //     , success: function (data) {
-        //         emailCheckIdentify = false;
-        //         idCheckIdentify = false;
-        //
-        //         console.log(data);
-        //
-        //         // js 로 common/message 로 보내기
-        //     }
-        // });
     });
 
 

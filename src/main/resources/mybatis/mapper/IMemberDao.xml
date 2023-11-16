@@ -34,6 +34,7 @@
                 , name
                 , password
                 , address
+                , address2
                 , phnum
                 , email
                 , delYn
@@ -52,6 +53,7 @@
         , name
         , password
         , address
+        , address2
         , phnum
         , email
         , delYn
@@ -68,6 +70,7 @@
            name     = #{name}
           , password = #{password}
           , address  = #{address}
+          , address2 = #{address2}
           , phnum    = #{phnum}
           , email    = #{email}
           , birth    = #{birth}
@@ -87,6 +90,7 @@
                             name,
                             password,
                             address,
+                            address2,
                             phnum,
                             email,
                             birth,
@@ -96,6 +100,7 @@
                     #{name},
                     #{password},
                     #{address},
+                    #{address2},
                     #{phnum},
                     #{email},
                     #{birth},
