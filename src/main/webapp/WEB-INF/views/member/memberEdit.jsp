@@ -37,6 +37,11 @@
         </tr>
 
         <tr>
+            <th>상세주소</th>
+            <td><input type="text" name="address2" value="${member.address2}" required="required"></td>
+        </tr>
+
+        <tr>
             <th>휴대전화번호</th>
             <td><input type="text" name="phnum" value="${member.phnum}" required="required"></td>
         </tr>

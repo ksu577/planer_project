@@ -10,6 +10,7 @@ public class MemberVO {
     private String name;       /* 회원 이름 */
     private String birth;        /* 회원 생일 */
     private String address;        /* 주소 */
+    private String address2;
     private String phnum;         /* 연락처 */
     private String email;       /* 이메일 */
     private String delYn;      /* 삭제여부 */
@@ -54,6 +55,14 @@ public class MemberVO {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
     }
 
     public String getPhnum() {
