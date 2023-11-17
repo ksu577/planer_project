@@ -62,31 +62,40 @@
     <c:if test="${user==null}">
         <div class="btn-gruop-right">
             <a href="/login/login.wow">로그인</a>
-            <a>   </a>
+            <a> </a>
             <a href="/member/memberForm.wow">회원가입</a>
         </div>
+
+
     </c:if>
 
+
     <c:if test="${user!=null}">
-    <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                aria-expanded="false">
-            My page
-        </button>
+        <span id="login_log" style="border-bottom: 1px solid white;">${user.name} 님, 환영합니다.</span>
 
-        <ul class="dropdown-menu">
 
-            <li><a class="dropdown-item" href="/member/memberView.wow"> 내 정보 </a></li>
-            <li><a class="dropdown-item" href="/member/memberEdit.wow"> 회원 정보 수정 </a></li>
-            <li><a class="dropdown-item" href="/plan/myPlan.wow"> 나의 여행 일정 </a></li>
-            <li><a class="dropdown-item" href="/cart/shoppingcartview"> 장바구니 </a></li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="/login/logout.wow"> 로그아웃 </a></li>
-        </ul>
-    </div>
-</c:if>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                My page
+            </button>
+
+            <ul class="dropdown-menu">
+                <c:if test="${user.role==admin}">
+                    <a class="dropdown-item" href="/member/memberView.wow"> 관리자 페이지 </a>
+                </c:if>
+                <li><a class="dropdown-item" href="/member/memberView.wow"> 내 정보 </a></li>
+                <li><a class="dropdown-item" href="/member/memberEdit.wow"> 회원 정보 수정 </a></li>
+                <li><a class="dropdown-item" href="/plan/myPlan.wow"> 나의 여행 일정 </a></li>
+                <li><a class="dropdown-item" href="/cart/shoppingcartview"> 장바구니 </a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="/login/logout.wow"> 로그아웃 </a></li>
+            </ul>
+        </div>
+    </c:if>
 </div>
 <!-- navbar 끝 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

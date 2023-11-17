@@ -38,6 +38,7 @@
                 , phnum
                 , email
                 , delYn
+                , role
               FROM member a
               WHERE 1=1
               <include refid="searchInMember" />
@@ -57,6 +58,7 @@
         , phnum
         , email
         , delYn
+        , role
         , to_char(birth, 'YYYY-MM-DD') AS birth
         , to_char(createDate, 'YYYY-MM-DD') AS createDate
         FROM member
