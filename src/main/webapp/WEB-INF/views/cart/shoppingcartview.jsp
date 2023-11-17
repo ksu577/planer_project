@@ -98,14 +98,22 @@
             <span>결제 예정 금액</span>
             <span>${sumMoney + 3000}원</span>
         </div>
-        <button onclick="addressbeforepay()" class="btn btn-primary" style="width: 100%;">결제하기</button>
+        <button onclick="return addressbeforepay()" class="btn btn-primary" style="width: 100%;">결제하기</button>
     </div>
 </div>
 
 <script>
     function addressbeforepay() {
-        window.location.href = "/shop/paypage.wow";
+        let cartItems = ${listCart};
+        if (cartItems.length === 0) {
+            alert('장바구니가 비었습니다.');
+            return false; // 장바구니가 비었을 때 false 반환
+        } else {
+            window.location.href = "/shop/paypage.wow";
+        }
     }
+
+
 
 
 
