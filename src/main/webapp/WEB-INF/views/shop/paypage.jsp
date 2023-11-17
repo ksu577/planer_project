@@ -122,11 +122,12 @@
                 <form>
                     <div class="mb-3">
                         <label for="recipientName" class="form-label">수령인</label>
-                        <input type="text" class="form-control" id="recipientName"> ${member.name}
+                        <input type="text" class="form-control"  id="recipientName" value="${member.name}" >
                     </div>
                     <div class="mb-3">
                         <label for="phoneNumber" class="form-label">휴대폰 번호</label>
-                        <input type="tel" class="form-control" id="phoneNumber" placeholder="-를 제외한 숫자만 입력 (ex.01012345678)"> ${member.phnum}
+                        <input type="tel" class="form-control" id="phoneNumber" placeholder="-를 제외한 숫자만 입력 (ex.01012345678)" value="${member.phnum}">
+
                     </div>
                     <div class="mb-3">
                         <label for="sample6_address" class="form-label">주소입력</label>

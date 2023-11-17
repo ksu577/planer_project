@@ -49,18 +49,23 @@
 <%--        </div>--%>
         <div class="mb-3">
           <%--          회원정보로 DB에서 데이터 받아와야됨--%>
-          <label for="recipientName" class="form-label"> 수령인 : ${member.name}</label>
+          <label for="recipientName" class="form-label"> 수령인 :</label>
+              <input type="text" class="form-control"  id="recipientName" value="${member.name}" >
         </div>
         <div class="mb-3">
         <%--          회원정보로 DB에서 데이터 받아와야됨--%>
           <label for="phoneNumber" class="form-label"> 연락처 : ${member.phnum}</label>
+            <input type="tel" class="form-control" id="phoneNumber" placeholder="-를 제외한 숫자만 입력 (ex.01012345678)" value="${member.phnum}">
+
         </div>
         <div class="mb-3">
-          <%--          여긴 input 타입으로 정보 받아와야됨--%>
+          <%--          여긴 payapge에서 그대로 정보 받아와야됨--%>
           <label for="address" class="form-label"> 배송지 : </label>
+
         </div>
 
         <div class="mb-3">
+            <%--          여긴 payapge에서 그대로 정보 받아와야됨--%>
           <label for="deliveryRequest" class="form-label"> 배송 메모 : </label>
         </div>
       </form>

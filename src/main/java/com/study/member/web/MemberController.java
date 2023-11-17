@@ -1,5 +1,7 @@
 package com.study.member.web;
 
+import com.study.cart.service.ICartService;
+import com.study.cart.vo.CartVO;
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.ResultMessageVO;
 import com.study.common.vo.SearchVO;
@@ -13,14 +15,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 public class MemberController {
 
+    @Inject
+    ICartService cartService;
     @Autowired
     IMemberService memberService;
+
 
     @ExceptionHandler(value = {BizNotFoundException.class, BizNotEffectedException.class, BizPasswordNotMatchedException.class, BizException.class})
     public String exception(Model model, BizException e) {
@@ -104,5 +110,35 @@ public class MemberController {
         model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
 //        return resultMessageVO.getUrl();
+    }
+    @GetMapping("/shop/paypage.wow")
+    public String cartList(Model model, HttpSession session) throws BizNotFoundException {
+        UserVO user = (UserVO) session.getAttribute("user");
+
+        if (user != null) {
+            String userId = user.getId();
+            MemberVO member = memberService.getMember(userId);
+            model.addAttribute("member", member);
+            List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
+            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
+            model.addAttribute("listCart", list); // 장바구니 정보 추가
+            model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
+            return "shop/paypage" ;
+        } else {
+            return "redirect:/login/login.wow";
+        }
+
+    }
+    @PostMapping("/shop/paypage.wow")
+    public String paypage(HttpSession session, Model model) throws BizNotFoundException {
+        UserVO user = (UserVO) session.getAttribute("user");
+
+
+        if (user != null) {
+            String userId = user.getId();
+            return "shop/paypage";
+        } else {
+            return "redirect: /login/login.wow";
+        }
     }
 }
