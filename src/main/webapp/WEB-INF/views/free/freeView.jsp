@@ -87,7 +87,7 @@
     <!-- // START : 댓글 등록 영역  -->
     <div class="panel panel-default">
         <div class="panel-body form-horizontal">
-            <form name="frm_reply" action="/comment/commentRegist.wow"method="post">
+            <form name="frm_reply" action="/comment/commentRegist.wow" method="post">
                 <input type="hidden" name="freeNum" value="${freeBoard.freeNum}">
                 <input
                         type="hidden" name="id" value="${USER_INFO.user }">
@@ -109,7 +109,14 @@
 
 
     <!-- // START : 댓글 목록 영역  -->
-
+    <div id="id_reply_list_area">
+        <button name="btn_reply_edit" type="button"
+                class=" btn btn-sm btn-info">수정
+        </button>
+        <button name="btn_reply_delete" type="button"
+                class="btn btn-sm btn-danger">삭제
+        </button>
+    </div>
 
     <div class="row text-center" id="id_reply_list_more">
         <a id="btn_reply_list_more"
@@ -119,8 +126,6 @@
         </a>
     </div>
     <!-- // END : 댓글 목록 영역  -->
-
-
     <!-- START : 댓글 수정용 Modal -->
     <div class="modal fade" id="id_reply_edit_modal" role="dialog">
         <div class="modal-dialog">
@@ -224,8 +229,8 @@
                 url: "/comment/commentRegist.wow",
                 type: "POST",
                 data: $form.serialize(),
-                success: function (data){
-                    if (data.msg == "login_required"){
+                success: function (data) {
+                    if (data.msg == "login_required") {
                         //로그인이 필요할 경우 로그인 페이지로 이동
                         window.location.href = "/login/login.wow"
                     } else {
@@ -236,7 +241,7 @@
 
                     }
                 },
-                error: function (req, status, error){
+                error: function (req, status, error) {
                     console.error(error);
 
                 }
@@ -251,6 +256,7 @@
         //수정버튼 : 댓글 영역안에 있는 수정버튼만  이벤트 등록
         $("#id_reply_list_area").on("click", 'button[name="btn_reply_edit"]'
             , function (e) {
+                console.log("댓글 수정 버튼 클릭");
                 $btn = $(this); // 수정버튼
                 $div = $btn.closest('div.row');
                 $modal = $('#id_reply_edit_modal');
@@ -271,8 +277,8 @@
             $.ajax({
                 url: "/comment/commentModify.wow",
                 type: "POST",
-                data:$form.serialize(),
-                dataType : "JSON",
+                data: $form.serialize(),
+                dataType: "JSON",
                 success: function () {
                     $modal = $('#id_reply_edit_modal');
                     $modal.modal('hide');
@@ -288,16 +294,17 @@
         //삭제버튼
         $("#id_reply_list_area").on("click", 'button[name="btn_reply_delete"]'
             , function (e) {
+                console.log("댓글 삭제 버튼 클릭");
                 e.preventDefault();
                 $div = $(this).closest('.row');
                 freeBoardCommentNumber = $div.data('free-board-comment-number');
                 id = "${USER_INFO.user}";
                 $.ajax({
-                    url:"/comment/commentDelete.wow",
+                    url: "/comment/commentDelete.wow",
                     type: "POST",
-                    data: {"freeBoardCommentNumber":freeBoardCommentNumber, "id":id},
-                    dataType:'JSON',
-                    success: function (){
+                    data: {"freeBoardCommentNumber": freeBoardCommentNumber, "id": id},
+                    dataType: 'JSON',
+                    success: function () {
                         $div.remove();
                     },
                     error: function (req, status, error) {
@@ -307,6 +314,9 @@
             }); //삭제버튼
 
 
+
     });
+
+
 </script>
 </html>
