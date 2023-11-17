@@ -34,8 +34,9 @@ public class CommentController {
         if (freeNum == null){
             freeNum = 0;
         }
-
+        System.out.println("asdfasdfasdf" + freeNum);
         List<CommentVO> commentList = commentService.getCommentListByParent(paging, freeNum);
+
         map.put("size", commentList.size());
         map.put("data", commentList);
 

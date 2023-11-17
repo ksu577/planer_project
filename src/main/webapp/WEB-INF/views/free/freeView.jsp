@@ -175,6 +175,8 @@
             , type: "GET"
             , data: params
             , success: function (data) {
+                console.log(data);
+
                 $("#id_reply_list_area").empty();
 
                 $.each(data.data, function (i, comment) {

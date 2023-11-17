@@ -22,10 +22,10 @@ public class CommentServiceImpl implements ICommentService {
     public List<CommentVO> getCommentListByParent(PagingVO paging, int freeNum) {
         logger.info("getCommnetListByParent method called."); // 로그 추가
 
-        int totalRowCount = commentDao.getCommentCountByParent(paging, freeNum);
+        int totalRowCount = commentDao.getCommentCountByParent(freeNum);
         paging.setTotalRowCount(totalRowCount);
         paging.pageSetting();
-        List<CommentVO> commentList = commentDao.getCommentListByParent(paging, freeNum);
+        List<CommentVO> commentList = commentDao.getCommentListByParent(freeNum);
 
         return commentList;
     }

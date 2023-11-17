@@ -42,7 +42,6 @@
                             free_board_comment f
                         WHERE free_num = #{freeNum}
                         ORDER BY free_board_comment_number ) a)
-        WHERE rnum BETWEEN #{paging.firstRow} AND #{paging.lastRow}
     </select>
     <select id="getComment" resultType="com.study.comment.vo.CommentVO">
         SELECT

@@ -13,9 +13,9 @@ import java.util.List;
 public interface ICommentDao {
     Logger logger = LoggerFactory.getLogger(ICommentDao.class);
 
-    public int getCommentCountByParent(@Param("paging") PagingVO paging, @Param("freeNum") int freeNum);
+    public int getCommentCountByParent(@Param("freeNum") int freeNum);
 
-    public List<CommentVO> getCommentListByParent(@Param("paging") PagingVO paging, @Param("freeNum") int freeNum);
+    public List<CommentVO> getCommentListByParent(@Param("freeNum") int freeNum);
 
     public CommentVO getComment(@Param("freeBoardCommentNumber") int freeBoardCommentNumber);
 
