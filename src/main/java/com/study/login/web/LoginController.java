@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.study.login.dao.ILoginDao;
+
 import java.net.URLEncoder;
 
 import java.io.IOException;
@@ -59,37 +60,20 @@ public class LoginController {
 
 
     @PostMapping("/login/login.wow")
-    public String loginPost(@ModelAttribute("memberVO") MemberVO memberVO, String saveId, HttpServletRequest req, HttpServletResponse response, HttpSession session) throws  IOException {
+    public String loginPost(@ModelAttribute("memberVO") MemberVO memberVO, HttpSession session) throws IOException {
 
-        String Id=memberVO.getId();
-        String pw=memberVO.getPassword();
-
+        String Id = memberVO.getId();
+        String pw = memberVO.getPassword();
         UserVO user = loginService.getUser(Id);
 
-        if (saveId == null) {
-            CookieUtils cookieUtils = new CookieUtils(req);
-            if (cookieUtils.exists("SAVE_ID")) {
-                Cookie cookie = CookieUtils.createCookie("SAVE_ID", Id, "/", 0);
-                response.addCookie(cookie);
-            }
-            saveId = "";
-        }
-
-        if ((Id == null) || (pw == null)) {
+        if (user == null) {
             return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 입력해주세요.", "utf-8");
         } else {
-            if (user == null) {
+            if (!user.getPassword().equals(pw)) {
                 return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 확인해주세요.", "utf-8");
             } else {
-                if (user.getPassword().equals(pw)) {
-                    if (saveId.equals("Y")) {
-                        response.addCookie(CookieUtils.createCookie("SAVE_ID", Id, "/", 3600 * 24 * 7));
-                    }
-                    session.setAttribute("user", user);
-                    return "redirect:/";
-                } else {
-                    return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 확인해주세요.", "utf-8");
-                }
+                session.setAttribute("user", user);
+                return "redirect:/";
             }
         }
     }
@@ -103,8 +87,8 @@ public class LoginController {
 
     @RequestMapping("/member/memberForm.wow")
     public String memberForm(@ModelAttribute("memberVO") MemberVO memberVO, HttpSession session) throws Exception {
-        String Id=memberVO.getId();
-        String pw=memberVO.getPassword();
+        String Id = memberVO.getId();
+        String pw = memberVO.getPassword();
         MemberVO member = memberService.getMember(Id);
         session.setAttribute("member", member);
         return "member/memberForm";
