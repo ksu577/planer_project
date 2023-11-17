@@ -19,7 +19,7 @@ public class CommentServiceImpl implements ICommentService {
     private ICommentDao commentDao;
 
     @Override
-    public List<CommentVO> getCommnetListByParent(PagingVO paging, int freeNum) {
+    public List<CommentVO> getCommentListByParent(PagingVO paging, int freeNum) {
         logger.info("getCommnetListByParent method called."); // 로그 추가
 
         int totalRowCount = commentDao.getCommentCountByParent(paging, freeNum);

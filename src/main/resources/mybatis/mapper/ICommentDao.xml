@@ -3,19 +3,19 @@
 <mapper namespace="com.study.comment.dao.ICommentDao">
     <insert id="insertComment" parameterType="com.study.comment.vo.CommentVO">
         INSERT INTO free_board_comment (
-                id, free_num, free_board_comment_number,
-                create_date, free_context_comment, update_date,
-                free_comment_like)
+            id, free_num, free_board_comment_number,
+            create_date, free_context_comment, update_date,
+            free_comment_like)
         VALUES (
-            #{id}, #{freeNum}, SEQ_FREE_BOARD_COMMENT_NUMBER.NEXTVAL,
-            SYSDATE,#{freeContextComment},SYSTIMESTAMP,
-            #{freeCommentLike}
+                   #{id}, #{freeNum}, SEQ_FREE_BOARD_COMMENT_NUMBER.NEXTVAL,
+                   SYSDATE,#{freeContextComment},SYSTIMESTAMP,
+                   #{freeCommentLike}
                )
     </insert>
     <update id="updateComment" parameterType="com.study.comment.vo.CommentVO">
         UPDATE free_board_comment_number
         SET free_context_comment=#{freeContextComment}
-            ,update_date=systimestamp
+          ,update_date=systimestamp
         WHERE free_board_comment_number= #{freeBoardCommentNumber}
     </update>
     <delete id="deleteComment" parameterType="com.study.comment.vo.CommentVO">
@@ -23,25 +23,25 @@
     </delete>
     <select id="getCommentCountByParent" resultType="int">
 
-    SELECT count(*)
-    FROM free_board_comment
-    WHERE free_num= #{freeNum}
+        SELECT count(*)
+        FROM free_board_comment
+        WHERE free_num= #{freeNum}
     </select>
     <select id="getCommentListByParent" resultType="com.study.comment.vo.CommentVO">
         SELECT *
         FROM
             (
-        SELECT a.*, rownum AS rnum
-        FROM
-            (
-        SELECT
-            id,free_num,free_board_comment_number,
-            create_date,free_context_comment,update_date,
-            free_comment_like
-        FROM
-            free_board_comment
-        WHERE free_num = #{freeNum}
-        ORDER BY free_board_comment_number ) a)
+                SELECT a.*, rownum AS rnum
+                FROM
+                    (
+                        SELECT
+                            id,free_num,free_board_comment_number,
+                            create_date,free_context_comment,update_date,
+                            free_comment_like
+                        FROM
+                            free_board_comment f
+                        WHERE free_num = #{freeNum}
+                        ORDER BY free_board_comment_number ) a)
         WHERE rnum BETWEEN #{paging.firstRow} AND #{paging.lastRow}
     </select>
     <select id="getComment" resultType="com.study.comment.vo.CommentVO">

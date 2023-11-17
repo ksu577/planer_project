@@ -94,7 +94,7 @@
                 <div class="form-group">
                     <label class="col-sm-2  control-label">댓글</label>
                     <div class="col-sm-8">
-							<textarea rows="3" name="freeContextComment" class="form-control"></textarea>
+                        <textarea rows="3" name="freeContextComment" class="form-control"></textarea>
                     </div>
                     <div class="col-sm-2">
                         <button id="btn_reply_regist" type="button"
@@ -249,16 +249,16 @@
         //수정버튼 : 댓글 영역안에 있는 수정버튼만  이벤트 등록
         $("#id_reply_list_area").on("click", 'button[name="btn_reply_edit"]'
             , function (e) {
-            $btn = $(this); // 수정버튼
-            $div = $btn.closest('div.row');
-            $modal = $('#id_reply_edit_modal');
-            $pre = $div.find('pre');
-            var context = $pre.html();
-            $textarea = $modal.find('textarea');
-            $textarea.val(context);
-            var freeBoardCommentNumber = $div.data('free-board-comment-number');
-            $modal.find('input[name=freeBoardCommentNumber]').val(freeBoardCommentNumber);
-            $modal.modal('show');
+                $btn = $(this); // 수정버튼
+                $div = $btn.closest('div.row');
+                $modal = $('#id_reply_edit_modal');
+                $pre = $div.find('pre');
+                var context = $pre.html();
+                $textarea = $modal.find('textarea');
+                $textarea.val(context);
+                var freeBoardCommentNumber = $div.data('free-board-comment-number');
+                $modal.find('input[name=freeBoardCommentNumber]').val(freeBoardCommentNumber);
+                $modal.modal('show');
             });//수정버튼
 
 
@@ -267,7 +267,7 @@
             e.preventDefault();
             $form = $(this).closest('form[name="frm_reply_edit"]');
             $.ajax({
-                url: "<c:url value='/comment/commentModify.wow' />",
+                url: "/comment/commentModify.wow",
                 type: "POST",
                 data:$form.serialize(),
                 dataType : "JSON",
@@ -286,22 +286,22 @@
         //삭제버튼
         $("#id_reply_list_area").on("click", 'button[name="btn_reply_delete"]'
             , function (e) {
-            e.preventDefault();
-            $div = $(this).closest('.row');
-            freeBoardCommentNumber = $div.data('free-board-comment-number');
-            id = "${USER_INFO.user}";
-            $.ajax({
-                url:"/comment/commentDelete.wow",
-                type: "POST",
-                data: {"freeBoardCommentNumber":freeBoardCommentNumber, "id":id},
-                dataType:'JSON',
-                success: function (){
-                    $div.remove();
-                },
-                error: function (req, status, error) {
-                    console.error(error); // MODIFIED
-                }
-            }); //ajax
+                e.preventDefault();
+                $div = $(this).closest('.row');
+                freeBoardCommentNumber = $div.data('free-board-comment-number');
+                id = "${USER_INFO.user}";
+                $.ajax({
+                    url:"/comment/commentDelete.wow",
+                    type: "POST",
+                    data: {"freeBoardCommentNumber":freeBoardCommentNumber, "id":id},
+                    dataType:'JSON',
+                    success: function (){
+                        $div.remove();
+                    },
+                    error: function (req, status, error) {
+                        console.error(error); // MODIFIED
+                    }
+                }); //ajax
             }); //삭제버튼
 
 

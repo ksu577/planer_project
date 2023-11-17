@@ -10,6 +10,7 @@ public class CommentVO {
     private String createDate;
     private String freeContextComment;
     private String  updateDate;
+
     private int freeCommentLike;
 
 
@@ -43,8 +44,8 @@ public class CommentVO {
     }
 
 
-    public String getFreeContextComment(String freeContextComment) {
-        return this.freeContextComment;
+    public String getFreeContextComment() {
+        return freeContextComment;
     }
 
     public void setFreeContextComment(String freeContextComment) {

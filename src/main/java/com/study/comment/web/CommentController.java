@@ -35,7 +35,7 @@ public class CommentController {
             freeNum = 0;
         }
 
-        List<CommentVO> commentList = commentService.getCommnetListByParent(paging, freeNum);
+        List<CommentVO> commentList = commentService.getCommentListByParent(paging, freeNum);
         map.put("size", commentList.size());
         map.put("data", commentList);
 

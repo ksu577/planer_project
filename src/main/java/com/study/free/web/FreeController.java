@@ -8,6 +8,7 @@ import java.util.List;
 import com.study.attach.vo.AttachVO;
 import com.study.code.service.ICommCodeService;
 import com.study.code.vo.CodeVO;
+import com.study.comment.service.ICommentService;
 import com.study.common.util.StudyAttachUtils;
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.ResultMessageVO;
@@ -30,10 +31,13 @@ import org.springframework.util.StringUtils;
 import com.study.free.vo.FreeBoardVO;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class FreeController {
+    @Inject
+    private ICommentService commentService;
 
     @Autowired
     ICommCodeService codeService;

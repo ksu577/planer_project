@@ -11,7 +11,7 @@ public interface ICommentService {
     /** 댓글 목록 조회 <br>
      * <b>필수 : reCategory, reParentNo </b>
      */
-    public List<CommentVO> getCommnetListByParent(PagingVO paging, int freeNum);
+    public List<CommentVO> getCommentListByParent(PagingVO paging, int freeNum);
 
 
     public void modifyComment(CommentVO comment) throws BizNotFoundException, BizAccessFailException;
