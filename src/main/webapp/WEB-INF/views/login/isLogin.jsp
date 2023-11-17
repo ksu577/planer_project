@@ -12,7 +12,7 @@
 
 <c:if test="${user eq null}">
   로그인 안되어있음    <br>
-  <a href="login.wow">로그인하러가기</a>  <br>
+  <a href="login.wow">로그인하러가기</a><br>
   <a href="memberForm.wow">회원가입하러 가기</a>
 </c:if>
 
