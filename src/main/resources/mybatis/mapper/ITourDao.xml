@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.plan.dao.ITourDao">
+
+    <insert id="insertTour">
+
+        INSERT INTO plan (
+                           id
+                         , plan_num
+                         , plan_title
+                         , reg_date
+        ) VALUES (
+                     #{id}, tour_num_seq.NEXTVAL, #{planTitle} , sysdate
+                 )
+
+    </insert>
+</mapper>

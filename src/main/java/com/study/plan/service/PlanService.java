@@ -14,13 +14,19 @@ public class PlanService implements IPlanService {
     PlanDao planDao;
 
     @Override
-    public void registMember(PlanVo plan) {
-        int count = planDao.insertPlan(plan);
+    public void registPlan(PlanVo plan) {
+        planDao.insertPlan(plan);
     }
 
     @Override
-    public List<PlanVo> planView() {
-        List<PlanVo> planList = planDao.getPlan();
+    public List<PlanVo> planView(String id) {
+        List<PlanVo> planList = planDao.getPlan(id);
         return planList;
+    }
+
+    @Override
+    public List<PlanVo> planMarker(int dayCount, String id){
+        List<PlanVo> planMarkerDao = planDao.planMarkerDao(dayCount, id);
+        return planMarkerDao;
     }
 }

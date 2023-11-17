@@ -773,7 +773,7 @@
             url: "/plan/plan.wow",
             data: {"plan": JSON.stringify(plan_Array)},
             success: function (data) {
-                console.log(data);
+                location.href = "/plan/marker.wow";
             }, error: function (err) {
                 console.log("error: " + err)
             }

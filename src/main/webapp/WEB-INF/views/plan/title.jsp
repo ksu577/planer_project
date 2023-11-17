@@ -7,8 +7,9 @@
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
-
-<a href="plan/title.wow">여행 가자!</a>
-
+<form action="/title" method="post">
+    <input type="text" name="planTitle">
+    <button type="submit"> 저장 </button>
+</form>
 </body>
 </html>

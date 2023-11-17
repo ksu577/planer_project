@@ -4,15 +4,51 @@ import lombok.ToString;
 
 @ToString
 public class PlanVo {
+    private String id;
+    private int planNum;
+    private int placeNum;
     private String placeName;
-    private String placeLoadAddress;
-    private String placeAddress;
-    private String planNum;
     private String xlab;
     private String ylab;
-    private int totalDay;
+    private String placeAddress;
     private String startDate;
     private String endDate;
+    private int dayCount;
+    private String placeLoadAddress;
+    private String planHp;
+    private String planTitle;
+
+    public String getPlanTitle() {
+        return planTitle;
+    }
+
+    public void setPlanTitle(String planTitle) {
+        this.planTitle = planTitle;
+    }
+
+    public int getPlaceNum() {
+        return placeNum;
+    }
+
+    public void setPlaceNum(int placeNum) {
+        this.placeNum = placeNum;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getPlanNum() {
+        return planNum;
+    }
+
+    public void setPlanNum(int planNum) {
+        this.planNum = planNum;
+    }
 
     public String getPlaceName() {
         return placeName;
@@ -20,30 +56,6 @@ public class PlanVo {
 
     public void setPlaceName(String placeName) {
         this.placeName = placeName;
-    }
-
-    public String getPlaceLoadAddress() {
-        return placeLoadAddress;
-    }
-
-    public void setPlaceLoadAddress(String placeLoadAddress) {
-        this.placeLoadAddress = placeLoadAddress;
-    }
-
-    public String getPlaceAddress() {
-        return placeAddress;
-    }
-
-    public void setPlaceAddress(String placeAddress) {
-        this.placeAddress = placeAddress;
-    }
-
-    public String getPlanNum() {
-        return planNum;
-    }
-
-    public void setPlanNum(String planNum) {
-        this.planNum = planNum;
     }
 
     public String getXlab() {
@@ -62,12 +74,12 @@ public class PlanVo {
         this.ylab = ylab;
     }
 
-    public int getTotalDay() {
-        return totalDay;
+    public String getPlaceAddress() {
+        return placeAddress;
     }
 
-    public void setTotalDay(int totalDay) {
-        this.totalDay = totalDay;
+    public void setPlaceAddress(String placeAddress) {
+        this.placeAddress = placeAddress;
     }
 
     public String getStartDate() {
@@ -84,5 +96,29 @@ public class PlanVo {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public int getDayCount() {
+        return dayCount;
+    }
+
+    public void setDayCount(int dayCount) {
+        this.dayCount = dayCount;
+    }
+
+    public String getPlaceLoadAddress() {
+        return placeLoadAddress;
+    }
+
+    public void setPlaceLoadAddress(String placeLoadAddress) {
+        this.placeLoadAddress = placeLoadAddress;
+    }
+
+    public String getPlanHp() {
+        return planHp;
+    }
+
+    public void setPlanHp(String planHp) {
+        this.planHp = planHp;
     }
 }

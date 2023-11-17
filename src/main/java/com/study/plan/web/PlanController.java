@@ -3,6 +3,7 @@ package com.study.plan.web;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.study.login.vo.UserVO;
 import com.study.plan.service.IPlanService;
 import com.study.plan.vo.PlanVo;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 
@@ -30,19 +32,29 @@ public class PlanController {
         return "plan/plan";
     }
 
-    @GetMapping("marker.wow")
-    public String planMarker(Model model){
-        List<PlanVo> planList = planService.planView();
+    @GetMapping("/marker.wow")
+    public String planMarker(Model model,HttpSession session ){
+        UserVO user = (UserVO) session.getAttribute("user");
+        List<PlanVo> planList = planService.planView(user.getId());
         model.addAttribute("planList", planList);
         return "plan/marker";
+    }
+
+    @ResponseBody
+    @PostMapping("/marker.wow")
+    public List<PlanVo> MarkerResult(@RequestParam("result") int result, HttpSession session){
+        UserVO user = (UserVO) session.getAttribute("user");
+        List<PlanVo> planMarker = planService.planMarker(result, user.getId());
+        return planMarker;
     }
 
 
     @ResponseBody
     @PostMapping("/plan.wow")
-    public Object insertPlan(@RequestParam Map<String, Object> parameter) throws JsonProcessingException {
+    public Object insertPlan(@RequestParam Map<String, Object> parameter, HttpSession session) throws JsonProcessingException {
         System.out.println(parameter.get("plan"));
         String json = parameter.get("plan").toString();
+        UserVO user = (UserVO) session.getAttribute("user");
 
         /* playerList로 넘어온 데이터를 문자열로 변환 */
         ObjectMapper mapper = new ObjectMapper();
@@ -60,20 +72,28 @@ public class PlanController {
                 System.out.println(shopInfoJson.get("placeName"));
 
                 PlanVo plan = new PlanVo();
-                plan.setPlanNum((String) shopInfoJson.get("planNum"));
+                plan.setId(user.getId());
+                plan.setPlanHp((String) shopInfoJson.get("planNum"));
                 plan.setPlaceName((String) shopInfoJson.get("placeName"));
                 plan.setPlaceAddress((String) shopInfoJson.get("placeAddress"));
                 plan.setPlaceLoadAddress((String) shopInfoJson.get("placeLoadAddress"));
                 plan.setXlab((String) shopInfoJson.get("xlab"));
                 plan.setYlab((String) shopInfoJson.get("ylab"));
-                plan.setTotalDay((Integer) shopInfoJson.get("totalDay"));
+                plan.setDayCount((Integer) shopInfoJson.get("totalDay"));
                 plan.setStartDate((String) shopInfoJson.get("startDate"));
                 plan.setEndDate((String) shopInfoJson.get("endDate"));
 
-                planService.registMember(plan);
+                planService.registPlan(plan);
             }
         }
 
         return parameter.get("plan");
     }
+
+    @GetMapping("/myPlan.wow")
+    public String myplan(){
+
+        return "plan/myPlan";
+    }
+
 }
