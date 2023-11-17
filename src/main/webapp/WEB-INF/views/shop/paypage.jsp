@@ -9,25 +9,100 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
-    <style>
+<%--    <style>--%>
 
-        .paycontainer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+<%--        .paycontainer {--%>
+<%--            display: flex;--%>
+<%--            justify-content: space-between;--%>
+<%--            align-items: center;--%>
+<%--        }--%>
+<%--        .container {--%>
+
+<%--            margin-top: 20px;--%>
+<%--        }--%>
+<%--        .address {--%>
+<%--            border: 1px solid #ddd;--%>
+<%--            padding: 20px;--%>
+<%--        }--%>
+
+<%--        .bill {--%>
+<%--            border: 1px solid #ddd;--%>
+<%--            box-shadow: 0 0 0 0;--%>
+<%--            padding: 20px;--%>
+<%--        }--%>
+<%--    </style>--%>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
         }
+
+        /* Add some padding to the container */
         .container {
             margin-top: 20px;
-        }
-        .address {
-            border: 1px solid #ddd;
             padding: 20px;
+            border-radius: 8px; /* Add some border-radius for a softer look */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
         }
 
-        .bill {
+        /* Style the route section */
+        .route {
+            font-size: 14px;
+            color: #868e96; /* Set a muted color for the route text */
+        }
+
+        /* Style the address and bill sections */
+        .address, .bill {
             border: 1px solid #ddd;
-            box-shadow: 0 0 0 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a slight box shadow */
             padding: 20px;
+            margin-top: 15px;
+            border-radius: 8px; /* Add border-radius for a softer look */
+        }
+
+        form {
+            margin-bottom: 0;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #deliveryRequest {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .paycontainer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .address, .bill {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -75,20 +150,23 @@
             </div>
             <form action="paypage.wow" method="post">
             <div class="bill col-md-4">
+                <h2>주문서</h2>
+                <hr>
                 <c:forEach var="cartItem" items="${listCart}">
                 <div class="cart-item">
-                    <span>1 ${cartItem.productName} : ${cartItem.price}</span>
+                    <span> 상품명 : ${cartItem.productName},</span>
+                    <span> 가격 : ${cartItem.price}원</span>
                 </div>
                 </c:forEach>
                 <br>
                 <div class="mb-3 d-flex justify-content-between">
 <%--                    <span>물품 : ${product.name} ${product.price}</span>--%>
-                    <span>총 상품금액 : ${sumMoney}</span>
+                    <span>총 상품금액 : ${sumMoney}원</span>
                     <span>배송비 : 3000 원</span>
                 </div>
                 <hr>
                 <div class="mb-3">
-                    <span>결제 예정 금액 :  ${sumMoney + 3000}</span>
+                    <span>결제 예정 금액 :  ${sumMoney + 3000}원</span>
                 </div>
                 <button class="btn btn-primary" style="width: 100%;">결제하기</button>
             </div>

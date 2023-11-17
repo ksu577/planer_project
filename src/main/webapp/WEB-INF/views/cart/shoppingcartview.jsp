@@ -86,7 +86,7 @@
         <hr>
         <div class="mb-3 d-flex justify-content-between">
             <span>총 상품금액</span>
-            <span>${sumMoney}</span>
+            <span>${sumMoney}원</span>
         </div>
         <hr>
         <div class="mb-3 d-flex justify-content-between">
@@ -96,16 +96,15 @@
         <hr>
         <div class="mb-3 d-flex justify-content-between">
             <span>결제 예정 금액</span>
-            <span>${sumMoney + 3000}</span>
+            <span>${sumMoney + 3000}원</span>
         </div>
-        <button formaction="/shop/paypage.wow" class="btn btn-primary" style="width: 100%;">결제하기</button>
+        <button onclick="addressbeforepay()" class="btn btn-primary" style="width: 100%;">결제하기</button>
     </div>
 </div>
 
 <script>
     function addressbeforepay() {
-        console.log("amount = ", $('#product-options').val());
-        window.location.href = "/shop/paypage.wow?productId=${product.productId}&amount="+$('#product-options').val();
+        window.location.href = "/shop/paypage.wow";
     }
 
 
