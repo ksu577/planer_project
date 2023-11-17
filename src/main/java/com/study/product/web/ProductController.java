@@ -83,44 +83,12 @@ public class ProductController {
     }
 
     // ---------------------샵 페이지------------MemberController로 갔어요
-    ;
 
-    // 2. 장바구니 목록(장바구니 전체 - 카트 페이지) MemberController로 갔어요
-//    @GetMapping("/shop/paypage.wow")
-//    public String cartList(Model model, HttpSession session) {
-//        UserVO user = (UserVO) session.getAttribute("user");
-//
-//        if (user != null) {
-//            String userId = user.getId();
-//            List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
-//            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
-//            model.addAttribute("listCart", list); // 장바구니 정보 추가
-//            model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
-//            return "shop/paypage" ;
-//        } else {
-//            return "redirect:/login/login.wow";
-//        }
-//
-//    }
 
     @RequestMapping("/shop/afterpay.wow")
     public String afterpay() {
         return "shop/afterpay";
     }
 
-    //페이 페이지에 데이터 보내기 MemberController로 갔어요
-//    @PostMapping("/shop/paypage.wow")
-//    public String paypage(HttpSession session) {
-//        UserVO user = (UserVO) session.getAttribute("user");
-//        MemberVO
-//
-//
-//        if (user != null) {
-//            String userId = user.getId();
-//
-//            return "shop/paypage";
-//        } else {
-//            return "redirect: /login/login.wow";
-//        }
-//    }
+
 }
