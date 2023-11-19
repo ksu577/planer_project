@@ -110,52 +110,63 @@
 
     <!-- // START : 댓글 목록 영역  -->
     <div id="id_reply_list_area">
-        <button name="btn_reply_edit" type="button"
-                class=" btn btn-sm btn-info">수정
-        </button>
-        <button name="btn_reply_delete" type="button"
-                class="btn btn-sm btn-danger">삭제
-        </button>
-    </div>
-
-    <div class="row text-center" id="id_reply_list_more">
-        <a id="btn_reply_list_more"
-           class="btn btn-sm btn-default col-sm-10 col-sm-offset-1"> <span
-                class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-            더보기
-        </a>
-    </div>
-    <!-- // END : 댓글 목록 영역  -->
-    <!-- START : 댓글 수정용 Modal -->
-    <div class="modal fade" id="id_reply_edit_modal" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <form name="frm_reply_edit"
-                      action="/comment/commentModify" method="post"
-                      onclick="return false;">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h4 class="modal-title">댓글수정</h4>
-                    </div>
-                    <div class="modal-body">
-                        <input type="hidden" name="freeBoardCommentNumber" value="">
-                        <textarea rows="3" name="freeContextComment" class="form-control"></textarea>
-                        <input type="hidden" name="id" value="${USER_INFO.user }">
-                    </div>
-                    <div class="modal-footer">
-                        <button id="btn_reply_modify" type="button"
-                                class="btn btn-sm btn-info">저장
-                        </button>
-                        <button type="button" class="btn btn-default btn-sm"
-                                data-dismiss="modal">닫기
-                        </button>
-                    </div>
-                </form>
+        <div class="row">
+            <div class="col-sm-2 text-right">홍길동</div>
+            <div class="col-sm-6">
+                <pre>내용</pre>
+            </div>
+            <div class="col-sm-2">12/30 23:45</div>
+            <div class="col-sm-2">
+                <button name="btn_reply_edit" type="button"
+                        class=" btn btn-sm btn-info" >수정
+                </button>
+                <button name="btn_reply_delete" type="button"
+                        class="btn btn-sm btn-danger">삭제
+                </button>
             </div>
         </div>
     </div>
-    <!-- END : 댓글 수정용 Modal -->
+
+</div>
+<div class="row text-center" id="id_reply_list_more">
+    <a id="btn_reply_list_more"
+       class="btn btn-sm btn-default col-sm-10 col-sm-offset-1"> <span
+            class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        더보기
+    </a>
+</div>
+
+<!-- // END : 댓글 목록 영역  -->
+<!-- START : 댓글 수정용 Modal -->
+<div class="modal fade" id="id_reply_edit_modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form name="frm_reply_edit"
+                  action="/comment/commentModify" method="post"
+                  onclick="return false;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">댓글수정</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="freeBoardCommentNumber" value="">
+                    <textarea rows="3" name="freeContextComment" class="form-control"></textarea>
+                    <input type="hidden" name="id" value="${USER_INFO.user }">
+                </div>
+                <div class="modal-footer">
+                    <button id="btn_reply_modify" type="button"
+                            class="btn btn-sm btn-info">저장
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm"
+                            data-dismiss="modal">닫기
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END : 댓글 수정용 Modal -->
 
 </div>
 <!-- reply container -->
@@ -169,6 +180,7 @@
         "curPage": 1, "rowSizePerPage": 10
         , "freeNum": ${freeBoard.freeNum}
     };
+    var loginUser = ${loginUser ? "'" + loginUser.id + "'" : 'null'};
 
     //ajax 요청해서 댓글리스트를 받아오는 함수.
     function fn_reply_list() {
@@ -182,7 +194,7 @@
             , success: function (data) {
                 console.log(data);
 
-                $("#id_reply_list_area").empty();
+                // $("#id_reply_list_area").empty();
 
                 $.each(data.data, function (i, comment) {
                     let str = '<div class="row" data-free-board-comment-number="' + comment.freeBoardCommentNumber + '">'
@@ -192,7 +204,7 @@
                         + '</div>'
                         + '<div class="col-sm-2">' + comment.createDate + '</div>'
                         + '<div class="col-sm-2">';
-                    if (comment.id == '${USER_INFO.user}') {
+                    if (comment.id == loginUser) {
                         str = str + '<button name="btn_reply_edit" type="button"'
                             + 'class=" btn btn-sm btn-info" onclick="fn_modify()">수정</button>'
                             + ' <button name="btn_reply_delete" type="button" '
@@ -214,6 +226,7 @@
     }//function fn_reply_list
 
     $(document).ready(function () {
+        console.log("loginUser:", loginUser);
         fn_reply_list();
         //더보기 버튼
         $("#id_reply_list_more").on("click", function (e) {
@@ -312,7 +325,6 @@
                     }
                 }); //ajax
             }); //삭제버튼
-
 
 
     });

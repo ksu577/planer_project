@@ -20,7 +20,7 @@
                 <input type="hidden" name="curPage" value="${paging.curPage}">
                 <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
                 <div class="form-group">
-                    <label for="id_searchType" class="col-sm-2 control-label">검색</label>
+                    <label for="id_searchType" class="col-sm-1 control-label"></label>
                     <div class="col-sm-2">
                         <select id="id_searchType" name="searchType" class="form-control input-sm">
                             <option value="T"  ${search.searchType=='T' ? "selected='selected'" :""} >제목</option>
@@ -28,7 +28,7 @@
                             <option value="C" ${search.searchType=='C' ? "selected='selected'"  : ""} >내용</option>
                         </select>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-6">
                         <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}"
                                placeholder="검색어">
                     </div>
@@ -101,7 +101,7 @@
                 <!-- 이미지 표시 -->
                 <td>
                     <!-- 이미지 표시 -->
-                    <img src="${"/pc34/Aupload/"}" alt="" width="50" height="50">
+<%--                    <img src="${"/pc34/Aupload/"}" alt="" width="50" height="50">--%>
                     <!-- 게시글 제목 링크 -->
                     <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a>
                 </td>

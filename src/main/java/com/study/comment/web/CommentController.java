@@ -10,6 +10,7 @@ import org.apache.commons.logging.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,14 +28,17 @@ public class CommentController {
     private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
 
     @RequestMapping(value = "/comment/commentList.wow")
-    public Map<String, Object> commentList(PagingVO paging, Integer freeNum) {
+    public Map<String, Object> commentList(PagingVO paging, Integer freeNum, Model model, HttpSession session) {
         Map<String, Object> map = new HashMap<>();
         logger.info("commentList method called."); //
 
         if (freeNum == null){
             freeNum = 0;
         }
-        System.out.println("asdfasdfasdf" + freeNum);
+
+        UserVO loginUser = (UserVO) session.getAttribute("user");
+        model.addAttribute("loginUser", loginUser);
+
         List<CommentVO> commentList = commentService.getCommentListByParent(paging, freeNum);
 
         map.put("size", commentList.size());
@@ -45,13 +49,16 @@ public class CommentController {
 
 
     @RequestMapping(value = "/comment/commentRegist.wow")
-    public Map<String, Object> commentRgist(CommentVO comment,@RequestParam int freeNum, HttpServletRequest request) {
+    public Map<String, Object> commentRgist(CommentVO comment,@RequestParam int freeNum, HttpServletRequest request, HttpSession session) {
         Map<String, Object> map = new HashMap<>();
 
-        HttpSession session = request.getSession();
         UserVO loginUser = (UserVO) session.getAttribute("user");
 
-
+        if (loginUser == null) {
+            // 로그인이 안 되어 있으면 로그인 페이지로 리다이렉트
+            map.put("msg", "login_required");
+            return map;
+        }
 
 
         comment.setId(loginUser.getId());
