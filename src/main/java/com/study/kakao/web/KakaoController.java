@@ -84,39 +84,6 @@ public class KakaoController {
             e.printStackTrace();
             msg.setUrl("/test/test.wow");
         }
-
         return msg;
     }
-
-//    @ResponseBody
-//    @PostMapping("/kakao/pay/ready")
-//    public Map<String, Object> kakaoPayReady() {
-//        String URL = "https://kapi.kakao.com/v1/payment/ready";
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-//        headers.set("Authorization", "KakaoAK {3c757d5ad8df5f534911c2a4f1504def}");
-//
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("cid", "TC0ONETIME");
-//        params.put("partner_order_id", "1001");
-//        params.put("partner_user_id", "testUser");
-//        params.put("item_name", "아이템");
-//        params.put("quantity", 1);
-//        params.put("total_amount", 2200);
-//        params.put("vat_amount", 200);
-//        params.put("tax_free_amount", 0);
-//        params.put("created_at", "2016-11-15T21:18:22");
-//        params.put("approved_at", "2016-11-15T21:20:47");
-//        params.put("approval_url", "http://localhost:8081/success");
-//        params.put("cancel_url", "http://localhost:8081/cancel");
-//        params.put("fail_url", "http://localhost:8081/fail");
-//
-//        HttpEntity<Map<String, Object>> request = new HttpEntity<>(params, headers);
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        Map<String, Object> response = restTemplate.postForObject(URL, request, Map.class);
-//
-//        return response;
-//    }
 }
