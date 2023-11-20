@@ -13,7 +13,7 @@
                )
     </insert>
     <update id="updateComment" parameterType="com.study.comment.vo.CommentVO">
-        UPDATE free_board_comment_number
+        UPDATE free_board_comment
         SET free_context_comment=#{freeContextComment}
           ,update_date=systimestamp
         WHERE free_board_comment_number= #{freeBoardCommentNumber}

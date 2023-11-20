@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2 col-sm-offset-9 text-right">
-                        <button type="button"  id="id_btn_reset" class="btn btn-sm btn-default">
+                        <button type="button" id="id_btn_reset" class="btn btn-sm btn-default">
                             <i class="fa fa-sync"></i> &nbsp;&nbsp;초기화
                         </button>
                     </div>
@@ -88,10 +88,11 @@
         <thead>
         <tr>
             <th>글번호</th>
-            <th>제목</th>
             <th>작성자</th>
+            <th>제목</th>
             <th>등록일</th>
             <th>조회수</th>
+            <th>첨부파일</th>
         </tr>
         </thead>
         <tbody>
@@ -101,11 +102,12 @@
                 <!-- 이미지 표시 -->
                 <td>
                     <!-- 이미지 표시 -->
-<%--                    <img src="${"/pc34/Aupload/"}" alt="" width="50" height="50">--%>
+                        <%--                    <img src="${"/pc34/Aupload/"}" alt="" width="50" height="50">--%>
                     <!-- 게시글 제목 링크 -->
-                    <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a>
+                        ${freeBoard.id }
                 </td>
-                <td>${freeBoard.id }</td>
+                <td>
+                    <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a></td>
                 <td>${freeBoard.createDate }</td>
                 <td>${freeBoard.viewRate}</td>
             </tr>
