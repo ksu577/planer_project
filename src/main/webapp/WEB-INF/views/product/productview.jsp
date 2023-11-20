@@ -112,6 +112,7 @@
     function listCart() {
         window.location.href = "/cart/shoppingcartinsert?productId=${product.productId}&amount="+$('#product-options').val();
     }
+
 </script>
 
 </body>

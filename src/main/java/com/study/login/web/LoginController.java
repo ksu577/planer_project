@@ -21,20 +21,16 @@ import com.study.login.dao.ILoginDao;
 import java.net.URLEncoder;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class LoginController {
     @Autowired
-    private LoginService loginService;
+    LoginService loginService;
     @Autowired
     ILoginDao loginDao;
     @Autowired
     IMemberService memberService;
-
-    @RequestMapping("/login/isLogin.wow")
-    public String isLogin() {
-        return "login/isLogin";
-    }
 
     @GetMapping("/login/login.wow")
     public String loginGet(Model model, String msg, HttpServletRequest req) throws IOException {
@@ -44,20 +40,8 @@ public class LoginController {
         if (msg == null) {
             msg = "";
         }
-
-        CookieUtils cookieUtils = new CookieUtils(req);
-
-        if (cookieUtils.exists("SAVE_ID")) {
-            id = cookieUtils.getValue("SAVE_ID");
-            checked = "checked='checked'";
-        }
-        model.addAttribute("id", id);
-        model.addAttribute("checked", checked);
-        model.addAttribute("msg", msg);
-
         return "login/login";
     }
-
 
     @PostMapping("/login/login.wow")
     public String loginPost(@ModelAttribute("memberVO") MemberVO memberVO, HttpSession session) throws IOException {

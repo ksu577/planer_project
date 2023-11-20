@@ -138,7 +138,7 @@ public class MemberController {
             String userId = user.getId();
             return "shop/paypage";
         } else {
-            return "redirect: /login/login.wow";
+            return "redirect:/login/login.wow";
         }
     }
 }

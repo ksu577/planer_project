@@ -18,5 +18,4 @@ public interface IMemberDao {
     public int updateMember(MemberVO member);
     public int deleteMember(MemberVO member);
     public int insertMember(MemberVO member);
-
 }
