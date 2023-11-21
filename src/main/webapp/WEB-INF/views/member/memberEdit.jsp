@@ -9,11 +9,18 @@
     <title>memberEdit</title>
 </head>
 <body>
-<form action="memberModify.wow" method="post">
+<form action="memberModify.wow" method="post" enctype="multipart/form-data">
     <table border="1">
+
+        <img src="${member.profile}" style="width: 100px; height: 100px;"> <br/>
+        <div class="card">
+            <input type="file" name="file">
+            <input type="hidden" name="memberId" id="memberId" value="${member.id}">
+        </div>
+
         <tr>
             <th>아이디</th>
-            <td><input type="text" readonly name="id" value="${member.id}" required="required" style="border: 0"></td>
+            <td><input type="text" readonly name="id" value="${member.id}" required="required"></td>
         </tr>
 
         <tr>

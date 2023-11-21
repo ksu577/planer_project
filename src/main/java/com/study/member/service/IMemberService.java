@@ -13,7 +13,7 @@ public interface IMemberService {
 
     public List<MemberVO> getMemberList(PagingVO paging, SearchVO search);
     public MemberVO getMember(String Id) throws BizNotFoundException;
-    public void modifyMember(MemberVO member) throws BizException;
+    public void modifyMember(MemberVO member, String Id, String Img) throws BizException;
     public void removeMember(MemberVO member) throws BizException;
     public void registMember(MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException;
 }

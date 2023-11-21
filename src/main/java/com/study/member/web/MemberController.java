@@ -7,13 +7,13 @@ import com.study.common.vo.ResultMessageVO;
 import com.study.common.vo.SearchVO;
 import com.study.exception.*;
 import com.study.login.vo.UserVO;
-import com.study.member.dao.IMemberDao;
 import com.study.member.service.IMemberService;
 import com.study.member.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -74,9 +74,17 @@ public class MemberController {
 
 
     @PostMapping("/member/memberModify.wow")
-    public String memberModify(Model model, MemberVO member) throws BizException {
+    public String memberModify(Model model, MemberVO member, HttpSession session, String Id, MultipartHttpServletRequest Request) throws Exception {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
-        memberService.modifyMember(member);
+
+        String Img = FileUtil.updateImg(Request);
+        MemberVO sessionmember = (MemberVO) session.getAttribute("user");
+
+        memberService.modifyMember(member, Id, Img);
+
+        sessionmember.setProfile(Img);
+        session.setAttribute("user", sessionmember);
+
         resultMessageVO.messageSetting(true, "수정", "수정 되었습니다."
                 , "/member/memberList.wow", "목록으로");
         model.addAttribute("resultMessageVO", resultMessageVO);

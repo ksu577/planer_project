@@ -19,8 +19,6 @@
     <tr> <td>휴대전화번호</td>  <td>${member.phnum}      </td></tr>
     <tr> <td>이메일</td>      <td>${member.email}      </td></tr>
     <tr> <td>회원가입일</td>      <td>${member.createDate}      </td></tr>
-
-
     <tr>
         <td>
             <a href="memberEdit.wow?Id=${member.id}">수정</a>
