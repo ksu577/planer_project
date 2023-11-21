@@ -32,7 +32,7 @@
 <div class="container">
     <h1 class="text-center">상품 등록</h1>
     <div class="form-container">
-        <form>
+        <form method="post" action="/product/productinsert">
             <div class="mb-3">
                 <label for="productName" class="form-label">상품명</label>
                 <input type="text" class="form-control" id="productName" required>
@@ -42,12 +42,12 @@
                 <input type="number" class="form-control" id="productPrice" required placeholder="-과 원빼고 입력하세요 ex.10000">
             </div>
             <div class="mb-3">
-                <label for="productDescription" class="form-label">상품 설명</label>
-                <textarea class="form-control" id="productDescription" rows="4" required></textarea>
+                <label for="productDesc" class="form-label">상품 설명</label>
+                <textarea class="form-control" id="productDesc" rows="4" required></textarea>
             </div>
             <div class="mb-3">
-                <label for="productImage" class="form-label">상품 이미지</label>
-                <input type="file" class="form-control" id="productImage" accept="image/*" required>
+                <label for="img" class="form-label">상품 이미지</label>
+                <input type="file" class="form-control" id="img" accept="image/*" required>
             </div>
             <button type="submit" class="btn btn-primary">상품 등록</button>
         </form>

@@ -8,10 +8,7 @@ import com.study.product.vo.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -40,7 +37,7 @@ public class ProductController {
     }
 
     // 2. 상품 상세보기
-    @RequestMapping("product/productview.wow")
+    @RequestMapping("/product/productview.wow")
     public String viewdetail(@RequestParam int productId, Model model) {
         ProductVO detail = iproductService.getproduct(productId);
         model.addAttribute("product", detail);
@@ -48,16 +45,16 @@ public class ProductController {
     }
 
     // 3. 상품 등록페이지 이동
-    @RequestMapping("/productregist")
+    @RequestMapping("/product/productregist")
     public String productregist() {
         return "/product/productregist";
     }
 
     // 4. 상품 등록 페이지 (기능) -- 사진 db에 삽입하기
-    @RequestMapping("/product/productregist.wow")
+    @RequestMapping("/product/productinsert")
     public String productinsert(ProductVO productVO) {
         iproductService.insert(productVO);
-        return "product/productregist";
+        return "/shop/minishop";
     }
 
 

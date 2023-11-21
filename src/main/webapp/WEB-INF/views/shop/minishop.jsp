@@ -104,6 +104,11 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+
+    <div>
+        <button type="button" class="regist" onclick="registProduct()">물건 등록</button> </div>
+
+
     <div class="selectcategory">
         <div class="btn-group">
             <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
@@ -130,7 +135,7 @@
                 </div>
                 <div class="bottom">
                     <a href="#"> ${product.productName} </a>
-                    <a href="#"> "${product.productPrice}" </a>
+                    <a href="#"> ${product.productPrice} 원</a>
                 </div>
             </div>
         </c:forEach>
@@ -144,6 +149,10 @@
 <script>
     function detailView(productId) {
         window.location.href = "/product/productview.wow?productId=" + productId;
+    }
+
+    function registProduct() {
+        window.location.href = "/product/productregist";
     }
 </script>
 
