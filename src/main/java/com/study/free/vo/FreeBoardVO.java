@@ -20,6 +20,7 @@ public class FreeBoardVO {
     private String boDelYn;
     private String thumbnailImagePath;
 
+
     public String getThumbnailImagePath() {
         return thumbnailImagePath;
     }

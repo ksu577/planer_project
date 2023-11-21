@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
     request.setCharacterEncoding("UTF-8");
 %>
@@ -16,7 +17,7 @@
     <!-- START : 검색 폼  -->
     <div class="panel panel-default">
         <div class="panel-body">
-            <form name="search" action="freeList.wow" method="post" class="form-horizontal">
+            <form name="search" action="freeList.wow" method="get" class="form-horizontal">
                 <input type="hidden" name="curPage" value="${paging.curPage}">
                 <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
                 <div class="form-group">
@@ -92,25 +93,45 @@
             <th>제목</th>
             <th>등록일</th>
             <th>조회수</th>
-            <th>첨부파일</th>
+            <%--            <th>첨부파일</th>--%>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${freeBoardList }" var="freeBoard">
-            <tr class="text-center">
-                <td>${freeBoard.freeNum}</td>
-                <!-- 이미지 표시 -->
-                <td>
-                    <!-- 이미지 표시 -->
-                        <%--                    <img src="${"/pc34/Aupload/"}" alt="" width="50" height="50">--%>
-                    <!-- 게시글 제목 링크 -->
-                        ${freeBoard.id }
-                </td>
-                <td>
-                    <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a></td>
-                <td>${freeBoard.createDate }</td>
-                <td>${freeBoard.viewRate}</td>
-            </tr>
+            <c:choose>
+                <c:when test="${fn:startsWith(freeBoard.title,'[공지]')}">
+                    <tr class="text-center">
+                        <td>${freeBoard.freeNum}</td>
+                        <td>${freeBoard.id}</td>
+                        <td>
+                            <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a>
+                        </td>
+                        <td>${freeBoard.createDate}</td>
+                        <td>${freeBoard.viewRate}</td>
+                    </tr>
+                </c:when>
+            </c:choose>
+        </c:forEach>
+
+        <c:forEach items="${freeBoardList}" var="freeBoard">
+            <c:choose>
+                <c:when test="${not fn:startsWith(freeBoard.title,'[공지]')}">
+                    <tr class="text-center">
+                        <td>${freeBoard.freeNum}</td>
+                        <!-- 이미지 표시 -->
+                        <td>
+                            <!-- 이미지 표시 -->
+                                <%--                    <img src="${"/pc34/Aupload/"}" alt="" width="50" height="50">--%>
+                            <!-- 게시글 제목 링크 -->
+                                ${freeBoard.id }
+                        </td>
+                        <td>
+                            <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a></td>
+                        <td>${freeBoard.createDate }</td>
+                        <td>${freeBoard.viewRate}</td>
+                    </tr>
+                </c:when>
+            </c:choose>
         </c:forEach>
 
         </tbody>
