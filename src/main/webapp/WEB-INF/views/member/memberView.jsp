@@ -10,6 +10,8 @@
 </head>
 <body>
 <table border="1">
+
+    <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member" width="100px" height="100px" style="margin: auto; border-radius: 50px; border: 1px solid gainsboro">
     <tr> <td>아이디</td>      <td>${member.id}         </td></tr>
     <tr> <td>비밀번호</td>    <td>${member.password}   </td></tr>
     <tr> <td>이름</td>        <td>${member.name}       </td></tr>

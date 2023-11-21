@@ -33,13 +33,8 @@ public class LoginController {
     IMemberService memberService;
 
     @GetMapping("/login/login.wow")
-    public String loginGet(Model model, String msg, HttpServletRequest req) throws IOException {
-        String id = "";
-        String checked = "";
-
-        if (msg == null) {
-            msg = "";
-        }
+    public String loginGet(Model model, String msg) throws IOException {
+        model.addAttribute("msg", msg);
         return "login/login";
     }
 

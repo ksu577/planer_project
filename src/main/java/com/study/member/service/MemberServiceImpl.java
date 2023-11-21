@@ -36,7 +36,7 @@ public class MemberServiceImpl implements IMemberService{
     }
 
     @Override
-    public void modifyMember(MemberVO member, String Id, String Img) throws BizNotEffectedException {
+    public void modifyMember(MemberVO member) throws BizNotEffectedException {
         int count = memberDao.updateMember(member);
         if (count < 1) throw new BizNotEffectedException();
     }

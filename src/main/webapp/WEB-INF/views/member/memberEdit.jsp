@@ -12,11 +12,9 @@
 <form action="memberModify.wow" method="post" enctype="multipart/form-data">
     <table border="1">
 
-        <img src="${member.profile}" style="width: 100px; height: 100px;"> <br/>
-        <div class="card">
-            <input type="file" name="file">
-            <input type="hidden" name="memberId" id="memberId" value="${member.id}">
-        </div>
+        <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
+             id="profile" style="border-radius: 50px;  border: 1px solid gainsboro" width="100px" height="100px">
+        <input type="file" name="file" style="cursor: pointer; border: 1px solid #868e96">
 
         <tr>
             <th>아이디</th>
