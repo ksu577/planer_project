@@ -66,16 +66,16 @@ public class ProductController {
 
     // 6. 상품 수정 페이지 (기능)  -- 사진 db에 변경하기
     @RequestMapping("/product/productupdate(admin)")
-    public String edit(ProductVO productVO) {
+    public String update(ProductVO productVO) {
         iproductService.update(productVO);
         return "product/productupdate(admin)";
     }
 
     // 7. 상품 삭제 기능
     @RequestMapping("/product/productdelete")
-    public String productdelete(@RequestParam int productId) {
+    public String productdelete(@RequestParam("product") int productId) {
         iproductService.delete(productId);
-        return "product/productdelete";
+        return "redirect:/shop/minishop.wow";
     }
 
     // ---------------------샵 페이지------------MemberController로 갔어요
