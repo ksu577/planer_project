@@ -9,35 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
-<%--    <style>--%>
-
-<%--        .paycontainer {--%>
-<%--            display: flex;--%>
-<%--            justify-content: space-between;--%>
-<%--            align-items: center;--%>
-<%--        }--%>
-<%--        .container {--%>
-
-<%--            margin-top: 20px;--%>
-<%--        }--%>
-<%--        .address {--%>
-<%--            border: 1px solid #ddd;--%>
-<%--            padding: 20px;--%>
-<%--        }--%>
-
-<%--        .bill {--%>
-<%--            border: 1px solid #ddd;--%>
-<%--            box-shadow: 0 0 0 0;--%>
-<%--            padding: 20px;--%>
-<%--        }--%>
-<%--    </style>--%>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
         }
 
-        /* Add some padding to the container */
         .container {
             margin-top: 20px;
             padding: 20px;
@@ -45,13 +22,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
         }
 
-        /* Style the route section */
         .route {
             font-size: 14px;
             color: #868e96; /* Set a muted color for the route text */
         }
 
-        /* Style the address and bill sections */
         .address, .bill {
             border: 1px solid #ddd;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a slight box shadow */
@@ -137,7 +112,6 @@
                         <input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소">
                         <input type="text" class="form-control" id="sample6_extraAddress" placeholder="참고항목">
                     </div>
-
                     <div class="mb-3">
                         <label for="deliveryRequest" class="form-label">배송 요청 사항</label>
                         <select class="form-select" id="deliveryRequest">
@@ -150,19 +124,22 @@
                 </form>
             </div>
             <form action="paypage.wow" method="post">
-            <div class="bill col-md-4">
+            <div class="bill">
                 <h2>주문서</h2>
                 <hr>
                 <c:forEach var="cartItem" items="${listCart}">
                 <div class="cart-item">
-                    <span> 상품명 : ${cartItem.productName},</span>
-                    <span> 가격 : ${cartItem.price}원</span>
+                    <span> 상품명 : ${cartItem.productName}</span>
+                    <hr>
+                    <span> ${cartItem.amount}개 x </span>
+                    <span> 가격 : ${cartItem.price} 원 = </span>
+                    <span> 가격 : ${cartItem.price * cartItem.amount} 원</span>
+                    <hr>
                 </div>
                 </c:forEach>
                 <br>
                 <div class="mb-3 d-flex justify-content-between">
-<%--                    <span>물품 : ${product.name} ${product.price}</span>--%>
-                    <span>총 상품금액 : ${sumMoney}원</span>
+                    <span>총 상품금액 : ${sumMoney} 원</span>
                     <span>배송비 : 3000 원</span>
                 </div>
                 <hr>

@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title></title>
+    <title>미니샵</title>
 
     <style>
         .container {
@@ -22,7 +22,7 @@
 
         .cell {
             background-color: white;
-            border-radius: 20px;
+            /*border-radius: 20px;*/
             box-shadow: 0px 0px 4px 2px gainsboro;
         }
 
@@ -38,8 +38,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            background-color: green;
-            border-radius: 20px;
+            /*border-radius: 20px;*/
         }
 
         .item-box > div {
@@ -54,27 +53,26 @@
 
         .top {
             height: 80%;
-            border-radius: 20px;
+            /*border-radius: 20px;*/
             box-shadow: 0px 0px 4px 2px gainsboro;
         }
 
         .bottom {
             display: flex;
-            align-items: center;
             justify-content: space-between;
             height: 20%;
-            background-color: greenyellow;
+            background-color: #0d6efd;
             color: rgb(0, 102, 0);
             flex-direction: column;
         }
 
         .bottom a {
-            color: rgb(0, 102, 0);
+            color: white;
             padding-top: 8px;
             padding-bottom: 8px;
             padding-left: 12px;
             padding-right: 12px;
-            border-radius: 20px;
+            /*border-radius: 20px;*/
             cursor: pointer;
         }
 
@@ -106,7 +104,7 @@
     </div>
     <div class="selectcategory">
         <div class="btn-group">
-            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
                 보는순서설정
             </button>
@@ -130,7 +128,7 @@
                 </div>
                 <div class="bottom">
                     <a href="#"> ${product.productName} </a>
-                    <a href="#"> "${product.productPrice}" </a>
+                    <a href="#"> 가격 : ${product.productPrice}원 </a>
                 </div>
             </div>
         </c:forEach>
