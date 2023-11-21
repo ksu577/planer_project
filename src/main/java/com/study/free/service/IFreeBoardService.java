@@ -28,5 +28,6 @@ public interface IFreeBoardService {
 
     int increaseLike(int freeNum) throws BizNotFoundException;
 
+
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException;
 }

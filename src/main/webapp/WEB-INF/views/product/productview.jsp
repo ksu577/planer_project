@@ -107,7 +107,7 @@
         <%--        물건 수정 하는 곳으로 이동 버튼  --%>
         <tr>
             <td>
-                <a href="/product/productupdate(admin)?Id=${product.productId}">수정</a>
+                <a href="/product/productupdate(admin)?product=${product.productId}" name="product">수정</a>
             </td>
         </tr>
 
