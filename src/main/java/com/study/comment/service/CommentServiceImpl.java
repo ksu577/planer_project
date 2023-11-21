@@ -51,7 +51,7 @@ public class CommentServiceImpl implements ICommentService {
         if (commentFromDB == null){
             throw new BizNotFoundException();
         }
-        if (!commentFromDB.getId().equals(user.getId())){
+        if (!"MANAGER".equals(user.getRole()) && !commentFromDB.getId().equals(user.getId())){
             throw new BizAccessFailException("글쓴이가 아닙니다.");
         }
 //        CommentVO commentFromDB = commentDao.getComment(comment.getFreeBoardCommentNumber());
@@ -75,7 +75,7 @@ public class CommentServiceImpl implements ICommentService {
         if (commentFromDB == null){
             throw new BizNotFoundException("댓글을 찾을 수 없습니다.");
         }
-        if (!commentFromDB.getId().equals(user.getId())){
+        if (!"MANAGER".equals(user.getRole()) &&!commentFromDB.getId().equals(user.getId())){
             throw new BizAccessFailException("글쓴이가 아닙니다.");
         }
         commentDao.deleteComment(comment);

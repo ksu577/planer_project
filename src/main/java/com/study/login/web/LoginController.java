@@ -44,6 +44,7 @@ public class LoginController {
         String Id = memberVO.getId();
         String pw = memberVO.getPassword();
         UserVO user = loginService.getUser(Id);
+        System.out.println(user.getRole());
 
         if (user == null) {
             return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 입력해주세요.", "utf-8");
@@ -52,6 +53,7 @@ public class LoginController {
                 return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 확인해주세요.", "utf-8");
             } else {
                 session.setAttribute("user", user);
+                System.out.println(user.getRole());
                 return "redirect:/";
             }
         }

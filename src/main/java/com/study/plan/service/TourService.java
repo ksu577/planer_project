@@ -14,8 +14,8 @@ public class TourService implements ITourService{
     ITourDao tourDao;
 
     @Override
-    public void TourPlan(TourVO tour) {
-        tourDao.insertTour(tour);
+    public void TourPlan(String tourTitle, String user) {
+        tourDao.insertTour(tourTitle, user);
     }
 
     @Override

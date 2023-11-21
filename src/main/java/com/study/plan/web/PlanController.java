@@ -33,14 +33,17 @@ public class PlanController {
     Logger logger = LoggerFactory.getLogger(PlanController.class);
 
     @GetMapping("/plan.wow")
-    public String planMain(Model model) {
+    public String planMain(@RequestParam("planTitle") String title, Model model) {
+        System.out.println(title);
+        model.addAttribute("title", title);
         return "plan/plan";
     }
 
     @GetMapping("/marker.wow")
-    public String planMarker(Model model, HttpSession session) {
+    public String planMarker(@RequestParam("planTitle") String title, Model model, HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
-        List<PlanVo> planList = planService.planView(user.getId());
+        System.out.println(title);
+        List<PlanVo> planList = planService.planView(user.getId(), title);
         model.addAttribute("planList", planList);
         return "plan/marker";
     }
@@ -48,9 +51,10 @@ public class PlanController {
 
     @ResponseBody
     @PostMapping("/marker.wow")
-    public List<PlanVo> MarkerResult(@RequestParam("result") int result, HttpSession session) {
+    public List<PlanVo> MarkerResult(@RequestParam("title") String title, @RequestParam("result") int result, HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
-        List<PlanVo> planMarker = planService.planMarker(result, user.getId());
+        System.out.println(title);
+        List<PlanVo> planMarker = planService.planMarker(title, result, user.getId());
         return planMarker;
     }
 
@@ -68,7 +72,6 @@ public class PlanController {
         //JSON 파일을 Java 객체로 deserialization 하기 위해서 ObjectMapper의 readValue() 메서드를 이용
         List<List<Map<String, Object>>> planList = mapper.readValue(json, new TypeReference<>() {
         });
-
 
         for (int i = 1; i < planList.size(); i++) {
 //            n일차 가게
@@ -88,6 +91,7 @@ public class PlanController {
                 plan.setDayCount((Integer) shopInfoJson.get("totalDay"));
                 plan.setStartDate((String) shopInfoJson.get("startDate"));
                 plan.setEndDate((String) shopInfoJson.get("endDate"));
+                plan.setPlanTitle((String) shopInfoJson.get("planTitle"));
 
                 planService.registPlan(plan);
             }
@@ -101,6 +105,14 @@ public class PlanController {
         List<TourVO> myPlan = tourService.myPlan(user);
         model.addAttribute("myPlan", myPlan);
         return "plan/myPlan";
+    }
+
+
+    @GetMapping("/planDelete.wow")
+    public String planDelete(@RequestParam("title") String title, HttpSession session){
+        UserVO user = (UserVO) session.getAttribute("user");
+        planService.deletePlan(title, user.getId());
+        return "redirect:/plan/myPlan.wow?user="+ user.getId();
     }
 
 }

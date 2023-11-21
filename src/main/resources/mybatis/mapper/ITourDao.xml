@@ -6,11 +6,10 @@
 
         INSERT INTO plan (
                            id
-                         , plan_num
                          , plan_title
                          , reg_date
         ) VALUES (
-                     #{id}, tour_num_seq.NEXTVAL, #{planTitle} , sysdate
+                     #{user}, #{tourTitle} , sysdate
                  )
 
     </insert>
@@ -18,7 +17,6 @@
         SELECT
             id
              , plan_title
-             , plan_num
              , reg_date
         FROM
             plan

@@ -34,8 +34,8 @@ public class ProductServiceImple implements IproductService {
 
     // 4. 상품 수정
     @Override
-    public void update(ProductVO productVO) {
-        productDao.update(productVO);
+    public void update(ProductVO product) {
+        productDao.update(product);
     }
 
     // 5. 상품 상세

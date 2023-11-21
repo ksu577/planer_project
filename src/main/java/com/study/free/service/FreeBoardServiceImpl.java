@@ -131,10 +131,25 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 
     @Override
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException {
+        HttpSession session = request.getSession();
+        UserVO user = (UserVO) session.getAttribute("user");
 
-        int cnt = freeBoardDao.insertBoard(freeBoard);
-        if (cnt == 0)
+        int cnt;
+
+        if (user != null && "MANAGER".equals(user.getRole())){
+            freeBoard.setTitle("[공지]"+freeBoard.getTitle());
+            cnt = freeBoardDao.insertBoard(freeBoard);
+        }else {
+            cnt = freeBoardDao.insertBoard(freeBoard);
+        }
+
+        if (cnt == 0) {
             throw new BizNotEffectedException();
+        }
+
+//        int cnt = freeBoardDao.insertBoard(freeBoard);
+//        if (cnt == 0)
+//            throw new BizNotEffectedException();
 
         List<AttachVO> attaches = freeBoard.getAttaches();
         if (attaches != null) {

@@ -539,7 +539,7 @@
             paginationEl.removeChild(paginationEl.lastChild);
         }
 
-        for (i = 1; i <= pagination.last; i++) {
+        for (let i = 1; i <= pagination.last; i++) {
             var el = document.createElement('a');
             el.href = "#";
             el.innerHTML = i;
@@ -609,7 +609,7 @@
     let enddate_date = new Date();
 
     function f_date() {
-        for (i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 6; i++) {
             document.querySelector(".day" + i + "").classList.add("none");
         }
 
@@ -633,7 +633,7 @@
         } else if (diff <= 0) {
             alert("시간을 거꾸로 할 수는 없습니다..;");
         } else {
-            for (i = 1; i <= diff; i++) {
+            for (let i = 1; i <= diff; i++) {
                 document.querySelector(".day" + i + "").classList.remove("none");
             }
         }
@@ -665,6 +665,15 @@
     }
 
 
+    function isEmpty(str) {
+
+        if (typeof str == "undefined" || str == null || str == "")
+            return true;
+        else
+            return false;
+    }
+
+
     function f_day1() {
 
         // if(schedule1[date-1] 가 비어있으면 넣고 비어있지않으며녀 for문쓰고 어쩌구  )
@@ -687,7 +696,7 @@
 
         (async () => {
             try {
-                for (i = 0; i < $("#addedbox").find("div").find("div").length; i++) {
+                for (let i = 0; i < $("#addedbox").find("div").find("div").length; i++) {
                     // init
                     day1 = {};
 
@@ -696,21 +705,79 @@
 
 
                     const childrens = addressInfo.children;
-                    console.log(childrens[0])
 
+                    //
+                    // // 첫번째 방법
+                    // if(childrens.length == 4)
+                    // {
+                    //
+                    // }
+                    // else if(childrens.length == 3)
+                    // {
+                    //
+                    // }
+                    //
+                    // // 두번째 방법
+                    // const json = JSON.parse(childrens);
+                    //
+                    // if( isEmpty(json.placeLoadAddress) )
+                    // {
+                    //
+                    // }
 
                     day1["placeName"] = (childrens[0].innerHTML);
-                    day1["placeLoadAddress"] = (childrens[1].innerHTML);
-                    day1["placeAddress"] = (childrens[2].innerHTML);
-                    day1["planNum"] = (childrens[3].innerHTML);
-                    day1["totalDay"] = (day_count);
-                    day1["startDate"] = ((startdate_date).yyyymmdd)();
-                    day1["endDate"] = ((enddate_date).yyyymmdd());
+                    //  세번째 방법
 
+                    try {
+                        day1["placeLoadAddress"] = (childrens[1].innerHTML);
+                    } catch (error) {
+                        console.error(error);
+                    }
+
+                    try {
+                        day1["placeAddress"] = (childrens[2].innerHTML);
+                    } catch (error) {
+                        console.error(error);
+                    }
+
+                    try {
+                        day1["planNum"] = (childrens[3].innerHTML);
+                    } catch (error) {
+                        console.error(error);
+                    }
+
+                    try {
+                        day1["totalDay"] = (day_count);
+                    } catch (error) {
+                        console.error(error);
+                    }
+
+                    try {
+                        day1["startDate"] = ((startdate_date).yyyymmdd)();
+                    } catch (error) {
+                        console.error(error);
+                    }
+                    try {
+                        day1["endDate"] = ((enddate_date).yyyymmdd());
+                    } catch (error) {
+                        console.error(error);
+                    }
 
                     const data = await addressSearch(childrens[1].innerHTML);
-                    day1["xlab"] = data.result[0].x;  //data.result[0].y, data.result[0].x
-                    day1["ylab"] = data.result[0].y;
+
+                    try {
+                        day1["xlab"] = data.result[0].x;  //data.result[0].y, data.result[0].x
+                    } catch (error) {
+                        console.error(error);
+                    }
+
+                    try {
+                        day1["ylab"] = data.result[0].y;
+                    } catch (error) {
+                        console.error(error);
+                    }
+
+                    day1["planTitle"] = ("${title}");
 
                     schedule1.push(day1)
                 }
@@ -746,7 +813,6 @@
         console.log(schedule)
         let html = "";
 
-
         for (let i = 0; i < Object.keys(schedule).length; i++) {
             let day_schedule = schedule[i];
             console.log(schedule);
@@ -755,14 +821,15 @@
             html += '<h5>' + day_schedule["placeName"] + '</h5>'
             html += '<span>' + day_schedule["placeLoadAddress"] + '</span>'
             html += '<span class="jibun gray">' + day_schedule["placeAddress"] + '</span>'
-            html += '<span class="tel"></span>' + day_schedule["planNum"] + '</span>'
+            if (day_schedule["planNum"] != null) {
+                html += '<span class="tel"></span>' + day_schedule["planNum"] + '</span>'
+            }
             html += '</div>'
             html += '<button class="delete" id="minus' + i + '" onclick="f_minus(\'plus' + i + '\')"> 제거 </button>'
             html += '</div>'
         }
 
         $('#addedbox').html(html);
-
 
     }
 
@@ -774,7 +841,7 @@
             data: {"plan": JSON.stringify(plan_Array)},
             success: function (data) {
                 console.log(data)
-                location.href = "/plan/marker.wow?";
+                location.href = encodeURI("/plan/marker.wow?planTitle=${title}");
             }, error: function (err) {
                 console.log("error: " + err)
             }

@@ -112,14 +112,14 @@
 
     </div>
 
-</div>
-<div class="row text-center" id="id_reply_list_more">
-    <a id="btn_reply_list_more"
-       class="btn btn-sm btn-default col-sm-10 col-sm-offset-1"> <span
-            class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        더보기
-    </a>
-</div>
+<%--</div>--%>
+<%--<div class="row text-center" id="id_reply_list_more">--%>
+<%--    <a id="btn_reply_list_more"--%>
+<%--       class="btn btn-sm btn-default col-sm-10 col-sm-offset-1"> <span--%>
+<%--            class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>--%>
+<%--        더보기--%>
+<%--    </a>--%>
+<%--</div>--%>
 
 <!-- // END : 댓글 목록 영역  -->
 <!-- START : 댓글 수정용 Modal -->
