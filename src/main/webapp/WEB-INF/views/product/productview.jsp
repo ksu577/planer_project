@@ -103,7 +103,22 @@
         <button formaction="/cart/shoppingcartinsert" class="btn btn-primary" onclick="listCart()">장바구니에 담기</button>
         <button class="btn btn-primary">구매하기</button>
       </div>
+
+        <%--        물건 수정 하는 곳으로 이동 버튼  --%>
+        <tr>
+            <td>
+                <a href="/product/productupdate(admin)?Id=${product.productId}">수정</a>
+            </td>
+        </tr>
+
+<%--        물건 삭제 버튼  --%>
+        <form action="/product/productdelete" method="post">
+            <input type="hidden" name="product" value="${product.productId}">
+            <button type="submit" class="btn btn-primary">삭제</button>
+        </form>
+
     </div>
+
   </div>
 </div>
 
@@ -113,6 +128,9 @@
         window.location.href = "/cart/shoppingcartinsert?productId=${product.productId}&amount="+$('#product-options').val();
     }
 
+    function  productmodify() {
+        window.location.href = "/product/productupdate(admin)"
+    }
 </script>
 
 </body>

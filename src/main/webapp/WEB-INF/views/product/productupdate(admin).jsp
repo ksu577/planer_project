@@ -77,7 +77,7 @@
 
 
             <div class="product-buttons">
-                <button class="btn btn-primary">삭제하기</button>
+                <button type="submit" class="btn btn-primary">삭제하기</button>
                 <button class="btn btn-primary" >수정완료</button>
             </div>
         </div>

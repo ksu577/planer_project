@@ -32,7 +32,6 @@ public class ProductController {
     public String list(Model model) {
         List<ProductVO> productList = iproductService.getprodList();
         model.addAttribute("list", productList);
-
         return "/shop/minishop";
     }
 
@@ -58,22 +57,22 @@ public class ProductController {
     }
 
 
-    // 5. 상품 수정 페이지 이동 ------------ 수정 페이지 필요, 만들어야 함
-    @RequestMapping("/product/productupdate(admin).wow")
-    public String update(@RequestParam int productId, Model model){
-        model.addAttribute("updatepage", iproductService.getproduct(productId));
-        return "product/productupdate(admin)";
-    };
+//    // 5. 상품 수정 페이지 이동 ------------ 수정 페이지 필요, 만들어야 함
+//    @RequestMapping("/product/productupdate(admin)")
+//    public String update(ProductVO productVO, Model model){
+//        model.addAttribute("updatepage", iproductService.update(ProductVO productVO));
+//        return "product/productupdate(admin)";
+//    };
 
     // 6. 상품 수정 페이지 (기능)  -- 사진 db에 변경하기
-//    @RequestMapping("/shop/productupdate.wow")
-//    public String edit(ProductVO productVO) {
-//        iproductService.update(productVO);
-//        return "redirect:/shop/minishop";
-//    }
+    @RequestMapping("/product/productupdate(admin)")
+    public String edit(ProductVO productVO) {
+        iproductService.update(productVO);
+        return "product/productupdate(admin)";
+    }
 
     // 7. 상품 삭제 기능
-    @RequestMapping("/product/productdelete.wow")
+    @RequestMapping("/product/productdelete")
     public String productdelete(@RequestParam int productId) {
         iproductService.delete(productId);
         return "product/productdelete";
