@@ -7,7 +7,7 @@
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
-<form action="/title" method="post">
+<form action="/title" method="GET">
     <input type="text" name="planTitle">
     <button type="submit"> 저장 </button>
 </form>

@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface IPlanService {
     public void registPlan(PlanVo plan);
-    public List<PlanVo> planView(String id);
-    public List<PlanVo> planMarker(@Param("dayCount") int dayCount, @Param("id") String id);
+
+    public List<PlanVo> planView(String id, String title);
+
+    public List<PlanVo> planMarker(String result, int dayCount, String id);
+
+    public void deletePlan(String title, String id);
 }

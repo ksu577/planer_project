@@ -19,15 +19,20 @@ public class PlanService implements IPlanService {
     }
 
     @Override
-    public List<PlanVo> planView(String id) {
-        List<PlanVo> planList = planDao.getPlan(id);
+    public List<PlanVo> planView(String id, String title) {
+        List<PlanVo> planList = planDao.getPlan(id, title);
         return planList;
     }
 
     @Override
-    public List<PlanVo> planMarker(int dayCount, String id){
-        List<PlanVo> planMarkerDao = planDao.planMarkerDao(dayCount, id);
+    public List<PlanVo> planMarker(String result ,int dayCount, String id){
+        List<PlanVo> planMarkerDao = planDao.planMarkerDao(result, dayCount, id);
         return planMarkerDao;
+    }
+
+    @Override
+    public void deletePlan(String title, String id) {
+        planDao.deletePlan(title, id);
     }
 
 

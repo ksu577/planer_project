@@ -79,6 +79,9 @@
             <div id="day" class="day-container"></div>
         </div>
     </div>
+
+        <button onclick="f_delete()">삭제</button>
+
 </div>
 
 </body>
@@ -108,7 +111,8 @@
             type: "POST",
             dataType: "json",
             data: {
-                "result": result
+                "result": result,
+                "title": title
             },
             success: function (result) {
                 let json_marker = result;
@@ -228,6 +232,8 @@
 
     let unique = [];
 
+    let title = '';
+
     <c:forEach items="${planList}" var="planList">
     if (!unique.includes('${planList.dayCount}')) {
         unique.push('${planList.dayCount}');
@@ -238,10 +244,14 @@
 
         const titleH1 = document.getElementById("title");
 
-        const title = '${planList.planTitle}';
+        title = '${planList.planTitle}';
         titleH1.innerHTML = title;
     }
     </c:forEach>
+
+    function f_delete() {
+        location.href = encodeURI("/plan/planDelete.wow?title="+ title + "");
+    }
 </script>
 
 </html>

@@ -8,8 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 @Controller
 public class TourController {
@@ -22,16 +25,15 @@ public class TourController {
         return "plan/title";
     }
 
-    @PostMapping("/title")
-    public String planTitle(@ModelAttribute("tour") TourVO tour, HttpSession session) {
+    @GetMapping("/title")
+    public String planTitle(@RequestParam("planTitle") String planTitle, HttpSession session) throws UnsupportedEncodingException {
             UserVO user = (UserVO) session.getAttribute("user");
         if (user == null) {
             return "redirect:/login/login.wow";
         } else {
-            tour.setId(user.getId());
-            System.out.println(user);
-            tourService.TourPlan(tour);
-            return "redirect:/plan/plan.wow";
+            tourService.TourPlan(planTitle, user.getId());
+            System.out.println(user.getId());
+            return "redirect:/plan/plan.wow?planTitle=" + URLEncoder.encode(planTitle,"UTF-8");
         }
     }
 }
