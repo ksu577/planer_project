@@ -50,7 +50,7 @@
 
     <select id="getMember" resultType="com.study.member.vo.MemberVO" parameterType="String">
         SELECT
-          id
+          Id
         , name
         , password
         , address

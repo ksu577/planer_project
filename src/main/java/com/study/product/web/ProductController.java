@@ -39,6 +39,7 @@ public class ProductController {
         return "/shop/minishop";
     }
 
+
     // 2. 상품 상세보기
     @RequestMapping("product/productview.wow")
     public String viewdetail(@RequestParam int productId, Model model) {
@@ -48,10 +49,10 @@ public class ProductController {
     }
 
     // 3. 상품 등록페이지 이동
-    @RequestMapping("/productregist")
-    public String productregist() {
-        return "/product/productregist";
-    }
+//    @RequestMapping("product/productregist.wow")
+//    public String productregist() {
+//        return "/product/productregist";
+//    }
 
     // 4. 상품 등록 페이지 (기능) -- 사진 db에 삽입하기
     @RequestMapping("/product/productregist.wow")
