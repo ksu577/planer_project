@@ -15,6 +15,7 @@ public class LoginService {
 
     public UserVO getUser(String Id) {
         MemberVO member = memberDao.getMember(Id);
+        System.out.println(member);
         if (member == null) {
             return null;
         } else {

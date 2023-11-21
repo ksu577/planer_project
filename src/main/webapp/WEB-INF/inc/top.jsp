@@ -74,7 +74,6 @@
         <span id="login_log" style="border-bottom: 1px solid white;">${user.name} 님, 환영합니다.</span>
 
 
-
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -82,7 +81,8 @@
             </button>
 
             <ul class="dropdown-menu">
-                <c:if test="${user.role==admin}">
+                <c:if test  ="${user.role=='admin'}">
+                    <c:out value="${user}" />
                     <a class="dropdown-item" href="/member/memberView.wow"> 관리자 페이지 </a>
                 </c:if>
                 <li><a class="dropdown-item" href="/member/memberView.wow"> 내 정보 </a></li>
