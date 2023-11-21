@@ -82,7 +82,7 @@
             </button>
 
             <ul class="dropdown-menu">
-                <c:if test="${user.role==admin}">
+                <c:if test="${user.getRole()=='MANAGER'}">
                     <a class="dropdown-item" href="/member/memberView.wow"> 관리자 페이지 </a>
                 </c:if>
                 <li><a class="dropdown-item" href="/member/memberView.wow"> 내 정보 </a></li>

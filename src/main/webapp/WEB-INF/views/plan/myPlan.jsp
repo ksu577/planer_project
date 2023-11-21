@@ -60,16 +60,14 @@
 
         scheduleContainer.appendChild(scheduleDiv);
     }
-    let id = "";
-    // 예시로 두 개의 일정 추가
+
     <c:forEach items="${myPlan}" var="myPlan">
     addSchedule("${myPlan.planTitle}", "${myPlan.regDate}");
-    id = "${myPlan.id}";
     </c:forEach>
 
-
         $(document).on("click", ".schedule", function () {
-            location.href = "/plan/marker.wow?user=" + id + "&planTitle=" + $(this).find(".mp-span").text() + "";
+            let title = $(this).find(".mp-span").text()
+            location.href = encodeURI("/plan/marker.wow?planTitle=" + title);
         });
 </script>
 </body>

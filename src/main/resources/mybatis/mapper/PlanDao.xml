@@ -2,9 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.study.plan.dao.PlanDao">
     <insert id="insertPlan" parameterType="com.study.plan.vo.PlanVo">
-        INSERT INTO user_plan (
-                                id
-                              , plan_num
+        INSERT INTO user_plan ( id
                               , place_num
                               , place_name
                               , xlab
@@ -15,35 +13,27 @@
                               , day_count
                               , place_load_address
                               , plan_hp
-                              , plan_title
-
-        ) VALUES (
-                     #{id},
-                  (
-                      SELECT MAX(plan_num)
-                      FROM plan
-                      WHERE id = #{id}
-                      ),
-                     place_num_seq.nextval
-                , #{placeName}
-                 ,  #{xlab} ,  #{ylab} ,  #{placeAddress} ,  #{startDate}
-                 ,  #{endDate} ,   #{dayCount} ,   #{placeLoadAddress},   #{planHp}
-                 ,(
-                 SELECT plan_title
-                FROM plan
-                WHERE id = #{id}
-                AND plan_num = (
-                SELECT MAX(plan_num)
-                         FROM plan
-                         WHERE id = #{id}
-                         )
-                     )
-                 )
+                              , plan_title)
+        VALUES (
+                #{id}
+               , place_num_seq.nextval
+               , #{placeName}
+               , #{xlab}, #{ylab}, #{placeAddress}, #{startDate}
+               , #{endDate}, #{dayCount}, #{placeLoadAddress}, #{planHp}
+               , #{planTitle}
+               )
     </insert>
+    <delete id="deletePlan">
+        DELETE
+        FROM plan
+        WHERE
+            id = #{id}
+        AND
+            plan_title = #{title}
+    </delete>
     <select id="getPlan" resultType="com.study.plan.vo.PlanVo">
         SELECT
             id
-             , plan_num
              , place_name
              , xlab
              , ylab
@@ -58,29 +48,18 @@
             user_plan
         WHERE
             id = #{id}
-          AND plan_num =  (
-            SELECT
-                MAX(plan_num)
-            FROM plan
-            WHERE id = #{id}
-        )
+          AND plan_title = #{title}
     </select>
     <select id="planMarkerDao" resultType="com.study.plan.vo.PlanVo">
         SELECT
-            id
-             , plan_num , place_name , xlab
+            id , place_name , xlab
              , ylab , place_address , start_date
              , end_date , day_count , place_load_address , plan_hp , plan_title
         FROM
             user_plan
         WHERE
             id = #{id}
-          AND plan_num =  (
-            SELECT
-                MAX(plan_num)
-            FROM plan
-            WHERE id = #{id}
-        )
+          AND plan_title = #{title}
           AND day_count = #{dayCount}
     </select>
 </mapper>
