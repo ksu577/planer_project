@@ -54,7 +54,7 @@ public class ProductController {
     @RequestMapping("/product/productinsert")
     public String productinsert(ProductVO productVO) {
         iproductService.insert(productVO);
-        return "/shop/minishop";
+        return "redirect:/shop/minishop.wow";
     }
 
 

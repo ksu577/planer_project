@@ -35,19 +35,19 @@
         <form method="post" action="/product/productinsert">
             <div class="mb-3">
                 <label for="productName" class="form-label">상품명</label>
-                <input type="text" class="form-control" id="productName" required>
+                <input type="text" class="form-control" name="productName" required>
             </div>
             <div class="mb-3">
                 <label for="productPrice" class="form-label">가격</label>
-                <input type="text" class="form-control" id="productPrice" required placeholder="-과 원빼고 입력하세요 ex.10000">
+                <input type="text" class="form-control" name="productPrice" required placeholder="-과 원빼고 입력하세요 ex.10000">
             </div>
             <div class="mb-3">
                 <label for="productDesc" class="form-label">상품 설명</label>
-                <textarea class="form-control" id="productDesc" rows="4" required></textarea>
+                <textarea class="form-control" name="productDesc" rows="4" required></textarea>
             </div>
             <div class="mb-3">
                 <label for="img" class="form-label">상품 이미지</label>
-                <input type="file" class="form-control" id="img" accept="image/*" required>
+                <input type="file" class="form-control" name="img" accept="image/*" required>
             </div>
             <button type="submit" class="btn btn-primary">상품 등록</button>
         </form>
