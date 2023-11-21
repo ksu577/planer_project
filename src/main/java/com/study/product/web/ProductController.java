@@ -24,6 +24,8 @@ public class ProductController {
 
 
     @Autowired
+    IproductService IproductService;
+    @Autowired
     ICartService cartService;
 
 
@@ -57,15 +59,16 @@ public class ProductController {
     }
 
 
-//    // 5. 상품 수정 페이지 이동 ------------ 수정 페이지 필요, 만들어야 함
-//    @RequestMapping("/product/productupdate(admin)")
-//    public String update(ProductVO productVO, Model model){
-//        model.addAttribute("updatepage", iproductService.update(ProductVO productVO));
-//        return "product/productupdate(admin)";
-//    };
+    // 5. 상품 수정 페이지 이동후 내용물 보이기
+    @RequestMapping("/product/productupdate(admin)")
+    public String update(@RequestParam("product") int productId, HttpSession session, Model model){
+        ProductVO productVO  = IproductService.getproduct(productId);
+        model.addAttribute("product", productVO);
+        return "product/productupdate(admin)";
+    };
 
     // 6. 상품 수정 페이지 (기능)  -- 사진 db에 변경하기
-    @RequestMapping("/product/productupdate(admin)")
+    @RequestMapping("/product/productModify(admin)")
     public String update(ProductVO productVO) {
         iproductService.update(productVO);
         return "product/productupdate(admin)";
