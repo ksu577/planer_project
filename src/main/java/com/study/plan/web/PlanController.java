@@ -5,7 +5,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.study.login.vo.UserVO;
 import com.study.plan.service.IPlanService;
+import com.study.plan.service.ITourService;
 import com.study.plan.vo.PlanVo;
+import com.study.plan.vo.TourVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class PlanController {
     @Autowired
     IPlanService planService;
 
+    @Autowired
+    ITourService tourService;
+
     Logger logger = LoggerFactory.getLogger(PlanController.class);
 
     @GetMapping("/plan.wow")
@@ -33,16 +38,17 @@ public class PlanController {
     }
 
     @GetMapping("/marker.wow")
-    public String planMarker(Model model,HttpSession session ){
+    public String planMarker(Model model, HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
         List<PlanVo> planList = planService.planView(user.getId());
         model.addAttribute("planList", planList);
         return "plan/marker";
     }
 
+
     @ResponseBody
     @PostMapping("/marker.wow")
-    public List<PlanVo> MarkerResult(@RequestParam("result") int result, HttpSession session){
+    public List<PlanVo> MarkerResult(@RequestParam("result") int result, HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
         List<PlanVo> planMarker = planService.planMarker(result, user.getId());
         return planMarker;
@@ -91,8 +97,9 @@ public class PlanController {
     }
 
     @GetMapping("/myPlan.wow")
-    public String myplan(){
-
+    public String myplan(@RequestParam("user") String user, Model model) {
+        List<TourVO> myPlan = tourService.myPlan(user);
+        model.addAttribute("myPlan", myPlan);
         return "plan/myPlan";
     }
 

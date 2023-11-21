@@ -7,6 +7,15 @@ public class TourVO {
     private String id;
     private int planNum;
     private String planTitle;
+    private String regDate;
+
+    public String getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(String regDate) {
+        this.regDate = regDate;
+    }
 
     public String getId() {
         return id;

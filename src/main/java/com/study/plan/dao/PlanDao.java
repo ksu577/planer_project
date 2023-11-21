@@ -13,5 +13,4 @@ public interface PlanDao {
     public List<PlanVo> getPlan(String id);
     public List<PlanVo> planMarkerDao(@Param("dayCount") int dayCount, @Param("id") String id);
 
-    public int modifyplan();
 }

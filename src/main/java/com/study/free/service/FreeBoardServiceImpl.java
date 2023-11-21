@@ -78,7 +78,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         HttpSession session = request.getSession();
         UserVO sessiongUserId = (UserVO) session.getAttribute("user");
 
-        if (!vo.getId().equals(sessiongUserId.getId()))
+        if (!vo.getId().equals(sessiongUserId.getId()) && !"MANAGER".equals(sessiongUserId.getRole()))
             throw new BizPasswordNotMatchedException();
 
         int cnt = freeBoardDao.updateBoard(freeBoard);

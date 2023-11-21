@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,8 +42,10 @@ public class CommentController {
 
         List<CommentVO> commentList = commentService.getCommentListByParent(paging, freeNum);
 
+
         map.put("size", commentList.size());
         map.put("data", commentList);
+        map.put("loginUser", loginUser);
 
         return map;
     }

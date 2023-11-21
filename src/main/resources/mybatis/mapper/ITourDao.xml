@@ -14,4 +14,15 @@
                  )
 
     </insert>
+    <select id="myPlanDao" resultType="com.study.plan.vo.TourVO">
+        SELECT
+            id
+             , plan_title
+             , plan_num
+             , reg_date
+        FROM
+            plan
+        WHERE
+            id = #{USER}
+    </select>
 </mapper>

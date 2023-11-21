@@ -104,7 +104,7 @@
 
 <script>
     function addressbeforepay() {
-        let cartItems = '${listCart}';
+        let cartItems = ${listCart};
         if (cartItems.length === 0) {
             alert('장바구니가 비었습니다.');
             return false; // 장바구니가 비었을 때 false 반환
