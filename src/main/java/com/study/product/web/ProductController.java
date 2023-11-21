@@ -39,13 +39,6 @@ public class ProductController {
         return "/shop/minishop";
     }
 
-    @RequestMapping("shop/minishopcss.wow")
-    public String listcss(Model model) {
-        List<ProductVO> productList = iproductService.getprodList();
-        model.addAttribute("listcss", productList);
-
-        return "/shop/minishopcss";
-    }
 
     // 2. 상품 상세보기
     @RequestMapping("product/productview.wow")
