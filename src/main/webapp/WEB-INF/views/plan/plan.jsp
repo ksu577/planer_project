@@ -350,9 +350,30 @@
 </div>
 </body>
 <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dea7138cdf709909de935ce835cefee1&libraries=services"></script>
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=24f0f0734176459a6e3cc215f20280a7&libraries=services"></script>
 
 <script>
+
+    let day_count = 0;
+    // 전체 플랜 1-n일차
+    let plan_Array = []
+
+    // n일차 장소 순서
+    let schedule1 = []
+
+    let day1 = {};
+
+    let startDateValue;
+    let endDateValue;
+
+    let startdate_date = new Date();
+    let enddate_date = new Date();
+
+    const addedbox = document.getElementById("addedbox");
+    let buttonpointer = 0;
+
+    init();
+
     // 마커를 담을 배열입니다
     var markers = [];
 
@@ -581,11 +602,6 @@
 
     }
 
-
-    const addedbox = document.getElementById("addedbox");
-
-    let buttonpointer = 0;
-
     $(document).on("click", ".info", function () {
         // 버튼을 클릭할 때 발생하는 이벤트
 
@@ -604,9 +620,6 @@
         const deleteb = document.getElementById(box_id);
         deleteb.remove();
     };
-
-    let startdate_date = new Date();
-    let enddate_date = new Date();
 
     function f_date() {
         for (let i = 1; i <= 6; i++) {
@@ -639,21 +652,11 @@
         }
     }
 
-    let day_count = 0;
-
     function f_day(count) {
         addedbox.innerHTML = "";
         day_count = count;
-        makeSchedulePlace(count)
+        makeSchedulePlace(count-1)
     }
-
-    // 전체 플랜 1-n일차
-    let plan_Array = []
-
-    // n일차 장소 순서
-    let schedule1 = []
-
-    let day1 = {};
 
 
     Date.prototype.yyyymmdd = function () {
@@ -803,19 +806,21 @@
 
 
     function makeSchedulePlace(day) {
+
         const schedule = plan_Array[day];
+        console.log(plan_Array)
+        console.log(day)
+        console.log(plan_Array[day])
 
         if (typeof schedule === 'undefined') {
             console.log("해당 일자 스케줄 없음")
             return;
         }
 
-        console.log(schedule)
         let html = "";
 
         for (let i = 0; i < Object.keys(schedule).length; i++) {
             let day_schedule = schedule[i];
-            console.log(schedule);
             html += '<div class="draggable" draggable="true" id="plus' + i + '">';
             html += '<div class="data">';
             html += '<h5>' + day_schedule["placeName"] + '</h5>'
@@ -849,5 +854,65 @@
     }
 
     // headerTag.appendChild(textNode);
+
+
+
+    function init() {
+
+        if(${empty planList}) {
+            console.log("plan 정보가 없습니다.")
+            return;
+        }
+
+        let lastDayCount = 0;
+        let currentDayCount;
+
+        <c:forEach var="planVO" items="${planList}" varStatus="index">
+
+            day1 = []
+            currentDayCount = ${planVO.dayCount}
+
+            if(lastDayCount == 0) {
+                lastDayCount = currentDayCount;
+                startDateValue = "${planVO.startDate}".split(' ')[0]
+                endDateValue = "${planVO.endDate}".split(' ')[0]
+            }
+
+            if(lastDayCount < currentDayCount) {
+                plan_Array.push(schedule1)
+                schedule1 = [];
+                lastDayCount = currentDayCount;
+            }
+
+            day1["endDate"] = endDateValue
+            day1["placeAddress"] = "${planVO.placeAddress}"
+            day1["placeLoadAddress"] = "${planVO.placeLoadAddress}"
+            day1["placeName"] = "${planVO.placeName}"
+            day1["planTitle"] = "${planVO.planTitle}"
+            day1["startDate"] = startDateValue
+            day1["totalDay"] = currentDayCount
+            day1["xlab"] = "${planVO.xlab}"
+            day1["ylab"] = "${planVO.ylab}"
+
+            schedule1.push(day1);
+
+            if(${index.last}) {
+                plan_Array.push(schedule1)
+            }
+
+        </c:forEach>
+
+        console.log("origin", plan_Array)
+
+        $("#startdate").val(startDateValue)
+        $("#enddate").val(endDateValue)
+        f_date();
+
+        if(lastDayCount > 0) {
+            makeSchedulePlace(0);
+        }
+
+        console.log(plan_Array)
+    }
 </script>
 </html>

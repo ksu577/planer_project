@@ -13,4 +13,6 @@ public interface ITourDao {
     public TourVO getTourNum(TourVO tourVO);
     public List<TourVO> myPlanDao(String user);
 
+    String getPlanTitle(String tourTitle);
+
 }

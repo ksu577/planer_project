@@ -81,12 +81,11 @@
     </div>
 
         <button onclick="f_delete()">삭제</button>
-
+        <button onclick="f_update()">수정</button>
 </div>
 
 </body>
-<script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dea7138cdf709909de935ce835cefee1&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=24f0f0734176459a6e3cc215f20280a7&libraries=services"></script>
 <script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
@@ -251,6 +250,10 @@
 
     function f_delete() {
         location.href = encodeURI("/plan/planDelete.wow?title="+ title + "");
+    }
+
+    function f_update() {
+        location.href = encodeURI("/plan/plan.wow?planTitle="+ title + "");
     }
 </script>
 

@@ -15,7 +15,11 @@ public class TourService implements ITourService{
 
     @Override
     public void TourPlan(String tourTitle, String user) {
-        tourDao.insertTour(tourTitle, user);
+        // 쿼리로 불리언 반한 하는 로직으로 변경 하면 좋을것 같음
+        String planTitle = tourDao.getPlanTitle(tourTitle);
+        if(planTitle == null) {
+            tourDao.insertTour(tourTitle, user);
+        }
     }
 
     @Override

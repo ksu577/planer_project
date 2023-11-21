@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.study.plan.dao.PlanDao">
+
     <insert id="insertPlan" parameterType="com.study.plan.vo.PlanVo">
         INSERT INTO user_plan ( id
                               , place_num
@@ -49,7 +50,9 @@
         WHERE
             id = #{id}
           AND plan_title = #{title}
+        ORDER BY day_count
     </select>
+
     <select id="planMarkerDao" resultType="com.study.plan.vo.PlanVo">
         SELECT
             id , place_name , xlab
@@ -57,9 +60,17 @@
              , end_date , day_count , place_load_address , plan_hp , plan_title
         FROM
             user_plan
-        WHERE
-            id = #{id}
-          AND plan_title = #{title}
-          AND day_count = #{dayCount}
+        WHERE id = #{id}
+        AND plan_title = #{title}
+        AND day_count = #{dayCount}
+        <!-- 위랑 아래랑 조건 줘서 합칠수 있습니다
+        <choose>
+            <when test="dayCount > 0">
+                AND day_count = #{dayCount}
+            </when>
+            <otherwise>
+                ORDER BY day_count
+            </otherwise>
+        </choose> -->
     </select>
 </mapper>

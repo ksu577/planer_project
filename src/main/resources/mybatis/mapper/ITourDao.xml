@@ -13,6 +13,13 @@
                  )
 
     </insert>
+
+    <select id="getPlanTitle" resultType="String">
+        SELECT plan_title
+        FROM plan
+        WHERE plan_title = #{planTitle}
+    </select>
+
     <select id="myPlanDao" resultType="com.study.plan.vo.TourVO">
         SELECT
             id
