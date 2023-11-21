@@ -75,16 +75,29 @@ public class CommentController {
     @RequestMapping(value = "comment/commentModify.wow")
     public Map<String, Object> commentModify(CommentVO comment) throws BizNotFoundException, BizAccessFailException {
         Map<String, Object> map = new HashMap<>();
-        commentService.modifyComment(comment);
-        map.put("msg", "수정성공");
+        try {
+            commentService.modifyComment(comment);
+            map.put("msg", "수정성공");
+        }catch (BizNotFoundException e){
+            map.put("msg","댓글을 찾을 수 없습니다.");
+        }catch (BizAccessFailException e){
+            map.put("msg","권한이 없습니다.");
+        }
         return map;
     }
 
     @RequestMapping(value = "comment/commentDelete.wow")
     public Map<String, Object> commentDelte(CommentVO comment) throws BizNotFoundException, BizAccessFailException {
         Map<String, Object> map = new HashMap<>();
-        commentService.removeComment(comment);
-        map.put("msg", "수정성공");
+
+        try {
+            commentService.removeComment(comment);
+            map.put("msg", "삭제 성공");
+        } catch (BizNotFoundException e) {
+            map.put("msg", "댓글을 찾을 수 없습니다.");
+        } catch (BizAccessFailException e) {
+            map.put("msg", "댓글 작성자가 아니거나 권한이 없습니다.");
+        }
         return map;
     }
 }
