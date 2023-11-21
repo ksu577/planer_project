@@ -1,6 +1,7 @@
 package com.study.free.web;
 
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 
@@ -130,6 +131,12 @@ public class FreeController {
             return "redirect:/login/login.wow";
         }
 
+        UserVO user = (UserVO) session.getAttribute("user");
+
+        if (!"MANAGER".equals(user.getRole()) && !freeBoard.getId().equals(user.getId())){
+            throw new AccessDeniedException("수정 권한이 없습니다.");
+        }
+
         System.out.println(boFiles);
         if (boFiles != null) {
             List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, "FREE", "free");
@@ -149,8 +156,6 @@ public class FreeController {
     @PostMapping("/free/freeDelete.wow")
     public String delete(Model model, FreeBoardVO freeBoard) throws BizException {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
-
-        model.addAttribute("freeBoard",freeBoard);
 
         freeBoardService.removeBoard(freeBoard);
         resultMessageVO.messageSetting(true, "삭제", "삭제성공", "/free/freeList.wow", "목록으로");
