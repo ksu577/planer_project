@@ -48,16 +48,10 @@
     </div>
 
     <div class="navcategory">
-
         <a href="/place/place.wow"> 여행지 </a>
-
         <a href="/shop/minishop.wow"> 미니샵 </a>
-
         <a href="/free/freeList.wow"> 게시판 </a>
-
-
     </div>
-
 
     <c:if test="${user==null}">
         <div class="btn-gruop-right">
@@ -65,15 +59,10 @@
             <a> </a>
             <a href="/member/memberForm.wow">회원가입</a>
         </div>
-
-
     </c:if>
-
 
     <c:if test="${user!=null}">
         <span id="login_log" style="border-bottom: 1px solid white;">${user.name} 님, 환영합니다.</span>
-
-
 
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
@@ -82,7 +71,7 @@
             </button>
 
             <ul class="dropdown-menu">
-                <c:if test="${user.role==admin}">
+                <c:if test="${user.getRole()=='MANAGER'}">
                     <a class="dropdown-item" href="/member/memberView.wow"> 관리자 페이지 </a>
                 </c:if>
                 <li><a class="dropdown-item" href="/member/memberView.wow"> 내 정보 </a></li>
@@ -102,7 +91,4 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
 
-
 </body>
-		
- 

@@ -5,6 +5,7 @@
     <title></title>
 
     <style>
+
         .container {
             width: 1225px;
         }
@@ -22,7 +23,7 @@
 
         .cell {
             background-color: white;
-            border-radius: 20px;
+            /*border-radius: 20px;*/
             box-shadow: 0px 0px 4px 2px gainsboro;
         }
 
@@ -38,8 +39,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            background-color: green;
-            border-radius: 20px;
+            /*border-radius: 20px;*/
         }
 
         .item-box > div {
@@ -54,29 +54,30 @@
 
         .top {
             height: 80%;
-            border-radius: 20px;
+            /*border-radius: 20px;*/
             box-shadow: 0px 0px 4px 2px gainsboro;
         }
 
         .bottom {
             display: flex;
-            align-items: center;
             justify-content: space-between;
             height: 20%;
-            background-color: greenyellow;
+            background-color: #0d6efd;
             color: rgb(0, 102, 0);
             flex-direction: column;
         }
 
         .bottom a {
-            color: rgb(0, 102, 0);
+            color: white;
             padding-top: 8px;
             padding-bottom: 8px;
             padding-left: 12px;
             padding-right: 12px;
-            border-radius: 20px;
+            /*border-radius: 20px;*/
             cursor: pointer;
         }
+
+
 
     </style>
 </head>
@@ -104,9 +105,14 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+
+    <div>
+        <button type="button" class="regist" onclick="registProduct()">물건 등록</button> </div>
+
+
     <div class="selectcategory">
         <div class="btn-group">
-            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
                 보는순서설정
             </button>
@@ -130,7 +136,7 @@
                 </div>
                 <div class="bottom">
                     <a href="#"> ${product.productName} </a>
-                    <a href="#"> "${product.productPrice}" </a>
+                    <a href="#"> ${product.productPrice} 원</a>
                 </div>
             </div>
         </c:forEach>
@@ -144,6 +150,10 @@
 <script>
     function detailView(productId) {
         window.location.href = "/product/productview.wow?productId=" + productId;
+    }
+
+    function registProduct() {
+        window.location.href = "/product/productregist";
     }
 </script>
 

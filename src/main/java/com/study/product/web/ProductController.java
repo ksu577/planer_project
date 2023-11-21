@@ -8,10 +8,7 @@ import com.study.product.vo.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -27,6 +24,8 @@ public class ProductController {
 
 
     @Autowired
+    IproductService IproductService;
+    @Autowired
     ICartService cartService;
 
 
@@ -35,12 +34,11 @@ public class ProductController {
     public String list(Model model) {
         List<ProductVO> productList = iproductService.getprodList();
         model.addAttribute("list", productList);
-
         return "/shop/minishop";
     }
 
     // 2. 상품 상세보기
-    @RequestMapping("product/productview.wow")
+    @RequestMapping("/product/productview.wow")
     public String viewdetail(@RequestParam int productId, Model model) {
         ProductVO detail = iproductService.getproduct(productId);
         model.addAttribute("product", detail);
@@ -48,38 +46,39 @@ public class ProductController {
     }
 
     // 3. 상품 등록페이지 이동
-    @RequestMapping("/productregist")
+    @RequestMapping("/product/productregist")
     public String productregist() {
         return "/product/productregist";
     }
 
     // 4. 상품 등록 페이지 (기능) -- 사진 db에 삽입하기
-    @RequestMapping("/product/productregist.wow")
+    @RequestMapping("/product/productinsert")
     public String productinsert(ProductVO productVO) {
         iproductService.insert(productVO);
-        return "product/productregist";
+        return "redirect:/shop/minishop.wow";
     }
 
 
-    // 5. 상품 수정 페이지 이동 ------------ 수정 페이지 필요, 만들어야 함
-    @RequestMapping("/product/productupdate(admin).wow")
-    public String update(@RequestParam int productId, Model model){
-        model.addAttribute("updatepage", iproductService.getproduct(productId));
+    // 5. 상품 수정 페이지 이동후 내용물 보이기
+    @RequestMapping("/product/productupdate(admin)")
+    public String update(@RequestParam("product") int productId, HttpSession session, Model model){
+        ProductVO productVO  = IproductService.getproduct(productId);
+        model.addAttribute("product", productVO);
         return "product/productupdate(admin)";
     };
 
     // 6. 상품 수정 페이지 (기능)  -- 사진 db에 변경하기
-//    @RequestMapping("/shop/productupdate.wow")
-//    public String edit(ProductVO productVO) {
-//        iproductService.update(productVO);
-//        return "redirect:/shop/minishop";
-//    }
+    @RequestMapping("/product/productModify(admin)")
+    public String update(ProductVO productVO) {
+        iproductService.update(productVO);
+        return "product/productupdate(admin)";
+    }
 
     // 7. 상품 삭제 기능
-    @RequestMapping("/product/productdelete.wow")
-    public String productdelete(@RequestParam int productId) {
+    @RequestMapping("/product/productdelete")
+    public String productdelete(@RequestParam("product") int productId) {
         iproductService.delete(productId);
-        return "product/productdelete";
+        return "redirect:/shop/minishop.wow";
     }
 
     // ---------------------샵 페이지------------MemberController로 갔어요
