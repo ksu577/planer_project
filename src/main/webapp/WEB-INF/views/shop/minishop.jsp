@@ -112,8 +112,10 @@
     </div>
 
     <div>
-        <button type="button" class="regist" onclick="registProduct()">물건 등록</button> </div>
 
+<c:if test="${user.getRole()=='MANAGER'}">
+        <button type="button" class="regist" onclick="registProduct()">물건 등록</button> </div>
+    </c:if>
 
     <div class="selectcategory">
         <div class="btn-group">

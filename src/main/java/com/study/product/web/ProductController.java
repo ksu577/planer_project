@@ -47,25 +47,43 @@ public class ProductController {
 
     // 3. 상품 등록페이지 이동
     @RequestMapping("/product/productregist")
-    public String productregist() {
-        return "/product/productregist";
+    public String productregist(HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+        if (user.getRole() == "MANAGER") {
+            return "/product/productregist";
+        } else {
+            return "redirect:/shop/minishop.wow";
+        }
     }
 
     // 4. 상품 등록 페이지 (기능) -- 사진 db에 삽입하기
     @RequestMapping("/product/productinsert")
-    public String productinsert(ProductVO productVO) {
-        iproductService.insert(productVO);
-        return "redirect:/shop/minishop.wow";
+    public String productinsert(ProductVO productVO, HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+        if (user.getRole() == "MANAGER") {
+            iproductService.insert(productVO);
+            return "redirect:/shop/minishop.wow";
+        } else {
+            return "redirect:/shop/minishop.wow";
+        }
+
     }
 
 
-    // 5. 상품 수정 페이지 이동후 내용물 보이기
+    // 5. 상품 수정 페이지 이동후 내용물 보이기 - 이동
     @RequestMapping("/product/productupdate(admin)")
-    public String update(@RequestParam("product") int productId, HttpSession session, Model model){
-        ProductVO productVO  = IproductService.getproduct(productId);
-        model.addAttribute("product", productVO);
-        return "product/productupdate(admin)";
-    };
+    public String update(@RequestParam("product") int productId, HttpSession session, Model model) {
+        UserVO user = (UserVO) session.getAttribute("user");
+        if (user.getRole() == "MANAGER") {
+            ProductVO productVO = IproductService.getproduct(productId);
+            model.addAttribute("product", productVO);
+            return "product/productupdate(admin)";
+        } else {
+            return "redirect:/shop/minishop.wow";
+        }
+    }
+
+    ;
 
     // 6. 상품 수정 페이지 (기능)  -- 사진 db에 변경하기
     @RequestMapping("/product/productModify(admin)")
@@ -76,9 +94,14 @@ public class ProductController {
 
     // 7. 상품 삭제 기능
     @RequestMapping("/product/productdelete")
-    public String productdelete(@RequestParam("product") int productId) {
-        iproductService.delete(productId);
-        return "redirect:/shop/minishop.wow";
+    public String productdelete(@RequestParam("product") int productId, HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+        if (user.getRole() == "MANAGER") {
+            iproductService.delete(productId);
+            return "redirect:/shop/minishop.wow";
+        } else {
+            return "redirect:/shop/minishop.wow";
+        }
     }
 
     // ---------------------샵 페이지------------MemberController로 갔어요
