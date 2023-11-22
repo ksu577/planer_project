@@ -4,6 +4,7 @@ import com.study.common.vo.PagingVO;
 import com.study.common.vo.SearchVO;
 import com.study.product.dao.ProductDao;
 import com.study.product.vo.ProductVO;
+import com.study.product.vo.SaveCartVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,4 +46,10 @@ public class ProductServiceImple implements IproductService {
     public ProductVO getproduct(int productId) {
         return productDao.getproduct(productId);
     }
+
+    @Override
+    public void getSave(SaveCartVO saveCartVO) {
+        productDao.insertSaveCart(saveCartVO);
+    }
+
 }

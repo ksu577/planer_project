@@ -4,6 +4,7 @@ import com.study.cart.vo.CartVO;
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.SearchVO;
 import com.study.product.vo.ProductVO;
+import com.study.product.vo.SaveCartVO;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public interface IproductService {
 
     // 5. 상품 상세
     public ProductVO getproduct(int productId);
+    public void getSave(SaveCartVO saveCartVO);
 
 
 
