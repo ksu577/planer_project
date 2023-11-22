@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import com.study.common.vo.PagingVO;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
+import com.study.common.vo.SearchVO;
 @Controller
 public class ProductController {
 
@@ -31,11 +31,14 @@ public class ProductController {
 
     // 1. 상품 전체 목록
     @RequestMapping("shop/minishop.wow")
-    public String list(Model model) {
-        List<ProductVO> productList = iproductService.getprodList();
+    public String productlist(Model model
+            , @ModelAttribute("paging") PagingVO paging
+            , @ModelAttribute("searchVO") SearchVO search ){
+        List<ProductVO> productList = iproductService.getprodList(paging,search);
         model.addAttribute("list", productList);
         return "/shop/minishop";
     }
+
 
     // 2. 상품 상세보기
     @RequestMapping("/product/productview.wow")
