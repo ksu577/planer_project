@@ -33,8 +33,11 @@ public class PlanController {
     Logger logger = LoggerFactory.getLogger(PlanController.class);
 
     @GetMapping("/plan.wow")
-    public String planMain(@RequestParam("planTitle") String title, Model model) {
+    public String planMain(@RequestParam("planTitle") String title, Model model, HttpSession session) {
         System.out.println(title);
+        UserVO user = (UserVO) session.getAttribute("user");
+        List<PlanVo> planList = planService.planView(user.getId(), title);
+        model.addAttribute("planList", planList);
         model.addAttribute("title", title);
         return "plan/plan";
     }
@@ -45,6 +48,7 @@ public class PlanController {
         System.out.println(title);
         List<PlanVo> planList = planService.planView(user.getId(), title);
         model.addAttribute("planList", planList);
+        model.addAttribute("title", title);
         return "plan/marker";
     }
 
@@ -57,7 +61,6 @@ public class PlanController {
         List<PlanVo> planMarker = planService.planMarker(title, result, user.getId());
         return planMarker;
     }
-
 
     @ResponseBody
     @PostMapping("/plan.wow")

@@ -80,14 +80,17 @@
         </div>
     </div>
 
-        <button onclick="f_delete()">삭제</button>
-
+    <button onclick="f_delete()">삭제</button>
+    <button onclick="f_update()">수정</button>
 </div>
 
 </body>
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dea7138cdf709909de935ce835cefee1&libraries=services"></script>
 <script>
+    const titleH1 = document.getElementById("title");
+    const day_div = document.getElementById("day");
+
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(36.3267842155492, 127.407836053487), // 지도의 중심좌표
@@ -228,11 +231,9 @@
         })
     });
 
-    const day_div = document.getElementById("day");
 
     let unique = [];
 
-    let title = '';
 
     <c:forEach items="${planList}" var="planList">
     if (!unique.includes('${planList.dayCount}')) {
@@ -242,15 +243,19 @@
         div.textContent = '${planList.dayCount}일차';
         day_div.appendChild(div)
 
-        const titleH1 = document.getElementById("title");
 
-        title = '${planList.planTitle}';
-        titleH1.innerHTML = title;
     }
     </c:forEach>
+    let title = '${title}';
+    titleH1.innerHTML = title;
+    console.log(title)
 
     function f_delete() {
-        location.href = encodeURI("/plan/planDelete.wow?title="+ title + "");
+        location.href = encodeURI("/plan/planDelete.wow?title=" + title + "");
+    }
+
+    function f_update() {
+        location.href = encodeURI("/plan/plan.wow?planTitle=" + title + "");
     }
 </script>
 
