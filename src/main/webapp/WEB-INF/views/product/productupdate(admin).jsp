@@ -58,17 +58,15 @@
     <div class="row">
         <div class="col-md-6">
             <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="productImage" class="form-label">상품 이미지</label>
+                <div class="mb-3" var="product">
+                    <label for="productImage" class="form-label">${product.img}</label>
                     <input type="file" class="form-control" id="productImage" accept="image/*" required>
                 </div>
             </div>
         </div>
-        <div class="col-md-6" style="height: 500px">
-            <div class="product-title">
-
+        <div class="col-md-6" style="height: 500px" var="product">
+            <div class="product-title" var="product">
                 <input type="text" class="form-control" value="${product.productName}" placeholder="상품명" style="width:30%">
-
             </div>
             <input type="text" class="form-control" value="${product.productPrice}" placeholder="가격" style="width:30%">
             <hr>
@@ -78,7 +76,7 @@
 
             <div class="product-buttons">
                 <button type="submit" class="btn btn-primary">삭제하기</button>
-                <button type="submit" class="btn btn-primary" >수정완료</button>
+                <button class="btn btn-primary" >수정완료</button>
             </div>
         </div>
     </div>
@@ -86,7 +84,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script>
-
+    function listCart() {
+        window.location.href = "/cart/shoppingcartinsert?productId=${product.productId}&amount="+$('#product-options').val();
+    }
 </script>
 
 </body>

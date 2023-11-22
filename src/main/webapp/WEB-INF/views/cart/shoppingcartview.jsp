@@ -98,6 +98,7 @@
             <span>결제 예정 금액</span>
             <span>${sumMoney + 3000}원</span>
         </div>
+
         <button onclick="return addressbeforepay()" class="btn btn-primary" style="width: 100%;">결제하기</button>
     </div>
 </div>

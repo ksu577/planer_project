@@ -5,14 +5,15 @@ import com.study.cart.vo.CartVO;
 import com.study.login.vo.UserVO;
 import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
+import com.study.product.vo.SaveCartVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import com.study.common.vo.PagingVO;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
+import com.study.common.vo.SearchVO;
 @Controller
 public class ProductController {
 
@@ -31,11 +32,14 @@ public class ProductController {
 
     // 1. 상품 전체 목록
     @RequestMapping("shop/minishop.wow")
-    public String list(Model model) {
-        List<ProductVO> productList = iproductService.getprodList();
+    public String productlist(Model model
+            , @ModelAttribute("paging") PagingVO paging
+            , @ModelAttribute("searchVO") SearchVO search ){
+        List<ProductVO> productList = iproductService.getprodList(paging,search);
         model.addAttribute("list", productList);
         return "/shop/minishop";
     }
+
 
     // 2. 상품 상세보기
     @RequestMapping("/product/productview.wow")
@@ -107,10 +111,23 @@ public class ProductController {
     // ---------------------샵 페이지------------MemberController로 갔어요
 
 
-    @RequestMapping("/shop/afterpay.wow")
-    public String afterpay() {
-        return "shop/afterpay";
+    @PostMapping("/shop/paypage.wow")
+    public String paypage(@ModelAttribute SaveCartVO saveCartVO, HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+        String userId = user.getId();
+        saveCartVO.setUserId(userId);
+        iproductService.getSave(saveCartVO);
+        return "redirect:/shop/afterpay.wow";
     }
+
+//    @GetMapping("/shop/afterpay.wow") 여기부분을 수정해야되는데
+//    public String afterpay(Model model, HttpSession session){
+//        UserVO user = (UserVO) session.getAttribute("user");
+//
+//        return "/shop/afterpay";
+//    }
+
+
 
 
 }
