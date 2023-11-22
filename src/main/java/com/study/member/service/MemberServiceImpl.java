@@ -56,4 +56,19 @@ public class MemberServiceImpl implements IMemberService{
         int count = memberDao.insertMember(member);
         if (count < 1) throw new BizNotEffectedException();
     }
+
+    @Override
+    public String findId(String name, String email) {
+        String result = "";
+
+        try {
+            result= memberDao.findId(name, email);
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return result ;
+    }
 }

@@ -177,4 +177,12 @@ public class MemberController {
         }
         return result;
     }
+
+    @PostMapping("/login/findId.wow")
+    @ResponseBody
+    public String findId(@RequestParam("name") String name, @RequestParam("email") String email) {
+        String result = memberService.findId(name, email);
+
+        return result;
+    }
 }

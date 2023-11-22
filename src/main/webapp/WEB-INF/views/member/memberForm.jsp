@@ -43,10 +43,10 @@
     }
 
     .member-input-box1 {
-        /* border: 1px solid red; */
+        /*border: 1px solid red;*/
         width: 100%;
-        height: 30%;
-        margin-top: 30px;
+        height: 100%;
+        margin-top: 20px;
     }
 
     .id-cover {
@@ -57,10 +57,6 @@
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
         margin-top: 20px;
-    }
-
-    .warning {
-        border: 1px solid red;
     }
 
     #member-id {
@@ -177,12 +173,6 @@
 
     .member-input-box1 input:focus {
         outline: none;
-    }
-
-    .member-input-box2 {
-        width: 100%;
-        height: 30%;
-        margin-top: 30px;
     }
 
     .name-cover {
@@ -344,9 +334,6 @@
                     <input name="email2" id="member-em2" type="text" placeholder="인증번호" required="required">
                     <button type="button" id="emCheck2" class="em-check-btn2">확인</button>
                 </div>
-            </div>
-
-            <div class="member-input-box2">
                 <div class="name-cover">
                     <input name="name" id="member-name" type="text" placeholder="이름" required="required">
                 </div>
