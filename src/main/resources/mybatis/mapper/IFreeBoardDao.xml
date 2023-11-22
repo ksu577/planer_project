@@ -42,7 +42,9 @@
         where 1=1
         <include refid="searchInFree"/>
         and bo_del_yn != 'Y'
-        ORDER BY free_num desc) a)
+        ORDER BY free_num DESC
+        ) a
+        )
         WHERE rnum between #{paging.firstRow} and #{paging.lastRow}
 
     </select>
