@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="java.util.List" %>
 <%
     request.setCharacterEncoding("UTF-8");
 %>
@@ -9,6 +10,70 @@
 <html>
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
+
+    <!-- 추가된 스타일과 스크립트 -->
+    <style type="text/css">
+        #noticeTable tbody tr {
+            display: table-row;
+        }
+
+        #noticeTable {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #noticeTable tbody tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        #noticeTable td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // 상단 공지글 개수 제한
+            var maxNoticeCount = 3;
+            var noticeCount = 0;
+
+            // 순회하며 공지글이면 상단에 추가하고 개수를 체크
+            $("tbody tr").each(function() {
+                if ($(this).find("td:nth-child(3) a").text().startsWith("[공지]") && noticeCount < maxNoticeCount) {
+                    $("#noticeTable tbody").append($(this).clone());
+                    $(this).remove();
+                    noticeCount++;
+                }
+            });
+
+            var noticeRows = $("#noticeTable tbody tr").toArray().sort(function (a, b){
+                var dateA = new Date($(a).find("td:nth-child(4)").text());
+                var dateB = new Date($(b).find("td:nth-child(4)").text());
+                return dateB - dateA;
+            });
+
+            if (noticeRows.length > 3){
+                noticeRows.slice(3).hide();
+            }
+
+            // 나머지 공지사항 숨김/보임 토글 처리
+            $("#showMoreNotices").click(function() {
+                noticeRows.slice(3).toggle();
+            });
+
+            if (noticeCount >= maxNoticeCount) {
+                $("#freeTable tbody tr").each(function () {
+                    if ($(this).find("td:nth-child(3) a").text().startsWith("[공지]")){
+                        $(this).remove();
+                    }
+                });
+            }
+        });
+    </script>
+
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
@@ -64,6 +129,22 @@
         </div>
     </div>
     <!-- END : 목록건수 및 새글쓰기 버튼  -->
+    <div class="page-header">
+        <h3>공지사항 - <small>최신 공지사항</small></h3>
+    </div>
+
+    <!-- 추가된 테이블 -->
+    <table id="noticeTable" class="table table-striped table-bordered table-hover">
+        <colgroup>
+            <col width="10%"/>
+            <col width="15%"/>
+            <col/>
+            <col width="10%"/>
+            <col width="10%"/>
+            <col width="10%"/>
+        </colgroup>
+        <tbody></tbody>
+    </table>
 
     <div class="page-header">
         <h3>자유게시판 - <small>글 목록</small></h3>
@@ -77,7 +158,7 @@
             </a>
         </div>
     </div>
-    <table class="table table-striped table-bordered table-hover">
+    <table id="freeTable" class="table table-striped table-bordered table-hover">
         <colgroup>
             <col width="10%"/>
             <col width="15%"/>
@@ -99,7 +180,7 @@
         <tbody>
         <c:forEach items="${freeBoardList }" var="freeBoard">
             <c:choose>
-                <c:when test="${fn:startsWith(freeBoard.title,'[공지]')}">
+                <c:when test="${fn:startsWith(freeBoard.title,'[공지]') and freeBoard.notice.equals('Y')}">
                     <tr class="text-center">
                         <td>${freeBoard.freeNum}</td>
                         <td>${freeBoard.id}</td>
@@ -110,11 +191,7 @@
                         <td>${freeBoard.viewRate}</td>
                     </tr>
                 </c:when>
-            </c:choose>
-        </c:forEach>
 
-        <c:forEach items="${freeBoardList}" var="freeBoard">
-            <c:choose>
                 <c:when test="${not fn:startsWith(freeBoard.title,'[공지]')}">
                     <tr class="text-center">
                         <td>${freeBoard.freeNum}</td>
@@ -133,7 +210,6 @@
                 </c:when>
             </c:choose>
         </c:forEach>
-
         </tbody>
     </table>
 

@@ -55,5 +55,24 @@
         from product
         order by name
     </select>
+    <select id="getTotalRowCount" resultType="java.lang.Integer">
+        SELECT  count(*)
+        FROM free_board
+        WHERE 1=1
+        <include refid="searchInFree"  />
+    </select>
 
+    <sql id="searchInFree">
+        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
+            <if test='search.searchType=="T"'>
+                AND title LIKE '%' || #{search.searchWord} || '%'
+            </if>
+            <if test='search.searchType=="W"'>
+                AND id LIKE '%' || #{search.searchWord} || '%'
+            </if>
+            <if test='search.searchType=="C"'>
+                AND free_context LIKE '%' || #{search.searchWord} || '%'
+            </if>
+        </if>
+    </sql>
 </mapper>

@@ -1,4 +1,4 @@
-package com.study;
+package com.study.home;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +23,8 @@ public class HomeController {
     public static void main(String[] args) {
         System.out.println("a");
     }
+
+
 }
 
 

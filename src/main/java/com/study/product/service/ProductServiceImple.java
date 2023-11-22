@@ -1,5 +1,7 @@
 package com.study.product.service;
 
+import com.study.common.vo.PagingVO;
+import com.study.common.vo.SearchVO;
 import com.study.product.dao.ProductDao;
 import com.study.product.vo.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,8 @@ public class ProductServiceImple implements IproductService {
 
     // 2. 상품 목록 ( 미니샾 )
     @Override
-    public List<ProductVO> getprodList() {
-        return productDao.getprodList();
+    public List<ProductVO> getprodList(PagingVO paging, SearchVO search) {
+        return productDao.getprodList(paging,search);
     }
 
     // 3. 상품 지우기

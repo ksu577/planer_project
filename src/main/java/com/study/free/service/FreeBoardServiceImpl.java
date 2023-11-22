@@ -138,8 +138,10 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 
         if (user != null && "MANAGER".equals(user.getRole())){
             freeBoard.setTitle("[공지]"+freeBoard.getTitle());
+            freeBoard.setNotice("Y");
             cnt = freeBoardDao.insertBoard(freeBoard);
         }else {
+            freeBoard.setNotice("N");
             cnt = freeBoardDao.insertBoard(freeBoard);
         }
 

@@ -19,24 +19,15 @@ public class FreeBoardVO {
     private String title;
     private String boDelYn;
     private String thumbnailImagePath;
-
-
-    public String getThumbnailImagePath() {
-        return thumbnailImagePath;
-    }
-
-    public void setThumbnailImagePath(String thumnailImagePath) {
-        this.thumbnailImagePath = thumnailImagePath;
-    }
-
+    private String notice;
 
     private List<AttachVO> attaches;
+
     private  int[] delAtchNos;
 
     public List<AttachVO> getAttaches() {
         return attaches;
     }
-
     public void setAttaches(List<AttachVO> attaches) {
         this.attaches = attaches;
     }
@@ -125,5 +116,21 @@ public class FreeBoardVO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getThumbnailImagePath() {
+        return thumbnailImagePath;
+    }
+
+    public void setThumbnailImagePath(String thumnailImagePath) {
+        this.thumbnailImagePath = thumnailImagePath;
+    }
+
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
     }
 }
