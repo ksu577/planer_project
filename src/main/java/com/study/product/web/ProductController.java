@@ -47,8 +47,14 @@ public class ProductController {
 
     // 3. 상품 등록페이지 이동
     @RequestMapping("/product/productregist")
-    public String productregist() {
-        return "/product/productregist";
+    public String productregist(HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+        if (user.getRole() == "admin") {
+            return "/product/productregist";
+        } else {
+
+        }
+        return "redirect:/shop/minishop.wow";
     }
 
     // 4. 상품 등록 페이지 (기능) -- 사진 db에 삽입하기
