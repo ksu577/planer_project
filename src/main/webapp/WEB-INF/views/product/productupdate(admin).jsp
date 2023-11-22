@@ -78,7 +78,7 @@
 
             <div class="product-buttons">
                 <button type="submit" class="btn btn-primary">삭제하기</button>
-                <button class="btn btn-primary" >수정완료</button>
+                <button type="submit" class="btn btn-primary" >수정완료</button>
             </div>
         </div>
     </div>
@@ -86,9 +86,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script>
-    // function cartlist() {
-    //     window.location.href = "/cart/shoppingcartview.wow"
-    // }
+
 </script>
 
 </body>

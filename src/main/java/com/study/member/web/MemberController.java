@@ -7,16 +7,25 @@ import com.study.common.vo.ResultMessageVO;
 import com.study.common.vo.SearchVO;
 import com.study.exception.*;
 import com.study.login.vo.UserVO;
-import com.study.member.dao.IMemberDao;
 import com.study.member.service.IMemberService;
 import com.study.member.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,6 +36,8 @@ public class MemberController {
     @Autowired
     IMemberService memberService;
 
+    @Value("#{util['file.upload.path']}")
+    private String uploadPath;
 
     @ExceptionHandler(value = {BizNotFoundException.class, BizNotEffectedException.class, BizPasswordNotMatchedException.class, BizException.class})
     public String exception(Model model, BizException e) {
@@ -74,9 +85,19 @@ public class MemberController {
 
 
     @PostMapping("/member/memberModify.wow")
-    public String memberModify(Model model, MemberVO member) throws BizException {
+    public String memberModify(Model model, MemberVO member, HttpSession session, String id, MultipartHttpServletRequest Request) throws Exception {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
-        memberService.modifyMember(member);
+
+        String profile = FileUtil.modifyMember(Request);   //multipart 라이브러리의 함수들을 통해, 파일의 값을 가져오고 지정된 로컬에 저장, 저장된이름을 profile 에 담았다.
+
+        UserVO user = (UserVO) session.getAttribute("user");
+        member.setProfile(profile);
+        member.setId(user.getId());
+        memberService.modifyMember(member);  // 이름, 사는곳 등등 회원정보 변경하는 코드
+
+        session.setAttribute("user", user);
+
+        //jsp로 가기위한 코드
         resultMessageVO.messageSetting(true, "수정", "수정 되었습니다."
                 , "/member/memberList.wow", "목록으로");
         model.addAttribute("resultMessageVO", resultMessageVO);
@@ -140,5 +161,28 @@ public class MemberController {
         } else {
             return "redirect:/login/login.wow";
         }
+    }
+    //img파일 썸네일
+    @RequestMapping("/member/showProfile.wow")
+    @ResponseBody
+    public ResponseEntity<byte[]> showImage(String fileName, String filePath) {
+        File file = new File(uploadPath + File.separatorChar + filePath, fileName);
+        ResponseEntity<byte[]> result = null;
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", Files.probeContentType(file.toPath()));
+            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @PostMapping("/login/findId.wow")
+    @ResponseBody
+    public String findId(@RequestParam("name") String name, @RequestParam("email") String email) {
+        String result = memberService.findId(name, email);
+
+        return result;
     }
 }

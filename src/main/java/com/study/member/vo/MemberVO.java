@@ -1,8 +1,7 @@
 package com.study.member.vo;
 
 import lombok.Data;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+
 
 @Data
 public class MemberVO {
@@ -18,5 +17,5 @@ public class MemberVO {
     private String delYn;      /* 삭제여부 */
     private String createDate; /* 가입일 */
     private String role;   /* 어드민 */
-
-  }
+    private String profile;     /* 프로필사진 */
+}

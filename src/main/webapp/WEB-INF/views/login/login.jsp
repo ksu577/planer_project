@@ -101,7 +101,7 @@
         border-radius: 8px;
         background-color: #98dde3;
         margin-left: 4%;
-        margin-top: 40px;
+        margin-top: 20px;
         cursor: pointer;
     }
 
@@ -112,7 +112,7 @@
     }
 
     a {
-        color: #136bf0;
+        color: #606060;
         font-size: 15px;
         text-decoration: none;
     }
@@ -124,7 +124,7 @@
     .message {
         color: red;
         margin-left: 110px;
-        margin-top: 30px;
+        margin-top: 15px;
     }
 </style>
 <%session.invalidate();%>
@@ -149,8 +149,10 @@
                     <p>로그인</p>
                 </button>
             </form>
-            <div style="padding-top: 20px; text-align: center;">
+            <div style="padding-top: 10px; text-align: center;">
                 <a href="/member/memberForm.wow">회원가입</a>
+                <a href="/login/findId.wow">| 아이디 찾기</a>
+                <a href="/login/findPw.wow">| 비밀번호 찾기</a>
             </div>
         </div>
     </div>

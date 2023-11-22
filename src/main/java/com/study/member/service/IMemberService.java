@@ -16,5 +16,6 @@ public interface IMemberService {
     public void modifyMember(MemberVO member) throws BizException;
     public void removeMember(MemberVO member) throws BizException;
     public void registMember(MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException;
+    public String findId(String name, String email);
 }
 

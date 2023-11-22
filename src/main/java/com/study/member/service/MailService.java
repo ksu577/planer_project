@@ -19,8 +19,9 @@ public class MailService {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
 
         String randomKey = getRandom();
-        mimeMessage.setSubject("인증번호 확인 메일 from next");
-        mimeMessage.setText("인증번호 : "+ randomKey);
+        mimeMessage.setSubject("[순자산 3조] 회원가입 인증번호");
+        mimeMessage.setText("안녕하세요. 순자산 3조 입니다. \n 회원가입 인증번호를 발급해드립니다. \n 인증번호는 5분 동안 유효합니다. \n -----------------------------------------------" +
+                "\n"+ randomKey + "\n-----------------------------------------------\n 고객님 본인이 요청하신 것이 아닌 경우, 고객센터로 문의 바랍니다. \n 감사합니다.");
         mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
         mailSender.send(mimeMessage);
         return randomKey;
