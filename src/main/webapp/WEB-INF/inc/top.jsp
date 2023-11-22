@@ -22,6 +22,7 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
+            background: linear-gradient(to right, #b6d3e0, #65c4ea);
         }
 
         .navcategory a {

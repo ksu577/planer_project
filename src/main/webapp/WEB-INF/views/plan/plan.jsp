@@ -350,7 +350,7 @@
 </div>
 </body>
 <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=24f0f0734176459a6e3cc215f20280a7&libraries=services"></script>
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dea7138cdf709909de935ce835cefee1&libraries=services"></script>
 
 <script>
 
@@ -655,7 +655,7 @@
     function f_day(count) {
         addedbox.innerHTML = "";
         day_count = count;
-        makeSchedulePlace(count-1)
+        makeSchedulePlace(count)
     }
 
 
