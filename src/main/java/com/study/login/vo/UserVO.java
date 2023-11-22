@@ -17,6 +17,4 @@ public class UserVO {
         this.password = password;
         this.role = role;
     }
-
-
 }

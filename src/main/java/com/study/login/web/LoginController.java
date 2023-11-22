@@ -1,15 +1,11 @@
 package com.study.login.web;
 
-import com.study.common.util.CookieUtils;
 import com.study.login.service.LoginService;
 import com.study.login.vo.UserVO;
 import com.study.member.service.IMemberService;
 import com.study.member.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -21,7 +17,6 @@ import com.study.login.dao.ILoginDao;
 import java.net.URLEncoder;
 
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 public class LoginController {
@@ -33,13 +28,8 @@ public class LoginController {
     IMemberService memberService;
 
     @GetMapping("/login/login.wow")
-    public String loginGet(Model model, String msg, HttpServletRequest req) throws IOException {
-        String id = "";
-        String checked = "";
-
-        if (msg == null) {
-            msg = "";
-        }
+    public String loginGet(Model model, String msg) throws IOException {
+        model.addAttribute("msg", msg);
         return "login/login";
     }
 
@@ -49,7 +39,6 @@ public class LoginController {
         String Id = memberVO.getId();
         String pw = memberVO.getPassword();
         UserVO user = loginService.getUser(Id);
-        System.out.println(user.getRole());
 
         if (user == null) {
             return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 입력해주세요.", "utf-8");
