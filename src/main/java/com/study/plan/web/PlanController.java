@@ -48,6 +48,7 @@ public class PlanController {
         System.out.println(title);
         List<PlanVo> planList = planService.planView(user.getId(), title);
         model.addAttribute("planList", planList);
+        model.addAttribute("title", title);
         return "plan/marker";
     }
 
