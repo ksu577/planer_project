@@ -7,9 +7,6 @@
 
 <head>
 
-
-    <title>topnavbar</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
@@ -40,7 +37,7 @@
 <body>
 
 <!-- navbar 시작 -->
-<div class="nav-bar">
+<div class="nav-bar fixed-top">
     <div class="homepagelogo">
         <img width="70px" height="70px"
              src="https://blogpfthumb-phinf.pstatic.net/MjAyMjEwMTZfMTI3/MDAxNjY1OTExMjQzOTEw.UVI-Y_plYDNPSB0xvcf94a312JWd-9G13TGbY5zFLQgg.rB78JXJkmCKSUYARca2qkLUu6NGqdlYCUoIsJ-wmIsAg.PNG.beatitude98/profileImage.png?type=w161"

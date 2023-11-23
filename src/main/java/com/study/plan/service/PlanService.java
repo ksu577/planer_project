@@ -40,5 +40,11 @@ public class PlanService implements IPlanService {
         planDao.planYn(title, id);
     }
 
+    @Override
+    public List<PlanVo> topPlan() {
+        List<PlanVo> topPlan = planDao.topPlan();
+        return topPlan;
+    }
+
 
 }

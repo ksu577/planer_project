@@ -14,5 +14,6 @@ public interface PlanDao {
     public List<PlanVo> planMarkerDao(@Param("title")String title,@Param("dayCount") int dayCount, @Param("id") String id);
     public int deletePlan(@Param("title") String title, @Param("id") String id);
     public int planYn (@Param("title") String title, @Param("id") String id);
+    public List<PlanVo> topPlan();
 
 }

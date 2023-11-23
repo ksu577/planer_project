@@ -75,6 +75,18 @@
             </otherwise>
         </choose> -->
     </select>
+
+    <select id="topPlan" resultType="com.study.plan.vo.PlanVo">
+        SELECT
+            place_name, count(place_name) as count
+        FROM
+            user_plan
+        where delete_yn = 'Y'
+        group by place_name
+        order by count(place_name) DESC
+    </select>
+
+
     <update id="planYn">
         UPDATE user_plan
         SET delete_yn = 'N'
