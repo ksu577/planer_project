@@ -37,7 +37,7 @@ public class managerController {
     }
 
     // 1.5 . 상품 리스트 - 어드민 보기용
-    @RequestMapping("/product/productlist")
+    @RequestMapping("/ManagerPage/managerproduct")
     public String productlist(Model model
                             , @ModelAttribute("paging") PagingVO paging
                             , @ModelAttribute("searchVO") SearchVO search ){

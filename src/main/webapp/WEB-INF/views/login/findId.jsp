@@ -196,17 +196,17 @@
             success: function (data) {
                 if (data == null) {
                     $('#result-section').text("회원 정보를 확인해주세요.");
-                    console.log(data)
                 } else {
                     document.getElementById("result-section").innerHTML = "";
                     for(let i = 0; i < data.length; i++){
                         document.getElementById("result-section").innerHTML += '<div>' + data[i]["id"] + '</div>'
+
                     }
                 }
             },
             error: function (error) {
                 console.log(error)
-                alert(error);
+                alert("에러발생");
             }
         })
     }
