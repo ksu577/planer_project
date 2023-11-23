@@ -67,6 +67,13 @@
         WHERE id = #{Id}
     </select>
 
+    <select id="findId" resultType="com.study.member.vo.MemberVO">
+        SELECT Id
+        FROM member
+        WHERE name = #{name}
+        AND email = #{email}
+    </select>
+
 
     <update id="updateMember" parameterType="com.study.member.vo.MemberVO">
         UPDATE member
