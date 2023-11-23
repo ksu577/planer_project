@@ -51,7 +51,7 @@ public class managerController {
         UserVO user = (UserVO) session.getAttribute("user");
         if (user.getRole() == "MANAGER") {
             iproductService.delete(productId);
-            return "redirect:/product/productlist";
+            return "redirect:/ManagerPage/managerproduct";
         } else {
             return "redirect:/";
         }
