@@ -68,18 +68,18 @@ public class FreeController {
         model.addAttribute("cateList", cateList);
         List<FreeBoardVO> freeBoardList = freeBoardService.getBoardList(paging, search, searchCategory);
 
-        for (FreeBoardVO freeBoardEntity : freeBoardList){
-            String context = freeBoardEntity.getFreeContext();
-            Document doc = Jsoup.parse(context);
-            Element imgElement = doc.selectFirst("resource/img");
-            if (imgElement !=null){
-                String src = imgElement.attr("src");
-                freeBoardEntity.setThumbnailImagePath(src);
-
-                String thumbnailFileName = getThumbnailFileName(src);
-                freeBoardEntity.setThumbnailImagePath(thumbnailFileName);
-            }
-        }
+//        for (FreeBoardVO freeBoardEntity : freeBoardList){
+//            String context = freeBoardEntity.getFreeContext();
+//            Document doc = Jsoup.parse(context);
+//            Element imgElement = doc.selectFirst("resource/img");
+//            if (imgElement !=null){
+//                String src = imgElement.attr("src");
+//                freeBoardEntity.setThumbnailImagePath(src);
+//
+//                String thumbnailFileName = getThumbnailFileName(src);
+//                freeBoardEntity.setThumbnailImagePath(thumbnailFileName);
+//            }
+//        }
         model.addAttribute("freeBoardList", freeBoardList);
         return "free/freeList";
     }

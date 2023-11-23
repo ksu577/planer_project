@@ -150,16 +150,16 @@
     </div>
 
     <!-- START : 목록건수 및 새글쓰기 버튼  -->
-    <div class="row" style="margin-bottom: 10px;">
-        <div class="col-sm-2  text-right">
-            전체 ${paging.totalRowCount}건 조회
-            <select id="id_rowSizePerPage" name="rowSizePerPage" class="form-control input-sm">
-                <c:forEach var="i" begin="15" end="50" step="15">
-                    <option value="${i}" ${paging.rowSizePerPage eq i ? "selected='selected'" : ""} >${i}</option>
-                </c:forEach>
-            </select>
-        </div>
-    </div>
+<%--    <div class="row" style="margin-bottom: 10px;">--%>
+<%--        <div class="col-sm-2  text-right">--%>
+<%--            전체 ${paging.totalRowCount}건 조회--%>
+<%--            <select id="id_rowSizePerPage" name="rowSizePerPage" class="form-control input-sm">--%>
+<%--                <c:forEach var="i" begin="15" end="50" step="15">--%>
+<%--                    <option value="${i}" ${paging.rowSizePerPage eq i ? "selected='selected'" : ""} >${i}</option>--%>
+<%--                </c:forEach>--%>
+<%--            </select>--%>
+<%--        </div>--%>
+<%--    </div>--%>
 
     <div class="row">
         <div class="col-sm-2 col-sm-offset-10 text-right" style="margin-bottom: 5px;">
@@ -168,14 +168,14 @@
                 &nbsp;새글쓰기
             </a>
         </div>
+        <div class="col-sm-2 col-sm-offset-0 text-left">
+            <a href="noticeList.wow" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                공지 더보기
+            </a>
+        </div>
     </div>
     <!-- 추가된 테이블 -->
-    <div class="col-sm-2 col-sm-offset-10 text-right">
-        <a href="noticeList.wow" class="btn btn-primary btn-sm">
-            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-            공지 더보기
-        </a>
-    </div>
     <table id="noticeTable" class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
