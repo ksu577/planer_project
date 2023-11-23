@@ -51,7 +51,7 @@
 
     <select id="getMember" resultType="com.study.member.vo.MemberVO" parameterType="String">
         SELECT
-          Id
+          id
         , name
         , password
         , address
@@ -68,7 +68,7 @@
     </select>
 
     <select id="findId" resultType="com.study.member.vo.MemberVO">
-        SELECT Id
+        SELECT id
         FROM member
         WHERE name = #{name}
         AND email = #{email}

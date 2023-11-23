@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class LoginService {
 
     @Autowired
-    private  IMemberDao memberDao;
+    private IMemberDao memberDao;
 
     public UserVO getUser(String Id) {
         MemberVO member = memberDao.getMember(Id);
@@ -30,5 +30,4 @@ public class LoginService {
             return user;
         }
     }
-
 }
