@@ -92,7 +92,7 @@ public class ProductController {
     @RequestMapping("/product/productModify(admin)")
     public String update(ProductVO productVO) {
         iproductService.update(productVO);
-        return "product/productupdate(admin)";
+        return "redirect: /shop/minishop.wow";
     }
 
     // 7. 상품 삭제 기능
