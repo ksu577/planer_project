@@ -9,11 +9,16 @@
     <title>memberEdit</title>
 </head>
 <body>
-<form action="memberModify.wow" method="post">
+<form action="memberModify.wow" method="post" enctype="multipart/form-data">
     <table border="1">
+
+        <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
+             id="profile" style="border-radius: 50px;  border: 1px solid gainsboro" width="100px" height="100px">
+        <input type="file" name="file" style="cursor: pointer; border: 1px solid #868e96">
+
         <tr>
             <th>아이디</th>
-            <td><input type="text" readonly name="id" value="${member.id}" required="required" style="border: 0"></td>
+            <td><input type="text" readonly name="id" value="${member.id}" required="required"></td>
         </tr>
 
         <tr>

@@ -45,7 +45,7 @@
         <img width="70px" height="70px"
              src="https://blogpfthumb-phinf.pstatic.net/MjAyMjEwMTZfMTI3/MDAxNjY1OTExMjQzOTEw.UVI-Y_plYDNPSB0xvcf94a312JWd-9G13TGbY5zFLQgg.rB78JXJkmCKSUYARca2qkLUu6NGqdlYCUoIsJ-wmIsAg.PNG.beatitude98/profileImage.png?type=w161"
              alt="">
-        <a href=""> 왼쪽엔 홈페이지 로고 </a>
+        <a href="/"> 왼쪽엔 홈페이지 로고 </a>
     </div>
 
     <div class="navcategory">
@@ -57,7 +57,7 @@
     <c:if test="${user==null}">
         <div class="btn-gruop-right">
             <a href="/login/login.wow">로그인</a>
-            <a> </a>
+
             <a href="/member/memberForm.wow">회원가입</a>
         </div>
     </c:if>
@@ -73,8 +73,8 @@
 
             <ul class="dropdown-menu">
                 <c:if test="${user.getRole()=='MANAGER'}">
-                    <a class="dropdown-item" href="/member/memberView.wow"> 관리자 페이지 </a>
-                </c:if>
+                <li><a class="dropdown-item" href="/ManagerPage/manager.wow"> 관리자 페이지 </a></li>
+                    </c:if>
                 <li><a class="dropdown-item" href="/member/memberView.wow"> 내 정보 </a></li>
                 <li><a class="dropdown-item" href="/member/memberEdit.wow"> 회원 정보 수정 </a></li>
                 <li><a class="dropdown-item" href="/plan/myPlan.wow?user=${user.getId()}"> 나의 여행 일정 </a></li>

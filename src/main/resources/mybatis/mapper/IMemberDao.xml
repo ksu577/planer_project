@@ -39,6 +39,7 @@
                 , email
                 , delYn
                 , role
+                , profile
               FROM member a
               WHERE 1=1
               <include refid="searchInMember" />
@@ -59,10 +60,18 @@
         , email
         , delYn
         , role
+        , profile
         , to_char(birth, 'YYYY-MM-DD') AS birth
         , to_char(createDate, 'YYYY-MM-DD') AS createDate
         FROM member
         WHERE id = #{Id}
+    </select>
+
+    <select id="findId" resultType="com.study.member.vo.MemberVO">
+        SELECT Id
+        FROM member
+        WHERE name = #{name}
+        AND email = #{email}
     </select>
 
 
@@ -76,6 +85,7 @@
           , phnum    = #{phnum}
           , email    = #{email}
           , birth    = #{birth}
+          , profile  = #{profile}
         WHERE id = #{Id}
     </update>
 
@@ -96,6 +106,7 @@
                             phnum,
                             email,
                             birth,
+                            profile,
                             createDate,
                             delYn)
         VALUES (    #{Id},
@@ -106,8 +117,8 @@
                     #{phnum},
                     #{email},
                     #{birth},
+                    #{profile},
                     sysdate,
                     'N')
     </insert>
-
 </mapper>
