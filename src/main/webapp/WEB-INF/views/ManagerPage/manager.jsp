@@ -80,8 +80,8 @@
             </div>
 
             <div>
-                <a href="/product/productlist">상품 목록</a>
-                <a href="">상품 등록</a>
+                <a href="/ManagerPage/managerproduct">상품 목록</a>
+                <a href="/product/productregist">상품 등록</a>
 
             </div>
 

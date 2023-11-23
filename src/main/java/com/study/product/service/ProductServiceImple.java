@@ -14,8 +14,10 @@ import java.util.List;
 @Service
 public class ProductServiceImple implements IproductService {
 
-    @Inject
+    @Autowired
     ProductDao productDao;
+
+
 
     // 1. 상품 추가
     @Override
@@ -26,7 +28,12 @@ public class ProductServiceImple implements IproductService {
     // 2. 상품 목록 ( 미니샾 )
     @Override
     public List<ProductVO> getprodList(PagingVO paging, SearchVO search) {
+        int totalRowCount = productDao.getTotalRowCount(paging,search);
+
+        paging.setTotalRowCount(totalRowCount);
+        paging.pageSetting();
         return productDao.getprodList(paging,search);
+
     }
 
     // 3. 상품 지우기
