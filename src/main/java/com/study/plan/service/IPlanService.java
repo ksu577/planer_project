@@ -15,4 +15,6 @@ public interface IPlanService {
     public void deletePlan(String title, String id);
 
     public void updateYn(String title, String id);
+
+    public List<PlanVo> topPlan();
 }

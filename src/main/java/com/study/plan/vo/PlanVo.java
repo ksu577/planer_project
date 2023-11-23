@@ -18,6 +18,16 @@ public class PlanVo {
     private String planHp;
     private String planTitle;
 
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     public String getPlanTitle() {
         return planTitle;
     }
