@@ -47,45 +47,48 @@
     </select>
 
     <select id="getprodList" resultType="com.study.product.vo.ProductVO">
-        select  id as product_id,
-                name as product_name,
-                price as product_price,
-                product_desc as product_desc,
-                img as img
-        from product
-        order by name
+        select *
+        from (select a.*, rownum AS rnum
+              from (select id           as product_id,
+                           name         as product_name,
+                           price        as product_price,
+                           product_desc as product_desc,
+                           img          as img
+                    from product
+                    where 1=1
+                    <include refid="searchInFree"/>
+                    order by name) a)
+        WHERE rnum between #{paging.firstRow} and #{paging.lastRow}
     </select>
+
     <select id="getTotalRowCount" resultType="java.lang.Integer">
-        SELECT  count(*)
-        FROM free_board
+        SELECT count(*)
+        FROM product
         WHERE 1=1
-        <include refid="searchInFree"  />
+        <include refid="searchInFree"/>
     </select>
 
     <sql id="searchInFree">
         <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
             <if test='search.searchType=="T"'>
-                AND title LIKE '%' || #{search.searchWord} || '%'
+                AND product_desc LIKE '%' || #{search.searchWord} || '%'
             </if>
             <if test='search.searchType=="W"'>
-                AND id LIKE '%' || #{search.searchWord} || '%'
+                AND  LIKE '%' || #{search.searchWord} || '%'
             </if>
             <if test='search.searchType=="C"'>
-                AND free_context LIKE '%' || #{search.searchWord} || '%'
+                AND name  LIKE '%' || #{search.searchWord} || '%'
             </if>
         </if>
     </sql>
 
     <insert id="insertSaveCart">
-        INSERT INTO save_cart (
-            user_id, save_num, take_name,
-            take_hp, take_mail, take_add,
-            take_detail_add, take_auto_add, take_req
-        ) VALUES (
-                     #{userId}, SAVE_CART_SEQ.nextval, #{takeName}
-                 , #{takeHp}, #{takeMail}, #{takeAdd}
-                 ,#{takeDetailAdd}, #{takeAutoAdd}, #{takeReq}
-                 )
+        INSERT INTO save_cart (user_id, save_num, take_name,
+                               take_hp, take_mail, take_add,
+                               take_detail_add, take_auto_add, take_req)
+        VALUES ( #{userId}, SAVE_CART_SEQ.nextval, #{takeName}
+               , #{takeHp}, #{takeMail}, #{takeAdd}
+               , #{takeDetailAdd}, #{takeAutoAdd}, #{takeReq})
     </insert>
 
 </mapper>
