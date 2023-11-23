@@ -50,6 +50,7 @@
         WHERE rnum between #{paging.firstRow} and #{paging.lastRow}
 
     </select>
+
     <resultMap id="freeAttaches" type="com.study.free.vo.FreeBoardVO">
         <collection property="attaches" column="{atchParentNo=free_num}"
                     ofType="com.study.attach.vo.AttachVO"

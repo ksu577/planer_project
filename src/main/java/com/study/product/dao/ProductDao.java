@@ -30,7 +30,8 @@ public interface ProductDao {
              , @Param("search") SearchVO search);
 
     public int getTotalRowCount(@Param("paging") PagingVO paging
-            , @Param("search") SearchVO search, @Param("searchCategory") String searchCategory);
+            , @Param("search") SearchVO search);
+
     public void insertSaveCart(SaveCartVO saveCartVO);
 
 }

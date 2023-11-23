@@ -21,7 +21,14 @@
                 <input type="hidden" name="curPage" value="${paging.curPage}">
                 <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
                 <div class="form-group">
-
+                    <label for="id_searchType" class="col-sm-1 control-label"></label>
+                    <div class="col-sm-2">
+                        <select id="id_searchType" name="searchType" class="form-control input-sm">
+                            <option value="T"  ${search.searchType=='T' ? "selected='selected'" :""} >제목</option>
+                            <option value="W" ${search.searchType=='W' ? "selected='selected'"  :""} >작성자</option>
+                            <option value="C" ${search.searchType=='C' ? "selected='selected'"  : ""} >내용</option>
+                        </select>
+                    </div>
                     <div class="col-sm-6">
                         <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}"
                                placeholder="검색어">
@@ -45,9 +52,14 @@
     </div>
     <!-- END : 검색 폼  -->
 
+
+    <div class="page-header">
+        <h3>상품 - <small>물건 목록</small></h3>
+    </div>
+
     <!-- START : 목록건수 및 새글쓰기 버튼  -->
     <div class="row" style="margin-bottom: 10px;">
-        <div class="col-sm-3 form-inline">
+        <div class="col-sm-2  text-right">
             전체 ${paging.totalRowCount}건 조회
             <select id="id_rowSizePerPage" name="rowSizePerPage" class="form-control input-sm">
                 <c:forEach var="i" begin="10" end="50" step="10">
@@ -55,11 +67,6 @@
                 </c:forEach>
             </select>
         </div>
-    </div>
-    <!-- END : 목록건수 및 새글쓰기 버튼  -->
-
-    <div class="page-header">
-        <h3>상품 - <small>물건 목록</small></h3>
     </div>
 
     <div class="row">
@@ -71,21 +78,13 @@
         </div>
     </div>
     <table class="table table-striped table-bordered table-hover">
-        <colgroup>
-            <col width="10%"/>
-            <col width="15%"/>
-            <col/>
-            <col width="10%"/>
-            <col width="10%"/>
-            <col width="10%"/>
-        </colgroup>
         <thead>
         <tr>
             <th>물품 번호</th>
             <th>가격</th>
             <th>물품 설명</th>
             <th>물품 이름</th>
-
+            <th>삭제</th>
         </tr>
         </thead>
         <tbody>
@@ -93,13 +92,18 @@
 
         <c:forEach items="${productList}" var="productList">
 
-                    <tr class="text-center">
-                        <td>${productList.productId}</td>
-                        <td>${productList.productPrice}</td>
-                        <td>${productList.productDesc}</td>
-                        <td>
-                            <a href="productview.wow?productId=${productList.productId}">${productList.productName}</a></td>
-                    </tr>
+            <tr class="text-center">
+                <td>${productList.productId}</td>
+                <td>${productList.productPrice}</td>
+                <td>${productList.productDesc}</td>
+                <td><a href="/product/productview.wow?productId=${productList.productId}">${productList.productName}</a></td>
+                <td>
+                    <form action="/product/productDelete" method="post">
+                        <input type="hidden" name="product" value="${productList.productId}">
+                        <button type="submit">삭제</button>
+                    </form>
+                </td>
+            </tr>
         </c:forEach>
 
         </tbody>

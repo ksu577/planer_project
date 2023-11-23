@@ -406,15 +406,29 @@
             , type: "get"
             , data: {"sendKey": mailCheck}
             , success: function (data) {
-                emailCheckIdentify = true;
-                alert(data);
-            }
-            , error: function (err) {
+                alert(data)
+                if(data == "인증 되었습니다.") {
+                    emailCheckIdentify = true;
+                }
+                else {
+                    emailCheckIdentify = false;
+                }
+
+            }, error: function (err) {
                 emailCheckIdentify = false;
                 alert("인증번호를 확인해주세요.");
+
+            }, complete() {
+                if(emailCheckIdentify)
+                {
+                    $("#member-em").prop('disabled', true);
+                    $("#member-em2").prop('disabled', true);
+                }
             }
         });
     });
+
+
 
     $("#member-btn").on("click", function (e) {
         if (!idCheckIdentify) {
@@ -425,6 +439,9 @@
             alert("인증번호를 확인해주세요.")
             return;
         }
+
+        $("#member-em").prop('disabled', false);
+        $("#member-em2").prop('disabled', false);
 
         document.getElementById('memForm').submit();
 

@@ -144,11 +144,11 @@
     </div>
     <!-- END : 검색 폼  -->
 
-    <!-- END : 목록건수 및 새글쓰기 버튼  -->
 
     <div class="page-header">
         <h3>자유게시판 - <small>글 목록</small></h3>
     </div>
+
     <!-- START : 목록건수 및 새글쓰기 버튼  -->
     <div class="row" style="margin-bottom: 10px;">
         <div class="col-sm-2  text-right">
@@ -160,6 +160,7 @@
             </select>
         </div>
     </div>
+
     <div class="row">
         <div class="col-sm-2 col-sm-offset-10 text-right" style="margin-bottom: 5px;">
             <a href="freeForm.wow" class="btn btn-primary btn-sm">
