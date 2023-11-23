@@ -44,35 +44,29 @@
       <hr>
       <form>
         <div class="mb-3">
-          <%--          회원정보로 DB에서 데이터 받아와야됨--%>
-          <label for="recipientName" class="form-label"> 수령인 : ${member.name}</label>
-          <input type="text" class="form-control"  id="recipientName" value="${member.name}" >
+          <span>수령인 : ${userinfo.takeName}</span>
         </div>
         <div class="mb-3">
-          <%--          회원정보로 DB에서 데이터 받아와야됨--%>
-          <label for="phoneNumber" class="form-label"> 연락처 : ${member.phnum}</label>
-          <input type="tel" class="form-control" id="phoneNumber" placeholder="-를 제외한 숫자만 입력 (ex.01012345678)" value="${member.phnum}">
+          <span> 연락처 : ${userinfo.takeHp} </span>
 
         </div>
         <div class="mb-3">
-          <%--          여긴 payapge에서 그대로 정보 받아와야됨--%>
-          <label for="address" class="form-label"> 배송지 : ${saveCartVO.address}</label>
+          <span>배송지 : ${userinfo.takeAdd}</span>
         </div>
 
         <div class="mb-3">
-          <%--          여긴 payapge에서 그대로 정보 받아와야됨--%>
-          <label for="deliveryRequest" class="form-label"> 배송 메모 : ${saveCartVO.deliveryRequest}</label>
+          <span>배송 메모 : ${userinfo.takeReq}</span>
         </div>
       </form>
     </div>
     <div class="bill col-md-4">
       <div class="mb-3" style="display: flex; flex-direction: column;">
-        <span>총 상품금액 : ${saveCartVO.sumMoney}</span>
+        <span>총 상품금액 : 총액 원</span>
         <span>배송비 : 3000원</span>
       </div>
       <hr>
       <div class="mb-3">
-        <span>결제된 금액 : ${saveCartVO.sumMoney + 3000} 원</span>
+        <span>결제된 금액 : 총액 원</span>
       </div>
     </div>
   </div>

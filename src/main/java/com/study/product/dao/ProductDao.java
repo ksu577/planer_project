@@ -1,5 +1,6 @@
 package com.study.product.dao;
 
+import com.study.cart.vo.CartVO;
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.SearchVO;
 import com.study.product.vo.ProductVO;
@@ -34,4 +35,8 @@ public interface ProductDao {
 
     public void insertSaveCart(SaveCartVO saveCartVO);
 
+//    xml dao service 전부 수정할 예정 11월 23일
+//    public List<CartVO> selectuserInfo(String id);
+//
+//    public void selectproductInfo(String id);
 }

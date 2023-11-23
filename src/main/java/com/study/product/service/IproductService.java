@@ -31,6 +31,12 @@ public interface IproductService {
     public void getSave(SaveCartVO saveCartVO);
 
 
+    //11월 23일
+    public List<CartVO> viewuserInfo(String id);
+
+    public  List<ProductVO> viewproductInfo(String productid);
+
+
 
 
 }
