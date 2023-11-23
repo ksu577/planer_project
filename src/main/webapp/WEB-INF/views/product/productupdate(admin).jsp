@@ -62,7 +62,7 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="img" class="form-label">상품 이미지</label>
-                        <input type="file" class="form-control" id="img" accept="image/*" required>
+                        <input type="file" class="form-control" name="img" id="img" accept="image/*" required>
                     </div>
                 </div>
             </div>
@@ -70,14 +70,14 @@
                 <div class="product-title">
                     <input type="hidden" name="productId" value="${product.productId}">
 
-                    <input type="text" class="form-control" value="${product.productName}" placeholder="상품명"
+                    <input type="text" class="form-control" name="productName" value="${product.productName}" placeholder="상품명"
                            style="width:30%">
 
                 </div>
-                <input type="text" class="form-control" value="${product.productPrice}" placeholder="가격"
+                <input type="text" class="form-control" name="productPrice" value="${product.productPrice}" placeholder="가격"
                        style="width:30%">
                 <hr>
-                <input type="text" class="form-control" value="${product.productDesc}" placeholder="상품상세설명"
+                <input type="text" class="form-control" name="productDesc" value="${product.productDesc}" placeholder="상품상세설명"
                        style="height:40%">
                 <hr>
 
@@ -90,9 +90,6 @@
     </form>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
 
 
 </body>

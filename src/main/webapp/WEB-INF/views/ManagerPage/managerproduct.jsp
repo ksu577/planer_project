@@ -85,7 +85,7 @@
             <th>가격</th>
             <th>물품 설명</th>
             <th>물품 이름</th>
-
+            <th>삭제</th>
         </tr>
         </thead>
         <tbody>
@@ -93,13 +93,18 @@
 
         <c:forEach items="${productList}" var="productList">
 
-                    <tr class="text-center">
-                        <td>${productList.productId}</td>
-                        <td>${productList.productPrice}</td>
-                        <td>${productList.productDesc}</td>
-                        <td>
-                            <a href="productview.wow?productId=${productList.productId}">${productList.productName}</a></td>
-                    </tr>
+            <tr class="text-center">
+                <td>${productList.productId}</td>
+                <td>${productList.productPrice}</td>
+                <td>${productList.productDesc}</td>
+                <td><a href="productview.wow?productId=${productList.productId}">${productList.productName}</a></td>
+                <td>
+                    <form action="/product/productDelete" method="post">
+                        <input type="hidden" name="product" value="${productList.productId}">
+                        <button type="submit">삭제</button>
+                    </form>
+                </td>
+            </tr>
         </c:forEach>
 
         </tbody>
