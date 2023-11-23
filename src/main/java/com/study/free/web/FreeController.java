@@ -71,7 +71,7 @@ public class FreeController {
         for (FreeBoardVO freeBoardEntity : freeBoardList){
             String context = freeBoardEntity.getFreeContext();
             Document doc = Jsoup.parse(context);
-            Element imgElement = doc.selectFirst("img");
+            Element imgElement = doc.selectFirst("resource/img");
             if (imgElement !=null){
                 String src = imgElement.attr("src");
                 freeBoardEntity.setThumbnailImagePath(src);

@@ -142,24 +142,24 @@ public class MemberController {
 //        return resultMessageVO.getUrl();
     }
 
-//    @GetMapping("/shop/paypage.wow")
-//    public String cartList(Model model, HttpSession session) throws BizNotFoundException {
-//        UserVO user = (UserVO) session.getAttribute("user");
-//
-//        if (user != null) {
-//            String userId = user.getId();
-//            MemberVO member = memberService.getMember(userId);
-//            model.addAttribute("member", member);
-//            List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
-//            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
-//            model.addAttribute("listCart", list); // 장바구니 정보 추가
-//            model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
-//            return "shop/paypage";
-//        } else {
-//            return "redirect:/login/login.wow";
-//        }
-//
-//    }
+    @GetMapping("/shop/paypage.wow")
+    public String cartList(Model model, HttpSession session) throws BizNotFoundException {
+        UserVO user = (UserVO) session.getAttribute("user");
+
+        if (user != null) {
+            String userId = user.getId();
+            MemberVO member = memberService.getMember(userId);
+            model.addAttribute("member", member);
+            List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
+            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
+            model.addAttribute("listCart", list); // 장바구니 정보 추가
+            model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
+            return "shop/paypage";
+        } else {
+            return "redirect:/login/login.wow";
+        }
+
+    }
 //
 //    @PostMapping("/shop/paypage.wow")
 //    public String paypage(HttpSession session, Model model) throws BizNotFoundException {
