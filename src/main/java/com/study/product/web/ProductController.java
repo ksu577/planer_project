@@ -2,7 +2,9 @@ package com.study.product.web;
 
 import com.study.cart.service.ICartService;
 import com.study.cart.vo.CartVO;
+import com.study.exception.BizNotFoundException;
 import com.study.login.vo.UserVO;
+import com.study.member.vo.MemberVO;
 import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
 import com.study.product.vo.SaveCartVO;
@@ -117,7 +119,7 @@ public class ProductController {
         String userId = user.getId();
         saveCartVO.setUserId(userId);
         iproductService.getSave(saveCartVO);
-        return "redirect:/shop/afterpay.wow";
+        return "shop/afterpay";
     }
 
 //    @GetMapping("/shop/afterpay.wow") 여기부분을 수정해야되는데
@@ -127,6 +129,42 @@ public class ProductController {
 //        return "/shop/afterpay";
 //    }
 
+
+    // 도전했던 흔적들...
+//    @Autowired
+//    IMemberService memberService; 아래꺼 쓰려면 위에 이거 써야겠지..?
+
+//    @PostMapping("/shop/paypage.wow")
+//    public String paypage(@ModelAttribute SaveCartVO saveCartVO, HttpSession session, Model model) throws BizNotFoundException {
+//        UserVO user = (UserVO) session.getAttribute("user");
+//        String userId = user.getId();
+//        saveCartVO.setUserId(userId);
+//        MemberVO member = memberService.getMember(userId);
+//        model.addAttribute("saveCartVO", saveCartVO);
+//        model.addAttribute("member", member);
+//
+//        iproductService.getSave(saveCartVO);
+//        session.setAttribute("saveCartVO", saveCartVO);
+//        session.setAttribute("member", member);
+//
+//        return "redirect:/shop/afterpay.wow?method=POST";
+//    }
+//
+//
+//    @GetMapping("/shop/afterpay.wow")
+//    public String afterpay(Model model, HttpSession session, @RequestParam(value = "method", required = false) String method){
+//        if (!"POST".equals(method)) {
+//            return "redirect:/";
+//        }
+//
+//        UserVO user = (UserVO) session.getAttribute("user");
+//        SaveCartVO saveCartVO = (SaveCartVO) session.getAttribute("saveCartVO");
+//        MemberVO member = (MemberVO) session.getAttribute("member");
+//
+//        model.addAttribute("saveCartVO", saveCartVO);
+//        model.addAttribute("member", member);
+//        return "/shop/afterpay";
+//    }
 
 
 

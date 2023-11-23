@@ -160,19 +160,19 @@ public class MemberController {
         }
 
     }
-
-    @PostMapping("/shop/paypage.wow")
-    public String paypage(HttpSession session, Model model) throws BizNotFoundException {
-        UserVO user = (UserVO) session.getAttribute("user");
-
-
-        if (user != null) {
-            String userId = user.getId();
-            return "shop/paypage";
-        } else {
-            return "redirect:/login/login.wow";
-        }
-    }
+//
+//    @PostMapping("/shop/paypage.wow")
+//    public String paypage(HttpSession session, Model model) throws BizNotFoundException {
+//        UserVO user = (UserVO) session.getAttribute("user");
+//
+//
+//        if (user != null) {
+//            String userId = user.getId();
+//            return "shop/paypage";
+//        } else {
+//            return "redirect:/login/login.wow";
+//        }
+//    }
 
     //img파일 썸네일
     @RequestMapping("/member/showProfile.wow")
