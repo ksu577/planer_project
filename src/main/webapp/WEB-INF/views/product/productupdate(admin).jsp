@@ -4,7 +4,8 @@
 <head>
     <% request.setCharacterEncoding("UTF-8"); %>
     <%@include file="/WEB-INF/inc/header.jsp" %>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <style>
         .container {
             width: 100%;
@@ -55,39 +56,43 @@
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <div class="container">
     <h1 class="text-center">상품 상세 페이지</h1>
-    <div class="row">
-        <div class="col-md-6">
+    <form action="/product/productModify(admin)" method="post">
+        <div class="row">
             <div class="col-md-6">
-                <div class="mb-3" var="product">
-                    <label for="productImage" class="form-label">${product.img}</label>
-                    <input type="file" class="form-control" id="productImage" accept="image/*" required>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="img" class="form-label">상품 이미지</label>
+                        <input type="file" class="form-control" name="img" id="img" accept="image/*" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="height: 500px">
+                <div class="product-title">
+                    <input type="hidden" name="productId" value="${product.productId}">
+
+                    <input type="text" class="form-control" name="productName" value="${product.productName}" placeholder="상품명"
+                           style="width:30%">
+
+                </div>
+                <input type="text" class="form-control" name="productPrice" value="${product.productPrice}" placeholder="가격"
+                       style="width:30%">
+                <hr>
+                <input type="text" class="form-control" name="productDesc" value="${product.productDesc}" placeholder="상품상세설명"
+                       style="height:40%">
+                <hr>
+
+
+                <div class="product-buttons">
+                    <button type="submit" class="btn btn-primary">수정완료</button>
                 </div>
             </div>
         </div>
-        <div class="col-md-6" style="height: 500px" var="product">
-            <div class="product-title" var="product">
-                <input type="text" class="form-control" value="${product.productName}" placeholder="상품명" style="width:30%">
-            </div>
-            <input type="text" class="form-control" value="${product.productPrice}" placeholder="가격" style="width:30%">
-            <hr>
-            <input type="text" class="form-control" value="${product.productDesc}" placeholder="상품상세설명" style="height:40%">
-            <hr>
-
-
-            <div class="product-buttons">
-                <button type="submit" class="btn btn-primary">삭제하기</button>
-                <button class="btn btn-primary" >수정완료</button>
-            </div>
-        </div>
-    </div>
+    </form>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<script>
-    function listCart() {
-        window.location.href = "/cart/shoppingcartinsert?productId=${product.productId}&amount="+$('#product-options').val();
-    }
-</script>
+
 
 </body>
+
+
 </html>
