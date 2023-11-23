@@ -75,6 +75,7 @@
         font-size: 15px;
         outline: none;
     }
+
     .em-check-btn {
         width: 50px;
         height: 48px;
@@ -151,6 +152,7 @@
 
     let CheckIdentify = false;
 
+
     $("#emCheck").on("click", function (e) {
         let mailAddress = $("input[name='email']").val();
         $.ajax({
@@ -167,6 +169,7 @@
     });
 
 
+
     $("#emCheck2").on("click", function (e) {
         let mailCheck = $("input[name='emailcheck']").val();
         $.ajax({
@@ -174,15 +177,25 @@
             , type: "get"
             , data: {"sendKey": mailCheck}
             , success: function (data) {
-                CheckIdentify = true;
                 alert(data);
-            }
-            , error: function (err) {
+                if (data == "인증 되었습니다.") {
+                    CheckIdentify = true;
+                } else {
+                    CheckIdentify = false;
+                }
+            }, error: function (err) {
                 CheckIdentify = false;
                 alert("인증번호를 확인해주세요.");
+
+            }, complete() {
+                if (CheckIdentify) {
+                    $("#email").prop('disabled', true);
+                    $("#emailcheck").prop('disabled', true);
+                }
             }
         });
     });
+
 
     function findId_click() {
         let curName = $("input[name=name]").val();
@@ -198,13 +211,12 @@
                     $('#result-section').text("회원 정보를 확인해주세요.");
                 } else {
                     document.getElementById("result-section").innerHTML = "";
-                    for(let i = 0; i < data.length; i++){
+                    for (let i = 0; i < data.length; i++) {
                         document.getElementById("result-section").innerHTML += '<div>' + data[i]["id"] + '</div>'
 
                     }
                 }
-            },
-            error: function (error) {
+            }, error: function (error) {
                 console.log(error)
                 alert("에러발생");
             }

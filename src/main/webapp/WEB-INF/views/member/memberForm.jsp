@@ -409,8 +409,7 @@
                 alert(data)
                 if(data == "인증 되었습니다.") {
                     emailCheckIdentify = true;
-                }
-                else {
+                } else {
                     emailCheckIdentify = false;
                 }
 
@@ -419,8 +418,7 @@
                 alert("인증번호를 확인해주세요.");
 
             }, complete() {
-                if(emailCheckIdentify)
-                {
+                if(emailCheckIdentify) {
                     $("#member-em").prop('disabled', true);
                     $("#member-em2").prop('disabled', true);
                 }
