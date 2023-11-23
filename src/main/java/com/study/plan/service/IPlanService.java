@@ -13,4 +13,6 @@ public interface IPlanService {
     public List<PlanVo> planMarker(String result, int dayCount, String id);
 
     public void deletePlan(String title, String id);
+
+    public void updateYn(String title, String id);
 }

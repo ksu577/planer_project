@@ -65,10 +65,10 @@
     addSchedule("${myPlan.planTitle}", "${myPlan.regDate}");
     </c:forEach>
 
-        $(document).on("click", ".schedule", function () {
-            let title = $(this).find(".mp-span").text()
-            location.href = encodeURI("/plan/marker.wow?planTitle=" + title);
-        });
+    $(document).on("click", ".schedule", function () {
+        let title = $(this).find(".mp-span").text()
+        location.href = encodeURI("/plan/marker.wow?planTitle=" + title);
+    });
 </script>
 </body>
 </html>

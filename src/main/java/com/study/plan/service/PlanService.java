@@ -25,7 +25,7 @@ public class PlanService implements IPlanService {
     }
 
     @Override
-    public List<PlanVo> planMarker(String result ,int dayCount, String id){
+    public List<PlanVo> planMarker(String result, int dayCount, String id) {
         List<PlanVo> planMarkerDao = planDao.planMarkerDao(result, dayCount, id);
         return planMarkerDao;
     }
@@ -33,6 +33,11 @@ public class PlanService implements IPlanService {
     @Override
     public void deletePlan(String title, String id) {
         planDao.deletePlan(title, id);
+    }
+
+    @Override
+    public void updateYn(String title, String id) {
+        planDao.planYn(title, id);
     }
 
 
