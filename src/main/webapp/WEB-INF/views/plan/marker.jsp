@@ -157,7 +157,7 @@
                 }
 
                 // 마커 이미지의 이미지 주소입니다
-                var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+                var imageSrc = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUpy2owLX74dkXd94lyfm9V7DckpJwkwjoYQ&usqp=CAU";
 
                 for (var i = 0; i < positions.length; i++) {
 
@@ -242,10 +242,9 @@
         div.classList.add('day_count');
         div.textContent = '${planList.dayCount}일차';
         day_div.appendChild(div)
-
-
     }
     </c:forEach>
+
     let title = '${title}';
     titleH1.innerHTML = title;
     console.log(title)

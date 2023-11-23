@@ -37,6 +37,7 @@ public class PlanController {
         System.out.println(title);
         UserVO user = (UserVO) session.getAttribute("user");
         List<PlanVo> planList = planService.planView(user.getId(), title);
+        planService.updateYn(title, user.getId());
         model.addAttribute("planList", planList);
         model.addAttribute("title", title);
         return "plan/plan";
@@ -79,6 +80,7 @@ public class PlanController {
         for (int i = 1; i < planList.size(); i++) {
 //            n일차 가게
             List<Map<String, Object>> nShopList = planList.get(i);
+            System.out.println(nShopList);
             for (int j = 0; j < nShopList.size(); j++) {
                 Map<String, Object> shopInfoJson = nShopList.get(j);
                 System.out.println(shopInfoJson.get("placeName"));

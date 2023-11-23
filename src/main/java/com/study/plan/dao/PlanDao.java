@@ -13,5 +13,6 @@ public interface PlanDao {
     public List<PlanVo> getPlan(@Param("id") String id,@Param("title") String title);
     public List<PlanVo> planMarkerDao(@Param("title")String title,@Param("dayCount") int dayCount, @Param("id") String id);
     public int deletePlan(@Param("title") String title, @Param("id") String id);
+    public int planYn (@Param("title") String title, @Param("id") String id);
 
 }

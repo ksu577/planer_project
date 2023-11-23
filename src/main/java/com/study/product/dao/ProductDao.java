@@ -4,6 +4,7 @@ import com.study.common.vo.PagingVO;
 import com.study.common.vo.SearchVO;
 import com.study.product.vo.ProductVO;
 
+import com.study.product.vo.SaveCartVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -30,5 +31,6 @@ public interface ProductDao {
 
     public int getTotalRowCount(@Param("paging") PagingVO paging
             , @Param("search") SearchVO search, @Param("searchCategory") String searchCategory);
+    public void insertSaveCart(SaveCartVO saveCartVO);
 
 }
