@@ -14,7 +14,7 @@
 
     <!-- 추가된 스타일과 스크립트 -->
     <style type="text/css">
-        #noticeTable{
+        #noticeTable {
             margin: auto;
         }
 
@@ -48,41 +48,56 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            // 상단 공지글 개수 제한
-            var maxNoticeCount = 3;
-            var noticeCount = 0;
+            function applyNoticeLogic() {
+                // 상단 공지글 개수 제한
+                var maxNoticeCount = 3;
+                var noticeCount = 0;
 
-            // 순회하며 공지글이면 상단에 추가하고 개수를 체크
-            $("tbody tr").each(function () {
-                if ($(this).find("td:nth-child(3) a").text().startsWith("[공지]") && noticeCount < maxNoticeCount) {
-                    $("#noticeTable tbody").append($(this).clone());
-                    $(this).remove();
-                    noticeCount++;
-                }
-            });
-
-            var noticeRows = $("#noticeTable tbody tr").toArray().sort(function (a, b) {
-                var dateA = new Date($(a).find("td:nth-child(4)").text());
-                var dateB = new Date($(b).find("td:nth-child(4)").text());
-                return dateB - dateA;
-            });
-
-            if (noticeRows.length > 3) {
-                noticeRows.slice(3).hide();
-            }
-
-            // 나머지 공지사항 숨김/보임 토글 처리
-            $("#showMoreNotices").click(function () {
-                noticeRows.slice(3).toggle();
-            });
-
-            if (noticeCount >= maxNoticeCount) {
-                $("#freeTable tbody tr").each(function () {
-                    if ($(this).find("td:nth-child(3) a").text().startsWith("[공지]")) {
+                // 순회하며 공지글이면 상단에 추가하고 개수를 체크
+                $("tbody tr").each(function () {
+                    if ($(this).find("td:nth-child(3) a").text().startsWith("[공지]") && noticeCount < maxNoticeCount) {
+                        $("#noticeTable tbody").append($(this).clone());
                         $(this).remove();
+                        noticeCount++;
                     }
                 });
+
+                var noticeRows = $("#noticeTable tbody tr").toArray().sort(function (a, b) {
+                    var dateA = new Date($(a).find("td:nth-child(4)").text());
+                    var dateB = new Date($(b).find("td:nth-child(4)").text());
+                    return dateB - dateA;
+                });
+
+                if (noticeRows.length > 3) {
+                    noticeRows.slice(3).hide();
+                }
+
+                // 나머지 공지사항 숨김/보임 토글 처리
+                $("#showMoreNotices").click(function () {
+                    noticeRows.slice(3).toggle();
+                });
+
+                if (noticeCount >= maxNoticeCount) {
+                    $("#freeTable tbody tr").each(function () {
+                        if ($(this).find("td:nth-child(3) a").text().startsWith("[공지]")) {
+                            $(this).remove();
+                        }
+                    });
+                }
             }
+
+            applyNoticeLogic();
+            $('ul.pagination li a[data-page]').click(function (e) {
+                e.preventDefault();
+                let curPage = $(this).data('page');
+                $curPage.val(curPage);
+                $form.submit();
+
+                setTimeout(function () {
+                    applyNoticeLogic();
+                }, 100);
+            });
+            applyNoticeLogic();
         });
     </script>
 
@@ -139,7 +154,7 @@
         <div class="col-sm-2  text-right">
             전체 ${paging.totalRowCount}건 조회
             <select id="id_rowSizePerPage" name="rowSizePerPage" class="form-control input-sm">
-                <c:forEach var="i" begin="10" end="50" step="10">
+                <c:forEach var="i" begin="15" end="50" step="15">
                     <option value="${i}" ${paging.rowSizePerPage eq i ? "selected='selected'" : ""} >${i}</option>
                 </c:forEach>
             </select>
@@ -155,6 +170,12 @@
         </div>
     </div>
     <!-- 추가된 테이블 -->
+    <div class="col-sm-2 col-sm-offset-10 text-right">
+        <a href="noticeList.wow" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            공지 더보기
+        </a>
+    </div>
     <table id="noticeTable" class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
@@ -187,36 +208,36 @@
         </colgroup>
         <tbody>
         <c:forEach items="${freeBoardList }" var="freeBoard">
-            <c:choose>
-                <c:when test="${fn:startsWith(freeBoard.title,'[공지]') and freeBoard.notice.equals('Y')}">
-                    <tr class="text-center">
-                        <td>${freeBoard.freeNum}</td>
-                        <td>${freeBoard.id}</td>
-                        <td>
-                            <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a>
-                        </td>
-                        <td>${freeBoard.createDate}</td>
-                        <td>${freeBoard.viewRate}</td>
-                    </tr>
-                </c:when>
+        <c:choose>
+        <c:when test="${fn:startsWith(freeBoard.title,'[공지]') and freeBoard.notice.equals('Y')}">
+        <tr class="text-center">
+            <td>${freeBoard.freeNum}</td>
+            <td>${freeBoard.id}</td>
+            <td>
+                <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a>
+            </td>
+            <td>${freeBoard.createDate}</td>
+            <td>${freeBoard.viewRate}</td>
+        </tr>
+        </c:when>
 
-                <c:when test="${not fn:startsWith(freeBoard.title,'[공지]')}">
-                    <tr class="text-center">
-                        <td>${freeBoard.freeNum}</td>
-                        <!-- 이미지 표시 -->
-                        <td>
-                            <!-- 이미지 표시 -->
-                                <%--                    <img src="${"/pc34/Aupload/"}" alt="" width="50" height="50">--%>
-                            <!-- 게시글 제목 링크 -->
-                                ${freeBoard.id }
-                        </td>
-                        <td>
-                            <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a></td>
-                        <td>${freeBoard.createDate }</td>
-                        <td>${freeBoard.viewRate}</td>
-                    </tr>
-                </c:when>
-            </c:choose>
+        <c:when test="${not fn:startsWith(freeBoard.title,'[공지]')}">
+        <tr class="text-center">
+            <td>${freeBoard.freeNum}</td>
+            <!-- 이미지 표시 -->
+            <td>
+                <!-- 이미지 표시 -->
+                    <%--                    <img src="${"/pc34/Aupload/"}" alt="" width="50" height="50">--%>
+                <!-- 게시글 제목 링크 -->
+                    ${freeBoard.id }
+            </td>
+            <td>
+                <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a></td>
+            <td>${freeBoard.createDate }</td>
+            <td>${freeBoard.viewRate}</td>
+        </tr>
+        </c:when>
+        </c:choose>
         </c:forEach>
     </table>
 

@@ -26,6 +26,7 @@
         SELECT  count(*)
         FROM free_board
         WHERE 1=1
+        AND bo_del_yn='N'
         <include refid="searchInFree"  />
     </select>
 
@@ -42,6 +43,7 @@
         where 1=1
         <include refid="searchInFree"/>
         and bo_del_yn != 'Y'
+
         ORDER BY free_num DESC
         ) a
         )
@@ -86,7 +88,7 @@
             parameterType="com.study.free.vo.FreeBoardVO">
         UPDATE free_board
         SET bo_del_yn = 'Y'
-        WHERE free_num = #{freeNum, jdbcType=INTEGER}
+        WHERE free_num = #{freeNum, jdbcType=INTEGER} AND bo_del_yn = 'N'
     </delete>
 
 
