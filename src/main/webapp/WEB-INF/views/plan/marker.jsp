@@ -16,12 +16,17 @@
             color: #495057;
         }
 
+        .row{
+            width: 100%;
+            height: 80%;
+        }
+
         h1 {
             color: #007bff;
         }
 
         #map {
-            height: 400px;
+            height: 100%;
             width: 100%;
             border: 1px solid #dee2e6;
             border-radius: 5px;
@@ -29,17 +34,15 @@
         }
 
         .day-container {
-            width: 70%;
-            height: 100px;
             font-size: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #007bff;
             color: #fff;
             border-radius: 5px;
             padding: 10px;
             margin-bottom: 20px;
+        }
+        .day-container div {
+            background-color: #38ff00;
+            margin: 10px;
         }
 
         .map-container {
@@ -72,13 +75,12 @@
 
     <h1 id="title"></h1>
     <div class="row">
-        <div class="col-md-6">
             <div id="map" class="map-container"></div>
+        <div>
         </div>
-        <div class="col-md-8">
             <div id="day" class="day-container"></div>
-        </div>
     </div>
+
 
     <button onclick="f_delete()">삭제</button>
     <button onclick="f_update()">수정</button>
@@ -157,12 +159,13 @@
                 }
 
                 // 마커 이미지의 이미지 주소입니다
-                var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
                 for (var i = 0; i < positions.length; i++) {
 
+                    var imageSrc = "/resources/img/marker" + i + ".png";
+
                     // 마커 이미지의 이미지 크기 입니다
-                    var imageSize = new kakao.maps.Size(30, 40);
+                    var imageSize = new kakao.maps.Size(50, 50);
 
                     // 마커 이미지를 생성합니다
                     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -199,8 +202,8 @@
                     var polyline = new kakao.maps.Polyline({
                         path: linePath, // 선을 구성하는 좌표배열 입니다
                         strokeWeight: 5, // 선의 두께 입니다
-                        strokeColor: '#FFAE00', // 선의 색깔입니다
-                        strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                        strokeColor: '#28ad02', // 선의 색깔입니다
+                        strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
                         strokeStyle: 'solid' // 선의 스타일입니다
                     });
 
@@ -224,6 +227,7 @@
 
                 map.setBounds(bounds);
 
+
             }, error: function (error) {
                 console.log(error);
             }
@@ -242,10 +246,9 @@
         div.classList.add('day_count');
         div.textContent = '${planList.dayCount}일차';
         day_div.appendChild(div)
-
-
     }
     </c:forEach>
+
     let title = '${title}';
     titleH1.innerHTML = title;
     console.log(title)

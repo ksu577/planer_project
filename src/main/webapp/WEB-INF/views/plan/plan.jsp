@@ -809,8 +809,6 @@
 
         const schedule = plan_Array[day];
         console.log(plan_Array)
-        console.log(day)
-        console.log(plan_Array[day])
 
         if (typeof schedule === 'undefined') {
             console.log("해당 일자 스케줄 없음")
@@ -856,10 +854,9 @@
     // headerTag.appendChild(textNode);
 
 
-
     function init() {
 
-        if(${empty planList}) {
+        if (${empty planList}) {
             console.log("plan 정보가 없습니다.")
             return;
         }
@@ -869,36 +866,39 @@
 
         <c:forEach var="planVO" items="${planList}" varStatus="index">
 
-            day1 = []
-            currentDayCount = ${planVO.dayCount}
+        day1 = {}
+        currentDayCount =
+        ${planVO.dayCount}
 
-            if(lastDayCount == 0) {
-                lastDayCount = currentDayCount;
-                startDateValue = "${planVO.startDate}".split(' ')[0]
-                endDateValue = "${planVO.endDate}".split(' ')[0]
-            }
+        if (lastDayCount == 0) {
+            lastDayCount = currentDayCount;
+            startDateValue = "${planVO.startDate}".split(' ')[0]
+            endDateValue = "${planVO.endDate}".split(' ')[0]
+        }
 
-            if(lastDayCount < currentDayCount) {
-                plan_Array.push(schedule1)
-                schedule1 = [];
-                lastDayCount = currentDayCount;
-            }
+        if (lastDayCount < currentDayCount) {
+            plan_Array.push(schedule1)
+            schedule1 = [];
+            console.log(schedule1)
+            lastDayCount = currentDayCount;
+        }
 
-            day1["endDate"] = endDateValue
-            day1["placeAddress"] = "${planVO.placeAddress}"
-            day1["placeLoadAddress"] = "${planVO.placeLoadAddress}"
-            day1["placeName"] = "${planVO.placeName}"
-            day1["planTitle"] = "${planVO.planTitle}"
-            day1["startDate"] = startDateValue
-            day1["totalDay"] = currentDayCount
-            day1["xlab"] = "${planVO.xlab}"
-            day1["ylab"] = "${planVO.ylab}"
+        day1["endDate"] = endDateValue
+        day1["placeAddress"] = "${planVO.placeAddress}"
+        day1["placeLoadAddress"] = "${planVO.placeLoadAddress}"
+        day1["placeName"] = "${planVO.placeName}"
+        day1["planTitle"] = "${planVO.planTitle}"
+        day1["startDate"] = startDateValue
+        day1["totalDay"] = currentDayCount
+        day1["xlab"] = "${planVO.xlab}"
+        day1["ylab"] = "${planVO.ylab}"
 
-            schedule1.push(day1);
+        schedule1.push(day1);
+        console.log("HI : ", schedule1)
+        plan_Array[${planVO.dayCount}] = schedule1;
 
-            if(${index.last}) {
-                plan_Array.push(schedule1)
-            }
+        <%--if (${index.last}) {--%>
+        <%--}--%>
 
         </c:forEach>
 
@@ -908,11 +908,11 @@
         $("#enddate").val(endDateValue)
         f_date();
 
-        if(lastDayCount > 0) {
+        if (lastDayCount > 0) {
             makeSchedulePlace(0);
         }
 
-        console.log(plan_Array)
+        console.log("last :", plan_Array)
     }
 </script>
 </html>

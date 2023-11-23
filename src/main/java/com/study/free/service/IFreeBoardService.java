@@ -10,6 +10,7 @@ import com.study.exception.BizPasswordNotMatchedException;
 import com.study.free.vo.FreeBoardVO;
 
 public interface IFreeBoardService {
+
     public List<FreeBoardVO>
     getBoardList(PagingVO paging
             , SearchVO search, String searchCategory);

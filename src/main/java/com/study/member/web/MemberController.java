@@ -11,7 +11,6 @@ import com.study.login.vo.UserVO;
 import com.study.member.service.IMemberService;
 import com.study.member.service.MailService;
 import com.study.member.vo.MemberVO;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -59,36 +58,26 @@ public class MemberController {
     }
 
     @RequestMapping("/member/memberList.wow")
-    public String memberList(Model model, @ModelAttribute("paging") PagingVO paging, @ModelAttribute("search") SearchVO search, @ModelAttribute("searchId") String searchId, HttpSession session) {
+    public String memberList(Model model, @ModelAttribute("paging") PagingVO paging, @ModelAttribute("search") SearchVO search, @ModelAttribute("searchId") String searchId) {
         List<MemberVO> memberList = memberService.getMemberList(paging, search);
         model.addAttribute("memberList", memberList);
-        UserVO user = (UserVO) session.getAttribute("user");
-        if (user.getRole() == "MANAGER") {
-            return "member/memberList";
-        } else {
-            return "redirect:/";
-        }
+        return "member/memberList";
     }
 
 
     @GetMapping("/member/memberView.wow")
-    public String memberView(@RequestParam(required = false) String Id, HttpSession session, Model model) throws BizException {
+    public String memberView(HttpSession session, Model model) throws BizException {
         UserVO user = (UserVO) session.getAttribute("user");
-        if ("MANAGER".equals(user.getRole())) {
-            if (!Id.trim().isEmpty()) {
-                MemberVO member = memberService.getMember(Id);
-                model.addAttribute("member", member);
-                return "member/memberView";
-            }
-        }
         if (user != null) {
-            String userId = user.getId();
-            MemberVO member = memberService.getMember(userId);
+            String Id = user.getId();
+            MemberVO member = memberService.getMember(Id);
             model.addAttribute("member", member);
             return "member/memberView";
+        } else {
+            return "redirect:/login/login.wow";
         }
-        return "redirect:/login/login.wow";
     }
+
 
     @GetMapping("/member/memberEdit.wow")
     public String memberEdit(Model model, HttpSession session) throws BizException {
@@ -153,24 +142,24 @@ public class MemberController {
 //        return resultMessageVO.getUrl();
     }
 
-//    @GetMapping("/shop/paypage.wow")
-//    public String cartList(Model model, HttpSession session) throws BizNotFoundException {
-//        UserVO user = (UserVO) session.getAttribute("user");
-//
-//        if (user != null) {
-//            String userId = user.getId();
-//            MemberVO member = memberService.getMember(userId);
-//            model.addAttribute("member", member);
-//            List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
-//            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
-//            model.addAttribute("listCart", list); // 장바구니 정보 추가
-//            model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
-//            return "shop/paypage";
-//        } else {
-//            return "redirect:/login/login.wow";
-//        }
-//
-//    }
+    @GetMapping("/shop/paypage.wow")
+    public String cartList(Model model, HttpSession session) throws BizNotFoundException {
+        UserVO user = (UserVO) session.getAttribute("user");
+
+        if (user != null) {
+            String userId = user.getId();
+            MemberVO member = memberService.getMember(userId);
+            model.addAttribute("member", member);
+            List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
+            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
+            model.addAttribute("listCart", list); // 장바구니 정보 추가
+            model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
+            return "shop/paypage";
+        } else {
+            return "redirect:/login/login.wow";
+        }
+
+    }
 //
 //    @PostMapping("/shop/paypage.wow")
 //    public String paypage(HttpSession session, Model model) throws BizNotFoundException {
