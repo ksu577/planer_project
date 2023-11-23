@@ -71,13 +71,13 @@
     <sql id="searchInFree">
         <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
             <if test='search.searchType=="T"'>
-                AND id LIKE '%' || #{search.searchWord} || '%'
+                AND product_desc LIKE '%' || #{search.searchWord} || '%'
             </if>
             <if test='search.searchType=="W"'>
                 AND  LIKE '%' || #{search.searchWord} || '%'
             </if>
             <if test='search.searchType=="C"'>
-                AND name     LIKE '%' || #{search.searchWord} || '%'
+                AND name  LIKE '%' || #{search.searchWord} || '%'
             </if>
         </if>
     </sql>
