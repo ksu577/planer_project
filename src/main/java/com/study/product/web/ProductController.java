@@ -62,7 +62,7 @@ public class ProductController {
 
     // 4. 상품 등록 페이지 (기능) -- 사진 db에 삽입하기
     @RequestMapping("/product/productinsert")
-    public String productinsert(ProductVO productVO, HttpSession session) {
+    public String productinsert(ProductVO productVO, HttpSession session)  {
         UserVO user = (UserVO) session.getAttribute("user");
         if (user.getRole() == "MANAGER") {
             iproductService.insert(productVO);
