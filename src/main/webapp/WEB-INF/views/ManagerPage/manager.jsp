@@ -12,6 +12,8 @@
             border: solid red 1px;
         }
 
+        .container{padding-top: 180px}
+
         .nav-bar2 {
             background-color: whitesmoke;
             height: 60px;

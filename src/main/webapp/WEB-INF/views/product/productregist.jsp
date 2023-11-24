@@ -32,7 +32,7 @@
 <div class="container">
     <h1 class="text-center">상품 등록</h1>
     <div class="form-container" >
-        <form method="post" action="/product/productinsert" enctype="multipart/form-data" >
+        <form method="post" action="/product/productinsert" >
             <div class="mb-3">
                 <label for="productName" class="form-label">상품명</label>
                 <input type="text" class="form-control" name="productName"  id="productName" required>
