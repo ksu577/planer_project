@@ -15,9 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.study.common.vo.PagingVO;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import com.study.common.vo.SearchVO;
+import org.springframework.web.multipart.MultipartFile;
+
 @Controller
 public class ProductController {
 
@@ -72,10 +75,10 @@ public class ProductController {
 
     // 4. 상품 등록 페이지 (기능) -- 사진 db에 삽입하기
     @RequestMapping("/product/productinsert")
-    public String productinsert(ProductVO productVO, HttpSession session)  {
+    public String productinsert(ProductVO productVO, HttpSession session , MultipartFile imgFile) throws IOException {
         UserVO user = (UserVO) session.getAttribute("user");
         if (user.getRole() == "MANAGER") {
-            iproductService.insert(productVO);
+            iproductService.insert(productVO, imgFile);
             return "redirect:/shop/minishop.wow";
         } else {
             return "redirect:/shop/minishop.wow";

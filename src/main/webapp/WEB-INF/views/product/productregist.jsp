@@ -47,7 +47,7 @@
             </div>
             <div class="mb-3">
                 <label for="img" class="form-label">상품 이미지</label>
-                <input type="file" class="form-control" name="img" id="img" accept="image/*" required>
+                <input type="file" class="form-control" name="imgFile" id="img" accept="image/*" required>
             </div>
             <button type="submit" class="btn btn-primary">상품 등록</button>
         </form>
