@@ -2,7 +2,10 @@ package com.study.product.web;
 
 import com.study.cart.service.ICartService;
 import com.study.cart.vo.CartVO;
+import com.study.exception.BizNotFoundException;
 import com.study.login.vo.UserVO;
+import com.study.member.service.IMemberService;
+import com.study.member.vo.MemberVO;
 import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
 import com.study.product.vo.SaveCartVO;
@@ -18,6 +21,8 @@ import com.study.common.vo.SearchVO;
 public class ProductController {
 
     private final IproductService iproductService;
+    @Autowired
+    IMemberService memberService;
 
     public ProductController(IproductService iproductService) {
         this.iproductService = iproductService;
@@ -120,13 +125,56 @@ public class ProductController {
         return "redirect:/shop/afterpay.wow";
     }
 
-//    @GetMapping("/shop/afterpay.wow") 여기부분을 수정해야되는데
-//    public String afterpay(Model model, HttpSession session){
+
+//    여기부분 수정해야됨 11월 23일 목요일
+    @GetMapping("/shop/afterpay.wow")
+    public String afterpay(HttpSession session, Model model) throws BizNotFoundException {
+        UserVO user = (UserVO) session.getAttribute("user");
+        List<CartVO> userinfo = iproductService.viewuserInfo(user.getId());
+//       List<ProductVO> productinfo = iproductService.viewproductInfo(user.getId());
+        model.addAttribute("userinfo", userinfo);
+//        model.addAttribute("productinfo", productinfo);
+        return "/shop/afterpay";
+    }
+
+//    이거 수정하고 afterpay.jsp로 넘어가서 결과값이 나오면 nice
+
+
+    // 도전했던 흔적들...
+//    @Autowired
+//    IMemberService memberService; 아래꺼 쓰려면 위에 이거 써야겠지..?
+
+//    @PostMapping("/shop/paypage.wow")
+//    public String paypage(@ModelAttribute SaveCartVO saveCartVO, HttpSession session, Model model) throws BizNotFoundException {
 //        UserVO user = (UserVO) session.getAttribute("user");
+//        String userId = user.getId();
+//        saveCartVO.setUserId(userId);
+//        MemberVO member = memberService.getMember(userId);
+//        model.addAttribute("saveCartVO", saveCartVO);
+//        model.addAttribute("member", member);
 //
+//        iproductService.getSave(saveCartVO);
+//        session.setAttribute("saveCartVO", saveCartVO);
+//        session.setAttribute("member", member);
+//
+//        return "redirect:/shop/afterpay.wow?method=POST";
+//    }
+//
+//
+//    @GetMapping("/shop/afterpay.wow")
+//    public String afterpay(Model model, HttpSession session, @RequestParam(value = "method", required = false) String method){
+//        if (!"POST".equals(method)) {
+//            return "redirect:/";
+//        }
+//
+//        UserVO user = (UserVO) session.getAttribute("user");
+//        SaveCartVO saveCartVO = (SaveCartVO) session.getAttribute("saveCartVO");
+//        MemberVO member = (MemberVO) session.getAttribute("member");
+//
+//        model.addAttribute("saveCartVO", saveCartVO);
+//        model.addAttribute("member", member);
 //        return "/shop/afterpay";
 //    }
-
 
 
 

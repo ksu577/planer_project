@@ -1,5 +1,6 @@
 package com.study.product.service;
 
+import com.study.cart.vo.CartVO;
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.SearchVO;
 import com.study.product.dao.ProductDao;
@@ -58,5 +59,24 @@ public class ProductServiceImple implements IproductService {
     public void getSave(SaveCartVO saveCartVO) {
         productDao.insertSaveCart(saveCartVO);
     }
+
+
+    //여기서부터 11월 23일
+    @Override
+    public List<CartVO> viewuserInfo(String id) {
+//        List<CartVO> userinfo = productDao.selectuserInfo(id);
+//        return userinfo;
+        return null;
+    }
+
+    @Override
+    public List<ProductVO> viewproductInfo(String productid){
+//        List<ProductVO> productinfo = productDao.selectuserInfo(productid);
+//        return productinfo;
+        return null;
+    }
+
+
+
 
 }

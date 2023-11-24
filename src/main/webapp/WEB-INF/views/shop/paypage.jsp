@@ -96,12 +96,12 @@
                 <hr>
                 <div class="mb-3">
                     <label for="recipientName" class="form-label">수령인</label>
-                    <input type="text" name="takeName" class="form-control" id="recipientName" value="${member.name}">
+                    <input type="text" class="form-control" name="takeName" id="recipientName" value="${member.name}">
                 </div>
                 <div class="mb-3">
                     <label for="phoneNumber" class="form-label">휴대폰 번호</label>
-                    <input type="tel" name="takeHp" class="form-control" id="phoneNumber"
-                           placeholder="-를 제외한 숫자만 입력 (ex.01012345678)" value="${member.phnum}">
+                    <input type="tel" class="form-control" name="takeHp" id="phoneNumber" placeholder="-를 제외한 숫자만 입력 (ex.01012345678)"
+                           value="${member.phnum}">
 
                 </div>
                 <div class="mb-3">
@@ -110,20 +110,19 @@
                     <input class="btn btn-primary mt-2" type="button" onclick="sample6_execDaumPostcode()"
                            value="우편번호 찾기"><br>
                     <input type="text" class="form-control mt-2" name="takeAdd" id="sample6_address" placeholder="주소">
-                    <input type="text" class="form-control" name="takeDetailAdd" id="sample6_detailAddress"
-                           placeholder="상세주소">
-                    <input type="text" class="form-control" name="takeAutoAdd" id="sample6_extraAddress"
-                           placeholder="참고항목">
+                    <input type="text" class="form-control" name="takeDetailAdd" id="sample6_detailAddress" placeholder="상세주소">
+                    <input type="text" class="form-control" name="takeAutoAdd" id="sample6_extraAddress" placeholder="참고항목">
                 </div>
                 <div class="mb-3">
-                    <label for="deliveryRequest" class="form-label">배송 요청 사항</label>
-                    <select class="form-select" name="takeReq" id="deliveryRequest">
+                    <label for="deliveryRequest" name="takeReq" class="form-label">배송 요청 사항</label>
+                    <select class="form-select" id="deliveryRequest">
                         <option value="">배송 시 요청 사항을 선택해주세요.</option>
                         <option value="경비실에 맡겨주세요.">경비실에 맡겨주세요.</option>
                         <option value="택배보관함에 넣어놔주세요.">택배보관함에 넣어놔주세요.</option>
                         <option value="집 현관문 앞에 놓아주세요.">집 현관문 앞에 놓아주세요.</option>
                     </select>
                 </div>
+
             </div>
             <div class="bill">
                 <h2>주문서</h2>
