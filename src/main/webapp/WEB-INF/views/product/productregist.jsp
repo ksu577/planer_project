@@ -32,7 +32,7 @@
 <div class="container">
     <h1 class="text-center">상품 등록</h1>
     <div class="form-container" >
-        <form method="post" action="/product/productinsert" >
+        <form method="post" action="/product/productinsert" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="productName" class="form-label">상품명</label>
                 <input type="text" class="form-control" name="productName"  id="productName" required>
@@ -47,7 +47,7 @@
             </div>
             <div class="mb-3">
                 <label for="img" class="form-label">상품 이미지</label>
-                <input type="file" class="form-control" name="img" id="img" accept="image/*" required>
+                <input type="file" class="form-control" name="imgFile" id="img" accept="image/*" required>
             </div>
             <button type="submit" class="btn btn-primary">상품 등록</button>
         </form>

@@ -13,15 +13,29 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-direction: column;
     }
     .container {
-      margin-top: 20px;
+      padding-top: 70px;
+
+    }
+
+
+
+    .address, .bill {
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a slight box shadow */
+      padding: 20px;
+      margin-top: 15px;
+      border-radius: 8px; /* Add border-radius for a softer look */
     }
     .address {
+      width: 100%;
       border: 1px solid #ddd;
       padding: 20px;
     }
     .bill {
+      width: 100%;
       border: 1px solid #ddd;
       box-shadow: 0 0 0 0;
       padding: 20px;
@@ -59,14 +73,27 @@
         </div>
       </form>
     </div>
-    <div class="bill col-md-4">
-      <div class="mb-3" style="display: flex; flex-direction: column;">
-        <span>총 상품금액 : 총액 원</span>
-        <span>배송비 : 3000원</span>
-      </div>
+    <div class="bill col-md-8">
+      <c:set var="totalAmount" value="0" />
+
+      <c:forEach items="${productinfo}" var="productinfo">
+        <div class="mb-3" style="display: flex; flex-direction: column;">
+          <span>상품명 : ${productinfo.productName} </span>
+          <hr>
+          <span>개수 : ${productinfo.amount} 개</span>
+          <span>상품금액 : ${productinfo.price} 원</span>
+          <hr>
+        </div>
+        <c:set var="totalAmount" value="${totalAmount + productinfo.price}" />
+      </c:forEach>
+      <span>배송비 : 3000원</span>
       <hr>
       <div class="mb-3">
-        <span>결제된 금액 : 총액 원</span>
+        <div class="mb-3" style="display: flex; flex-direction: column;">
+
+          <span>결제된 금액 : 총액 ${totalAmount} 원</span>
+        </div>
+      </div>
       </div>
     </div>
   </div>

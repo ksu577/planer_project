@@ -92,7 +92,7 @@
     </insert>
 
 <!--    장바구니의 정보를 가져오려고함 근데 가장 최신에 생성된 장바구니여야되니까 save_num이 max값인걸 불러온거임 11월 23일-->
-    <select id="selectuserInfo" resultType="com.study.product.vo.SaveCartVO">
+    <select id="selectUserInfo" resultType="com.study.product.vo.SaveCartVO">
         SELECT
             s.take_name,
             s.take_hp,
@@ -102,27 +102,25 @@
             s.take_auto_add,
             s.take_req
         FROM
-            save_cart s, cart c
+            save_cart s
         WHERE
             s.USER_ID = #{id}
-          AND
-            s.user_id = c.user_id
           AND
             s.save_num = (select max(save_num) from save_cart where user_id = #{id})
     </select>
 
 <!--    물품 정보의 db를 가져오려고함 위에꺼랑 이어 붙여서 afterpay에 넣으려고함 그 관련 컨트롤러는 productController에서 실행됨 11월 23일 -->
-    <select id="selectproductInfo" resultType="com.study.product.vo.ProductVO">
+    <select id="selectProductInfo" resultType="com.study.product.vo.ProductVO">
         SELECT
             c.amount,
-            p.name,
+            p.name as product_name,
             p.price * c.amount as price
         FROM
             cart c, product p
         WHERE
             c.USER_ID = #{id}
           AND
-            c.product_id = p.id;
+            c.product_id = p.id
     </select>
 
 </mapper>

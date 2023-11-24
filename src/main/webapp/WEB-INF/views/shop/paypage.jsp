@@ -15,6 +15,7 @@
         }
 
         .container {
+            padding-top: 70px;
             margin-top: 20px;
             padding: 20px;
             border-radius: 8px; /* Add some border-radius for a softer look */
@@ -147,6 +148,7 @@
                     <span>결제 예정 금액 :  ${sumMoney + 3000}원</span>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">결제하기</button>
+                <button type="submit" class="btn btn-primary testbtn" style="width: 100%;" id="testbtn">결제하기</button>
             </div>
         </form>
     </div>
@@ -185,6 +187,25 @@
             }
         }).open();
     }
+    // 카카오 function()
+    // $(function () {
+    //     $('#testbtn').click(function (){
+    //         $.ajax({
+    //             url:'/test/kakaopay.wow'
+    //             , dataType: 'json'
+    //             , type : "post"
+    //             , contentType : "application/json"
+    //             ,success: function (data) {
+    //                 const msg = JSON.parse(data.message);
+    //                 const next_redirect_pc_url = msg.next_redirect_pc_url;
+    //                 window.open(next_redirect_pc_url, "_blank", "width=500, height=700")
+    //             },
+    //             error: function (error) {
+    //                 alert(error);
+    //             }
+    //         })
+    //     })
+    // })
 </script>
 </body>
 </html>

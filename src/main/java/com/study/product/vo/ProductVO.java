@@ -1,13 +1,25 @@
-    package com.study.product.vo;
+package com.study.product.vo;
 
-    import lombok.Data;
+import lombok.Data;
 
-    @Data
-    public class ProductVO {
 
-        private int productId; // 물품 아이디
-        private String productName; // 물품 이름
-        private int productPrice; // 물품 가격
-        private String productDesc; //물품 설명
-        private String img; // 물품 이미지
-    }
+@Data
+public class ProductVO {
+
+    private int productId; // 물품 아이디
+    private String productName; // 물품 이름
+    private int productPrice; // 물품 가격
+    private String productDesc; //물품 설명
+
+    private String img; // 물품 이미지
+    private String imgPath;// 이미지 조회 경로
+
+    private int price;
+    private int amount;
+
+
+
+
+
+
+}

@@ -17,6 +17,8 @@ public class SaveCartVO {
     private String name;
     private int price;
 
+
+
     public int getAmount() {
         return amount;
     }

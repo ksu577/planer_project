@@ -34,6 +34,7 @@
 
 
     </bean>
+
     <!-- SqlSession setup for MyBatis Database Layer -->
     <bean id="sqlSessionFactory"
           class="org.mybatis.spring.SqlSessionFactoryBean">

@@ -8,6 +8,7 @@
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <style>
         .cart-container {
+            padding-top: 70px;
             display: flex;
             justify-content: space-between;
         }
@@ -99,22 +100,29 @@
             <span>${sumMoney + 3000}원</span>
         </div>
 
-        <button onclick="return addressbeforepay()" class="btn btn-primary" style="width: 100%;">결제하기</button>
+        <button onclick="addressbeforepay()" class="btn btn-primary" style="width: 100%;">결제하기</button>
+
     </div>
 </div>
 
 <script>
+    //연준갓의 지혜로 해결됨
+    let cartItems = [];
+
+    <c:forEach items="${listCart}" var="listCart">
+    cartItems.push(${listCart.productId}); // JSP 표현식에서 JavaScript 변수로 바로 사용 가능합니다.
+    </c:forEach>
+
+    console.log(cartItems)
+
     function addressbeforepay() {
-        let cartItems = '${listCart}';
-        if (cartItems.length === 0) {
+        if (cartItems == null || cartItems.length === 0) {
             alert('장바구니가 비었습니다.');
             return false; // 장바구니가 비었을 때 false 반환
         } else {
             window.location.href = "/shop/paypage.wow";
         }
     }
-
-
 
 
 

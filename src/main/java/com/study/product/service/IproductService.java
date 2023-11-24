@@ -1,11 +1,12 @@
 package com.study.product.service;
 
-import com.study.cart.vo.CartVO;
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.SearchVO;
 import com.study.product.vo.ProductVO;
 import com.study.product.vo.SaveCartVO;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -13,7 +14,7 @@ public interface IproductService {
 
 
     // 1. 상품 추가
-    public void insert(ProductVO productVO);
+    public void insert(ProductVO productVO, MultipartFile imgFile) throws IOException;
 
 
     // 1.5. 상품 목록
@@ -32,9 +33,9 @@ public interface IproductService {
 
 
     //11월 23일
-    public List<CartVO> viewuserInfo(String id);
+    public SaveCartVO viewUserInfo(String id);
 
-    public  List<ProductVO> viewproductInfo(String productid);
+    public  List<ProductVO> viewProductInfo(String productid);
 
 
 
