@@ -133,28 +133,28 @@ public class ProductController {
         saveCartVO.setUserId(userId);
         iproductService.getSave(saveCartVO);
 
-//        HashMap<String, Object> kakao = new HashMap<>();
-//        int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
-//        int realsumMoney = sumMoney + 3000;// 장바구니 금액에 배송비 3000원 더한금액
-////        order 테이블 또는 product와 savecart 관계형 테이블 하나 만들까,,
-////      사실상 주문서id를 잡고 거기에서 총금액 summoney를 결제하는 형식이되어야됨
-////      단건 결제라서.. 지금은 카트에 담겨있는게 여러가지 상품이라 그렇게되면
-////        9번이라는 결제를 해야되니 -> 이건 단건 결제 -> 1번결제로 해치우기
-////        단건 결제가 아니면 productvo를 list로 묶고 가져와야함
-////        kakao.put("item_name", 주문서VO.getProductId(saveCartVO)); // 대충 이런느낌
-//        kakao.put("item_name", saveCartVO.getSaveNum()); // 주문서 id, 주문서 전체를 가져올수있으면 되는부분..
-//        kakao.put("quantity", sumMoney); // 1건의 결제 즉, 주문서의 총금액 한번결제하면 됨
-//        kakao.put("total_amount", realsumMoney); // 총금액 sumMoney에 +3000원 해줘야됨.
-//        kakao.put("tax_free_amount", realsumMoney/10); // 10%의 세금
+        HashMap<String, Object> kakao = new HashMap<>();
+        int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
+        int realsumMoney = sumMoney + 3000;// 장바구니 금액에 배송비 3000원 더한금액
+//        order 테이블 또는 product와 savecart 관계형 테이블 하나 만들까,,
+//      사실상 주문서id를 잡고 거기에서 총금액 summoney를 결제하는 형식이되어야됨
+//      단건 결제라서.. 지금은 카트에 담겨있는게 여러가지 상품이라 그렇게되면
+//        9번이라는 결제를 해야되니 -> 이건 단건 결제 -> 1번결제로 해치우기
+//        단건 결제가 아니면 productvo를 list로 묶고 가져와야함
+//        kakao.put("item_name", 주문서VO.getProductId(saveCartVO)); // 대충 이런느낌
+        kakao.put("item_name", saveCartVO.getSaveNum()); // 주문서 id, 주문서 전체를 가져올수있으면 되는부분..
+        kakao.put("quantity", sumMoney); // 1건의 결제 즉, 주문서의 총금액 한번결제하면 됨
+        kakao.put("total_amount", realsumMoney); // 총금액 sumMoney에 +3000원 해줘야됨.
+        kakao.put("tax_free_amount", realsumMoney/10); // 10%의 세금
 
-////        payParams.add("item_name", params.get("item_name")); 여기서부턴 카카오 형식에 적혀져 있는거 참고용으로 가져오긴함
-////        payParams.add("quantity", params.get("quantity"));
-////        payParams.add("total_amount", params.get("total_amount"));
-////        payParams.add("tax_free_amount", params.get("tex_free_amount"));
-//
-//
-//        //여기서 작성해야되고
-////        kakaoService.kakaoPay(saveCartVO);
+//        payParams.add("item_name", params.get("item_name")); 여기서부턴 카카오 형식에 적혀져 있는거 참고용으로 가져오긴함
+//        payParams.add("quantity", params.get("quantity"));
+//        payParams.add("total_amount", params.get("total_amount"));
+//        payParams.add("tax_free_amount", params.get("tex_free_amount"));
+
+
+        //여기서 작성해야되고
+//        kakaoService.kakaoPay(saveCartVO);
 
 
         return "redirect:/shop/afterpay.wow";
