@@ -128,18 +128,6 @@
     <h3>공지 게시판 - <small>공지 사항</small></h3>
   </div>
 
-  <!-- START : 목록건수 및 새글쓰기 버튼  -->
-  <%--    <div class="row" style="margin-bottom: 10px;">--%>
-  <%--        <div class="col-sm-2  text-right">--%>
-  <%--            전체 ${paging.totalRowCount}건 조회--%>
-  <%--            <select id="id_rowSizePerPage" name="rowSizePerPage" class="form-control input-sm">--%>
-  <%--                <c:forEach var="i" begin="15" end="50" step="15">--%>
-  <%--                    <option value="${i}" ${paging.rowSizePerPage eq i ? "selected='selected'" : ""} >${i}</option>--%>
-  <%--                </c:forEach>--%>
-  <%--            </select>--%>
-  <%--        </div>--%>
-  <%--    </div>--%>
-
   <div class="row">
   </div>
   <!-- 추가된 테이블 -->
@@ -182,40 +170,40 @@
     </table>
 
 
-  <!-- START : 페이지네이션  -->
-  <nav class="text-center">
-    <ul class="pagination">
-      <!-- 첫 페이지  -->
-      <li><a href="freeList.wow?curPage=1" data-page="1"><span aria-hidden="true">&laquo;</span></a></li>
-      <!-- 이전 페이지 -->
-      <c:if test="${paging.firstPage ne 1}">
-        <li><a href="freeList.wow?curPage=${paging.firstPage-1}" data-page="${paging.firstPage-1}"><span
-                aria-hidden="true">&lt;</span></a></li>
-      </c:if>
+<%--  <!-- START : 페이지네이션  -->--%>
+<%--  <nav class="text-center">--%>
+<%--    <ul class="pagination">--%>
+<%--      <!-- 첫 페이지  -->--%>
+<%--      <li><a href="freeList.wow?curPage=1" data-page="1"><span aria-hidden="true">&laquo;</span></a></li>--%>
+<%--      <!-- 이전 페이지 -->--%>
+<%--      <c:if test="${paging.firstPage ne 1}">--%>
+<%--        <li><a href="freeList.wow?curPage=${paging.firstPage-1}" data-page="${paging.firstPage-1}"><span--%>
+<%--                aria-hidden="true">&lt;</span></a></li>--%>
+<%--      </c:if>--%>
 
-      <!-- 페이지 넘버링  -->
-      <c:forEach begin="${paging.firstPage}" end="${paging.lastPage}" var="i">
-        <c:if test="${paging.curPage ne i}">
-          <li><a href="freeList.wow?curPage=${i}" data-page="${i}">${i}</a></li>
-        </c:if>
-        <c:if test="${paging.curPage eq i}">
-          <li class="active"><a href="#">${i}</a></li>
-        </c:if>
+<%--      <!-- 페이지 넘버링  -->--%>
+<%--      <c:forEach begin="${paging.firstPage}" end="${paging.lastPage}" var="i">--%>
+<%--        <c:if test="${paging.curPage ne i}">--%>
+<%--          <li><a href="freeList.wow?curPage=${i}" data-page="${i}">${i}</a></li>--%>
+<%--        </c:if>--%>
+<%--        <c:if test="${paging.curPage eq i}">--%>
+<%--          <li class="active"><a href="#">${i}</a></li>--%>
+<%--        </c:if>--%>
 
-      </c:forEach>
+<%--      </c:forEach>--%>
 
-      <!-- 다음  페이지  -->
-      <c:if test="${paging.lastPage ne paging.totalPageCount}">
-        <li><a href="freeList.wow?curPage=${paging.lastPage+1}" data-page="${paging.lastPage+1}"><span
-                aria-hidden="true">&gt;</span></a></li>
-      </c:if>
+<%--      <!-- 다음  페이지  -->--%>
+<%--      <c:if test="${paging.lastPage ne paging.totalPageCount}">--%>
+<%--        <li><a href="freeList.wow?curPage=${paging.lastPage+1}" data-page="${paging.lastPage+1}"><span--%>
+<%--                aria-hidden="true">&gt;</span></a></li>--%>
+<%--      </c:if>--%>
 
-      <!-- 마지막 페이지 -->
-      <li><a href="freeList.wow?curPage=${paging.totalPageCount}" data-page="${paging.totalPageCount}"><span
-              aria-hidden="true">&raquo;</span></a></li>
-    </ul>
-  </nav>
-  <!-- END : 페이지네이션  -->
+<%--      <!-- 마지막 페이지 -->--%>
+<%--      <li><a href="freeList.wow?curPage=${paging.totalPageCount}" data-page="${paging.totalPageCount}"><span--%>
+<%--              aria-hidden="true">&raquo;</span></a></li>--%>
+<%--    </ul>--%>
+<%--  </nav>--%>
+<%--  <!-- END : 페이지네이션  -->--%>
 </div>
 </body>
 <script type="text/javascript">
