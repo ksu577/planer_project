@@ -63,17 +63,15 @@ public class ProductServiceImple implements IproductService {
 
     //여기서부터 11월 23일
     @Override
-    public List<CartVO> viewuserInfo(String id) {
-//        List<CartVO> userinfo = productDao.selectuserInfo(id);
-//        return userinfo;
-        return null;
+    public SaveCartVO viewUserInfo(String id) {
+        SaveCartVO userinfo = productDao.selectUserInfo(id);
+        return userinfo;
     }
 
     @Override
-    public List<ProductVO> viewproductInfo(String productid){
-//        List<ProductVO> productinfo = productDao.selectuserInfo(productid);
-//        return productinfo;
-        return null;
+    public List<ProductVO> viewProductInfo(String productid){
+        List<ProductVO> productinfo = productDao.selectProductInfo(productid);
+        return productinfo;
     }
 
 

@@ -15,6 +15,7 @@
         }
 
         .container {
+            padding-top: 70px;
             margin-top: 20px;
             padding: 20px;
             border-radius: 8px; /* Add some border-radius for a softer look */

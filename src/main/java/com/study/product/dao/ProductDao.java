@@ -36,7 +36,7 @@ public interface ProductDao {
     public void insertSaveCart(SaveCartVO saveCartVO);
 
 //    xml dao service 전부 수정할 예정 11월 23일
-//    public List<CartVO> selectuserInfo(String id);
-//
-//    public void selectproductInfo(String id);
+    public SaveCartVO selectUserInfo(String id);
+
+    public List<ProductVO> selectProductInfo(String id);
 }

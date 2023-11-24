@@ -58,7 +58,7 @@ public class KakaoController {
             serverconnection.setRequestProperty("Authorization", "KakaoAK 3c757d5ad8df5f534911c2a4f1504def");
             serverconnection.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
             serverconnection.setDoOutput(true);
-            String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=engitem&quantity=1&total_amount=2200&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8081/test/approval.wow&fail_url=http://localhost:8081/test/fail.wow&cancel_url=http://localhost:8081/test/cancel.wow";
+            String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=손톱깎이세트&quantity=1&total_amount=77800&vat_amount=200&tax_free_amount=0&approval_url=http://localhost:8081/test/approval.wow&fail_url=http://localhost:8081/test/fail.wow&cancel_url=http://localhost:8081/test/cancel.wow";
             OutputStream give = serverconnection.getOutputStream();
             DataOutputStream datagive = new DataOutputStream(give);
             datagive.writeBytes(parameter);

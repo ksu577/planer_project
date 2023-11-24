@@ -19,6 +19,7 @@
     <style>
 
         .container {
+            padding-top: 70px;
             width: 1225px;
         }
 

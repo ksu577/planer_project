@@ -8,6 +8,7 @@
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <style>
         .cart-container {
+            padding-top: 70px;
             display: flex;
             justify-content: space-between;
         }

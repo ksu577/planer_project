@@ -32,9 +32,9 @@ public interface IproductService {
 
 
     //11월 23일
-    public List<CartVO> viewuserInfo(String id);
+    public SaveCartVO viewUserInfo(String id);
 
-    public  List<ProductVO> viewproductInfo(String productid);
+    public  List<ProductVO> viewProductInfo(String productid);
 
 
 

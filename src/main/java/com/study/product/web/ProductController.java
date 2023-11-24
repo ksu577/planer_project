@@ -1,11 +1,10 @@
 package com.study.product.web;
 
 import com.study.cart.service.ICartService;
-import com.study.cart.vo.CartVO;
 import com.study.exception.BizNotFoundException;
+import com.study.kakao.service.KakaoService;
 import com.study.login.vo.UserVO;
 import com.study.member.service.IMemberService;
-import com.study.member.vo.MemberVO;
 import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
 import com.study.product.vo.SaveCartVO;
@@ -15,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.study.common.vo.PagingVO;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import com.study.common.vo.SearchVO;
 @Controller
@@ -24,8 +24,12 @@ public class ProductController {
     @Autowired
     IMemberService memberService;
 
-    public ProductController(IproductService iproductService) {
+    @Autowired
+    private final KakaoService kakaoService;
+
+    public ProductController(IproductService iproductService, KakaoService kakaoService) {
         this.iproductService = iproductService;
+        this.kakaoService = kakaoService;
     }
 
 
@@ -117,11 +121,30 @@ public class ProductController {
 
 
     @PostMapping("/shop/paypage.wow")
-    public String paypage(@ModelAttribute SaveCartVO saveCartVO, HttpSession session) {
+    public String paypage(@ModelAttribute SaveCartVO saveCartVO, ProductVO 주문서VO, HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
         String userId = user.getId();
         saveCartVO.setUserId(userId);
         iproductService.getSave(saveCartVO);
+
+//        HashMap<String, Object> kakao = new HashMap<>();
+//
+////        order 테이블 또는 product와 savecart 관계형 테이블 하나 만들까,,
+////      사실상 주문서id를 잡고 거기에서 총금액 summoney를 결제하는 형식이되어야됨
+////      단건 결제라서.. 지금은 카트에 담겨있는게 여러가지 상품이라 그렇게되면
+////        9번이라는 결제를 해야되니 -> 이건 단건 결제 -> 1번결제로 해치우기
+////        단건 결제가 아니면 productvo를 list로 묶고 가져와야함
+////        kakao.put("item_name", 주문서VO.getProductId(saveCartVO)); // 대충 이런느낌
+//        kakao.put("item_name", 주문서VO.getProductId(saveCartVO)); // 주문서 id
+//        kakao.put("quantity", params.get("quantity")); // 1건의 결제
+//        kakao.put("total_amount", params.get("total_amount")); // 총금액
+//        kakao.put("tax_free_amount", params.get("tex_free_amount")); // 10%의 세금
+//
+//
+//        //여기서 작성해야되고
+//        kakaoService.kakaoPay(saveCartVO);
+
+
         return "redirect:/shop/afterpay.wow";
     }
 
@@ -130,10 +153,10 @@ public class ProductController {
     @GetMapping("/shop/afterpay.wow")
     public String afterpay(HttpSession session, Model model) throws BizNotFoundException {
         UserVO user = (UserVO) session.getAttribute("user");
-        List<CartVO> userinfo = iproductService.viewuserInfo(user.getId());
-//       List<ProductVO> productinfo = iproductService.viewproductInfo(user.getId());
+        SaveCartVO userinfo = iproductService.viewUserInfo(user.getId());
+        List<ProductVO> productinfo = iproductService.viewProductInfo(user.getId());
         model.addAttribute("userinfo", userinfo);
-//        model.addAttribute("productinfo", productinfo);
+        model.addAttribute("productinfo", productinfo);
         return "/shop/afterpay";
     }
 
