@@ -127,7 +127,7 @@
         </div>
         <div class="email-input">
             <input type="text" name="email" id="email" placeholder="이메일">
-            <button type="button" id="emCheck" value="${member.id}" class="em-check-btn">인증</button>
+            <button type="button" id="emCheck" class="em-check-btn">인증</button>
         </div>
         <div class="emailcheck-input">
             <input type="text" name="emailcheck" id="emailcheck" placeholder="인증번호">
@@ -139,19 +139,28 @@
 </body>
 <script>
 
+    // function requestAuthCode() {
+    //     var id = document.getElementById("id").value;
+    //     var email = document.getElementById("email").value;
+
     let CheckPwIdentify = false;
 
     $("#emCheck").on("click", function (e) {
+        let testId = $("input[name='id']").val();
         let mailAddress = $("input[name='email']").val();
         $.ajax({
             url: "/findPw/emailCheck5"
             , type: "get"
-            , data: {"email": mailAddress}
+            , data: {"id":testId, "email": mailAddress}
             , success: function (data) {
-                alert("전송되었습니다.");
+                if(data == "error"){
+                    alert("아이디 또는 이메일을 확인해주세요");
+                } else {
+                    alert("전송되었습니다.");
+                }
             }
             , error: function (err) {
-                alert("전송실패");
+                alert("에러");
             }
         });
     });
@@ -186,10 +195,10 @@
         const sendData = {"id": curId, "email": curEmail};
 
         $.ajax({
-            contentType : "application/json",
+            contentType: "application/json",
             url: "/login/author.wow",
             type: "post",
-            dataType : "json",
+            dataType: "json",
             data: JSON.stringify(sendData),
             success: function (data) {
                 console.log(data);
@@ -204,16 +213,5 @@
             }
         })
     }
-
-
-    // $("#checkbtn").on("click", function (e) {
-    //     if (CheckPwIdentify) {
-    //         document.getElementById('changePw').submit();
-    //     } else {
-    //         alert("본인인증이 완료 되지 않았습니다.");
-    //         return false;
-    //     }
-    // });
-
 </script>
 </html>

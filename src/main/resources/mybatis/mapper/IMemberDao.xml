@@ -81,6 +81,14 @@
         AND email = #{email}
     </select>
 
+    <select id="findPwCheck" resultType="int">
+        SELECT count(*)
+        FROM member
+        WHERE id = #{Id}
+        AND email = #{email}
+        AND delYn = 'N'
+    </select>
+
 
     <update id="changePw" parameterType="com.study.member.vo.MemberVO">
         UPDATE member

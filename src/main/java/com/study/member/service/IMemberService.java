@@ -18,6 +18,7 @@ public interface IMemberService {
     public void registMember(MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException;
     public List<MemberVO> findId(String name, String email);
     public MemberVO findPw(String id, String email);
+    public int findPwCheck(MemberVO member) throws BizException;
     public void changePw(MemberVO member) throws BizException;
 }
 

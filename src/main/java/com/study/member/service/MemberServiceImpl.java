@@ -80,6 +80,11 @@ public class MemberServiceImpl implements IMemberService{
     }
 
     @Override
+    public int findPwCheck(MemberVO member) throws BizException {
+        return memberDao.findPwCheck(member);
+    }
+
+    @Override
     public void changePw(MemberVO member) throws BizNotEffectedException {
         int count = memberDao.changePw(member);
         if (count < 1) throw new BizNotEffectedException();
