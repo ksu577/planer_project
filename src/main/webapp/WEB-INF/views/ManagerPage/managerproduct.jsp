@@ -71,7 +71,7 @@
 
     <div class="row">
         <div class="col-sm-2 col-sm-offset-10 text-right" style="margin-bottom: 5px;">
-            <a href="productregist.wow" class="btn btn-primary btn-sm">
+            <a href="/product/productregist" class="btn btn-primary btn-sm">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 &nbsp;새 물품 등록
             </a>
