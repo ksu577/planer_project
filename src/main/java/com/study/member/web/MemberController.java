@@ -256,12 +256,12 @@ public class MemberController {
 
 
     @GetMapping("/login/findPw.wow")
-    public String findPw() {
+    public String findPw1() {
         return "login/findPw";
     }
 
     @PostMapping("/login/findPw.wow")
-    public String findMePw(String email, HttpSession session, Model model) {
+    public String findPw(String email, HttpSession session, Model model) throws BizException {
         UserVO user = (UserVO) session.getAttribute("user");
 
         if (user != null) {
@@ -273,7 +273,7 @@ public class MemberController {
                 model.addAttribute("Id", Id);
                 return "redirect:/login/changePw.wow";
             } else {
-                return "redirect:/"; // 실패 시 처리, 에러 페이지로 리다이렉트하거나 다른 방식으로 처리
+                return "redirect:/";
             }
         } else {
             // 사용자가 인증되지 않음
@@ -310,9 +310,16 @@ public class MemberController {
 
     @ResponseBody
     @RequestMapping(value = "/findPw/emailCheck5", produces = "text/plain;charset=UTF-8")
-    public String emailCheck5(String email) throws MessagingException {
-        key = mailService.mailSend3(email);
-        return key;
+    public String emailCheck5(String email, MemberVO member, Model model) throws MessagingException, BizException {
+        if (memberService.findPwCheck(member) == 0) {
+            model.addAttribute("msg", "아이디와 이메일을 확인해주세요.");
+            return "error";
+        } else {
+            memberService.findPw(member.getId(), member.getEmail());
+            model.addAttribute("member", member.getEmail());
+            key = mailService.mailSend3(email);
+            return key;
+        }
     }
 
     @ResponseBody
