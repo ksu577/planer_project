@@ -23,7 +23,7 @@
 
         <tr>
             <th>비밀번호</th>
-            <td><input type="password" name="password" value="${member.password}" required="required"></td>
+            <td><input type="text" name="password" value="${member.password}" required="required"></td>
         </tr>
 
         <tr>
@@ -66,4 +66,9 @@
     </table>
 </form>
 </body>
+<script>
+    // function hidepassword(password) {
+    //     return '*'.repeat(password.length);
+    // }
+</script>
 </html>

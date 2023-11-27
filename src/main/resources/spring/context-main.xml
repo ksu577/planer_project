@@ -51,7 +51,7 @@
         <property name="host" value="smtp.gmail.com" />
         <property name="port" value="587" />
         <property name="username" value="shg2667@gmail.com" /> <!-- 근쨩 메일주소임 -->
-        <property name="password" value="nyqj ncfh pcnu zolj" /> <!-- 2차 앱비밀번호 -->
+        <property name="password" value="tdoq kgcq wqxn coio" /> <!-- 2차 앱비밀번호 -->
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.transport.protocol">smtp</prop>

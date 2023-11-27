@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Mapper
@@ -20,4 +21,6 @@ public interface IMemberDao {
     public int deleteMember(MemberVO member);
     public int insertMember(MemberVO member);
     public List<MemberVO> findId(@Param("name") String name, @Param("email") String email);
+    public MemberVO findPw(@Param("Id") String id, @Param("email") String email);
+    public int changePw(MemberVO member);
 }
