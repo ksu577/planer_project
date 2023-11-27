@@ -78,11 +78,11 @@
 
     <select id="topPlan" resultType="com.study.plan.vo.PlanVo">
         SELECT
-            place_name, count(place_name) as count
+            place_name, place_load_address, count(place_name) as count
         FROM
             user_plan
         where delete_yn = 'Y'
-        group by place_name
+        group by place_name , place_load_address
         order by count(place_name) DESC
     </select>
 

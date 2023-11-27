@@ -10,88 +10,218 @@
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        div {
+            border: 1px solid black;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-            color: #495057;
+            border: 1px solid red;
+            padding-top: 70px;
         }
 
-        .row{
-            width: 100%;
-            height: 80%;
+        .container1 {
+            height: 850px;
         }
 
-        h1 {
-            color: #007bff;
+        .first {
+            display: flex;
+            height: 850px;
+            background-size: cover;
+            z-index: 0;
         }
 
-        #map {
+        .selectplace-nav {
+            z-index: 4;
+        }
+
+        .besidenav {
+            z-index: 5;
+            background-color: white;
+        }
+
+        .first > div:nth-child(1) {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .first > div:nth-child(1) > div:nth-child(1) {
+            /* 여행지 설정 버튼 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* 세로 가운데 정렬 */
+        }
+
+        .first > div:nth-child(2) {
+            width: 350px;
+        }
+
+        .first > div:nth-child(2) > div:nth-child(1) {
+            /* 검색창 */
+            height: 10%;
+        }
+
+        /* .first>div:nth-child(2)>div:nth-child(2){ */
+        /* 명소 음식 숙소 */
+        /* height: 20%; */
+        /* } */
+        .first > div:nth-child(2) > div:nth-child(3) {
+            /* api 끌어온 정보들 선택창 */
+            height: 69.5%;
+        }
+
+        .first > div:nth-child(3) {
+            width: 23%;
+        }
+
+        .first > div:nth-child(4) {
+            width: 55%;
+        }
+
+        .box {
+            align-items: center;
+            height: 50px;
+            width: 100px;
+            padding: 10px;
+            text-align: center;
+            margin: 15px;
+            border-radius: 17px;
+        }
+
+        .edit {
+            height: 40px;
+            width: 70px;
+            padding: 10px;
+            text-align: center;
+            margin: 15px;
+            border-radius: 17px;
+        }
+
+        .selectplace {
+            display: flex;
+            justify-content: center;
+        }
+
+        .selectplace > div {
             height: 100%;
             width: 100%;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            margin-bottom: 20px;
         }
 
-        .day-container {
-            font-size: 30px;
-            color: #fff;
-            border-radius: 5px;
+        .selectbox {
+            height: 100%;
+            flex-direction: column;
+            justify-content: center;
+            /* 가로 가운데 정렬 */
+            align-items: center;
+            /* 세로 가운데 정렬 */
+        }
+
+        .selectbox > div {
+            display: flex;
+            height: 80px;
             padding: 10px;
-            margin-bottom: 20px;
-        }
-        .day-container div {
-            background-color: #38ff00;
-            margin: 10px;
+            text-align: center;
         }
 
-        .map-container {
+        .textbox {
+            height: 100%;
             width: 100%;
-            height: 350px;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            margin-bottom: 20px;
         }
 
-        .day-count {
-            cursor: pointer;
+        .smallimgbox {
+            height: 50px;
+            width: 50px;
             padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: 1px solid #007bff;
-            border-radius: 5px;
-            margin-right: 10px;
-            transition: background-color 0.3s ease;
+            text-align: center;
+            margin: 5px;
+            border-radius: 20px;
         }
 
-        .day-count:hover {
-            background-color: #0056b3;
+        .selectplace-nav {
+            background-color: white;
+
+            position: absolute;
+            height: 850px;
+
+            transform: translate(201px, 0);
+            box-shadow: 4px 0px 4px 0px gainsboro;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translate(-100%, 0);
+            }
+
+            100% {
+                transform: translate(53%, 0);
+            }
+        }
+
+        .slide-in {
+            /* 애니메이션 종료 후 종료상태 유지 forwards */
+            animation: slideIn 1s forwards;
+        }
+
+        @keyframes slideOut {
+            /* 0% 100% 대신 from to 넣어줘도 됨 둘이 같음 */
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-100%, 0);
+            }
+        }
+
+        .slide-out {
+            animation: slideOut 1s forwards;
         }
     </style>
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
-<div class="container mt-5">
-
-    <h1 id="title"></h1>
-    <div class="row">
-            <div id="map" class="map-container"></div>
-        <div>
+<div class="container1">
+    <div class="first" id="map">
+        <div class="besidenav">
+            <div>
+                <div class="box">전체일정</div>
+                <div class="box" onclick="">N일차</div>
+                <div class="selectplace" id="day"></div>
+            </div>
+            <div>
+                <button class="edit" onclick="f_update()">수정</button>
+                <button class="edit" onclick="f_delete()">삭제</button>
+            </div>
         </div>
-            <div id="day" class="day-container"></div>
+
+
+        <div class="selectplace-nav">
+
+
+            <div class="selectbox" id="select-box"></div>
+
+        </div>
+
     </div>
 
-
-    <button onclick="f_delete()">삭제</button>
-    <button onclick="f_update()">수정</button>
 </div>
 
 </body>
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dea7138cdf709909de935ce835cefee1&libraries=services"></script>
 <script>
+    const v_drawer = document.getElementsByClassName("selectplace-nav")[0];
     const titleH1 = document.getElementById("title");
     const day_div = document.getElementById("day");
+    const tour_div = document.getElementById("select-box");
+
+    function f_drawer() {
+        v_drawer.classList.add("slide-in");
+        v_drawer.classList.remove("slide-out");
+    }
+
 
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
@@ -103,6 +233,8 @@
 
 
     $(document).on("click", ".day_count", function () {
+
+        tour_div.innerHTML = ""
 
         let day_num = $(this).text();
         let regex = /[^0-9]/g;
@@ -226,6 +358,21 @@
                 }
 
                 map.setBounds(bounds);
+                console.log(result)
+
+                for (let i = 0; i < result.length; i++) {
+                tour_div.innerHTML += '<div>' +
+                    '<div>'
+                    + (i + 1) +
+                    '</div>'+
+                    '<div>'
+                    + result[i]["placeName"] +
+                    '</div>'+
+                    '<div>'
+                    + result[i]["placeLoadAddress"] +
+                    '</div>' +
+                    '<div>'
+                }
 
 
             }, error: function (error) {

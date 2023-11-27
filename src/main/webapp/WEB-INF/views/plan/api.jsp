@@ -5,20 +5,22 @@
     <% request.setCharacterEncoding("UTF-8"); %>
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <style>
-        body{
-            margin: 0;
+        body {
             padding-top: 70px;
-            background-color: #f1f1f1;
-            justify-content: center;
-
         }
     </style>
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
-<form action="/title" method="GET">
-    <input type="text" name="planTitle">
-    <button type="submit"> 저장 </button>
-</form>
+<h1>Tourism Data</h1>
+<c:forEach var="tourism" items="${tourismData}">
+    <div style="border: 1px solid black">
+        <div>${tourism.addr1}</div>
+        <img src="${tourism.firstImage}">
+        <div>${tourism.title}</div>
+    </div>
+</c:forEach>
 </body>
+<script>
+</script>
 </html>

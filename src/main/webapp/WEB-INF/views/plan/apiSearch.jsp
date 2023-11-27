@@ -5,20 +5,19 @@
     <% request.setCharacterEncoding("UTF-8"); %>
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <style>
-        body{
-            margin: 0;
+        body {
             padding-top: 70px;
-            background-color: #f1f1f1;
-            justify-content: center;
-
         }
     </style>
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
-<form action="/title" method="GET">
-    <input type="text" name="planTitle">
-    <button type="submit"> 저장 </button>
+<h1>Tourism Data</h1>
+<form action="/tourism/data" method="get">
+    <input type="text" name="search" placeholder="여행지를 검색하세요">
+    <button type="submit">검색</button>
 </form>
 </body>
+<script>
+</script>
 </html>

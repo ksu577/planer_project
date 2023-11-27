@@ -8,6 +8,10 @@
 
 
     <style>
+        body {
+            padding-top: 70px;
+        }
+
         .map_wrap,
         .map_wrap * {
             margin: 0;
@@ -318,7 +322,6 @@
             <div class="day7 none" id="day7" onclick="f_day(7)">7일차</div>
         </div>
         <div>
-            <div class="edit">편집</div>
             <div class="edit" onclick="f_send()">저장</div>
         </div>
     </div>
@@ -622,14 +625,16 @@
     };
 
     function f_date() {
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 7; i++) {
             document.querySelector(".day" + i + "").classList.add("none");
         }
+        console.log(plan_Array)
 
         let diff = 0;
 
         const startdate = document.getElementById("startdate").value;
         const enddate = document.getElementById("enddate").value;
+        const today = new Date();
 
         startdate_date = new Date(startdate);
         enddate_date = new Date(enddate);
@@ -640,11 +645,18 @@
         // const headerTag = document.createElement('h1');
         // const textNode = document.createTextNode('textNode of headerTag');
 
-        if (diff > 7) {
-            alert("7일 이상은 지정할 수 없습니다.");
+        if(diff < plan_Array.length){
+            console.log(diff);
+            console.log(plan_Array.length);
+        }
+
+        if (diff > 8) {
+            alert("8일 이상은 지정할 수 없습니다.");
 
         } else if (diff <= 0) {
             alert("시간을 거꾸로 할 수는 없습니다..;");
+        } else if ((startdate_date - today) < 0) {
+            alert("과거로 갈 수는 없습니다...")
         } else {
             for (let i = 1; i <= diff; i++) {
                 document.querySelector(".day" + i + "").classList.remove("none");
@@ -914,5 +926,6 @@
 
         console.log("last :", plan_Array)
     }
+
 </script>
 </html>
