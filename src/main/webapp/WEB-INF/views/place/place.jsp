@@ -9,79 +9,119 @@
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
 
-<style>
-    .container {
-        width: 1225px;
-    }
+    <style>
+        .container {
+            padding-top: 80px;
+            width: 1225px;
+        }
 
-    .selectcategory {
-        text-align: right;
+        .selectcategory {
+            text-align: right;
 
-    }
+        }
 
-    .carousel{
-        width: 1200px;
-        height: 600px;
-        overflow: hidden;
-    }
+        .carousel {
+            width: 1200px;
+            height: 600px;
+            overflow: hidden;
+        }
 
-    .cell {
-        background-color: white;
-        border-radius: 20px;
-        box-shadow: 0px 0px 4px 2px gainsboro;
-    }
+        .cell {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0px 0px 4px 2px gainsboro;
+        }
 
-    .place-box a {
-        text-decoration: none;
-    }
+        .place-box a {
+            text-decoration: none;
+        }
 
-    .place-box {
-        text-decoration: none;
-        cursor: pointer;
-        margin: auto;
-        width: 1200px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        border-radius: 20px;
-    }
+        .place-box {
+            text-decoration: none;
+            cursor: pointer;
+            margin: auto;
+            width: 1200px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            border-radius: 20px;
+        }
 
-    .place-box>div {
-        width: calc(1200px / 4 - 20px);
-        height: 400px;
-        border: 0;
-        box-shadow: 1px 1px 4px 1px black;
-        border-bottom: 20px;
-        overflow: hidden;
-        margin: 10px;
-    }
+        .place-box > div {
+            width: calc(1200px / 4 - 20px);
+            height: 400px;
+            border: 0;
+            box-shadow: 1px 1px 4px 1px black;
+            border-bottom: 20px;
+            overflow: hidden;
+            margin: 10px;
+        }
 
-    .top {
-        height: 80%;
-        border-radius: 20px;
-        box-shadow: 0px 0px 4px 2px gainsboro;
-    }
+        .top {
+            height: 80%;
+            border-radius: 20px;
+            box-shadow: 0px 0px 4px 2px gainsboro;
+        }
 
-    .bottom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 20%;
-        color: rgb(0, 102, 0);
-        flex-direction: column;
-    }
+        .bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 20%;
+            color: rgb(0, 102, 0);
+            flex-direction: column;
+        }
 
-    .bottom a {
-        color: rgb(0, 102, 0);
-        padding-top: 8px;
-        padding-bottom: 8px;
-        padding-left: 12px;
-        padding-right: 12px;
-        border-radius: 20px;
-        cursor: pointer;
-    }
+        .bottom a {
+            color: rgb(0, 102, 0);
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 12px;
+            padding-right: 12px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
 
-</style>
+        .modal {
+            width: 800px;
+            height: 600px;
+            border-radius: 15px;
+            box-shadow: 4px 4px 4px 4px rgb(128, 128, 128);
+
+            position: fixed;
+            top: 15%;
+            left: 50%;
+
+            background-color: white;
+            transform: translate(-50%, 0);
+
+        }
+
+        .modal-summon {
+            animation: summon 0.01s forwards;
+        }
+
+        @keyframes summon {
+            0% {
+                height: 0;
+                width: 0;
+            }
+
+            100% {
+                height: 700px;
+                width: 700px;
+                top: 10%
+            }
+        }
+
+        .black-wall {
+            position: absolute;
+            width: 100%;
+            height: 270%;
+            background-color: #000000b4;
+            top: 0
+        }
+    </style>
 
 </head>
 <body>
@@ -95,147 +135,61 @@
                 보는순서설정
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#"> 인기상품순 </a></li>
-                <li><a class="dropdown-item" href="#"> 낮은가격순 </a></li>
-                <li><a class="dropdown-item" href="#"> 높은가격순 </a></li>
+                <li><a class="dropdown-item" href="#"> 인기순 </a></li>
+                <li><a class="dropdown-item" href="#"> 글자순 </a></li>
+                <li><a class="dropdown-item" href="#"> 글자역순 </a></li>
             </ul>
         </div>
     </div>
+
+
     <div class="place-box">
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="/resources/images/보조배터리.jpeg" alt="" >
+        <c:forEach var="place" items="${placeList}">
+            <div class="cell">
+                <div class="top">
+                    <img height="320px" width="328px" src="" alt="">
+                </div>
+                <div class="bottom">
+                    <a href=""> ${place.placeName} </a>
+                    <a href="" hidden="true"> ${place.placeNum} </a>
+                </div>
             </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
-
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
-
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
-
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
+        </c:forEach>
+    </div>
 
 
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
-
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
-
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
-
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
-
-
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
-
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
-            </div>
-        </div>
-
-        <div class="cell">
-            <div class="top">
-                <img height="320px" width="328px" src="../resources/images/22.png" alt="">
-            </div>
-            <div class="bottom">
-                <a href=""> 장소명 영어 </a>
-                <a href=""> 장소명 한글 </a>
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="width: 300px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">${place.placeName}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ${place.placeContext}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // 각 셀을 클릭했을 때 모달창을 띄우는 함수
+    document.querySelectorAll('.cell').forEach(cell => {
+        cell.addEventListener('click', function () {
+            // 해당 셀의 placeNum 가져오기
+            const placeId = this.getAttribute('data-place-id');
+            const myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+                keyboard: false
+            });
+            myModal.show();
+        });
+    });
+</script>
 
 
 </body>

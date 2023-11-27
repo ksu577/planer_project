@@ -12,9 +12,18 @@
 
 
     <!-- 1. 물건 등록   -->
-    <insert id="insertproduct">
-        insert into product (id, name, price, product_desc, img)
-        values (seq_cart.nextval, #{productName}, #{productPrice}, #{productDesc}, #{img})
+    <insert id="insertproduct" parameterType="com.study.product.vo.ProductVO">
+        insert into product (id,
+                             name,
+                             price,
+                             product_desc,
+                             img)
+        values (seq_cart.nextval,
+                #{productName},
+                #{productPrice},
+                #{productDesc},
+                #{img}
+               )
     </insert>
 
     <!-- 2. 물건 삭제-->
@@ -49,15 +58,15 @@
     <select id="getprodList" resultType="com.study.product.vo.ProductVO">
         select *
         from (select a.*, rownum AS rnum
-              from (select id           as product_id,
-                           name         as product_name,
-                           price        as product_price,
-                           product_desc as product_desc,
-                           img          as img
-                    from product
-                    where 1=1
-                    <include refid="searchInFree"/>
-                    order by name) a)
+        from (select id as product_id,
+        name as product_name,
+        price as product_price,
+        product_desc as product_desc,
+        img as img
+        from product
+        where 1=1
+        <include refid="searchInFree"/>
+        order by name) a)
         WHERE rnum between #{paging.firstRow} and #{paging.lastRow}
     </select>
 
@@ -74,10 +83,10 @@
                 AND product_desc LIKE '%' || #{search.searchWord} || '%'
             </if>
             <if test='search.searchType=="W"'>
-                AND  LIKE '%' || #{search.searchWord} || '%'
+                AND LIKE '%' || #{search.searchWord} || '%'
             </if>
             <if test='search.searchType=="C"'>
-                AND name  LIKE '%' || #{search.searchWord} || '%'
+                AND name LIKE '%' || #{search.searchWord} || '%'
             </if>
         </if>
     </sql>
@@ -91,36 +100,29 @@
                , #{takeDetailAdd}, #{takeAutoAdd}, #{takeReq})
     </insert>
 
-<!--    장바구니의 정보를 가져오려고함 근데 가장 최신에 생성된 장바구니여야되니까 save_num이 max값인걸 불러온거임 11월 23일-->
+    <!--    장바구니의 정보를 가져오려고함 근데 가장 최신에 생성된 장바구니여야되니까 save_num이 max값인걸 불러온거임 11월 23일-->
     <select id="selectUserInfo" resultType="com.study.product.vo.SaveCartVO">
-        SELECT
-            s.take_name,
-            s.take_hp,
-            s.take_mail,
-            s.take_add,
-            s.take_detail_add,
-            s.take_auto_add,
-            s.take_req
-        FROM
-            save_cart s
-        WHERE
-            s.USER_ID = #{id}
-          AND
-            s.save_num = (select max(save_num) from save_cart where user_id = #{id})
+        SELECT s.take_name,
+               s.take_hp,
+               s.take_mail,
+               s.take_add,
+               s.take_detail_add,
+               s.take_auto_add,
+               s.take_req
+        FROM save_cart s
+        WHERE s.USER_ID = #{id}
+          AND s.save_num = (select max(save_num) from save_cart where user_id = #{id})
     </select>
 
-<!--    물품 정보의 db를 가져오려고함 위에꺼랑 이어 붙여서 afterpay에 넣으려고함 그 관련 컨트롤러는 productController에서 실행됨 11월 23일 -->
+    <!--    물품 정보의 db를 가져오려고함 위에꺼랑 이어 붙여서 afterpay에 넣으려고함 그 관련 컨트롤러는 productController에서 실행됨 11월 23일 -->
     <select id="selectProductInfo" resultType="com.study.product.vo.ProductVO">
-        SELECT
-            c.amount,
-            p.name as product_name,
-            p.price * c.amount as price
-        FROM
-            cart c, product p
-        WHERE
-            c.USER_ID = #{id}
-          AND
-            c.product_id = p.id
+        SELECT c.amount,
+               p.name             as product_name,
+               p.price * c.amount as price
+        FROM cart c,
+             product p
+        WHERE c.USER_ID = #{id}
+          AND c.product_id = p.id
     </select>
 
 </mapper>

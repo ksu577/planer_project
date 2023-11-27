@@ -60,7 +60,6 @@
 
 </head>
 <body>
-
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <div class="container">
 
@@ -76,11 +75,9 @@
             <div>
                 <a href="/free/freeList.wow">게시판</a>
             </div>
-
             <div>
                 <a href="/member/memberList.wow">회원 목록</a>
             </div>
-
             <div>
                 <a href="/ManagerPage/managerproduct">상품 목록</a>
                 <a href="/product/productregist">상품 등록</a>

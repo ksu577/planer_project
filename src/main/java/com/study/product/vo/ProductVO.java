@@ -3,6 +3,7 @@ package com.study.product.vo;
 import lombok.Data;
 
 
+
 @Data
 public class ProductVO {
 
@@ -16,10 +17,5 @@ public class ProductVO {
 
     private int price;
     private int amount;
-
-
-
-
-
 
 }
