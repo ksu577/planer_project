@@ -14,7 +14,9 @@
 </head>
 
   <body>
-    <button class="testbtn" id="testbtn">kakaopay</button>
+  <%@ include file="/WEB-INF/inc/top.jsp" %>
+
+    <button class="testbtn" id="testbtn" style="padding-top: 70px">kakaopay</button>
   </body>
 <script>
   $(function () {
@@ -26,6 +28,7 @@
         , contentType : "application/json"
         ,success: function (data) {
           const msg = JSON.parse(data.message);
+          console.log(msg) // tid
           const next_redirect_pc_url = msg.next_redirect_pc_url;
           window.open(next_redirect_pc_url, "_blank", "width=500, height=700")
         },

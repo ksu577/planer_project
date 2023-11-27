@@ -147,7 +147,7 @@
         <c:forEach var="place" items="${placeList}">
             <div class="cell">
                 <div class="top">
-                    <img height="320px" width="328px" src="" alt="">
+                    <img height="210px" width="328px" src="" alt="">
                 </div>
                 <div class="bottom">
                     <a href=""> ${place.placeName} </a>

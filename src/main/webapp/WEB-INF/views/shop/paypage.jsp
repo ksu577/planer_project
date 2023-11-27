@@ -5,6 +5,8 @@
 
     <% request.setCharacterEncoding("UTF-8"); %>
     <title>결제페이지</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
@@ -147,8 +149,7 @@
                 <div class="mb-3">
                     <span>결제 예정 금액 :  ${sumMoney + 3000}원</span>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">결제하기</button>
-                <button type="submit" class="btn btn-primary testbtn" style="width: 100%;" id="testbtn">결제하기</button>
+                <button type="button" class="btn btn-primary testbtn" style="width: 100%;" onclick="kpay()" id="testbtn">결제하기</button>
             </div>
         </form>
     </div>
@@ -157,6 +158,24 @@
 <%--https://postcode.map.daum.net/guide 다음우편주소api--%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+    function kpay() {
+        $.ajax({
+            url:'/test/kakaopay.wow'
+            , dataType: 'json'
+            , type : "post"
+            , contentType : "application/json"
+            ,success: function (data) {
+                const msg = JSON.parse(data.message);
+                console.log(msg) // tid
+                const next_redirect_pc_url = msg.next_redirect_pc_url;
+                window.open(next_redirect_pc_url, "_blank", "width=500, height=700")
+            },
+            error: function (error) {
+                alert(error);
+            }
+        })
+    }
+
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function (data) {
@@ -187,25 +206,27 @@
             }
         }).open();
     }
-    // 카카오 function()
-    // $(function () {
-    //     $('#testbtn').click(function (){
-    //         $.ajax({
-    //             url:'/test/kakaopay.wow'
-    //             , dataType: 'json'
-    //             , type : "post"
-    //             , contentType : "application/json"
-    //             ,success: function (data) {
-    //                 const msg = JSON.parse(data.message);
-    //                 const next_redirect_pc_url = msg.next_redirect_pc_url;
-    //                 window.open(next_redirect_pc_url, "_blank", "width=500, height=700")
-    //             },
-    //             error: function (error) {
-    //                 alert(error);
-    //             }
-    //         })
-    //     })
-    // })
+
+    // 카카오
+    $(function () {
+        $('#testbtn').click(function (){
+            $.ajax({
+                url:'/test/kakaopay.wow'
+                , dataType: 'json'
+                , type : "post"
+                , contentType : "application/json"
+                ,success: function (data) {
+                    const msg = JSON.parse(data.message);
+                    console.log(msg) // tid
+                    const next_redirect_pc_url = msg.next_redirect_pc_url;
+                    window.open(next_redirect_pc_url, "_blank", "width=500, height=700")
+                },
+                error: function (error) {
+                    alert(error);
+                }
+            })
+        })
+    })
 </script>
 </body>
 </html>
