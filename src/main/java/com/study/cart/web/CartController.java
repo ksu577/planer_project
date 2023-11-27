@@ -66,7 +66,7 @@ public class CartController {
     @RequestMapping(value = "/shoppingCartDelete", method = RequestMethod.POST)
     public String delete(@RequestParam("cartId") int cartId) {
         cartService.delete(cartId);
-        return "redirect:/cart/shoppingcartview.wow";
+        return "redirect:/cart/shoppingcartview";
     }
 
     ;

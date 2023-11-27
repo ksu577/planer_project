@@ -149,18 +149,6 @@
         <h3>자유게시판 - <small>글 목록</small></h3>
     </div>
 
-    <!-- START : 목록건수 및 새글쓰기 버튼  -->
-<%--    <div class="row" style="margin-bottom: 10px;">--%>
-<%--        <div class="col-sm-2  text-right">--%>
-<%--            전체 ${paging.totalRowCount}건 조회--%>
-<%--            <select id="id_rowSizePerPage" name="rowSizePerPage" class="form-control input-sm">--%>
-<%--                <c:forEach var="i" begin="15" end="50" step="15">--%>
-<%--                    <option value="${i}" ${paging.rowSizePerPage eq i ? "selected='selected'" : ""} >${i}</option>--%>
-<%--                </c:forEach>--%>
-<%--            </select>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-
     <div class="row">
         <div class="col-sm-2 col-sm-offset-10 text-right" style="margin-bottom: 5px;">
             <a href="freeForm.wow" class="btn btn-primary btn-sm">
@@ -175,7 +163,7 @@
             </a>
         </div>
     </div>
-    <!-- 추가된 테이블 -->
+
     <table id="noticeTable" class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
@@ -184,7 +172,7 @@
             <th>제목</th>
             <th>등록일</th>
             <th>조회수</th>
-            <%--            <th>첨부파일</th>--%>
+
         </tr>
         </thead>
         <colgroup>
@@ -224,11 +212,8 @@
         <c:when test="${not fn:startsWith(freeBoard.title,'[공지]')}">
         <tr class="text-center">
             <td>${freeBoard.freeNum}</td>
-            <!-- 이미지 표시 -->
+
             <td>
-                <!-- 이미지 표시 -->
-                    <%--                    <img src="${"/pc34/Aupload/"}" alt="" width="50" height="50">--%>
-                <!-- 게시글 제목 링크 -->
                     ${freeBoard.id }
             </td>
             <td>
@@ -293,10 +278,7 @@
     }); // ul.pagination li a[data-page]
 
 
-    //member까지 다 해보세요....3시간 동안..
 
-    //form태그내의 버튼 클릭
-    //이벤트전파방지, curPage 값 1로
     //submit
     $form.find("button[type=submit]").click(function (e) {
         e.preventDefault();

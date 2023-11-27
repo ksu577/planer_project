@@ -7,6 +7,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <script src="${pageContext.request.contextPath}/resource/smarteditor/summernote-lite.js"></script>
+    <script src="${pageContext.request.contextPath}/resource/smarteditor/js/summernote/lang/summernote-ko-KR.js"></script>
+    <!-- JavaScript 및 jQuery를 로드하는 부분 -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/smarteditor/summernote-lite.css">
     <%@ include file="/WEB-INF/inc/header.jsp" %>
     <title>자유게시판 - 글 보기</title>
 </head>
@@ -18,7 +26,7 @@
             자유게시판 - <small>글 보기</small>
         </h3>
     </div>
-    <table class="table table-striped table-bordered">
+    <table id="viewPage" class="table table-striped table-bordered">
         <tbody>
         <tr>
             <td>글번호</td>
@@ -34,8 +42,8 @@
         </tr>
         <tr>
             <td>내용</td>
-            <td><textarea rows="10" name="freeContext" class="form-control input-sm"
-                          readonly="readonly">${freeBoard.freeContext }</textarea></td>
+            <td><div rows="10" name="freeContext" class="form-control input-sm"
+                          readonly="readonly" >${freeBoard.freeContext }</div></td>
         </tr>
         <tr>
             <th>조회수</th>
@@ -56,7 +64,7 @@
                     </a> Size : ${f.atchFancySize} Down : ${f.atchDownHit}
 
                         <img alt="" src="<%=request.getContextPath()%>/attach/showImg.wow?fileName=${f.atchFileName}&filePath=${f.atchPath}"
-                             width="100px" height="100px">
+                             width="750px" height="500px">
                     </div>
                 </c:forEach>
             </td>
@@ -112,15 +120,6 @@
 
     </div>
 
-<%--</div>--%>
-<%--<div class="row text-center" id="id_reply_list_more">--%>
-<%--    <a id="btn_reply_list_more"--%>
-<%--       class="btn btn-sm btn-default col-sm-10 col-sm-offset-1"> <span--%>
-<%--            class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>--%>
-<%--        더보기--%>
-<%--    </a>--%>
-<%--</div>--%>
-
 <!-- // END : 댓글 목록 영역  -->
 <!-- START : 댓글 수정용 Modal -->
 <div class="modal" id="id_reply_edit_modal" role="dialog">
@@ -162,10 +161,6 @@
 <!-- reply container -->
 
 </body>
-<!-- JavaScript 및 jQuery를 로드하는 부분 -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     // 댓글 데이터를 딱 10개만 가지고 오도록 하는 파라미터 모음
     var params = {

@@ -1,11 +1,14 @@
 package com.study.free.web;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
+import java.util.UUID;
 
 
-
+import com.google.gson.JsonObject;
 import com.study.attach.vo.AttachVO;
 import com.study.code.service.ICommCodeService;
 import com.study.code.vo.CodeVO;
@@ -20,10 +23,9 @@ import com.study.exception.BizNotFoundException;
 import com.study.exception.BizPasswordNotMatchedException;
 import com.study.free.service.IFreeBoardService;
 import com.study.login.vo.UserVO;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Document;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +33,17 @@ import org.springframework.util.StringUtils;
 
 import com.study.free.vo.FreeBoardVO;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class FreeController {
+
     @Inject
     private ICommentService commentService;
 
@@ -68,18 +75,6 @@ public class FreeController {
         model.addAttribute("cateList", cateList);
         List<FreeBoardVO> freeBoardList = freeBoardService.getBoardList(paging, search, searchCategory);
 
-//        for (FreeBoardVO freeBoardEntity : freeBoardList){
-//            String context = freeBoardEntity.getFreeContext();
-//            Document doc = Jsoup.parse(context);
-//            Element imgElement = doc.selectFirst("resource/img");
-//            if (imgElement !=null){
-//                String src = imgElement.attr("src");
-//                freeBoardEntity.setThumbnailImagePath(src);
-//
-//                String thumbnailFileName = getThumbnailFileName(src);
-//                freeBoardEntity.setThumbnailImagePath(thumbnailFileName);
-//            }
-//        }
         model.addAttribute("freeBoardList", freeBoardList);
         return "free/freeList";
     }
@@ -191,5 +186,42 @@ public class FreeController {
         return "common/message";
     }
 
+    @RequestMapping(value = "/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
+        @ResponseBody
+        public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
+        JsonObject jsonObject = new JsonObject();
+
+        String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+        String fileRoot = contextRoot+"/free/freeImage";
+
+        String originalFileName = multipartFile.getOriginalFilename();
+
+        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+        String savedFileName = UUID.randomUUID()+ extension;
+
+        File targetFile = new File(fileRoot + savedFileName);
+
+        try {
+            InputStream fileStream = multipartFile.getInputStream();
+            FileUtils.copyInputStreamToFile(fileStream,targetFile);
+            jsonObject.addProperty("url","/free/freeImage"+savedFileName);
+            jsonObject.addProperty("responseCode","success");
+        }catch (IOException e){
+            FileUtils.deleteQuietly(targetFile);
+            jsonObject.addProperty("responseCode","error");
+            e.printStackTrace();
+        }
+        String a = jsonObject.toString();
+        return a;
+    }
+
+//    @PostMapping("free/freeForm")
+//    @ResponseBody
+//    public ResponseEntity<?> handleFileUpload(@RequestParam("file")MultipartFile file){
+//        try {
+//            UploadFile uploadFile = imageService.store(file)
+//        }
+//    }
 
 }

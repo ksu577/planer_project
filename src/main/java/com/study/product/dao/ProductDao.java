@@ -1,6 +1,5 @@
 package com.study.product.dao;
 
-import com.study.cart.vo.CartVO;
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.SearchVO;
 import com.study.product.vo.ProductVO;
@@ -8,6 +7,7 @@ import com.study.product.vo.ProductVO;
 import com.study.product.vo.SaveCartVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public interface ProductDao {
 
     // 1. 물건 등록
-    public void insertproduct(ProductVO productVO);
+    public void insertproduct(ProductVO productVO, MultipartFile imgFile);
 
     // 2.물건 삭제
     public void delete(int productId);
