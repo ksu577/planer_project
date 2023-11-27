@@ -213,7 +213,6 @@
                     document.getElementById("result-section").innerHTML = "";
                     for (let i = 0; i < data.length; i++) {
                         document.getElementById("result-section").innerHTML += '<div>' + data[i]["id"] + '</div>'
-
                     }
                 }
             }, error: function (error) {

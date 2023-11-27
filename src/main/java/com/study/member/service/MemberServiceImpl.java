@@ -2,6 +2,7 @@ package com.study.member.service;
 
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.SearchVO;
+import com.study.exception.BizException;
 import com.study.exception.BizNotEffectedException;
 import com.study.exception.BizNotFoundException;
 import com.study.member.dao.IMemberDao;
@@ -64,6 +65,23 @@ public class MemberServiceImpl implements IMemberService{
         } catch(Exception e) {
             e.printStackTrace();
         }
-        return result ;
+        return result;
+    }
+
+    @Override
+    public MemberVO findPw(String id, String email) {
+        MemberVO result = null;
+        try {
+            result = memberDao.findPw(id, email);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @Override
+    public void changePw(MemberVO member) throws BizNotEffectedException {
+        int count = memberDao.changePw(member);
+        if (count < 1) throw new BizNotEffectedException();
     }
 }

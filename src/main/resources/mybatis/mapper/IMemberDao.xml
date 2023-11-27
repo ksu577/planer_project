@@ -74,6 +74,20 @@
         AND email = #{email}
     </select>
 
+    <select id="findPw" resultType="com.study.member.vo.MemberVO">
+        SELECT password
+        FROM member
+        WHERE id = #{Id}
+        AND email = #{email}
+    </select>
+
+
+    <update id="changePw" parameterType="com.study.member.vo.MemberVO">
+        UPDATE member
+        SET password = #{password}
+        WHERE id = #{Id}
+    </update>
+
 
     <update id="updateMember" parameterType="com.study.member.vo.MemberVO">
         UPDATE member
