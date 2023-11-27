@@ -23,6 +23,7 @@ import com.study.exception.BizNotFoundException;
 import com.study.exception.BizPasswordNotMatchedException;
 import com.study.free.service.IFreeBoardService;
 import com.study.login.vo.UserVO;
+import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -66,6 +67,7 @@ public class FreeController {
         return "common/meesage";
     }
 
+    @SneakyThrows
     @GetMapping("/free/freeList.wow")
     public String freeList(Model model
             , @ModelAttribute("paging") PagingVO paging
@@ -75,6 +77,9 @@ public class FreeController {
         model.addAttribute("cateList", cateList);
         List<FreeBoardVO> freeBoardList = freeBoardService.getBoardList(paging, search, searchCategory);
 
+        for (FreeBoardVO freeBoard : freeBoardList) {
+            freeBoardService.updateCommentCount(freeBoard.getFreeNum());
+        }
         model.addAttribute("freeBoardList", freeBoardList);
         return "free/freeList";
     }
@@ -92,7 +97,7 @@ public class FreeController {
     @RequestMapping(method = RequestMethod.GET, value = "/free/freeView.wow")
     public String freeView(Model model,
                            HttpSession session,
-                           @RequestParam(name = "freeNum") int freeNum) throws BizNotFoundException, BizNotEffectedException {
+                           @RequestParam(name = "freeNum") int freeNum) throws Exception {
         FreeBoardVO freeBoard = freeBoardService.getBoard(freeNum);
         if(freeBoard != null){
             UserVO loginUser = (UserVO) session.getAttribute("user");
@@ -101,6 +106,7 @@ public class FreeController {
 
             model.addAttribute("freeBoard", freeBoard);
             model.addAttribute("canEdit", canEdit);
+
 
             freeBoardService.increaseHit(freeNum);
             return "free/freeView";
@@ -178,6 +184,8 @@ public class FreeController {
             freeBoard.setAttaches(attaches);
         }
 
+
+
         ResultMessageVO resultMessageVO = new ResultMessageVO();
         freeBoardService.registBoard(freeBoard);
         resultMessageVO.messageSetting(true, "등록", "등록성공", "/free/freeList.wow", "목록으로");
@@ -187,8 +195,8 @@ public class FreeController {
     }
 
     @RequestMapping(value = "/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
-        @ResponseBody
-        public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
+    @ResponseBody
+    public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
         JsonObject jsonObject = new JsonObject();
 
         String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");

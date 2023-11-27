@@ -31,4 +31,6 @@ public interface IFreeBoardService {
 
 
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException;
+
+    public void updateCommentCount(int free_num) throws Exception;
 }

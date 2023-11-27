@@ -26,4 +26,6 @@ public interface IFreeBoardDao {
     public int insertBoard(FreeBoardVO freeBoard);
 
     public int increaseView(int freeNum);
+
+    public void updateCommentCount(int free_num)throws Exception;
 }

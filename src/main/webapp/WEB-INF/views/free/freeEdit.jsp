@@ -58,33 +58,29 @@
                 <td>${freeBoard.updateDate eq null ? freeBoard.createDate : freeBoard.updateDate }
                 </td>
             </tr>
-<%--            <tr>--%>
-<%--                <th>첨부파일--%>
-<%--                    <button type="button" id="id_btn_new_file">추가</button>--%>
-<%--                </th>--%>
-<%--                <td class="file_area">--%>
-<%--                    <c:forEach var="f" items="${freeBoard.attaches}" varStatus="st">--%>
-<%--                        <div>--%>
-<%--                            # 파일 ${st.count} <a href="<c:url value='/attach/download/${f.atchNo}' />" target="_blank"> <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ${f.atchOriginalName}--%>
-<%--                        </a> Size : ${f.atchFancySize} Down : ${f.atchDownHit}--%>
-<%--                            <button class="btn_file_delete" data-atch-no="${f.atchNo}">--%>
-<%--                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>--%>
-<%--                            </button>--%>
-<%--                        </div>--%>
-<%--                    </c:forEach>--%>
-<%--                    <div class="form-inline">--%>
-<%--                        <input type="file" name="boFiles" class="form-control">--%>
-<%--                        <button type="button" class="btn_delete btn btn-sm">삭제</button>--%>
-<%--                    </div>--%>
-<%--                </td>--%>
-<%--            </tr>--%>
+            <tr>
+                <th>첨부파일
+                    <button type="button" id="id_btn_new_file">추가</button>
+                </th>
+                <td class="file_area">
+                    <c:forEach var="f" items="${freeBoard.attaches}" varStatus="st">
+                        <div>
+                            # 파일 ${st.count} <a href="<c:url value='/attach/download/${f.atchNo}' />" target="_blank"> <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ${f.atchOriginalName}
+                        </a> Size : ${f.atchFancySize} Down : ${f.atchDownHit}
+                            <button class="btn_file_delete" data-atch-no="${f.atchNo}">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </c:forEach>
+                    <div class="form-inline">
+                        <input type="file" name="boFiles" class="form-control">
+                        <button type="button" class="btn_delete btn btn-sm">삭제</button>
+                    </div>
+                </td>
+            </tr>
 
             <tr>
                 <td colspan="2">
-                    <div class="pull-left">
-                        <a href="freeList.wow" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp;&nbsp;목록
-                        </a>
-                    </div>
                     <div class="pull-right">
 
                         <a href="freeList.wow" class="btn btn-info btn-sm"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp;목록으로
@@ -96,7 +92,6 @@
                         <button type="submit" formaction="freeDelete.wow" class="btn btn-sm btn-danger">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> &nbsp;&nbsp;삭제
                         </button>
-
 
                     </div>
                 </td>
@@ -119,17 +114,53 @@
 
     // 상위객체를 통해 이벤트 위임
     $('.file_area').on('click', '.btn_delete', function () {
-        $(this).closest('div').remove();
+        if (confirm("이 파일을 삭제하시겠습니까?")){
+            $(this).closest('div').remove();
+        }
     });
 
     // 기존 첨부파일 삭제 클릭
     $('.btn_file_delete').click(function () {
-        $btn = $(this);
-        $btn.closest('div').html(
-            '<input type="hidden" name="delAtchNos" value="' + $btn.data("atch-no") + '" />'
-        );
+        if (confirm("이 파일을 삭제하시겠습니까?")){
+            $btn = $(this);
+            $btn.closest('div').html(
+                '<input type="hidden" name="delAtchNos" value="' + $btn.data("atch-no") + '" />'
+            );
+        }
     });   //
 
+    // 삭제 버튼 클릭
+    $('form').on('submit', function (event) {
+        var deleteButton = $(event.relatedTarget); // 이벤트를 발생시킨 버튼
+
+        if (deleteButton.hasClass('btn-danger')) {
+            // '삭제' 버튼 클릭 시 알람 창 표시
+            if (!confirm('정말로 삭제하시겠습니까?')) {
+                event.preventDefault(); // 삭제를 취소함
+            }
+        }
+    });
+
+    // 목록 링크 클릭
+    $('.btn-info').click(function() {
+        if (!confirm('목록으로 돌아가시겠습니까?')) {
+            return false; // 목록으로의 이동을 취소함
+        }
+    });
+
+    // 저장 버튼 클릭
+    $('button.btn-primary').click(function() {
+        if (!confirm('저장하시겠습니까?')) {
+            return false; // 저장을 취소함
+        }
+    });
+
+    // 삭제 버튼 클릭
+    $('button.btn-danger').click(function() {
+        if (!confirm('정말로 삭제하시겠습니까?')) {
+            return false; // 삭제를 취소함
+        }
+    });
 
 </script>
 <script>
