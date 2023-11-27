@@ -330,7 +330,7 @@ public class MemberController {
     public ResultMessageVO author(HttpSession session, @RequestBody MemberVO member) {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
 
-        session.setAttribute("user", member);
+        session.setAttribute("member", member);
 
         resultMessageVO.setMessage("인증완료");
         resultMessageVO.setUrl("/login/changePw.wow");
@@ -338,9 +338,11 @@ public class MemberController {
         return resultMessageVO;
     }
 
+
+
     @GetMapping("/login/changePw.wow")
     public String changeMePw(Model model, HttpSession session) {
-        MemberVO member = (MemberVO) session.getAttribute("user");
+        MemberVO member = (MemberVO) session.getAttribute("member");
 
         model.addAttribute("member", member);
 
@@ -351,11 +353,11 @@ public class MemberController {
     @PostMapping("/login/changePw.wow")
     public String changePw(Model model, HttpSession session, MemberVO member) throws BizException {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
-        MemberVO user = (MemberVO) session.getAttribute("user");
+        MemberVO user = (MemberVO) session.getAttribute("member");
         member.setId(user.getId());
         memberService.changePw(member);
 
-        session.setAttribute("user", member);
+        session.setAttribute("member", user);
 
         resultMessageVO.messageSetting(true, "수정", "비밀번호가 변경되었습니다."
                 , "/login/login.wow", "목록으로");
