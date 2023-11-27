@@ -16,6 +16,22 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/smarteditor/summernote-lite.css">
     <%@ include file="/WEB-INF/inc/header.jsp" %>
+
+    <style>
+        .content-container {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .content-container > div {
+            width: 100%;
+            word-wrap: break-word;
+        }
+        .custom-input{
+            width: auto;
+            height: auto;
+        }
+    </style>
     <title>자유게시판 - 글 보기</title>
 </head>
 <body>
@@ -42,8 +58,13 @@
         </tr>
         <tr>
             <td>내용</td>
-            <td><div rows="10" name="freeContext" class="form-control input-sm"
-                          readonly="readonly" >${freeBoard.freeContext }</div></td>
+            <td>
+                <div class="content-container">
+                    <div name="freeContext" class="form-control input-sm custom-input" style="overflow: auto; white-space: pre-line"
+                         readonly="readonly">${freeBoard.freeContext }
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr>
             <th>조회수</th>
@@ -63,8 +84,9 @@
                         <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ${f.atchOriginalName}
                     </a> Size : ${f.atchFancySize} Down : ${f.atchDownHit}
 
-                        <img alt="" src="<%=request.getContextPath()%>/attach/showImg.wow?fileName=${f.atchFileName}&filePath=${f.atchPath}"
-                             width="750px" height="500px">
+<%--                        <img alt=""--%>
+<%--                             src="<%=request.getContextPath()%>/attach/showImg.wow?fileName=${f.atchFileName}&filePath=${f.atchPath}"--%>
+<%--                             width="750px" height="500px">--%>
                     </div>
                 </c:forEach>
             </td>
@@ -120,42 +142,42 @@
 
     </div>
 
-<!-- // END : 댓글 목록 영역  -->
-<!-- START : 댓글 수정용 Modal -->
-<div class="modal" id="id_reply_edit_modal" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <form name="frm_reply_edit"
-                  action="/comment/commentModify" method="post">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h4 class="modal-title">댓글수정</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="freeBoardCommentNumber" value="">
-                    <textarea rows="3" name="freeContextComment" class="form-control"></textarea>
-                    <input type="hidden" name="id" value="${USER_INFO.user }">
-                </div>
-                <div class="modal-footer">
-                    <button id="btn_reply_modify" type="button"
-                            class="btn btn-sm btn-info">저장
-                    </button>
-                    <button id="btnCloseModal" type="button" class="btn btn-default btn-sm"
-                            data-dismiss="modal">닫기
-                    </button>
-                </div>
-            </form>
-            <script type="text/javascript">
-                // 모달 닫기 버튼 클릭 이벤트 처리
-                $("#btnCloseModal").on("click", function () {
-                    $("#id_reply_edit_modal").modal("hide");
-                });
-            </script>
+    <!-- // END : 댓글 목록 영역  -->
+    <!-- START : 댓글 수정용 Modal -->
+    <div class="modal" id="id_reply_edit_modal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <form name="frm_reply_edit"
+                      action="/comment/commentModify" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h4 class="modal-title">댓글수정</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="freeBoardCommentNumber" value="">
+                        <textarea rows="3" name="freeContextComment" class="form-control"></textarea>
+                        <input type="hidden" name="id" value="${USER_INFO.user }">
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn_reply_modify" type="button"
+                                class="btn btn-sm btn-info">저장
+                        </button>
+                        <button id="btnCloseModal" type="button" class="btn btn-default btn-sm"
+                                data-dismiss="modal">닫기
+                        </button>
+                    </div>
+                </form>
+                <script type="text/javascript">
+                    // 모달 닫기 버튼 클릭 이벤트 처리
+                    $("#btnCloseModal").on("click", function () {
+                        $("#id_reply_edit_modal").modal("hide");
+                    });
+                </script>
+            </div>
         </div>
     </div>
-</div>
-<!-- END : 댓글 수정용 Modal -->
+    <!-- END : 댓글 수정용 Modal -->
 
 </div>
 <!-- reply container -->
