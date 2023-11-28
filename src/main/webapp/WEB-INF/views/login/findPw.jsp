@@ -31,6 +31,7 @@
         height: 50px;
         border: 1px solid black;
         border-radius: 5px;
+        background-color: white;
     }
 
     .email-input {
@@ -50,12 +51,13 @@
     }
 
     #id {
-        width: 350px;
+        width: 380px;
         height: 48px;
         margin-left: 5px;
-        border: 1px solid white;
+        border: white;
         font-size: 15px;
         outline: none;
+        background-color: white;
     }
 
     #email {
@@ -65,6 +67,7 @@
         border: 1px solid white;
         font-size: 15px;
         outline: none;
+        background-color: white;
     }
 
     #emailcheck {
@@ -74,6 +77,7 @@
         border: 1px solid white;
         font-size: 15px;
         outline: none;
+        background-color: white;
     }
 
     .em-check-btn {
@@ -139,11 +143,8 @@
 </body>
 <script>
 
-    // function requestAuthCode() {
-    //     var id = document.getElementById("id").value;
-    //     var email = document.getElementById("email").value;
-
     let CheckPwIdentify = false;
+
 
     $("#emCheck").on("click", function (e) {
         let testId = $("input[name='id']").val();
@@ -158,8 +159,7 @@
                 } else {
                     alert("전송되었습니다.");
                 }
-            }
-            , error: function (err) {
+            }, error: function (err) {
                 alert("에러");
             }
         });
@@ -182,6 +182,12 @@
             }, error: function (err) {
                 CheckPwIdentify = false;
                 alert("인증번호를 확인해주세요.");
+            }, complete() {
+                if (CheckPwIdentify) {
+                    $("#id").prop('disabled', true);
+                    $("#email").prop('disabled', true);
+                    $("#emailcheck").prop('disabled', true);
+                }
             }
         });
     });
@@ -209,7 +215,7 @@
                 }
             }, error: function (err) {
                 CheckPwIdentify = false;
-                alert("에러 left4dead");
+                alert("에러발생");
             }
         })
     }

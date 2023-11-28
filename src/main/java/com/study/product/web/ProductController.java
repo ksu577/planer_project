@@ -1,5 +1,6 @@
 package com.study.product.web;
 
+import com.study.attach.vo.AttachVO;
 import com.study.cart.service.ICartService;
 import com.study.cart.vo.CartVO;
 import com.study.exception.BizNotFoundException;
@@ -10,12 +11,19 @@ import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
 import com.study.product.vo.SaveCartVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import com.study.common.vo.PagingVO;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import com.study.common.vo.SearchVO;
@@ -36,6 +44,8 @@ public class ProductController {
         this.kakaoService = kakaoService;
     }
 
+    @Value("#{util['file.upload.path']}")
+    private String uploadPath;
 
     @Autowired
     IproductService IproductService;
@@ -215,6 +225,35 @@ public class ProductController {
 //        return "/shop/afterpay";
 //    }
 
+    public File getFileFromAttachVO(ProductVO productVO) throws IOException, BizNotFoundException {
+        String fileName = productVO.getImg();  //저장되어있는 파일이름. 랜덤값
+        String filePath = productVO.getImgPath();     // 저장되어있는 폴더 경로
+        String path = uploadPath + File.separatorChar + filePath;
+        File file = new File(path, fileName);
+        if (!file.isFile()) throw new BizNotFoundException("파일없음");
+        return  file;
 
+    }
+
+    //img파일 썸네일
+    @RequestMapping("/imgDownload/showImg.wow")
+    @ResponseBody
+    public ResponseEntity<byte[]> showImage(@RequestParam("fileName") String img, @RequestParam("filePath") String imgPath) {
+
+        System.out.println("img " + img);
+        System.out.println("imgPath " + imgPath);
+
+        File file = new File(uploadPath + File.separatorChar + imgPath, img);
+        ResponseEntity<byte[]> result = null;
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", Files.probeContentType(file.toPath()));
+            result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
 }
+

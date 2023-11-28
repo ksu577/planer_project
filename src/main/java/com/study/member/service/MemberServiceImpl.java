@@ -69,6 +69,12 @@ public class MemberServiceImpl implements IMemberService{
     }
 
     @Override
+    public int findIdCheck(MemberVO member) {
+        return memberDao.findIdCheck(member);
+    }
+
+
+    @Override
     public MemberVO findPw(String id, String email) {
         MemberVO result = null;
         try {
@@ -80,7 +86,7 @@ public class MemberServiceImpl implements IMemberService{
     }
 
     @Override
-    public int findPwCheck(MemberVO member) throws BizException {
+    public int findPwCheck(MemberVO member) {
         return memberDao.findPwCheck(member);
     }
 
