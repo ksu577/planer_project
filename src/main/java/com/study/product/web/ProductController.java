@@ -225,25 +225,23 @@ public class ProductController {
 //        return "/shop/afterpay";
 //    }
 
-    public File getFileFromAttachVO(ProductVO productVO) throws IOException, BizNotFoundException {
-        String fileName = productVO.getImg();  //저장되어있는 파일이름. 랜덤값
-        String filePath = productVO.getImgPath();     // 저장되어있는 폴더 경로
-        String path = uploadPath + File.separatorChar + filePath;
-        File file = new File(path, fileName);
-        if (!file.isFile()) throw new BizNotFoundException("파일없음");
-        return  file;
-
-    }
+//    public File getFileFromAttachVO(ProductVO productVO) throws IOException, BizNotFoundException {
+//        String fileName = productVO.getImg();  //저장되어있는 파일이름. 랜덤값
+//        String filePath = productVO.getImgPath();     // 저장되어있는 폴더 경로
+//        String path = uploadPath + File.separatorChar + filePath;
+//        File file = new File(path, fileName);
+//        if (!file.isFile()) throw new BizNotFoundException("파일없음");
+//        return  file;
+//
+//    }
 
     //img파일 썸네일
     @RequestMapping("/imgDownload/showImg.wow")
     @ResponseBody
     public ResponseEntity<byte[]> showImage(@RequestParam("fileName") String img, @RequestParam("filePath") String imgPath) {
+        String projectPath = System.getProperty("user.dir");
 
-        System.out.println("img " + img);
-        System.out.println("imgPath " + imgPath);
-
-        File file = new File(uploadPath + File.separatorChar + imgPath, img);
+        File file = new File(projectPath + imgPath, img);
         ResponseEntity<byte[]> result = null;
         try {
             HttpHeaders headers = new HttpHeaders();
