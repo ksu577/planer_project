@@ -12,7 +12,6 @@ public interface ITourDao {
     public int insertTour(@Param("tourTitle") String tourTitle, @Param("user") String user);
     public TourVO getTourNum(TourVO tourVO);
     public List<TourVO> myPlanDao(String user);
-
-    String getPlanTitle(String tourTitle);
+    public String getPlanTitle(String tourTitle);
 
 }

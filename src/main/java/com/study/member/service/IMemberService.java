@@ -12,6 +12,7 @@ import java.util.List;
 public interface IMemberService {
 
     public List<MemberVO> getMemberList(PagingVO paging, SearchVO search);
+    public List<MemberVO> getMemberList();
     public MemberVO getMember(String Id) throws BizNotFoundException;
     public void modifyMember(MemberVO member) throws BizException;
     public void removeMember(MemberVO member) throws BizException;
