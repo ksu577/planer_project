@@ -42,11 +42,12 @@ public class CommentController {
 
         List<CommentVO> commentList = commentService.getCommentListByParent(paging, freeNum);
 
-
         map.put("size", commentList.size());
-        map.put("data", commentList);
+
+
         map.put("loginUser", loginUser);
 
+        map.put("data", commentList);
         return map;
     }
 

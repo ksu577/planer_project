@@ -86,16 +86,7 @@ public class FreeController {
         model.addAttribute("freeBoardList", freeBoardList);
         return "free/freeList";
     }
-//    // 이미지 파일명에서 썸네일 이미지 파일명으로 변경하는 메소드
-//    private String getThumbnailFileName(String originalFileName) {
-//        // 파일 확장자 추출
-//        String fileExtension = StringUtils.getFilenameExtension(originalFileName);
-//        // 파일 이름에서 확장자 제외한 부분 추출
-//        String fileNameWithoutExtension = StringUtils.stripFilenameExtension(originalFileName);
-//
-//        // 썸네일 이미지 파일명 생성 (예: "원래파일명_thumb.확장자")
-//        return fileNameWithoutExtension + "_thumb." + fileExtension;
-//    }
+
 
     @RequestMapping(method = RequestMethod.GET, value = "/free/freeView.wow")
     public String freeView(Model model,

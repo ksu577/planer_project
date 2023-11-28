@@ -156,7 +156,7 @@
                 &nbsp;새글쓰기
             </a>
         </div>
-        <div class="col-sm-2 col-sm-offset-0 text-left">
+        <div class="col-sm-2 col-sm-offset-0 text-left" style="margin-bottom: 5px;" >
             <a href="noticeList.wow" class="btn btn-primary btn-sm">
                 <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                 공지 더보기
