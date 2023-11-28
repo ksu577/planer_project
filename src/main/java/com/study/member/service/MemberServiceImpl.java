@@ -31,6 +31,12 @@ public class MemberServiceImpl implements IMemberService{
     }
 
     @Override
+    public List<MemberVO> getMemberList() {
+        List<MemberVO> memberList = memberDao.getMemberListShare();
+        return memberList;
+    }
+
+    @Override
     public MemberVO getMember(String Id) throws BizNotFoundException {
         MemberVO member = memberDao.getMember(Id);
         if (member == null) throw new BizNotFoundException();

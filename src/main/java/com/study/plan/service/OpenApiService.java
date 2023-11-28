@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,8 +22,8 @@ public class OpenApiService {
     public List<ApiVO> getTourismData(String search) throws UnsupportedEncodingException, JsonProcessingException {
         try {
             String apiUrl = "https://apis.data.go.kr/B551011/KorService1/searchKeyword1";
-            String parameters = "?serviceKey=" + API_KEY + "&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=A&keyword=" + search;
-
+            String parameters = "?serviceKey=" + API_KEY + "&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=A&keyword=" + URLEncoder.encode(search, "UTF-8");
+            System.out.println(API_KEY);
             RestTemplate restTemplate = new RestTemplate();
             String jsonData = restTemplate.getForObject(apiUrl + parameters, String.class);
 

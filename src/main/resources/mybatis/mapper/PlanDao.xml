@@ -93,4 +93,11 @@
         WHERE id = #{id}
           AND plan_title = #{title}
     </update>
+
+    <update id="updateshare">
+        UPDATE user_plan
+        SET share_id = #{shareId}
+        WHERE id = #{id}
+          AND plan_title = #{title}
+    </update>
 </mapper>
