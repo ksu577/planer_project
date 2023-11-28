@@ -18,6 +18,10 @@
     <%@ include file="/WEB-INF/inc/header.jsp" %>
 
     <style>
+        .container {
+            padding-top: 70px;
+        }
+
         .content-container {
             width: 100%;
             box-sizing: border-box;
