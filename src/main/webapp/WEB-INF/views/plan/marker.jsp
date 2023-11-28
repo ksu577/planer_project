@@ -58,28 +58,11 @@
             width: 350px;
         }
 
-        .first > div:nth-child(2) > div:nth-child(1) {
-            /* 검색창 */
-            height: 10%;
-        }
 
         /* .first>div:nth-child(2)>div:nth-child(2){ */
         /* 명소 음식 숙소 */
         /* height: 20%; */
         /* } */
-        .first > div:nth-child(2) > div:nth-child(3) {
-            /* api 끌어온 정보들 선택창 */
-            height: 69.5%;
-        }
-
-        .first > div:nth-child(3) {
-            width: 23%;
-        }
-
-        .first > div:nth-child(4) {
-            width: 55%;
-        }
-
         .box {
             align-items: center;
             height: 50px;
@@ -140,7 +123,9 @@
         }
 
         .selectplace-nav {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.62);
+
+            border-radius: 50px;
 
             position: absolute;
             height: 850px;
@@ -175,6 +160,7 @@
             }
         }
 
+
         .slide-out {
             animation: slideOut 1s forwards;
         }
@@ -186,27 +172,40 @@
     <div class="first" id="map">
         <div class="besidenav">
             <div>
-                <div class="box">전체일정</div>
-                <div class="box" onclick="">N일차</div>
+                <div class="box" onclick="f_allDay()">전체일정</div>
                 <div class="selectplace" id="day"></div>
             </div>
             <div>
                 <button class="edit" onclick="f_update()">수정</button>
+
                 <button class="edit" onclick="f_delete()">삭제</button>
             </div>
         </div>
-
-
         <div class="selectplace-nav">
-
-
             <div class="selectbox" id="select-box"></div>
-
         </div>
-
     </div>
-
 </div>
+<!-- 모달 창 -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <form action="/share/plan" method="post">
+            <!-- 모달 내용을 추가하세요 -->
+            <input type="hidden" name="planTitle" value="${title}">
+            <input type="text" name="shareId">
+
+            <button type="submit" onclick="submitForm()">전송</button>
+
+            <button type="button" onclick="closeModal()">지움</button>
+        </form>
+    </div>
+</div>
+
+<div class="col-sm-2 col-sm-offset-10 text-right">
+    <a href="/plan/excelDown?title=${title}" class="btn  btn-sm btn-default" target="_blank"
+       id="excelDown">excelDown</a>
+</div>
+<button onclick="f_share()">공유하기</button>
 
 </body>
 <script type="text/javascript"
@@ -216,6 +215,32 @@
     const titleH1 = document.getElementById("title");
     const day_div = document.getElementById("day");
     const tour_div = document.getElementById("select-box");
+
+    // 모달 열기
+    function openModal() {
+        var modal = document.getElementById('myModal');
+        modal.style.display = 'block';
+    }
+
+    // 모달 닫기
+    function closeModal() {
+        var modal = document.getElementById('myModal');
+        modal.style.display = 'none';
+    }
+
+    // 전송 버튼 동작
+    function submitForm() {
+        // 모달 내용 전송 또는 기타 작업 수행
+        // 여기에 전송 로직을 추가하세요.
+
+        // 모달 닫기
+        closeModal();
+    }
+
+    // f_share 함수 수정
+    function f_share() {
+        openModal();
+    }
 
     function f_drawer() {
         v_drawer.classList.add("slide-in");
@@ -262,7 +287,7 @@
 
                     points[i] = (new kakao.maps.LatLng(result[i].ylab, result[i].xlab));
 
-                    console.log(result[i].ylab, result[i].xlab)
+                    console.log(result[i].ylab, result[i].xlab);
 
                 }
 
@@ -361,17 +386,17 @@
                 console.log(result)
 
                 for (let i = 0; i < result.length; i++) {
-                tour_div.innerHTML += '<div>' +
-                    '<div>'
-                    + (i + 1) +
-                    '</div>'+
-                    '<div>'
-                    + result[i]["placeName"] +
-                    '</div>'+
-                    '<div>'
-                    + result[i]["placeLoadAddress"] +
-                    '</div>' +
-                    '<div>'
+                    tour_div.innerHTML += '<div>' +
+                        '<div>'
+                        + (i + 1) +
+                        '</div>' +
+                        '<div>'
+                        + result[i]["placeName"] +
+                        '</div>' +
+                        '<div>'
+                        + result[i]["placeLoadAddress"] +
+                        '</div>' +
+                        '<div>'
                 }
 
 
@@ -393,6 +418,7 @@
         div.classList.add('day_count');
         div.textContent = '${planList.dayCount}일차';
         day_div.appendChild(div)
+        console.log("${planList.dayCount}일차")
     }
     </c:forEach>
 
@@ -406,6 +432,10 @@
 
     function f_update() {
         location.href = encodeURI("/plan/plan.wow?planTitle=" + title + "");
+    }
+
+    function f_allDay() {
+
     }
 </script>
 

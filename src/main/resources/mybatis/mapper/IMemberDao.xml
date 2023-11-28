@@ -48,6 +48,24 @@
               WHERE rnum between #{paging.firstRow} and #{paging.lastRow}
     </select>
 
+    <select id="getMemberListShare" resultType="com.study.member.vo.MemberVO">
+        SELECT
+        to_char(birth, 'YYYY-MM-DD') AS birth
+        , to_char(createDate, 'YYYY-MM-DD') AS createDate
+        , id
+        , name
+        , password
+        , address
+        , address2
+        , phnum
+        , email
+        , delYn
+        , role
+        , profile
+        FROM member a
+        where delYn != 'Y'
+    </select>
+
 
     <select id="getMember" resultType="com.study.member.vo.MemberVO" parameterType="String">
         SELECT

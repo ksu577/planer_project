@@ -16,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.*;
 
 
@@ -106,8 +108,9 @@ public class PlanController {
     }
 
     @GetMapping("/myPlan.wow")
-    public String myplan(@RequestParam("user") String user, Model model) {
-        List<TourVO> myPlan = tourService.myPlan(user);
+    public String myplan(HttpSession session, Model model) {
+        UserVO user = (UserVO) session.getAttribute("user");
+        List<TourVO> myPlan = tourService.myPlan(user.getId());
         model.addAttribute("myPlan", myPlan);
         return "plan/myPlan";
     }

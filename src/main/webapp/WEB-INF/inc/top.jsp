@@ -74,7 +74,7 @@
                     </c:if>
                 <li><a class="dropdown-item" href="/member/memberView.wow"> 내 정보 </a></li>
                 <li><a class="dropdown-item" href="/member/memberEdit.wow"> 회원 정보 수정 </a></li>
-                <li><a class="dropdown-item" href="/plan/myPlan.wow?user=${user.getId()}"> 나의 여행 일정 </a></li>
+                <li><a class="dropdown-item" href="/plan/myPlan.wow"> 나의 여행 일정 </a></li>
                 <li><a class="dropdown-item" href="/cart/shoppingcartview"> 장바구니 </a></li>
                 <li>
                     <hr class="dropdown-divider">
