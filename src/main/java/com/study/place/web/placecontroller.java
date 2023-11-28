@@ -6,8 +6,10 @@ import com.study.place.vo.PlaceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -29,10 +31,11 @@ public class placecontroller {
 
     // 2. 장소 상세 (모달창으로)
     @RequestMapping("/place/placeView")
-    public String placeView(@RequestParam int placeNum, Model model){
-        PlaceVO placeView = placeService.getplace(placeNum);
-        model.addAttribute("placeView", placeView);
-        return "place/place";
+    @ResponseBody
+    public PlaceVO placeView(@ModelAttribute PlaceVO placeVO, Model model){
+
+        PlaceVO placeView = placeService.getplace(placeVO.getPlaceNum());
+        return placeView;
 
     }
 

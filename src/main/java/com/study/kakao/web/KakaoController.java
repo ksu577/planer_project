@@ -126,8 +126,8 @@ public class KakaoController {
             serverconnection.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
             serverconnection.setDoOutput(true);
 //            String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=주문서번호&quantity=1&total_amount=77800&vat_amount=778&tax_free_amount=0&approval_url=http://localhost:8081/test/approval.wow&fail_url=http://localhost:8081/test/fail.wow&cancel_url=http://localhost:8081/test/cancel.wow";
-//            String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=item_name&quantity=1&total_amount="+sumMoney+"&vat_amount=0&tax_free_amount=0&approval_url=http://localhost:8081/test/approval.wow&fail_url=http://localhost:8081/test/fail.wow&cancel_url=http://localhost:8081/test/cancel.wow";
-            String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=결제금액&quantity=1&total_amount=13000&tax_free_amount=0&approval_url=http://localhost:8081/test/approval.wow&fail_url=http://localhost:8081/test/fail.wow&cancel_url=http://localhost:8081/test/cancel.wow";
+            String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=MyCart&quantity=1&total_amount="+sumMoney+"&vat_amount=0&tax_free_amount=0&approval_url=http://localhost:8081/test/approval.wow&fail_url=http://localhost:8081/test/fail.wow&cancel_url=http://localhost:8081/test/cancel.wow";
+//            String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=결제금액&quantity=1&total_amount=13000&tax_free_amount=0&approval_url=http://localhost:8081/test/approval.wow&fail_url=http://localhost:8081/test/fail.wow&cancel_url=http://localhost:8081/test/cancel.wow";
             OutputStream give = serverconnection.getOutputStream();
             DataOutputStream datagive = new DataOutputStream(give);
             datagive.writeBytes(parameter);
