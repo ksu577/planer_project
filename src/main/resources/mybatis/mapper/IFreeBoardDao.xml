@@ -19,7 +19,13 @@
         </if>
     </sql>
 
-
+<update id="updateCommentCount" parameterType="int">
+    update free_board b
+    set b.comment_count = (select count(free_num)
+                           from free_board_comment
+                           where free_num=#{free_num})
+    where b.free_num=#{free_num}
+</update>
 
 
     <select id="getTotalRowCount" resultType="int" parameterType="java.util.Map">
@@ -38,7 +44,7 @@
         SELECT
         id,free_num,free_context,
         create_date,update_date,view_rate,
-        free_like,title,bo_del_yn, notice
+        free_like,title,bo_del_yn, notice,comment_count
         FROM free_board a
         where 1=1
         <include refid="searchInFree"/>

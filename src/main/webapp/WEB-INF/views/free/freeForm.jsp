@@ -43,21 +43,33 @@
                 <td><textarea id="summernote" rows="10"  name="freeContext"> </textarea></td>
             </tr>
 
-<%--            <tr>--%>
-<%--                <th>첨부파일--%>
-<%--                    <button type="button" id="id_btn_new_file">추가</button>--%>
-<%--                </th>--%>
-<%--                <td class="file_area">--%>
-<%--                    <div class="form-inline">--%>
-<%--                        <input type="file" name="boFiles" class="form-control">--%>
-<%--                        <button type="button" class="btn_delete btn btn-sm">삭제</button>--%>
-<%--                    </div>--%>
-<%--                </td>--%>
-<%--            </tr>--%>
+            <tr>
+                <th>첨부파일
+                    <button type="button" id="id_btn_new_file">추가</button>
+                </th>
+                <td class="file_area">
+                    <div class="form-inline">
+                        <input type="file" name="boFiles" class="form-control">
+                        <button type="button" class="btn_delete btn btn-sm">삭제</button>
+                    </div>
+                </td>
+            </tr>
 
             <tr>
-                <td>
-                    <button type="submit"> 등록</button>
+                <td colspan="2">
+                    <div class="pull-right">
+
+                        <a href="freeList.wow" class="btn btn-info btn-sm"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp;목록으로
+                        </a>
+                        <button type="submit"  class="btn btn-sm btn-primary">
+                            <span class="glyphicon glyphicon-save" aria-hidden="true"></span> &nbsp;&nbsp;등록
+                        </button>
+
+                        <button type="submit" formaction="freeDelete.wow" class="btn btn-sm btn-danger">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> &nbsp;&nbsp;삭제
+                        </button>
+
+                    </div>
                 </td>
             </tr>
         </table>
@@ -88,8 +100,8 @@
                 ['para', ['ul', 'ol', 'paragraph']],
                 // 줄간격
                 ['height', ['height']],
-                // 그림첨부
-                ['insert',['picture']],
+                // 그림첨부, 링크만들기, 동영상첨부
+                ['insert',['picture','link','video']],
                 // 코드보기, 확대해서보기, 도움말
                 ['view', ['codeview','fullscreen', 'help']]
             ],
@@ -128,15 +140,36 @@
     }
 
 </script>
-<%--<script type="text/javascript">--%>
-<%--    $('#id_btn_new_file').click(function () {--%>
-<%--        $('.file_area').append('<div class="form-inline">'--%>
-<%--            + '<input type="file" name="boFiles" class="form-control">'--%>
-<%--            + ' <button type="button" class="btn_delete btn btn-sm">삭제</button>' + '</div>');--%>
-<%--    });--%>
+<script type="text/javascript">
+    $('#id_btn_new_file').click(function () {
+        $('.file_area').append('<div class="form-inline">'
+            + '<input type="file" name="boFiles" class="form-control">'
+            + ' <button type="button" class="btn_delete btn btn-sm">삭제</button>' + '</div>');
+    });
 
-<%--    $('.file_area').on('click', '.btn_delete', function () {--%>
-<%--        $(this).closest('div').remove();--%>
-<%--    });--%>
+    $('.file_area').on('click', '.btn_delete', function () {
+        $(this).closest('div').remove();
+    });
+
+    // 목록 링크 클릭
+    $('.btn-info').click(function() {
+        if (!confirm('목록으로 돌아가시겠습니까?')) {
+            return false; // 목록으로의 이동을 취소함
+        }
+    });
+
+    // 저장 버튼 클릭
+    $('button.btn-primary').click(function() {
+        if (!confirm('등록하시겠습니까?')) {
+            return false; // 저장을 취소함
+        }
+    });
+
+    // 삭제 버튼 클릭
+    $('button.btn-danger').click(function() {
+        if (!confirm('정말로 삭제하시겠습니까?')) {
+            return false; // 삭제를 취소함
+        }
+    });
 </script>
 </html>

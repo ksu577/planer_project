@@ -20,5 +20,6 @@ public interface IMemberService {
     public MemberVO findPw(String id, String email);
     public int findPwCheck(MemberVO member) throws BizException;
     public void changePw(MemberVO member) throws BizException;
+    public int findIdCheck(MemberVO member) throws BizException;
 }
 

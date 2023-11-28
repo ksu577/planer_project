@@ -202,7 +202,11 @@
             <td>${freeBoard.freeNum}</td>
             <td>${freeBoard.id}</td>
             <td>
-                <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a>
+                <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}
+                    <c:if test="${freeBoard.commentCount ne 0}">
+                        <small><b>[&nbsp;<c:out value="${freeBoard.commentCount}"/>&nbsp;] </b></small>
+                    </c:if>
+                </a>
             </td>
             <td>${freeBoard.createDate}</td>
             <td>${freeBoard.viewRate}</td>
@@ -217,7 +221,10 @@
                     ${freeBoard.id }
             </td>
             <td>
-                <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}</a></td>
+                <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}
+                    <c:if test="${freeBoard.commentCount ne 0}">
+                        <small><b>[&nbsp;<c:out value="${freeBoard.commentCount}"/>&nbsp;] </b></small>
+                    </c:if></a></td>
             <td>${freeBoard.createDate }</td>
             <td>${freeBoard.viewRate}</td>
         </tr>
@@ -276,7 +283,6 @@
         $curPage.val(curPage);
         $form.submit();
     }); // ul.pagination li a[data-page]
-
 
 
     //submit

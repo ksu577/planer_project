@@ -32,6 +32,11 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     private HttpServletRequest request;
 
     @Override
+    public void updateCommentCount(int free_num)throws Exception{
+        freeBoardDao.updateCommentCount(free_num);
+    }
+
+    @Override
     public List<FreeBoardVO> getBoardList(PagingVO paging, SearchVO search, String searchCategory) {
         int totalRowCount = freeBoardDao.getTotalRowCount(paging, search, searchCategory);
         paging.setTotalRowCount(totalRowCount);
@@ -41,6 +46,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         List<FreeBoardVO> freeBoardList = freeBoardDao.getBoardList(paging, search, searchCategory);
         return freeBoardList;
     }
+
 
 
     @Override
@@ -161,6 +167,5 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
             }
         }
     }
+
 }
-
-

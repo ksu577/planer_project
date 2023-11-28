@@ -275,11 +275,8 @@
 
                 }
             });
-            // form태그안에 input hidden으로 필요한거 넣기
-            //가장가까운 form찾은 후 ajax 호출(data는 form.serialize(), )
-            //성공 : 등록 글 내용부분 지우기,  댓글영역초기화( list_area.html('), curPage=1, fn_reply_list)
-            //실패 : error : req.status==401이면 login으로   location.href
         });//등록버튼
+
 
 
         //수정버튼 : 댓글 영역안에 있는 수정버튼만  이벤트 등록

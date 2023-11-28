@@ -28,7 +28,7 @@ public class ProductServiceImple implements IproductService {
         String oriImgName = imgFile.getOriginalFilename();
         String imgName = "";
 
-        String projectPath = System.getProperty("user.dir") + "/";
+        String projectPath = System.getProperty("user.dir") + "/imgDownload/";
 
         // UUID 를 이용하여 파일명 새로 생성
         // UUID - 서로 다른 객체들을 구별하기 위한 클래스
@@ -43,9 +43,11 @@ public class ProductServiceImple implements IproductService {
         imgFile.transferTo(saveFile);
 
         productVO.setImg(imgName);
-        productVO.setImgPath("/files/" + imgName);
+        productVO.setImgPath("/imgDownload/" + imgName);
 
-        productDao.insertproduct(productVO, imgFile);
+        System.out.println(productVO);
+
+        productDao.insertproduct(productVO);
     }
 
     // 2. 상품 목록 ( 미니샾 )
