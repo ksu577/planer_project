@@ -16,6 +16,12 @@
     <script src="${pageContext.request.contextPath}/resource/smarteditor/js/summernote/lang/summernote-ko-KR.js"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/smarteditor/summernote-lite.css">
+
+    <style>
+        .container {
+            padding-top: 70px;
+        }
+    </style>
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
@@ -32,11 +38,11 @@
             </colgroup>
             <tr>
                 <th>제목</th>
-                <td><input type="text" name="title" value="" required="required"></td>
+                <td><input type="text" name="title" value="" class="form-control input-sm" required="required"></td>
             </tr>
             <tr>
                 <th>작성자</th>
-                <td><input readonly type="text" name="id" value="<%= loggedInUserName %>"></td>
+                <td><input readonly type="text" name="id" class="form-control " value="<%= loggedInUserName %>"></td>
             </tr>
             <tr>
                 <th>내용</th>
