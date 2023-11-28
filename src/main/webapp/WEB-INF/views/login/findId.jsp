@@ -154,16 +154,20 @@
 
 
     $("#emCheck").on("click", function (e) {
+        let testName = $("input[name='name']").val();
         let mailAddress = $("input[name='email']").val();
         $.ajax({
             url: "/findId/emailCheck3"
             , type: "get"
-            , data: {"email": mailAddress}
+            , data: {"name":testName, "email": mailAddress}
             , success: function (data) {
-                alert("전송되었습니다.");
-            }
-            , error: function (err) {
-                alert("전송실패");
+                if (data == "error") {
+                    alert("이름 또는 이메일을 확인해주세요");
+                } else {
+                    alert("전송되었습니다.");
+                }
+            }, error: function (err) {
+                alert("에러");
             }
         });
     });
