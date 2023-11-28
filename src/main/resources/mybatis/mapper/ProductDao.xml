@@ -17,13 +17,14 @@
                              name,
                              price,
                              product_desc,
-                             img)
+                             img,
+                             img_path)
         values (seq_cart.nextval,
                 #{productName},
                 #{productPrice},
                 #{productDesc},
-                #{img}
-               )
+                #{img},
+                #{imgPath})
     </insert>
 
     <!-- 2. 물건 삭제-->
@@ -50,7 +51,8 @@
                name,
                price,
                product_desc,
-               img
+               img,
+               img_path
         from product
         where id = #{productId}
     </select>
@@ -62,7 +64,8 @@
         name as product_name,
         price as product_price,
         product_desc as product_desc,
-        img as img
+        img as img,
+        img_path as img_path
         from product
         where 1=1
         <include refid="searchInFree"/>

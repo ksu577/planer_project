@@ -91,7 +91,6 @@
         }
 
 
-
     </style>
 </head>
 <body>
@@ -121,8 +120,9 @@
 
     <div>
 
-<c:if test="${user.getRole()=='MANAGER'}">
-        <button type="button" class="regist" onclick="registProduct()">물건 등록</button> </div>
+        <c:if test="${user.getRole()=='MANAGER'}">
+        <button type="button" class="regist" onclick="registProduct()">물건 등록</button>
+    </div>
     </c:if>
 
     <div class="selectcategory">
@@ -143,34 +143,33 @@
     </div>
 
     <div class="item-box">
-
         <c:forEach var="product" items="${list}">
             <div class="cell" onclick="detailView(${product.productId})">
-                <div class="top" >
-                    <img height="320px" width="328px" src="${product.img}" alt="">
-                </div>
+                <img alt=""
+                     src="<%=request.getContextPath()%>/imgDownload/showImg.wow?fileName=${product.img}&filePath=${product.imgPath}"
+                ${product.img}${product.imgPath}
+                     width="320px" height="328px">
                 <div class="bottom">
-                    <a href="#"> ${product.productName} </a>
-                    <a href="#"> ${product.productPrice} 원</a>
+                    <a href="#">${product.productName}</a>
+                    <a href="#">${product.productPrice} 원</a>
                 </div>
             </div>
         </c:forEach>
     </div>
-</div>
 
-<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"--%>
-<%--        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"--%>
-<%--        crossorigin="anonymous"></script>--%>
+    <%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"--%>
+    <%--        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"--%>
+    <%--        crossorigin="anonymous"></script>--%>
 
-<script>
-    function detailView(productId) {
-        window.location.href = "/product/productview.wow?productId=" + productId;
-    }
+    <script>
+        function detailView(productId) {
+            window.location.href = "/product/productview.wow?productId=" + productId;
+        }
 
-    function registProduct() {
-        window.location.href = "/product/productregist";
-    }
-</script>
+        function registProduct() {
+            window.location.href = "/product/productregist";
+        }
+    </script>
 
 
 </body>
