@@ -43,7 +43,7 @@ public class ProductServiceImple implements IproductService {
         imgFile.transferTo(saveFile);
 
         productVO.setImg(imgName);
-        productVO.setImgPath("/imgDownload/");
+        productVO.setImgPath("/imgDownload");
 
         System.out.println(productVO);
 
