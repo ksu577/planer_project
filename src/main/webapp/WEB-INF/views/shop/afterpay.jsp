@@ -17,10 +17,7 @@
     }
     .container {
       padding-top: 70px;
-
     }
-
-
 
     .address, .bill {
       border: 1px solid #ddd;
@@ -56,12 +53,13 @@
     <div class="address col-md-8">
       <h2>주문정보</h2>
       <hr>
+<%--      <form action="/shop/afterpay.wow" method="post"> 여기가 문제인거 같아서 이렇게 바꿨는데 왜 안되냐!!--%>
       <form>
         <div class="mb-3">
           <span>수령인 : ${userinfo.takeName}</span>
         </div>
         <div class="mb-3">
-          <span> 연락처 : ${userinfo.takeHp} </span>
+          <span>연락처 : ${userinfo.takeHp} </span>
 
         </div>
         <div class="mb-3">

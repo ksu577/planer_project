@@ -158,6 +158,8 @@
 <%--https://postcode.map.daum.net/guide 다음우편주소api--%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
+    //카카오
     function kpay() {
         $.ajax({
             url:'/test/kakaopay.wow'
@@ -207,26 +209,6 @@
         }).open();
     }
 
-    // 카카오
-    $(function () {
-        $('#testbtn').click(function (){
-            $.ajax({
-                url:'/test/kakaopay.wow'
-                , dataType: 'json'
-                , type : "post"
-                , contentType : "application/json"
-                ,success: function (data) {
-                    const msg = JSON.parse(data.message);
-                    console.log(msg) // tid
-                    const next_redirect_pc_url = msg.next_redirect_pc_url;
-                    window.open(next_redirect_pc_url, "_blank", "width=500, height=700")
-                },
-                error: function (error) {
-                    alert(error);
-                }
-            })
-        })
-    })
 </script>
 </body>
 </html>
