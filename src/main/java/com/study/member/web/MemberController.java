@@ -76,20 +76,23 @@ public class MemberController {
     @GetMapping("/member/memberView.wow")
     public String memberView(@RequestParam(required = false) String Id, HttpSession session, Model model) throws BizException {
         UserVO user = (UserVO) session.getAttribute("user");
-        if ("MANAGER".equals(user.getRole())) {
-            if (!Id.trim().isEmpty()) {
+        try {
+            if (user == null) {
+                return "redirect:/login/login.wow";
+            }
+            if ("MANAGER".equals(user.getRole()) && Id != null) {
                 MemberVO member = memberService.getMember(Id);
                 model.addAttribute("member", member);
-                return "member/memberView";
+            } else {
+                String userId = user.getId();
+                MemberVO member = memberService.getMember(userId);
+                model.addAttribute("member", member);
             }
-        }
-        if (user != null) {
-            String userId = user.getId();
-            MemberVO member = memberService.getMember(userId);
-            model.addAttribute("member", member);
             return "member/memberView";
+        } catch (BizNotFoundException e) {
+            model.addAttribute("error", "에러");
+            return "redirect:/login/login.wow";
         }
-        return "redirect:/login/login.wow";
     }
 
     @GetMapping("/member/memberEdit.wow")

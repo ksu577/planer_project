@@ -56,6 +56,11 @@ public class AttachController {
 //        FileUtils.copyFile(file, resp.getOutputStream());
         resp.getOutputStream().close();
     }
+
+
+
+
+
     //img파일 썸네일
     @RequestMapping("/attach/showImg.wow")
     @ResponseBody

@@ -113,13 +113,18 @@
 </div>
 <div class="container">
     <!-- reply container -->
+
+    <!-- // START : 댓글 목록 영역  -->
+    <div id="id_reply_list_area">
+
+    </div>
     <!-- // START : 댓글 등록 영역  -->
     <div class="panel panel-default">
         <div class="panel-body form-horizontal">
             <form name="frm_reply" action="/comment/commentRegist.wow" method="post">
                 <input type="hidden" name="freeNum" value="${freeBoard.freeNum}">
                 <input
-                        type="hidden" name="id" value="${USER_INFO.user }">
+                type="hidden" name="id" value="${USER_INFO.user }">
                 <div class="form-group">
                     <label class="col-sm-2  control-label">댓글</label>
                     <div class="col-sm-8">
@@ -127,7 +132,7 @@
                     </div>
                     <div class="col-sm-2">
                         <button id="btn_reply_regist" type="button"
-                                class="btn btn-sm btn-info">등록
+                        class="btn btn-sm btn-info">등록
                         </button>
                     </div>
                 </div>
@@ -136,11 +141,6 @@
     </div>
     <!-- // END : 댓글 등록 영역  -->
 
-
-    <!-- // START : 댓글 목록 영역  -->
-    <div id="id_reply_list_area">
-
-    </div>
 
     <!-- // END : 댓글 목록 영역  -->
     <!-- START : 댓글 수정용 Modal -->
@@ -173,6 +173,7 @@
                     $("#btnCloseModal").on("click", function () {
                         $("#id_reply_edit_modal").modal("hide");
                     });
+
                 </script>
             </div>
         </div>
@@ -181,7 +182,6 @@
 
 </div>
 <!-- reply container -->
-
 </body>
 <script type="text/javascript">
     // 댓글 데이터를 딱 10개만 가지고 오도록 하는 파라미터 모음
@@ -203,7 +203,6 @@
             , success: function (data) {
                 console.log(data);
 
-                // $("#id_reply_list_area").empty();
 
                 $.each(data.data, function (i, comment) {
                     let str = '<div class="row" data-free-board-comment-number="' + comment.freeBoardCommentNumber + '">'
@@ -213,11 +212,9 @@
                         + '</div>'
                         + '<div class="col-sm-2">' + comment.createDate + '</div>'
                         + '<div class="col-sm-2">';
-                    if (comment.id !== null) {
-                        str += '<button name="btn_reply_edit" type="button"'
-                            + 'class=" btn btn-sm btn-info" onclick="fn_modify()">수정</button>'
-                            + ' <button name="btn_reply_delete" type="button" '
-                            + 'class="btn btn-sm btn-danger">x</button>';
+                    if (data.loginUser != null && (comment.id === data.loginUser.id || data.loginUser.role == 'MANAGER')) {
+                        str += '<button name="btn_reply_edit" type="button" class=" btn btn-sm btn-info" onclick="if(confirmModify(event)) fn_modify()">수정</button>'
+                            + ' <button name="btn_reply_delete" type="button" class="btn btn-sm btn-danger" onclick="if(confirmDelete(event)) fn_delete()">x</button>';
                     }
 
                     str = str + '</div>'
@@ -227,12 +224,29 @@
 
                 });
                 params.curPage += 1;
-
             }
-
         });
         // 다 했으면 param의 curPage=2로 바꿔줍시다
     }//function fn_reply_list
+
+    function confirmModify(event) {
+        var result = confirm("수정하시겠습니까?");
+        if (!result) {
+            console.log("수정이 취소 되었습니다.");
+            event.stopPropagation();
+        }
+        return result;
+    }
+
+    function confirmDelete(event) {
+        var result = confirm("삭제하시겠습니까?");
+        if (!result) {
+            // 사용자가 "취소"를 눌렀을 때 수행할 로직 추가
+            console.log("삭제가 취소되었습니다.");
+            event.stopPropagation(); // 이벤트 버블링 중지
+        }
+        return result;
+    }
 
     function fn_modify() {
         // 여기에 수정에 필요한 로직을 추가합니다.
@@ -341,6 +355,7 @@
 
 
     });
+
 
 
 </script>

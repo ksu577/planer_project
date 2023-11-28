@@ -147,7 +147,7 @@
             <div class="cell" onclick="detailView(${product.productId})">
                 <img alt=""
                      src="<%=request.getContextPath()%>/imgDownload/showImg.wow?fileName=${product.img}&filePath=${product.imgPath}"
-                ${product.img}${product.imgPath}
+
                      width="320px" height="328px">
                 <div class="bottom">
                     <a href="#">${product.productName}</a>
