@@ -8,18 +8,20 @@
 <head>
     <meta charset="UTF-8">
     <title>loginpage</title>
+    <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
+<%@ include file="/WEB-INF/inc/top.jsp" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
     body {
         margin: 0;
     }
 
-    p {
-        color: gray;
-        margin-left: 30px;
-        margin-top: 10px;
-    }
+    /*p {*/
+    /*    color: gray;*/
+    /*    margin-left: 30px;*/
+    /*    margin-top: 10px;*/
+    /*}*/
 
     .login-container {
         width: 100vw;
@@ -101,7 +103,7 @@
         border-radius: 8px;
         background-color: #98dde3;
         margin-left: 4%;
-        margin-top: 20px;
+        margin-top: 50px;
         cursor: pointer;
     }
 
@@ -111,7 +113,7 @@
         color: white;
     }
 
-    a {
+    .findMe > a {
         color: #606060;
         font-size: 15px;
         text-decoration: none;
@@ -123,8 +125,9 @@
 
     .message {
         color: red;
-        margin-left: 110px;
-        margin-top: 15px;
+        margin-left: 100px;
+        margin-top: 30px;
+        font-size: 17px;
     }
 </style>
 <%session.invalidate();%>
@@ -135,11 +138,11 @@
         <div class="login-logo">순자산 3조</div>
         <div class="login-input-box">
             <form name="memberVO" action="login.wow" method="post">
-                <p>아이디</p>
+                <p style="margin-left: 30px; margin-top: 20px; color: rgba(0,0,0,0.73); font-size: 15px">아이디</p>
                 <div class="login-id-cover">
                     <input id="login-id" name="Id" type="text">
                 </div>
-                <p>비밀번호</p>
+                <p style="margin-left: 30px; margin-top: 10px; color: rgba(0,0,0,0.73); font-size: 15px">비밀번호</p>
                 <div class="login-pw-cover">
                     <input id="login-pw" name="password" type="password">
                     <p class="message">${msg}</p>
@@ -149,10 +152,10 @@
                     <p>로그인</p>
                 </button>
             </form>
-            <div style="padding-top: 10px; text-align: center;">
-                <a href="/member/memberForm.wow">회원가입</a>
-                <a href="/login/findId.wow">| 아이디 찾기</a>
-                <a href="/login/findPw.wow">| 비밀번호 찾기</a>
+            <div class="findMe" style="padding-top: 10px; text-align: center;">
+                <a href="/member/memberForm.wow">회원가입</a>&nbsp;&nbsp;&nbsp;
+                <a href="/login/findId.wow"> 아이디 찾기</a>&nbsp;&nbsp;&nbsp;
+                <a href="/login/findPw.wow"> 비밀번호 찾기</a>
             </div>
         </div>
     </div>

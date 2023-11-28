@@ -11,7 +11,7 @@
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
 <%--<c:if test="${user.getRole()=='MANAGER'}">--%>
-    <div class="container">
+    <div style="padding-top: 70px;" class="container">
         <div class="panel panel-default collapse in" id="id_search_area">
             <div class="panel-body">
                 <form name="search" action="memberList.wow" method="post" class="form-horizontal">

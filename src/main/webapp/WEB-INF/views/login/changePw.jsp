@@ -10,13 +10,16 @@
     <title>loginpage</title>
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
+<%@ include file="/WEB-INF/inc/top.jsp" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
     body {
         margin: 0;
+        max-width: 2000px;
     }
 
     .container {
+        padding-top: 70px;
         width: 100vw;
         height: 100vh;
         background-color: rgba(220, 220, 220, 0.30);
