@@ -7,6 +7,7 @@ import com.study.login.vo.UserVO;
 import com.study.plan.service.IPlanService;
 import com.study.plan.service.ITourService;
 import com.study.plan.vo.PlanVo;
+import com.study.plan.vo.ShareVO;
 import com.study.plan.vo.TourVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,14 +43,14 @@ public class PlanController {
         planService.updateYn(title, user.getId());
         model.addAttribute("planList", planList);
         model.addAttribute("title", title);
+        model.addAttribute("id", user.getId());
         return "plan/plan";
     }
 
     @GetMapping("/marker.wow")
-    public String planMarker(@RequestParam("planTitle") String title, Model model, HttpSession session) {
-        UserVO user = (UserVO) session.getAttribute("user");
+    public String planMarker(@RequestParam("planTitle") String title, @RequestParam("id") String id, Model model) {
         System.out.println(title);
-        List<PlanVo> planList = planService.planView(user.getId(), title);
+        List<PlanVo> planList = planService.planView(id, title);
         model.addAttribute("planList", planList);
         model.addAttribute("title", title);
         return "plan/marker";
@@ -58,10 +59,9 @@ public class PlanController {
 
     @ResponseBody
     @PostMapping("/marker.wow")
-    public List<PlanVo> MarkerResult(@RequestParam("title") String title, @RequestParam("result") int result, HttpSession session) {
-        UserVO user = (UserVO) session.getAttribute("user");
+    public List<PlanVo> MarkerResult(@RequestParam("title") String title, @RequestParam("result") int result,  @RequestParam("id") String id) {
         System.out.println(title);
-        List<PlanVo> planMarker = planService.planMarker(title, result, user.getId());
+        List<PlanVo> planMarker = planService.planMarker(title, result, id);
         return planMarker;
     }
 
@@ -111,7 +111,10 @@ public class PlanController {
     public String myplan(HttpSession session, Model model) {
         UserVO user = (UserVO) session.getAttribute("user");
         List<TourVO> myPlan = tourService.myPlan(user.getId());
+        List<ShareVO> sharePlan = tourService.sharePlan(user.getId());
+        System.out.println(sharePlan);
         model.addAttribute("myPlan", myPlan);
+        model.addAttribute("sharedPlans", sharePlan);
         return "plan/myPlan";
     }
 

@@ -30,4 +30,15 @@
         WHERE
             id = #{USER}
     </select>
+    <select id="sharePlan" resultType="com.study.plan.vo.ShareVO">
+        SELECT
+            id
+             , plan_title
+             , share_id
+             , del_yn
+        FROM
+            share_plan
+        where
+            share_id = #{id}
+    </select>
 </mapper>

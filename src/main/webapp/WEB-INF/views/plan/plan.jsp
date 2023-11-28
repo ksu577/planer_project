@@ -859,7 +859,7 @@
             data: {"plan": JSON.stringify(plan_Array)},
             success: function (data) {
                 console.log(data)
-                location.href = encodeURI("/plan/marker.wow?planTitle=${title}");
+                location.href = encodeURI("/plan/marker.wow?planTitle=${title}&id=${id}");
             }, error: function (err) {
                 console.log("error: " + err)
             }

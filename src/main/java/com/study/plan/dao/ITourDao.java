@@ -1,5 +1,6 @@
 package com.study.plan.dao;
 
+import com.study.plan.vo.ShareVO;
 import com.study.plan.vo.TourVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,4 +15,5 @@ public interface ITourDao {
     public List<TourVO> myPlanDao(String user);
     public String getPlanTitle(String tourTitle);
 
+    public List<ShareVO> sharePlan(String id);
 }

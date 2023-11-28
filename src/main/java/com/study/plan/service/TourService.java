@@ -1,6 +1,7 @@
 package com.study.plan.service;
 
 import com.study.plan.dao.ITourDao;
+import com.study.plan.vo.ShareVO;
 import com.study.plan.vo.TourVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,12 @@ public class TourService implements ITourService{
     public List<TourVO> myPlan(String user) {
         List<TourVO> myPlanDao = tourDao.myPlanDao(user);
         return myPlanDao;
+    }
+
+    @Override
+    public List<ShareVO> sharePlan(String id) {
+        List<ShareVO> sharePlanService = tourDao.sharePlan(id);
+        return sharePlanService;
     }
 
 }
