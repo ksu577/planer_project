@@ -31,10 +31,10 @@ public class MailService {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
 
         String randomKey = getRandom();
-        mimeMessage.setSubject("[순자산 3조] 아이디 찾기 인증번호");
-        mimeMessage.setText("안녕하세요. 순자산 3조 입니다. \n 아이디 찾기 인증번호를 발급해드립니다. \n" + randomKey);
-        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-        mailSender.send(mimeMessage);
+//        mimeMessage.setSubject("[순자산 3조] 아이디 찾기 인증번호");
+//        mimeMessage.setText("안녕하세요. 순자산 3조 입니다. \n 아이디 찾기 인증번호를 발급해드립니다. \n" + randomKey);
+//        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+//        mailSender.send(mimeMessage);
         return randomKey;
     }
 

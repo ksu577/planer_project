@@ -2,14 +2,16 @@ package com.study.member.service;
 
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.SearchVO;
-import com.study.exception.BizException;
 import com.study.exception.BizNotEffectedException;
 import com.study.exception.BizNotFoundException;
+import com.study.login.service.LoginService;
+import com.study.login.vo.UserVO;
 import com.study.member.dao.IMemberDao;
 import com.study.member.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
@@ -75,6 +77,12 @@ public class MemberServiceImpl implements IMemberService{
     }
 
     @Override
+    public int findIdCheck(MemberVO member) {
+        return memberDao.findIdCheck(member);
+    }
+
+
+    @Override
     public MemberVO findPw(String id, String email) {
         MemberVO result = null;
         try {
@@ -86,7 +94,7 @@ public class MemberServiceImpl implements IMemberService{
     }
 
     @Override
-    public int findPwCheck(MemberVO member) throws BizException {
+    public int findPwCheck(MemberVO member) {
         return memberDao.findPwCheck(member);
     }
 

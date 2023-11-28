@@ -28,6 +28,7 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
@@ -75,20 +76,23 @@ public class MemberController {
     @GetMapping("/member/memberView.wow")
     public String memberView(@RequestParam(required = false) String Id, HttpSession session, Model model) throws BizException {
         UserVO user = (UserVO) session.getAttribute("user");
-        if ("MANAGER".equals(user.getRole())) {
-            if (!Id.trim().isEmpty()) {
+        try {
+            if (user == null) {
+                return "redirect:/login/login.wow";
+            }
+            if ("MANAGER".equals(user.getRole()) && Id != null) {
                 MemberVO member = memberService.getMember(Id);
                 model.addAttribute("member", member);
-                return "member/memberView";
+            } else {
+                String userId = user.getId();
+                MemberVO member = memberService.getMember(userId);
+                model.addAttribute("member", member);
             }
-        }
-        if (user != null) {
-            String userId = user.getId();
-            MemberVO member = memberService.getMember(userId);
-            model.addAttribute("member", member);
             return "member/memberView";
+        } catch (BizNotFoundException e) {
+            model.addAttribute("error", "에러");
+            return "redirect:/login/login.wow";
         }
-        return "redirect:/login/login.wow";
     }
 
     @GetMapping("/member/memberEdit.wow")
@@ -231,18 +235,24 @@ public class MemberController {
 
     @PostMapping("/login/findId.wow")
     @ResponseBody
-    public List<MemberVO> findId(@RequestParam("name") String name, @RequestParam("email") String email) {
+    public List<MemberVO> findId(String name, String email, HttpSession session, Model model) {
         List<MemberVO> result = memberService.findId(name, email);
         return result;
     }
 
     @ResponseBody
     @RequestMapping(value = "/findId/emailCheck3", produces = "text/plain;charset=UTF-8")
-    public String emailCheck3(String email) throws MessagingException {
-        key = mailService.mailSend2(email);
-        return key;
+    public String emailCheck3(String email, MemberVO member, Model model) throws MessagingException, BizException {
+        if (memberService.findIdCheck(member) == 0) {
+            model.addAttribute("msg", "이름 또는 이메일을 확인해주세요.");
+            return "error";
+        } else {
+            memberService.findId(member.getName(), member.getEmail());
+            model.addAttribute("member", member.getEmail());
+            key = mailService.mailSend2(email);
+            return key;
+        }
     }
-
 
     @ResponseBody
     @RequestMapping(value = "/findId/emailCheck4", produces = "text/plain;charset=UTF-8")
@@ -256,7 +266,7 @@ public class MemberController {
 
 
     @GetMapping("/login/findPw.wow")
-    public String findPw1() {
+    public String findPw() {
         return "login/findPw";
     }
 
@@ -267,7 +277,6 @@ public class MemberController {
         if (user != null) {
             String Id = user.getId();
             MemberVO member = memberService.findPw(Id, email);
-
             if (member != null) {
                 model.addAttribute("member", member);
                 model.addAttribute("Id", Id);
@@ -276,36 +285,9 @@ public class MemberController {
                 return "redirect:/";
             }
         } else {
-            // 사용자가 인증되지 않음
             return "redirect:/";
         }
     }
-
-//    UserVO user = (UserVO) session.getAttribute("user");
-//        if (user != null) {
-//        String Id = user.getId();
-//        MemberVO member = memberService.getMember(Id);
-//        model.addAttribute("member", member);
-//        return "member/memberEdit";
-//    } else {
-//        return "redirect:/login/login.wow";
-//    }
-//}
-//    @PostMapping("/authenticate")
-//    public String authenticateUser(Model model, HttpSession session) {
-//        // 여기에서 본인 인증 로직을 수행하고, 성공적으로 인증되었다고 가정합니다.
-//
-//        // 가령, 본인 인증이 성공하면 UserVO 객체를 생성하거나 가져오고, 세션에 저장합니다.
-//        UserVO authenticatedUser = new UserVO(); // 여기에서 실제 사용자 정보를 가져오거나 생성해야 합니다.
-//        session.setAttribute("user", authenticatedUser);
-//
-//        // 나머지 로직은 로그인 후의 동작을 수행합니다.
-//        model.addAttribute("authenticatedUser", authenticatedUser);
-//        return "redirect:/home"; // 로그인 후 홈 페이지로 리다이렉트 또는 다른 동작 수행
-//    }
-
-//            List<MemberVO> memberList = memberServiceImpl.getMemberList(paging, search);
-//            model.addAttribute("memberList", memberList);
 
 
     @ResponseBody
@@ -338,6 +320,7 @@ public class MemberController {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
 
         session.setAttribute("member", member);
+        session.setAttribute("confirm", true);
 
         resultMessageVO.setMessage("인증완료");
         resultMessageVO.setUrl("/login/changePw.wow");
@@ -350,6 +333,11 @@ public class MemberController {
     @GetMapping("/login/changePw.wow")
     public String changeMePw(Model model, HttpSession session) {
         MemberVO member = (MemberVO) session.getAttribute("member");
+        Boolean confirm = (Boolean) session.getAttribute("confirm");
+
+        if (confirm == null || !confirm) {
+            return "redirect:/login/findPw.wow";
+        }
 
         model.addAttribute("member", member);
 

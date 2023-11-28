@@ -92,6 +92,14 @@
         AND email = #{email}
     </select>
 
+    <select id="findIdCheck" resultType="int">
+        SELECT count(*)
+        FROM member
+        WHERE name = #{name}
+          AND email = #{email}
+          AND delYn = 'N'
+    </select>
+
     <select id="findPw" resultType="com.study.member.vo.MemberVO">
         SELECT password
         FROM member

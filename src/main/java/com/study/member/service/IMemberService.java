@@ -7,6 +7,8 @@ import com.study.exception.BizException;
 import com.study.exception.BizNotEffectedException;
 import com.study.exception.BizNotFoundException;
 import com.study.member.vo.MemberVO;
+
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface IMemberService {
@@ -21,5 +23,6 @@ public interface IMemberService {
     public MemberVO findPw(String id, String email);
     public int findPwCheck(MemberVO member) throws BizException;
     public void changePw(MemberVO member) throws BizException;
+    public int findIdCheck(MemberVO member) throws BizException;
 }
 

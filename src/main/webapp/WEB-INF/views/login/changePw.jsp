@@ -36,7 +36,7 @@
     .cover > p {
         font-size: 25px;
         padding-left: 170px;
-        padding-top: 20px;
+        padding-top: 40px;
     }
 
     .newpwcover {
@@ -44,7 +44,7 @@
         width: 400px;
         height: 50px;
         border-radius: 10px;
-        margin-top: 100px;
+        margin-top: 80px;
         margin-left: 50px;
     }
 
@@ -81,7 +81,7 @@
         width: 400px;
         height: 50px;
         border-radius: 10px;
-        margin-top: 50px;
+        margin-top: 80px;
         margin-left: 50px;
         font-size: 20px;
         background-color: #98dde3;
@@ -89,11 +89,17 @@
         color: white;
     }
 
+    .message {
+        color: red;
+        margin-left: 110px;
+        margin-top: 15px;
+    }
+
 </style>
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
 <div class="container">
-    <form action="/login/changePw.wow" method="post" enctype="multipart/form-data">
+    <form id="changeForm" action="/login/changePw.wow" method="post" enctype="multipart/form-data">
         <div class="cover">
             <p>비밀번호 변경</p>
             <div class="newpwcover">
@@ -102,12 +108,25 @@
             <div class="newpwcover2">
                 <input class="newpwcheck" id="password2" type="password" name="password2" placeholder="새 비밀번호 확인">
             </div>
-            <button class="pwbtn">확인</button>
+            <button class="pwbtn" id="pwbtn" type="submit">확인</button>
         </div>
     </form>
 </div>
 </body>
 <script>
+
+    $("#pwbtn").on("click", function (e) {
+        e.preventDefault();
+
+        let password = $("#password").val();
+        let password2 = $("#password2").val();
+
+        if (password != password2) {
+            alert("비밀번호를 확인해주세요.")
+        } else {
+            $("#changeForm").submit();
+        }
+    });
 
 </script>
 </html>

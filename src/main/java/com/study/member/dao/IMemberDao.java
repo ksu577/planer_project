@@ -24,5 +24,6 @@ public interface IMemberDao {
     public List<MemberVO> findId(@Param("name") String name, @Param("email") String email);
     public MemberVO findPw(@Param("Id") String id, @Param("email") String email);
     public int changePw(MemberVO member);
+    public int findIdCheck(MemberVO member);
     public int findPwCheck(MemberVO member);
 }

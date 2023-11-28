@@ -15,7 +15,7 @@ import java.util.List;
 public interface ProductDao {
 
     // 1. 물건 등록
-    public void insertproduct(@Param("product") ProductVO productVO,  MultipartFile imgFile);
+    public void insertproduct(ProductVO productVO);
 
     // 2.물건 삭제
     public void delete(int productId);
