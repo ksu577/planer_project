@@ -30,11 +30,11 @@ public class MemberServiceImpl implements IMemberService{
         return memberList;
     }
 
-    @Override
-    public List<MemberVO> getMemberList() {
-        List<MemberVO> memberList = memberDao.getMemberListShare();
-        return memberList;
-    }
+//    @Override
+//    public List<MemberVO> getMemberList() {
+//        List<MemberVO> memberList = memberDao.getMemberListShare();
+//        return memberList;
+//    }
 
     @Override
     public MemberVO getMember(String Id) throws BizNotFoundException {

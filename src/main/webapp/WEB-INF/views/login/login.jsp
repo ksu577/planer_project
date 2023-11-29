@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>loginpage</title>
+    <title>로그인</title>
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
@@ -33,7 +33,7 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-47%, -39%);
     }
 
     .login-logo {

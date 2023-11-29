@@ -15,13 +15,13 @@
 <style>
     body {
         margin: 0;
+        background-color: rgba(220, 220, 220, 0.30);
     }
 
     .container {
         padding-top: 70px;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(220, 220, 220, 0.30);
         position: relative;
     }
 
@@ -35,12 +35,12 @@
     }
 
     .findId > p {
-        transform: translate(35%, 20%);
+        transform: translate(35%, 50%);
         font-size: 30px;
     }
 
     .name-input {
-        margin-top: 40px;
+        margin-top: 60px;
         margin-left: 20px;
         width: 465px;
         height: 60px;
@@ -53,7 +53,7 @@
         width: 465px;
         height: 60px;
         border-radius: 5px;
-        margin-top: 40px;
+        margin-top: 30px;
         margin-left: 20px;
         position: relative;
         background-color: rgba(220, 220, 220, 0.30);
@@ -63,7 +63,7 @@
         width: 465px;
         height: 60px;
         border-radius: 5px;
-        margin-top: 40px;
+        margin-top: 30px;
         margin-left: 20px;
         position: relative;
         border: 1px rgba(220, 220, 220, 0.20);
