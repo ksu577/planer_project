@@ -94,7 +94,6 @@
 
             background-color: white;
             transform: translate(-50%, 0);
-
         }
 
         .modal-summon {

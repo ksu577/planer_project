@@ -191,7 +191,6 @@
     function findPw_click() {
         let curId = $("input[name=id]").val();
         let curEmail = $("input[name=email]").val();
-        let curEmailCheck = $("input[name=emailcheck]").val();
 
         const sendData = {"id": curId, "email": curEmail};
 
@@ -202,7 +201,6 @@
             dataType: "json",
             data: JSON.stringify(sendData),
             success: function (data) {
-                console.log(data);
                 if (CheckPwIdentify) {
                     window.location.href = data.url;
                 } else {

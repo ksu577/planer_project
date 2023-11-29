@@ -98,8 +98,6 @@
         font-size: 15px;
         font-weight: 500;
         color: black;
-        left: 407px;
-
     }
 
     .checkbtn {
@@ -124,6 +122,7 @@
         padding-left: 10px;
         padding-top: 10px;
     }
+
 </style>
 
 <body>
@@ -158,7 +157,7 @@
         $.ajax({
             url: "/findId/emailCheck3"
             , type: "get"
-            , data: {"name":testName, "email": mailAddress}
+            , data: {"name": testName, "email": mailAddress}
             , success: function (data) {
                 if (data == "error") {
                     alert("이름 또는 이메일을 확인해주세요");
@@ -170,7 +169,6 @@
             }
         });
     });
-
 
 
     $("#emCheck2").on("click", function (e) {
@@ -204,14 +202,13 @@
         let curName = $("input[name=name]").val();
         let curEmail = $("input[name=email]").val();
         let curEmailCheck = $("input[name=emailcheck]").val();
-
         $.ajax({
             url: "/login/findId.wow",
             type: "POST",
             data: {"name": curName, "email": curEmail, "emailcheck": curEmailCheck},
             success: function (data) {
                 if (data == null) {
-                    $('#result-section').text("회원 정보를 확인해주세요.");
+                    alert("회원정보를 확인해주세요.")
                 } else {
                     document.getElementById("result-section").innerHTML = "";
                     for (let i = 0; i < data.length; i++) {
@@ -224,5 +221,9 @@
             }
         })
     }
+    // document.getElementById("result-section").innerHTML = "";
+    // for (let i = 0; i < data.length; i++) {
+    //     document.getElementById("result-section").innerHTML += '<div>' + data[i]["id"] + '</div>'
+    // }
 </script>
 </html>

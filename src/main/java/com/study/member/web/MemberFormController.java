@@ -46,7 +46,7 @@ public class MemberFormController {
     @RequestMapping(value = "/memberForm/emailCheck", produces = "text/plain;charset=UTF-8")
     public String emailCheck(String email, MemberVO member, Model model) throws MessagingException, BizException {
         if (memberService.findemail(member) >= 1) {
-            model.addAttribute("msg", "이미 가입한 이메일입니다.");
+            model.addAttribute("msg", "이미 가입한 이메일 입니다.");
             return "error";
         } else {
             model.addAttribute("member", member.getEmail());
@@ -54,16 +54,6 @@ public class MemberFormController {
             return key;
         }
     }
-
-//            if (memberService.findIdCheck(member) == 0) {
-//        model.addAttribute("msg", "이름 또는 이메일을 확인해주세요.");
-//        return "error";
-//    } else {
-//        memberService.findId(member.getName(), member.getEmail());
-//        model.addAttribute("member", member.getEmail());
-//        key = mailService.mailSend2(email);
-//        return key;
-//    }
 
     @ResponseBody
     @RequestMapping(value = "/memberForm/emailCheck2", produces = "text/plain;charset=UTF-8")

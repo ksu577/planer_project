@@ -12,57 +12,56 @@
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <table border="1">
-    <c:if test="${bnf==null}">
-        <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
-             width="100px" height="100px" style="margin: auto; border-radius: 50px; border: 1px solid gainsboro">
-        <tr>
-            <td>아이디</td>
-            <td>${member.id} </td>
-        </tr>
-        <tr>
-            <td>비밀번호</td>
-            <td>${member.password} </td>
-        </tr>
-        <tr>
-            <td>이름</td>
-            <td>${member.name} </td>
-        </tr>
-        <tr>
-            <td>생년월일</td>
-            <td>${member.birth} </td>
-        </tr>
-        <tr>
-            <td>주소</td>
-            <td>${member.address} </td>
-        </tr>
-        <tr>
-            <td>상세주소</td>
-            <td>${member.address2} </td>
-        </tr>
-        <tr>
-            <td>휴대전화번호</td>
-            <td>${member.phnum} </td>
-        </tr>
-        <tr>
-            <td>이메일</td>
-            <td>${member.email} </td>
-        </tr>
-        <tr>
-            <td>회원가입일</td>
-            <td>${member.createDate} </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="memberEdit.wow?Id=${member.id}">수정</a>
-            </td>
-        </tr>
-    </c:if>
-
-    <div class="container">
 
 
-        <div class="route mt-3">
-            장바구니 > 주문결제 > 주문완료
+    <div class="container" style="padding-top: 100px">
+        <div>
+        <c:if test="${bnf==null}">
+            <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
+                 width="100px" height="100px"
+                 style="margin: auto; border-radius: 50px; border: 1px solid gainsboro">
+            <tr>
+                <td>아이디</td>
+                <td>${member.id} </td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td>${member.password} </td>
+            </tr>
+            <tr>
+                <td>이름</td>
+                <td>${member.name} </td>
+            </tr>
+            <tr>
+                <td>생년월일</td>
+                <td>${member.birth} </td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td>${member.address} </td>
+            </tr>
+            <tr>
+                <td>상세주소</td>
+                <td>${member.address2} </td>
+            </tr>
+            <tr>
+                <td>휴대전화번호</td>
+                <td>${member.phnum} </td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td>${member.email} </td>
+            </tr>
+            <tr>
+                <td>회원가입일</td>
+                <td>${member.createDate} </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="memberEdit.wow?Id=${member.id}">수정</a>
+                </td>
+            </tr>
+        </c:if>
         </div>
 
         <div class="paycontainer mt-3">
@@ -99,7 +98,6 @@
                     </div>
                     <c:set var="totalAmount" value="${totalAmount + productinfo.price}"/>
                 </c:forEach>
-                <span>배송비 : 3000원</span>
                 <hr>
                 <div class="mb-3">
                     <div class="mb-3" style="display: flex; flex-direction: column;">
@@ -109,7 +107,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </table>
 </body>
