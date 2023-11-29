@@ -140,11 +140,14 @@
             }
 
 
+
+
+
             if (isNaN(productAmount)) {
                 alert('상품 수량이 유효하지 않습니다.');
                 return;
             }
-        }
+
 
 
     </script>
