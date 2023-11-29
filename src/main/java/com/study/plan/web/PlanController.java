@@ -40,7 +40,6 @@ public class PlanController {
         System.out.println(title);
         UserVO user = (UserVO) session.getAttribute("user");
         List<PlanVo> planList = planService.planView(user.getId(), title);
-        planService.updateYn(title, user.getId());
         model.addAttribute("planList", planList);
         model.addAttribute("title", title);
         model.addAttribute("id", user.getId());
@@ -68,9 +67,12 @@ public class PlanController {
     @ResponseBody
     @PostMapping("/plan.wow")
     public Object insertPlan(@RequestParam Map<String, Object> parameter, HttpSession session) throws JsonProcessingException {
+        UserVO user = (UserVO) session.getAttribute("user");
+        System.out.println("title: " + parameter.get("title").toString());
+        planService.updateYn(parameter.get("title").toString(), user.getId());
         System.out.println(parameter.get("plan"));
         String json = parameter.get("plan").toString();
-        UserVO user = (UserVO) session.getAttribute("user");
+
 
         /* playerList로 넘어온 데이터를 문자열로 변환 */
         ObjectMapper mapper = new ObjectMapper();

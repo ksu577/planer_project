@@ -853,11 +853,12 @@
     }
 
     function f_send() {
+        let title = "${title}";
         console.log(plan_Array);
         $.ajax({
             type: "post",
             url: "/plan/plan.wow",
-            data: {"plan": JSON.stringify(plan_Array)},
+            data: {"plan": JSON.stringify(plan_Array),"title": title},
             success: function (data) {
                 console.log(data)
                 location.href = encodeURI("/plan/marker.wow?planTitle=${title}&id=${id}");
