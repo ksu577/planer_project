@@ -321,7 +321,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.1);
         z-index: 9999;
     }
 
@@ -373,7 +373,7 @@
         </form>
     </div>
     <div class="bingbing">
-        <div class="spinner-border" style="position: fixed; left: 50%; top: 50%; width: 3rem; height: 3rem;"
+        <div class="spinner-border" style="position: fixed; left: 50%; top: 50%; width: 4rem; height: 4rem;"
              role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
@@ -416,9 +416,13 @@
             , type: "get"
             , data: {"email": mailAddress}
             , success: function (data) {
-                $(".bingbing").hide();
-                $(".overlay").hide();
-                alert("전송되었습니다.");
+                if (data == "error") {
+                    alert("이미 가입한 이메일입니다.")
+                } else {
+                    $(".bingbing").hide();
+                    $(".overlay").hide();
+                    alert("전송되었습니다.");
+                }
             }
             , error: function (err) {
                 $(".bingbing").hide();
