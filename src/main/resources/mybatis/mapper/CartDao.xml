@@ -22,6 +22,7 @@
                c.amount  as         amount,
                p.price   as         price,
 
+
                (p.price * c.amount) money
         from member m,
              product p,

@@ -42,7 +42,7 @@ public class CartController {
     ;
 
         // 2. 장바구니 목록(장바구니 전체 - 카트 페이지)
-        @GetMapping("/cart/shoppingcartview")
+        @GetMapping("/shoppingcartview")
         public String cartList(Model model, HttpSession session) {
             UserVO user = (UserVO) session.getAttribute("user");
 
@@ -52,7 +52,7 @@ public class CartController {
                 int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
                 model.addAttribute("listCart", list); // 장바구니 정보 추가
                 model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
-                return "/cart/shoppingcartview" ;
+                return "cart/shoppingcartview" ;
             } else {
                 return "redirect:/login/login.wow";
             }
@@ -67,9 +67,7 @@ public class CartController {
     public String delete(@RequestParam("cartId") int cartId) {
         cartService.delete(cartId);
         return "redirect:/cart/shoppingcartview";
-    }
-
-    ;
+    };
 
 
     // 4. 장바구니 수정

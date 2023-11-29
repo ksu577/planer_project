@@ -129,20 +129,6 @@
         }
     }
 
-    function checkAndUpdateAmount() {
-        let amountValue = parseInt(document.getElementById('amount').value);
-
-        if (amountValue < 1) {
-            alert('수량은 1개 이상이어야 합니다.');
-            document.getElementById('amount').value = 1;
-        }
-
-        let productAmount = ${listCart.productAmount}; // product_amount를 가져옴
-        if (amountValue > productAmount) {
-            alert('수량은 전체보다 많을 수 없습니다.');
-            document.getElementById('amount').value = productAmount;
-        }
-    }
 
 
 
