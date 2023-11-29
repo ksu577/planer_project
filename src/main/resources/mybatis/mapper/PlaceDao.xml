@@ -9,7 +9,15 @@
     </select>
 
     <select id="getplace" resultType="com.study.place.vo.PlaceVO">
-
+        select
+            UPDATE_DATE
+             ,CREATE_DATE
+             ,PLACE_NAME
+             ,PLACE_CATEGORY
+             ,PLACE_CONTEXT
+             ,PLACE_NUM
+        from place
+        WHERE PLACE_NUM = #{placeNum}
     </select>
 
 </mapper>

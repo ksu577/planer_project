@@ -17,7 +17,6 @@
 
         .selectcategory {
             text-align: right;
-
         }
 
         .cell {
@@ -98,7 +97,7 @@
             height: 300px;
             border-radius: 20px;
             box-shadow: 4px 4px 4px 4px gainsboro;
-            position: absolute;
+            position: fixed;
             top: 10%;
             left: 50%;
             transform: translate(-50%, 0);
@@ -133,7 +132,8 @@
         }
 
         .modal-summon {
-            animation: summon 1s forwards;
+            /*animation: summon 1s forwards;*/
+            animation: summon forwards;
         }
 
         .d-none2 {
@@ -163,7 +163,7 @@
 
     <div class="place-box">
         <c:forEach var="place" items="${placeList}">
-            <div class="cell" onclick="f_summon()">
+            <div class="cell" onclick="f_summon('${place.placeNum}')">
                 <div class="top">
                     <img height="240px" width="240px" src="" alt="">
                 </div>
@@ -183,18 +183,11 @@
                  alt="">
             <div class="modalcontainer">
                 <div>
-                    <c:forEach var="place" items="${placeList}">
-                        <c:if>
-                            ${place.placeNum}
-                        <h1>${place.placeName}</h1>
-                        <hr>
-                        <h4>${place.placeContext}</h4>
-                        <%--                        <p>${place.placeContext}</p>--%>
-                        </c:if>
-                    </c:forEach>
+                    <h1 id="AreaTitle"></h1>
+                    <hr>
+                    <h4 id="AreaContents"></h4>
                 </div>
                 <div>
-                    <a href="">장소사진 넣을예정 placeimg</a>
 
                 </div>
             </div>
@@ -206,13 +199,35 @@
 <script>
     const v_modal2 = document.getElementsByClassName("modal2")[0];
 
-    function f_summon() {
-        v_modal2.classList.remove("d-none2");
+    function f_summon(placeNum) {
+        $.ajax({
+            url:'/place/placeView'
+            , dataType: 'json'
+            , data : {
+                'placeNum' : placeNum
+            }
+            , type : "post"
+            , success: function (data) {
+                console.log(data)
+                $("#AreaTitle").html(data['placeName']);
+                $("#AreaContents").html(data['placeContext']);
+
+                v_modal2.classList.remove("d-none2");
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+
+
+
+
     }
 
     function f_close2() {
         v_modal2.classList.add("d-none2");
     }
+
 
 </script>
 
