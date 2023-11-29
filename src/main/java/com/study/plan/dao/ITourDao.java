@@ -13,7 +13,7 @@ public interface ITourDao {
     public int insertTour(@Param("tourTitle") String tourTitle, @Param("user") String user);
     public TourVO getTourNum(TourVO tourVO);
     public List<TourVO> myPlanDao(String user);
-    public String getPlanTitle(String tourTitle);
+    public String getPlanTitle(@Param("planTitle") String tourTitle, @Param("user") String user);
 
     public List<ShareVO> sharePlan(String id);
 }

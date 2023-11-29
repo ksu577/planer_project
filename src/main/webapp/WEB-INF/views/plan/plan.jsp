@@ -338,7 +338,7 @@
                 <div class="option">
                     <div>
                         <form onsubmit="searchPlaces(); return false;">
-                            키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
+                            키워드 : <input type="text" value="희영빌딩" id="keyword" size="15">
                             <button type="submit" onclick="f_search()">검색하기</button>
                         </form>
                     </div>
@@ -374,6 +374,7 @@
 
     const addedbox = document.getElementById("addedbox");
     let buttonpointer = 0;
+
 
     init();
 
@@ -929,6 +930,7 @@
 
         console.log("last :", plan_Array)
     }
+    f_day(1)
 
 </script>
 </html>
