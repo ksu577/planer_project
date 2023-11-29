@@ -67,9 +67,7 @@ public class CartController {
     public String delete(@RequestParam("cartId") int cartId) {
         cartService.delete(cartId);
         return "redirect:/cart/shoppingcartview";
-    }
-
-    ;
+    };
 
 
     // 4. 장바구니 수정

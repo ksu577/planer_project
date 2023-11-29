@@ -58,6 +58,9 @@
             width: 350px;
         }
 
+        .selectbox{
+            overflow: scroll;
+        }
 
         /* .first>div:nth-child(2)>div:nth-child(2){ */
         /* 명소 음식 숙소 */
@@ -172,14 +175,18 @@
     <div class="first" id="map">
         <div class="besidenav">
             <div>
-                <div class="box" onclick="f_allDay()">전체일정</div>
+                <div class="box day_count">전체일정</div>
                 <div class="selectplace" id="day"></div>
             </div>
+
             <div>
+                <c:if test="${user.getId() eq param.id}">
                 <button class="edit" onclick="f_update()">수정</button>
 
                 <button class="edit" onclick="f_delete()">삭제</button>
+                </c:if>
             </div>
+
         </div>
         <div class="selectplace-nav">
             <div class="selectbox" id="select-box"></div>
@@ -189,12 +196,13 @@
 <!-- 모달 창 -->
 <div id="myModal" class="modal">
     <div class="modal-content">
-        <form action="/share/plan" method="post">
+        <form action="/share/plan" id="shareForm" method="post">
             <!-- 모달 내용을 추가하세요 -->
             <input type="hidden" name="planTitle" value="${title}">
+            <input type="hidden" name="id" value="${user.getId()}">
             <input type="text" name="shareId">
 
-            <button type="submit" onclick="submitForm()">전송</button>
+            <button type="button" onclick="submitForm()">전송</button>
 
             <button type="button" onclick="closeModal()">지움</button>
         </form>
@@ -233,6 +241,21 @@
         // 모달 내용 전송 또는 기타 작업 수행
         // 여기에 전송 로직을 추가하세요.
 
+        var f = $("#shareForm");
+
+        $.ajax({
+            url: "/share/plan",
+            type: "POST",
+            dataType: "json",
+            data: f.serialize(),
+            success: function (result) {
+                alert(result["result"]);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+
         // 모달 닫기
         closeModal();
     }
@@ -264,15 +287,19 @@
         let day_num = $(this).text();
         let regex = /[^0-9]/g;
         let result = day_num.replace(regex, "");
+        console.log(result)
+        if (result == null || result == ""){
+            result = 0
+        }
 
         console.log(result)
-
 
         $.ajax({
             url: "/plan/marker.wow",
             type: "POST",
             dataType: "json",
             data: {
+                "id" : new URL(location.href).searchParams.get('id'),
                 "result": result,
                 "title": title
             },
@@ -423,7 +450,7 @@
     </c:forEach>
 
     let title = '${title}';
-    titleH1.innerHTML = title;
+    // titleH1.innerHTML = title;
     console.log(title)
 
     function f_delete() {
@@ -434,9 +461,6 @@
         location.href = encodeURI("/plan/plan.wow?planTitle=" + title + "");
     }
 
-    function f_allDay() {
-
-    }
 </script>
 
 </html>

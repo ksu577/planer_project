@@ -7,4 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ShareDao {
     int insertShare(ShareVO shareVO);
+
+    int memberCheck(ShareVO shareVO);
+
+    int checkAlready(ShareVO shareVO);
 }

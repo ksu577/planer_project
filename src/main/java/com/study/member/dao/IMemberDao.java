@@ -26,4 +26,5 @@ public interface IMemberDao {
     public int changePw(MemberVO member);
     public int findIdCheck(MemberVO member);
     public int findPwCheck(MemberVO member);
+    public int findemail(MemberVO member);
 }

@@ -142,10 +142,13 @@ public class FreeController {
         //그거는 servier에서 처리해줌
         freeBoardService.modifyBoard(freeBoard);
         ResultMessageVO resultMessageVO = new ResultMessageVO();
+
+        int freeNum = freeBoard.getFreeNum();
+
         resultMessageVO.messageSetting(true, "수정", "수정성공", "/free/freeList.wow", "목록으로");
 
         model.addAttribute("resultMessageVO", resultMessageVO);
-        return "common/message";
+        return "redirect:/free/freeView.wow?freeNum=" + freeNum;
     }
 
     @PostMapping("/free/freeDelete.wow")
@@ -156,7 +159,7 @@ public class FreeController {
         resultMessageVO.messageSetting(true, "삭제", "삭제성공", "/free/freeList.wow", "목록으로");
 
         model.addAttribute("resultMessageVO", resultMessageVO);
-        return "common/message";
+        return "redirect:/free/freeList.wow";
     }
 
 
@@ -177,15 +180,15 @@ public class FreeController {
             List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, "FREE", "free");
             freeBoard.setAttaches(attaches);
         }
-
-
-
         ResultMessageVO resultMessageVO = new ResultMessageVO();
         freeBoardService.registBoard(freeBoard);
+
+        int freeNum = freeBoard.getFreeNum();
+
         resultMessageVO.messageSetting(true, "등록", "등록성공", "/free/freeList.wow", "목록으로");
 
         model.addAttribute("resultMessageVO", resultMessageVO);
-        return "common/message";
+        return "redirect:/free/freeView.wow?freeNum=" + freeNum;
     }
 
     @RequestMapping(value = "/uploadSummernoteImageFile", produces = "application/json; charset=utf8")

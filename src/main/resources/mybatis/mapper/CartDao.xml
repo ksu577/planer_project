@@ -4,19 +4,24 @@
 
     <!-- 1. 장바구니 추가 -->
     <insert id="insertCart">
-        insert into cart (cart_id, user_id, product_id, amount)
-        values (seq_cart.nextval, #{userId}, #{productId}, #{amount})
+        insert into cart (cart_id, user_id, product_id, amount, product_amount)
+        values (seq_cart.nextval, #{userId}, #{productId}, #{amount},
+                (select product_amount
+                 from product
+                 where id = #{productId}))
     </insert>
+
 
     <!-- 2. 장바구니 목록 -->
     <select id="cartList" resultType="com.study.cart.vo.CartVO">
-        select c.cart_id    as      cart_id,
-               c.user_id    as      user_id,
-               p.id         as      product_id,
-               p.name       as      product_name,
-               m.name       as      user_name,
-               c.amount     as      amount,
-               p.price      as      price,
+        select c.cart_id as         cart_id,
+               c.user_id as         user_id,
+               p.id      as         product_id,
+               p.name    as         product_name,
+               m.name    as         user_name,
+               c.amount  as         amount,
+               p.price   as         price,
+
 
                (p.price * c.amount) money
         from member m,
@@ -24,7 +29,7 @@
              cart c
         where m.id = c.user_id
           and p.id = c.product_id
-            and m.id = #{userId}
+          and m.id = #{userId}
     </select>
 
     <!-- 3. 장바구니 삭제 -->
@@ -35,7 +40,8 @@
     </delete>
 
     <delete id="clearCart">
-        delete from cart
+        delete
+        from cart
         where user_id = #{userId}
     </delete>
 
@@ -49,9 +55,11 @@
 
     <!--5. 장바구니 금액 합계-->
     <select id="sumMoney" resultType="int">
-        select NVL(SUM(p.price * c.amount) , 0) money
-        from cart c, product p
-        where c.product_id = p.id and c.user_id = #{userId}
+        select NVL(SUM(p.price * c.amount), 0) money
+        from cart c,
+             product p
+        where c.product_id = p.id
+          and c.user_id = #{userId}
     </select>
 
     <!--6. 장바구니에 있는 것과 동일한 상품 코드 확인-->

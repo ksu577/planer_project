@@ -14,4 +14,19 @@
                )
 
     </insert>
+    <select id="memberCheck" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM MEMBER
+        WHERE ID = #{shareId}
+          AND DELYN = 'N'
+    </select>
+
+    <select id="checkAlready" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM SHARE_PLAN
+        WHERE ID = #{id}
+          AND PLAN_TITLE = #{planTitle}
+          AND SHARE_ID = #{shareId}
+          AND DEL_YN = 'Y'
+    </select>
 </mapper>

@@ -57,6 +57,60 @@
             </td>
         </tr>
     </c:if>
+
+    <div class="container">
+
+
+        <div class="route mt-3">
+            장바구니 > 주문결제 > 주문완료
+        </div>
+
+        <div class="paycontainer mt-3">
+            <div class="address col-md-8">
+                <h2>주문정보</h2>
+                <hr>
+                <form>
+                    <div class="mb-3">
+                        <span>수령인 : ${userinfo.takeName}</span>
+                    </div>
+                    <div class="mb-3">
+                        <span> 연락처 : ${userinfo.takeHp} </span>
+
+                    </div>
+                    <div class="mb-3">
+                        <span>배송지 : ${userinfo.takeAdd}</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <span>배송 메모 : ${userinfo.takeReq}</span>
+                    </div>
+                </form>
+            </div>
+            <div class="bill col-md-8">
+                <c:set var="totalAmount" value="0"/>
+
+                <c:forEach items="${productinfo}" var="productinfo">
+                    <div class="mb-3" style="display: flex; flex-direction: column;">
+                        <span>상품명 : ${productinfo.productName} </span>
+                        <hr>
+                        <span>개수 : ${productinfo.amount} 개</span>
+                        <span>상품금액 : ${productinfo.price} 원</span>
+                        <hr>
+                    </div>
+                    <c:set var="totalAmount" value="${totalAmount + productinfo.price}"/>
+                </c:forEach>
+                <span>배송비 : 3000원</span>
+                <hr>
+                <div class="mb-3">
+                    <div class="mb-3" style="display: flex; flex-direction: column;">
+
+                        <span>결제된 금액 : 총액 ${totalAmount} 원</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </table>
 </body>
 </html>

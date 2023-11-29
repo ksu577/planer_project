@@ -14,7 +14,7 @@
 
 </script>
 <body>
-  성공
+성공
 ${msg}
 </body>
 </html>

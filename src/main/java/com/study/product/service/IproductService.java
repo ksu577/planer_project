@@ -25,7 +25,7 @@ public interface IproductService {
     public void delete(int productId);
 
     // 4. 싱품 수정
-    public void update(ProductVO productVO);
+    public void updateproduct(ProductVO productVO, MultipartFile imgFile) throws IOException;
 
     // 5. 상품 상세
     public ProductVO getproduct(int productId);

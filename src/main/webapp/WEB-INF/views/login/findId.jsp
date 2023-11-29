@@ -13,16 +13,16 @@
 <style>
 
     .container {
+        padding-top: 70px;
         width: 100vw;
         height: 100vh;
         border: 1px solid red;
-        position: relative;
     }
 
     .cover {
         margin-top: 50px;
         margin-left: 50px;
-        width: 510px;
+        width: 400px;
         height: 300px;
     }
 
@@ -86,7 +86,6 @@
         font-size: 15px;
         font-weight: 500;
         color: black;
-        left: 407px;
     }
 
     .em-check-btn2 {
@@ -100,6 +99,7 @@
         font-weight: 500;
         color: black;
         left: 407px;
+
     }
 
     .checkbtn {
@@ -116,9 +116,8 @@
         margin-top: 50px;
         width: 800px;
         height: 500px;
-    }
-
-    .result-section {
+        left: 500px;
+        position: absolute;
         font-size: 5mm;
         font-weight: 400;
         overflow-y: scroll;
