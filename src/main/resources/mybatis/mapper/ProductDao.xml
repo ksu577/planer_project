@@ -18,13 +18,15 @@
                              price,
                              product_desc,
                              img,
-                             img_path)
+                             img_path,
+                             product_amount)
         values (seq_cart.nextval,
                 #{productName},
                 #{productPrice},
                 #{productDesc},
                 #{img},
-                #{imgPath})
+                #{imgPath},
+                #{productAmount})
     </insert>
 
     <!-- 2. 물건 삭제-->
@@ -37,14 +39,21 @@
     <!--3. 물건 변경-->
     <update id="updateproduct">
         update product
-        set name         =#{productName}
-          , price        =#{productPrice}
-          , product_desc =#{productDesc}
-          , img          =#{img}
-          , img_path      =#{imgPath}
+        set name           =#{productName}
+          , price          =#{productPrice}
+          , product_desc   =#{productDesc}
+          , img            =#{img}
+          , img_path       =#{imgPath}
+          , product_amount = #{productAmount}
 
         where id = #{productId}
 
+    </update>
+
+    <update id="updateProductAmount">
+        UPDATE product
+        SET product_amount = product_amount - #{purchaseQuantity}
+        WHERE id = #{productId}
     </update>
 
     <!-- 4. 물건 보기 (상세 페이지)   -->
@@ -54,7 +63,8 @@
                price,
                product_desc,
                img,
-               img_path
+               img_path,
+               product_amount
         from product
         where id = #{productId}
     </select>
@@ -67,7 +77,8 @@
         price as product_price,
         product_desc as product_desc,
         img as img,
-        img_path as img_path
+        img_path as img_path,
+        product_amount as product_amount
         from product
         where 1=1
         <include refid="searchInFree"/>
