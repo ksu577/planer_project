@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 
 @Controller
 @RequestMapping("/cart")
@@ -32,6 +34,7 @@ public class CartController {
 
             cartVO.setUserId(userId);
             cartService.insert(cartVO);
+
             return "redirect:/cart/shoppingcartview";
         }
 
@@ -41,25 +44,25 @@ public class CartController {
 
     ;
 
-        // 2. 장바구니 목록(장바구니 전체 - 카트 페이지)
-        @GetMapping("/shoppingcartview")
-        public String cartList(Model model, HttpSession session) {
-            UserVO user = (UserVO) session.getAttribute("user");
+    // 2. 장바구니 목록(장바구니 전체 - 카트 페이지)
+    @GetMapping("/shoppingcartview")
+    public String cartList(Model model, HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
 
-            if (user != null) {
-                String userId = user.getId();
-                List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
-                int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
-                model.addAttribute("listCart", list); // 장바구니 정보 추가
-                model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
-                return "cart/shoppingcartview" ;
-            } else {
-                return "redirect:/login/login.wow";
-            }
+        if (user != null) {
+            String userId = user.getId();
+            List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
+            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
+            model.addAttribute("listCart", list); // 장바구니 정보 추가
+            model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
 
+            return "cart/shoppingcartview";
+
+        } else {
+            return "redirect:/login/login.wow";
         }
 
-
+    }
 
 
     // 3. 장바구니(담은 물품) 삭제
@@ -109,17 +112,5 @@ public class CartController {
 
         return "redirect:/cart/shoppingcartview.wow";
     }
-
-
-    // 카트 페이지에 데이터 보내기
-    @PostMapping("/shoppingcartview")
-    public String cartpage(HttpSession session) {
-        UserVO user = (UserVO) session.getAttribute("user");
-        if (user != null) {
-            return "cart/shoppingcartview";
-        } else {
-            return "redirect: /login/login.wow";
-        }
-    }
-
 }
+

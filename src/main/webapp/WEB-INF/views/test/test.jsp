@@ -13,11 +13,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
-  <body>
-  <%@ include file="/WEB-INF/inc/top.jsp" %>
+<body>
+<%@ include file="/WEB-INF/inc/top.jsp" %>
 
-    <button class="testbtn" id="testbtn" style="padding-top: 70px">kakaopay</button>
-  </body>
+<button class="testbtn" id="testbtn" style="padding-top: 70px">kakaopay</button>
+</body>
 <script>
   $(function () {
     $('#testbtn').click(function (){

@@ -94,9 +94,9 @@
           <span>결제된 금액 : 총액 ${totalAmount} 원</span>
         </div>
       </div>
-      </div>
     </div>
   </div>
+</div>
 </div>
 
 

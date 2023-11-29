@@ -17,19 +17,12 @@
 
         .selectcategory {
             text-align: right;
-
-        }
-
-        .carousel {
-            width: 1200px;
-            height: 600px;
-            overflow: hidden;
         }
 
         .cell {
+            width: 288px;
+            height: 385px;
             background-color: white;
-            border-radius: 20px;
-            box-shadow: 0px 0px 4px 2px gainsboro;
         }
 
         .place-box a {
@@ -51,23 +44,23 @@
             width: calc(1200px / 4 - 20px);
             height: 400px;
             border: 0;
-            box-shadow: 1px 1px 4px 1px black;
             border-bottom: 20px;
             overflow: hidden;
             margin: 10px;
         }
 
-        .top {
-            height: 80%;
+        .top > img {
             border-radius: 20px;
             box-shadow: 0px 0px 4px 2px gainsboro;
         }
 
         .bottom {
+            /*text-align: left;*/
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 20%;
+            width: 232px;
+            height: 65px;
             color: rgb(0, 102, 0);
             flex-direction: column;
         }
@@ -82,22 +75,44 @@
             cursor: pointer;
         }
 
-        .modal {
-            width: 800px;
-            height: 600px;
-            border-radius: 15px;
-            box-shadow: 4px 4px 4px 4px rgb(128, 128, 128);
+        .bottom h3 {
+            text-align: left;
+        }
 
-            position: fixed;
-            top: 15%;
-            left: 50%;
+        .modalcontainer {
+            margin: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;;
+        }
 
+        /*.nav-bar>div:nth-child(1)*/
+        .modalcontainer > div {
+            text-align: left;
+            margin: 20px;
+            padding: 20px;
+            border: 1px red;
+            width: 90%;
+            height: 90%;
+        }
+
+
+
+        .modal2 {
             background-color: white;
+            width: 400px;
+            height: 300px;
+            border-radius: 20px;
+            box-shadow: 4px 4px 4px 4px gainsboro;
+            position: fixed;
+            top: 10%;
+            left: 50%;
             transform: translate(-50%, 0);
         }
 
-        .modal-summon {
-            animation: summon 0.01s forwards;
+        .align-end2 {
+            text-align: end;
         }
 
         @keyframes summon {
@@ -107,19 +122,32 @@
             }
 
             100% {
-                height: 700px;
-                width: 700px;
-                top: 10%
+                height: 512px;
+                width: 960px;
             }
         }
 
-        .black-wall {
-            position: absolute;
-            width: 100%;
-            height: 270%;
-            background-color: #000000b4;
-            top: 0
+        @keyframes down {
+            0% {
+                top: 0%;
+                transform: translate(-50%, -100%);
+            }
+
+            100% {
+                top: 10%;
+                transform: translate(-50%, 0);
+            }
         }
+
+        .modal-summon {
+            /*animation: summon 1s forwards;*/
+            animation: summon forwards;
+        }
+
+        .d-none2 {
+            display: none;
+        }
+
     </style>
 
 </head>
@@ -141,15 +169,15 @@
         </div>
     </div>
 
-
     <div class="place-box">
         <c:forEach var="place" items="${placeList}">
-            <div class="cell">
+            <div class="cell" onclick="f_summon('${place.placeNum}')">
                 <div class="top">
-                    <img height="210px" width="328px" src="" alt="">
+                    <img height="240px" width="240px" src="" alt="">
                 </div>
-                <div class="bottom">
-                    <a href=""> ${place.placeName} </a>
+                <div class="bottom" style="text-align: left;">
+                    <h1> ${place.englishName} </h1>
+                    <h3> ${place.placeName} </h3>
                     <a href="" hidden="true"> ${place.placeNum} </a>
                 </div>
             </div>
@@ -157,18 +185,22 @@
     </div>
 
 
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" style="width: 300px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">${place.placeName}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal2 modal-summon d-none2">
+        <div class="align-end2">
+            <img onclick="f_close2()" height="35px" width="35px"
+                 src="data:image/png;base64,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"
+                 alt="">
+            <div class="modalcontainer">
+                <div>
+                        <h1 id="AreaTitle"></h1>
+                        <hr>
+                        <h4 id="AreaContents"></h4>
+                    <div style="display: flex; justify-content: flex-end;">
+                        <button class="btn btn-primary" onclick="makeplanner()" style="width: 80px; height: 30px;"> 일정만들기 </button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    ${place.placeContext}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <div>
+
                 </div>
             </div>
         </div>
@@ -177,17 +209,41 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // 각 셀을 클릭했을 때 모달창을 띄우는 함수
-    document.querySelectorAll('.cell').forEach(cell => {
-        cell.addEventListener('click', function () {
-            // 해당 셀의 placeNum 가져오기
-            const placeId = this.getAttribute('data-place-id');
-            const myModal = new bootstrap.Modal(document.getElementById('myModal'), {
-                keyboard: false
-            });
-            myModal.show();
-        });
-    });
+    const v_modal2 = document.getElementsByClassName("modal2")[0];
+
+    function f_summon(placeNum) {
+        $.ajax({
+            url:'/place/placeView'
+            , dataType: 'json'
+            , data : {
+                'placeNum' : placeNum
+            }
+            , type : "post"
+            , success: function (data) {
+                console.log(data)
+                $("#AreaTitle").html(data['placeName']);
+                $("#AreaContents").html(data['placeContext']);
+
+                v_modal2.classList.remove("d-none2");
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+
+
+
+
+    }
+
+    function f_close2() {
+        v_modal2.classList.add("d-none2");
+    }
+
+    function makeplanner() {
+        window.location.href = "/plan/title.wow"
+    }
+
 </script>
 
 

@@ -93,14 +93,16 @@
             <div class="product-title">상품명: ${product.productName}</div>
             <div class="product-price">가격 : ${product.productPrice}원</div>
             <div class="product-description">${product.productDesc}</div>
-
-            <div class="product-quantity">
-                <label>수량 </label>
-                <select id="product-options">
-                    <c:forEach begin="1" end="10" var="quantity">
-                        <option value="${quantity}">${quantity}</option>
-                    </c:forEach>
-                </select> 개
+            <div>
+                <div class="product-amount">구매 가능 수량:${product.productAmount} </div>
+                <div class="product-quantity">
+                    <div class="product-quantity">
+                        <label for="purchase-quantity">구매 수량</label>
+                        <input type="number" id="purchase-quantity" name="purchaseQuantity" min="1"
+                               onchange="checkAndUpdateAmount()" max="${product.productAmount}">
+                        개
+                    </div>
+                </div>
             </div>
 
             <div class="product-buttons">
@@ -125,12 +127,45 @@
 </div>
 <script>
     function listCart() {
-        window.location.href = "/cart/shoppingcartinsert?productId=${product.productId}&amount=" + $('#product-options').val();
+        let amount = document.getElementById('purchase-quantity').value;
+        window.location.href = "/cart/shoppingcartinsert?productId=${product.productId}&amount=" + amount;
     }
 
     function productmodify(productId) {
         window.location.href = "/product/productupdate(admin)?product=${product.productId}"
     }
+
+    function checkAndUpdateAmount() {
+        let amountInput = document.getElementById('amount');
+        let amountValue = parseInt(amountInput.value);
+
+        if (amountValue < 1) {
+            alert('수량은 1개 이상이어야 합니다.');
+            // 입력된 값이 0보다 작으면 값을 1로 변경하도록 설정
+            amountInput.value = 1;
+        }
+    }
+
+    document.getElementById('purchase-quantity').addEventListener('input', function () {
+        const purchaseQuantity = parseInt(this.value);
+        const maxQuantity =parseInt(${product.productAmount});
+        if (purchaseQuantity < 1 || purchaseQuantity > maxQuantity) {
+            alert('구매 수량은 1 이상 ' + maxQuantity + ' 이하여야 합니다.');
+            this.value = 1; // 조건에 맞지 않는 값 입력 시 기본값으로 변경할 수 있습니다. (예: 1)
+        }
+    });
+
+    function listCart() {
+        let amount = document.getElementById('purchase-quantity').value;
+
+        if (amount.trim() === "") {
+            alert('구매 수량을 입력해야 합니다.');
+            return;
+        }
+
+        window.location.href = "/cart/shoppingcartinsert?productId=${product.productId}&amount=" + amount;
+    }
+
 </script>
 
 </body>

@@ -9,16 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Getter
 @Setter
-public class CartVO extends ProductVO {
+public class CartVO{
 
     private int cartId; //장바구니 번호
     private String userId; // 사용자 아이디
     private String userName; // 사용자 이름
-    private int productId; // 상품 번호
+    private int productId; // 상품 번호량
     private String productName; // 상품 이름
     private int price; //상품 단가
     private int money; // 상품 가격
     private int amount; // 구매 수량
+    private int productAmount;// 물품의 전체 수
+
 
     public void addAmount(int amount) {
         this.amount += amount;

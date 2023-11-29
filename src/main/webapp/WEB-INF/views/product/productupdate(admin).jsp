@@ -80,7 +80,9 @@
                     <input type="text" class="form-control" name="productDesc" value="${product.productDesc}" placeholder="상품상세설명"
                            style="height:40%">
                     <hr>
-
+                    <input type="number" class="form-control" name="productAmount" value="${product.productAmount}" placeholder="물품 재고량 수정"
+                           style="height:40%">
+                    <hr>
 
                     <div class="product-buttons">
                         <button type="submit" class="btn btn-primary">수정완료</button>

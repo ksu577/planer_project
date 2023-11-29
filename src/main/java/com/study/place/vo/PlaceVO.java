@@ -10,6 +10,7 @@ public class PlaceVO {
     private String placeName;
     private String placeCategory;
     private String placeContext;
+    private String englishName;
     private int placeNum;
 
 }

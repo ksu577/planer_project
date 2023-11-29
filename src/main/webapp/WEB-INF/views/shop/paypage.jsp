@@ -93,7 +93,7 @@
     </div>
 
     <div class="paycontainer mt-3">
-        <form action="/shop/paypage.wow" method="post">
+        <form action="/shop/insertOrder.wow" id="cartForm" method="post">
             <div class="address col-md-8">
                 <h2>배송지정보</h2>
                 <hr>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="deliveryRequest" name="takeReq" class="form-label">배송 요청 사항</label>
-                    <select class="form-select" id="deliveryRequest">
+                    <select class="form-select" name="takeReq" id="deliveryRequest">
                         <option value="">배송 시 요청 사항을 선택해주세요.</option>
                         <option value="경비실에 맡겨주세요.">경비실에 맡겨주세요.</option>
                         <option value="택배보관함에 넣어놔주세요.">택배보관함에 넣어놔주세요.</option>
@@ -158,6 +158,7 @@
 <%--https://postcode.map.daum.net/guide 다음우편주소api--%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
     function kpay() {
         $.ajax({
             url:'/test/kakaopay.wow'
@@ -207,26 +208,6 @@
         }).open();
     }
 
-    // 카카오
-    $(function () {
-        $('#testbtn').click(function (){
-            $.ajax({
-                url:'/test/kakaopay.wow'
-                , dataType: 'json'
-                , type : "post"
-                , contentType : "application/json"
-                ,success: function (data) {
-                    const msg = JSON.parse(data.message);
-                    console.log(msg) // tid
-                    const next_redirect_pc_url = msg.next_redirect_pc_url;
-                    window.open(next_redirect_pc_url, "_blank", "width=500, height=700")
-                },
-                error: function (error) {
-                    alert(error);
-                }
-            })
-        })
-    })
 </script>
 </body>
 </html>

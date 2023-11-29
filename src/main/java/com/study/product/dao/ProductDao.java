@@ -27,15 +27,18 @@ public interface ProductDao {
     public ProductVO getproduct(int productId);
 
     // 5.물건 목록 확인
-     public List<ProductVO> getprodList(@Param("paging") PagingVO paging
-             , @Param("search") SearchVO search);
+    public List<ProductVO> getprodList(@Param("paging") PagingVO paging
+            , @Param("search") SearchVO search);
+
+    // 6. 물건 갯수 조절
+    public void updateProductAmount(@Param("productId") int productId, @Param("purchaseQuantity") int purchaseQuantity);
 
     public int getTotalRowCount(@Param("paging") PagingVO paging
             , @Param("search") SearchVO search);
 
     public void insertSaveCart(SaveCartVO saveCartVO);
 
-//    xml dao service 전부 수정할 예정 11월 23일
+    //    xml dao service 전부 수정할 예정 11월 23일
     public SaveCartVO selectUserInfo(String id);
 
     public List<ProductVO> selectProductInfo(String id);
