@@ -58,6 +58,9 @@
             width: 350px;
         }
 
+        .selectbox{
+            overflow: scroll;
+        }
 
         /* .first>div:nth-child(2)>div:nth-child(2){ */
         /* 명소 음식 숙소 */
@@ -172,7 +175,7 @@
     <div class="first" id="map">
         <div class="besidenav">
             <div>
-                <div class="box" onclick="f_allDay()">전체일정</div>
+                <div class="box day_count">전체일정</div>
                 <div class="selectplace" id="day"></div>
             </div>
 
@@ -276,6 +279,7 @@
 
     var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
+
     $(document).on("click", ".day_count", function () {
 
         tour_div.innerHTML = ""
@@ -283,6 +287,10 @@
         let day_num = $(this).text();
         let regex = /[^0-9]/g;
         let result = day_num.replace(regex, "");
+        console.log(result)
+        if (result == null || result == ""){
+            result = 0
+        }
 
         console.log(result)
 
@@ -442,7 +450,7 @@
     </c:forEach>
 
     let title = '${title}';
-    titleH1.innerHTML = title;
+    // titleH1.innerHTML = title;
     console.log(title)
 
     function f_delete() {

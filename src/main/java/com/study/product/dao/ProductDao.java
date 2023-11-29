@@ -21,7 +21,7 @@ public interface ProductDao {
     public void delete(int productId);
 
     // 3.물건 수정
-    public void update(ProductVO productVO);
+    public void updateproduct(ProductVO productVO);
 
     // 4.물건 확인 (상세 페이지 확인)
     public ProductVO getproduct(int productId);

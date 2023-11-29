@@ -35,12 +35,14 @@
     </delete>
 
     <!--3. 물건 변경-->
-    <update id="update">
+    <update id="updateproduct">
         update product
         set name         =#{productName}
           , price        =#{productPrice}
           , product_desc =#{productDesc}
-          , img          = #{img}
+          , img          =#{img}
+          , img_path      =#{imgPath}
+
         where id = #{productId}
 
     </update>

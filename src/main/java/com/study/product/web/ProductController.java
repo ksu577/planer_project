@@ -99,7 +99,7 @@ public class ProductController {
 
     // 5. 상품 수정 페이지 이동후 내용물 보이기 - 이동
     @RequestMapping("/product/productupdate(admin)")
-    public String update(@RequestParam("product") int productId, HttpSession session, Model model) {
+    public String updatepage(@RequestParam("product") int productId, HttpSession session, Model model) {
         UserVO user = (UserVO) session.getAttribute("user");
         if (user.getRole() == "MANAGER") {
             ProductVO productVO = IproductService.getproduct(productId);
@@ -114,8 +114,12 @@ public class ProductController {
 
     // 6. 상품 수정 페이지 (기능)  -- 사진 db에 변경하기
     @RequestMapping("/product/productModify(admin)")
-    public String update(ProductVO productVO) {
-        iproductService.update(productVO);
+    public String updateproduct(ProductVO productVO , MultipartFile imgFile,HttpSession session ) throws IOException {
+        UserVO user = (UserVO) session.getAttribute("user");
+        if (user.getRole() == "MANAGER") {
+            iproductService.updateproduct(productVO, imgFile );
+            return "redirect:/shop/minishop.wow";
+        }
         return "redirect: /shop/minishop.wow";
     }
 
@@ -225,6 +229,15 @@ public class ProductController {
 //        return "/shop/afterpay";
 //    }
 
+//    public File getFileFromAttachVO(ProductVO productVO) throws IOException, BizNotFoundException {
+//        String fileName = productVO.getImg();  //저장되어있는 파일이름. 랜덤값
+//        String filePath = productVO.getImgPath();     // 저장되어있는 폴더 경로
+//        String path = uploadPath + File.separatorChar + filePath;
+//        File file = new File(path, fileName);
+//        if (!file.isFile()) throw new BizNotFoundException("파일없음");
+//        return  file;
+//
+//    }
 
     //img파일 썸네일
     @RequestMapping("/imgDownload/showImg.wow")
