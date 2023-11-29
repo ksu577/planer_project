@@ -417,7 +417,9 @@
             , data: {"email": mailAddress}
             , success: function (data) {
                 if (data == "error") {
-                    alert("이미 가입한 이메일입니다.")
+                    $(".bingbing").hide();
+                    $(".overlay").hide();
+                    alert("이미 가입한 이메일입니다.");
                 } else {
                     $(".bingbing").hide();
                     $(".overlay").hide();
