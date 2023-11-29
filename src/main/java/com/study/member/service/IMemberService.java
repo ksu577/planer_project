@@ -24,5 +24,6 @@ public interface IMemberService {
     public int findPwCheck(MemberVO member) throws BizException;
     public void changePw(MemberVO member) throws BizException;
     public int findIdCheck(MemberVO member) throws BizException;
+    public int findemail(MemberVO member) throws BizException;
 }
 

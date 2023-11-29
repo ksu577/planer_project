@@ -43,6 +43,10 @@
       text-align: center;
       padding: 8px;
     }
+
+    .container {
+      padding-top: 70px;
+    }
   </style>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

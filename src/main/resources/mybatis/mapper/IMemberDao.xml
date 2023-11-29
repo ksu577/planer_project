@@ -145,6 +145,13 @@
     </delete>
 
 
+    <select id="findemail" resultType="int">
+        SELECT count(*)
+        FROM member
+        WHERE email = #{email}
+        AND delYn = 'N'
+    </select>
+
     <insert id="insertMember" parameterType="com.study.member.vo.MemberVO">
         INSERT INTO member (id,
                             name,

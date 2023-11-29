@@ -7,6 +7,9 @@
 %>
 <!DOCTYPE html>
 <html>
+<style>
+    .container{padding-top: 70px}
+</style>
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>

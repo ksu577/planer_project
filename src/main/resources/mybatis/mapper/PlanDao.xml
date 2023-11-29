@@ -63,17 +63,12 @@
             user_plan
         WHERE id = #{id}
         AND plan_title = #{title}
-        AND day_count = #{dayCount}
         AND delete_yn = 'Y'
-        <!-- 위랑 아래랑 조건 줘서 합칠수 있습니다
         <choose>
-            <when test="dayCount > 0">
+            <when test="dayCount != 0">
                 AND day_count = #{dayCount}
             </when>
-            <otherwise>
-                ORDER BY day_count
-            </otherwise>
-        </choose> -->
+        </choose>
     </select>
 
     <select id="topPlan" resultType="com.study.plan.vo.PlanVo">
@@ -84,6 +79,9 @@
         where delete_yn = 'Y'
         group by place_name , place_load_address
         order by count(place_name) DESC
+    </select>
+    <select id="shareId" resultType="java.lang.String">
+
     </select>
 
 

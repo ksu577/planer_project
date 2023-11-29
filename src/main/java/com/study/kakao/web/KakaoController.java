@@ -80,7 +80,7 @@ public class KakaoController {
 
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
-        }  catch (ProtocolException e) {
+        } catch (ProtocolException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);

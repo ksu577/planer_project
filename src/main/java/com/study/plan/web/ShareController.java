@@ -12,11 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ShareController {
@@ -28,13 +31,13 @@ public class ShareController {
     ITourService tourService;
 
     @Autowired
-    ShareService shareService;
+    ShareService  shareService;
 
     @Autowired
     IMemberService memberService;
 
 
-    @PostMapping("/share/plan")
+/*    @PostMapping("/share/plan")
     public String planShare(@ModelAttribute ShareVO shareVO, HttpSession session) throws UnsupportedEncodingException {
         UserVO user = (UserVO) session.getAttribute("user");
 
@@ -60,5 +63,24 @@ public class ShareController {
             }
         }
         return result;
+    }
+}*/
+
+
+    @PostMapping("/share/plan")
+    @ResponseBody
+    public Map<String, Object> planShare(@ModelAttribute ShareVO shareVO) throws Exception {
+
+        System.out.println(shareVO);
+
+        String result = shareService.sharePlanY(shareVO);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("result", result);
+
+
+        return map;
+
     }
 }

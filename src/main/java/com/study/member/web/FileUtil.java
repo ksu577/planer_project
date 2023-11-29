@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.UUID;
 
 public class FileUtil {
-    private static final String filePath = "/home/pc31/Aupload/member/";
+    private static final String filePath = "/home/pc41/Aupload/member/";
 
     public static String modifyMember(MultipartHttpServletRequest Request) throws Exception {
 

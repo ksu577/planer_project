@@ -78,6 +78,11 @@
         <form action="/cart/shoppingCartClear" method="post">
             <button type="submit" class="btn btn-primary" style="width: 100%">장바구니 비우기</button>
         </form>
+
+<%--        쇼핑 계속하기--%>
+        <form action="/shop/minishop.wow" method="post">
+            <button type="submit" class="btn btn-primary" style="width: 100%">쇼핑 계속하기</button>
+        </form>
     </div>
 
     <div class="cart-summary">
@@ -124,6 +129,20 @@
         }
     }
 
+    function checkAndUpdateAmount() {
+        let amountValue = parseInt(document.getElementById('amount').value);
+
+        if (amountValue < 1) {
+            alert('수량은 1개 이상이어야 합니다.');
+            document.getElementById('amount').value = 1;
+        }
+
+        let productAmount = ${listCart.productAmount}; // product_amount를 가져옴
+        if (amountValue > productAmount) {
+            alert('수량은 전체보다 많을 수 없습니다.');
+            document.getElementById('amount').value = productAmount;
+        }
+    }
 
 
 

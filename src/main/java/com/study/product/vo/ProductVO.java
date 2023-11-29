@@ -18,6 +18,8 @@ public class ProductVO {
     private String img; // 물품 이미지
     private String imgPath;// 이미지 조회 경로
 
+    private String productAmount;//  물품 남은 재고량
+
     private int price;
     private int amount;
 
