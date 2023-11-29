@@ -98,7 +98,8 @@
                 <div class="product-quantity">
                     <div class="product-quantity">
                         <label for="purchase-quantity">구매 수량</label>
-                        <input type="number" id="purchase-quantity" name="purchaseQuantity" min="1"  onchange="checkAndUpdateAmount()"  max="${product.productAmount}">
+                        <input type="number" id="purchase-quantity" name="purchaseQuantity" min="1"
+                               onchange="checkAndUpdateAmount()" max="${product.productAmount}">
                         개
                     </div>
                 </div>
@@ -145,9 +146,9 @@
         }
     }
 
-    document.getElementById('purchase-quantity').addEventListener('input', function() {
+    document.getElementById('purchase-quantity').addEventListener('input', function () {
         const purchaseQuantity = parseInt(this.value);
-        const maxQuantity = parseInt(this.getAttribute('product-amount'));
+        const maxQuantity =parseInt(${product.productAmount});
         if (purchaseQuantity < 1 || purchaseQuantity > maxQuantity) {
             alert('구매 수량은 1 이상 ' + maxQuantity + ' 이하여야 합니다.');
             this.value = 1; // 조건에 맞지 않는 값 입력 시 기본값으로 변경할 수 있습니다. (예: 1)
