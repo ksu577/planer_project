@@ -18,9 +18,13 @@
             padding: 20px;
             margin-top: 30px;
             margin-bottom: 30px;
+            margin-right: 50px;
             width: 300px;
             text-align: center;
             position: relative;
+        }
+        .schedule-container{
+            display: flex;
         }
 
         .schedule-dropdown {

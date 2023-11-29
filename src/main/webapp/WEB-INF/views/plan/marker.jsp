@@ -10,9 +10,9 @@
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        div {
-            border: 1px solid black;
-        }
+        /*div {*/
+        /*    border: 1px solid black;*/
+        /*}*/
 
         body {
             border: 1px solid red;
@@ -28,6 +28,10 @@
             height: 850px;
             background-size: cover;
             z-index: 0;
+        }
+
+        .selectplace {
+            height: 500px;
         }
 
         .selectplace-nav {
@@ -58,7 +62,7 @@
             width: 350px;
         }
 
-        .selectbox{
+        .selectbox {
             overflow: scroll;
         }
 
@@ -85,14 +89,11 @@
             border-radius: 17px;
         }
 
-        .selectplace {
-            display: flex;
-            justify-content: center;
-        }
 
         .selectplace > div {
-            height: 100%;
-            width: 100%;
+            height: 50px;
+            width: 50%;
+            border-radius: 10px;
         }
 
         .selectbox {
@@ -105,9 +106,21 @@
         }
 
         .selectbox > div {
-            display: flex;
             height: 80px;
             padding: 10px;
+            font-weight: bolder;
+            font-size: 15px;
+        }
+
+        .day_count {
+            text-align: center;
+            font-size: 17px;
+            font-weight: bolder;
+            border: 3px solid white;
+            box-shadow: 0px 0px 2px 1px gainsboro;
+        }
+
+        .selectplace {
             text-align: center;
         }
 
@@ -125,15 +138,17 @@
             border-radius: 20px;
         }
 
+        .d-none {
+            display: none;
+        }
+
         .selectplace-nav {
             background-color: rgba(255, 255, 255, 0.62);
 
             border-radius: 50px;
 
-            position: absolute;
             height: 850px;
 
-            transform: translate(201px, 0);
             box-shadow: 4px 0px 4px 0px gainsboro;
         }
 
@@ -171,24 +186,39 @@
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
-<div class="container1">
+<div class="container1" onclick="f_drawer()">
     <div class="first" id="map">
         <div class="besidenav">
             <div>
                 <div class="box day_count">전체일정</div>
-                <div class="selectplace" id="day"></div>
             </div>
+            <div class="selectplace" id="day"></div>
 
             <div>
+                <div>
+                    <button class="edit" onclick="f_return()">일정 홈</button>
+                </div>
                 <c:if test="${user.getId() eq param.id}">
-                <button class="edit" onclick="f_update()">수정</button>
-
-                <button class="edit" onclick="f_delete()">삭제</button>
+                    <div>
+                        <button class="edit" onclick="f_share()">공유하기</button>
+                    </div>
+                    <div>
+                        <button class="edit" onclick="f_update()">수정</button>
+                    </div>
+                    <div>
+                        <button class="edit" onclick="f_delete()">삭제</button>
+                    </div>
                 </c:if>
+                <div>
+                    <button class="edit">
+                        <a href="/plan/excelDown?title=${title}&id=${param.id}" target="_blank"
+                           id="excelDown">excelDown</a>
+                    </button>
+                </div>
             </div>
 
         </div>
-        <div class="selectplace-nav">
+        <div class="selectplace-nav d-none">
             <div class="selectbox" id="select-box"></div>
         </div>
     </div>
@@ -201,23 +231,17 @@
             <input type="hidden" name="planTitle" value="${title}">
             <input type="hidden" name="id" value="${user.getId()}">
             <input type="text" name="shareId">
-
             <button type="button" onclick="submitForm()">전송</button>
-
             <button type="button" onclick="closeModal()">지움</button>
         </form>
     </div>
 </div>
 
-<div class="col-sm-2 col-sm-offset-10 text-right">
-    <a href="/plan/excelDown?title=${title}" class="btn  btn-sm btn-default" target="_blank"
-       id="excelDown">excelDown</a>
-</div>
-<button onclick="f_share()">공유하기</button>
 
 </body>
 <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dea7138cdf709909de935ce835cefee1&libraries=services"></script>
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dea7138cdf709909de935ce835cefee1&libraries=services">
+</script>
 <script>
     const v_drawer = document.getElementsByClassName("selectplace-nav")[0];
     const titleH1 = document.getElementById("title");
@@ -266,15 +290,17 @@
     }
 
     function f_drawer() {
-        v_drawer.classList.add("slide-in");
-        v_drawer.classList.remove("slide-out");
+        v_drawer.classList.remove("d-none");
     }
 
+    function f_return() {
+        location.href = "/plan/myPlan.wow";
+    }
 
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(36.3267842155492, 127.407836053487), // 지도의 중심좌표
-            level: 5// 지도의 확대 레벨
+            level: 3// 지도의 확대 레벨
         };
 
     var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -288,7 +314,7 @@
         let regex = /[^0-9]/g;
         let result = day_num.replace(regex, "");
         console.log(result)
-        if (result == null || result == ""){
+        if (result == null || result == "") {
             result = 0
         }
 
@@ -299,7 +325,7 @@
             type: "POST",
             dataType: "json",
             data: {
-                "id" : new URL(location.href).searchParams.get('id'),
+                "id": new URL(location.href).searchParams.get('id'),
                 "result": result,
                 "title": title
             },
@@ -307,7 +333,9 @@
                 let json_marker = result;
                 console.log(json_marker)
 
-                map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+                var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
                 var points = [];
 
                 for (let i = 0; i < result.length; i++) {
@@ -321,7 +349,7 @@
                 // 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
                 var bounds = new kakao.maps.LatLngBounds();
 
-                var i, marker;
+                marker = new kakao.maps.Marker({position: points[i]});
                 for (i = 0; i < points.length; i++) {
                     // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
                     marker = new kakao.maps.Marker({position: points[i]});
@@ -343,16 +371,16 @@
                 }
 
                 // 마커 이미지의 이미지 주소입니다
-
                 for (var i = 0; i < positions.length; i++) {
 
                     var imageSrc = "/resources/img/marker" + i + ".png";
 
                     // 마커 이미지의 이미지 크기 입니다
-                    var imageSize = new kakao.maps.Size(50, 50);
+                    var imageSize = new kakao.maps.Size(45, 45);
 
                     // 마커 이미지를 생성합니다
                     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
 
                     // 마커를 생성합니다
                     var marker = new kakao.maps.Marker({
@@ -382,10 +410,11 @@
 
                     lineLine.setPath(linePath);
 
+
                     // 지도에 표시할 선을 생성합니다
                     var polyline = new kakao.maps.Polyline({
                         path: linePath, // 선을 구성하는 좌표배열 입니다
-                        strokeWeight: 5, // 선의 두께 입니다
+                        strokeWeight: 3, // 선의 두께 입니다
                         strokeColor: '#28ad02', // 선의 색깔입니다
                         strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
                         strokeStyle: 'solid' // 선의 스타일입니다
@@ -410,7 +439,7 @@
                 }
 
                 map.setBounds(bounds);
-                console.log(result)
+                console.log(result);
 
                 for (let i = 0; i < result.length; i++) {
                     tour_div.innerHTML += '<div>' +

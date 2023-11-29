@@ -25,7 +25,7 @@ public class ExelController {
     ExelService exelService;
 
     @GetMapping("/plan/excelDown")
-    public void excelDownload(HttpServletResponse response, @RequestParam("title") String title, HttpSession session) throws IOException {
+    public void excelDownload(HttpServletResponse response, @RequestParam("title") String title, @RequestParam("id") String id) throws IOException {
         XSSFWorkbook wb = null;
         Sheet sheet = null;
         Row row = null;
@@ -33,9 +33,8 @@ public class ExelController {
         wb = new XSSFWorkbook();
         sheet = wb.createSheet(URLEncoder.encode(title));
 
-        UserVO user = (UserVO) session.getAttribute("user");
 
-        List<PlanVo> planExel = exelService.getPlanExel(title, user.getId());
+        List<PlanVo> planExel = exelService.getPlanExel(title, id);
 
         // row(행) 생성
         row = sheet.createRow(0); //0번째 행
