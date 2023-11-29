@@ -27,6 +27,9 @@
         , type : "post"
         , contentType : "application/json"
         ,success: function (data) {
+          if(typeof data === 'undefined') {
+            return;
+          }
           console.log(data) // tid
           const next_redirect_pc_url = data.next_redirect_pc_url;
           window.open(next_redirect_pc_url, "_blank", "width=500, height=700")

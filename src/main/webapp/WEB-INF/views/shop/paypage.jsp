@@ -93,8 +93,7 @@
     </div>
 
     <div class="paycontainer mt-3">
-        <form action="/shop/insertOrder.wow" id="cartForm" method="post">
-            <div class="address col-md-8">
+        <div class="address col-md-8">
                 <h2>배송지정보</h2>
                 <hr>
                 <div class="mb-3">
@@ -149,15 +148,44 @@
                 <div class="mb-3">
                     <span>결제 예정 금액 :  ${sumMoney + 3000}원</span>
                 </div>
-                <button type="button" class="btn btn-primary testbtn" style="width: 100%;" onclick="kpay()" id="testbtn">결제하기</button>
+                <button type="button" class="btn btn-primary testbtn" style="width: 100%;" onclick="validationCheck()" id="testbtn">결제하기</button>
             </div>
-        </form>
+<%--        </form>--%>
     </div>
 </div>
 
 <%--https://postcode.map.daum.net/guide 다음우편주소api--%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
+    function validationCheck() {
+
+        if(!$('#sample6_address').val()) {
+            $('#sample6_address').focus()
+            alert('주소를 입력하세요')
+            return;
+        }
+
+        if(!$('#sample6_detailAddress').val()) {
+            $('#sample6_detailAddress').focus()
+            alert('상세주소를 입력하세요')
+            return;
+        }
+
+        if(!$('#sample6_extraAddress').val()) {
+            $('#sample6_extraAddress').focus()
+            alert('참고항목을 입력하세요')
+            return;
+        }
+
+        if(!$('#sample6_postcode').val()) {
+            $('#sample6_postcode').focus()
+            alert('우편 번호를 확인하세요')
+            return;
+        }
+
+        kpay();
+    }
 
     function kpay() {
         $.ajax({
@@ -166,13 +194,12 @@
             , type : "post"
             , contentType : "application/json"
             ,success: function (data) {
-                const msg = JSON.parse(data.message);
-                console.log(msg) // tid
-                const next_redirect_pc_url = msg.next_redirect_pc_url;
-                window.open(next_redirect_pc_url, "_blank", "width=500, height=700")
+                window.open(data.next_redirect_pc_url, "_blank", "width=500, height=700")
             },
             error: function (error) {
-                alert(error);
+                console.log(error);
+                alert("상품 수량 체크");
+                window.location = "/cart/shoppingcartview.wow"
             }
         })
     }

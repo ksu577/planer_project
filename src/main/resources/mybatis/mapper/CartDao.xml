@@ -21,7 +21,7 @@
                m.name           as  user_name,
                c.amount         as  amount,
                p.price          as  price,
-               c.product_amount as  product_amount,
+               p.product_amount as  product_amount,
 
                (p.price * c.amount) money
         from member m,

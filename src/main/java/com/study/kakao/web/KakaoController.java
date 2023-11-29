@@ -1,7 +1,9 @@
 package com.study.kakao.web;
 
 import com.study.cart.service.ICartService;
+import com.study.cart.vo.CartVO;
 import com.study.common.vo.ResultMessageVO;
+import com.study.kakao.service.KakaoService;
 import com.study.login.vo.UserVO;
 import com.study.product.service.IproductService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,7 @@ import java.io.*;
 import java.net.*;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -34,13 +37,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class KakaoController {
 
-    private final IproductService IproductService;
+    private final KakaoService kakaoService;
 
-    private final ICartService cartService;
-
-    private final static String HOST = "https://kapi.kakao.com";
-    private final static String APP_KEY = "3c757d5ad8df5f534911c2a4f1504def";
-    private final static String C_ID = "TC0ONETIME";
 
     @GetMapping("/test/test.wow")
     public String test() {
@@ -61,9 +59,13 @@ public class KakaoController {
     }
 
     @RequestMapping("/test/approval.wow")
-    public ModelAndView approval(ModelAndView mv, HttpServletRequest httpServletRequest,
+    public String approval(HttpSession session,
+                                 HttpServletRequest httpServletRequest,
                                  @RequestParam("pg_token") String pgToken
     ) {
+
+        UserVO user = (UserVO) session.getAttribute("user");
+        String userId = user.getId();
 
         String tid = Arrays.stream(httpServletRequest.getCookies())
                 .filter(cookie -> "tid".equals(cookie.getName()))
@@ -71,19 +73,9 @@ public class KakaoController {
                 .get()
                 .getValue();
 
-        log.info(tid);
+        kakaoService.approval(pgToken, tid, userId);
 
-        MultiValueMap<String, Object> data = new LinkedMultiValueMap<>();
-        data.add("partner_order_id", "partner_order_id");
-        data.add("partner_user_id", "partner_user_id");
-        data.add("tid", tid);
-        data.add("pg_token", pgToken);
-
-        Map<String, Object> map = approveKakaoPay(data);
-        log.info("approve = "+map);
-        mv.setViewName("/test/approval");
-
-        return mv;
+        return "redirect:/shop/afterpay.wow";
     }
 
 
@@ -95,24 +87,11 @@ public class KakaoController {
         UserVO user = (UserVO) session.getAttribute("user");
         String userId = user.getId();
 
-        int sumMoney = cartService.sumMoney(userId);
+        Map<String, Object> map = kakaoService.ready(userId);
 
-        ResultMessageVO msg = new ResultMessageVO();
-
-        MultiValueMap<String, Object> data = new LinkedMultiValueMap<>();
-        data.add("partner_order_id", "partner_order_id");
-        data.add("partner_user_id", "partner_user_id");
-        data.add("item_name", "test");
-        data.add("quantity", 1);
-        data.add("total_amount", 77800);
-        data.add("tax_free_amount", 0);
-        data.add("approval_url", "http://localhost:8081/test/approval.wow");
-        data.add("fail_url", "http://localhost:8081/test/fail.wow");
-        data.add("cancel_url", "http://localhost:8081/test/cancel.wow");
-
-        Map<String, Object> map = readyKakaoPay(data);
-        log.info("ready return = "+map);
-        log.info("tid = "+map.get("tid"));
+        if(map == null) {
+            return null;
+        }
 
         ResponseCookie responseCookie = ResponseCookie
                 .from("tid", map.get("tid").toString())
@@ -126,37 +105,6 @@ public class KakaoController {
         return map;
     }
 
-    private Map readyKakaoPay(MultiValueMap<String , Object> data) {
-        return callKakaoPayAPI("/v1/payment/ready", data);
-    }
 
-    private Map approveKakaoPay(MultiValueMap<String, Object> data) {
-        return callKakaoPayAPI("/v1/payment/approve", data);
-    }
 
-    private Map callKakaoPayAPI(String path, MultiValueMap<String, Object> data) {
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "KakaoAK "+ APP_KEY);
-        httpHeaders.add("Accept", MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8");
-        httpHeaders.add("Content-type", MediaType.APPLICATION_FORM_URLENCODED_VALUE  + ";charset=UTF-8");
-
-        MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
-        params.add("cid", C_ID);
-        params.addAll(data);
-
-        HttpEntity<MultiValueMap<? extends String, ?>> entity
-                = new HttpEntity<>(params, httpHeaders);
-
-        RestTemplate restTemplate = new RestTemplate();
-        Map<String, Object> map;
-        try {
-            map = restTemplate.postForObject(new URI(HOST + path), entity, HashMap.class);
-            log.info(map.toString());
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-
-        return map;
-    }
 }

@@ -51,9 +51,9 @@
                 <span>${cartItem.price}원 </span>
 
                 <form action="/cart/shoppingcartupdate" method="post">
-                    <input type="hidden" name="productId" value="${cartItem.productId}">
+                    <input type="hidden" name="productId" value="${cartItem.productId}"/>
                     <label for="amount">수량:</label>
-                    <input type="number" name="amount" id="amount" value="${cartItem.amount}" min="1" style="width: 20%" /> 개
+                    <input type="number" name="amount" id="amount" meta-id="${cartItem.productId}" meta-amount="${cartItem.productAmount}" value="${cartItem.amount}" min="1" style="width: 20%" /> 개
                     <span> = ${cartItem.price * cartItem.amount}원</span>
                     <button type="submit" class="btn btn-primary">저장</button>
                 </form>
@@ -110,17 +110,9 @@
 </div>
 
 <script>
-    //연준갓의 지혜로 해결됨
-    let cartItems = [];
-
-    <c:forEach items="${listCart}" var="listCart">
-    cartItems.push(${listCart.productId}); // JSP 표현식에서 JavaScript 변수로 바로 사용 가능합니다.
-    </c:forEach>
-
-    console.log(cartItems)
 
     function addressbeforepay() {
-        if (cartItems == null || cartItems.length === 0) {
+        if (${empty listCart}) {
             alert('장바구니가 비었습니다.');
             return false; // 장바구니가 비었을 때 false 반환
         } else {
@@ -130,8 +122,9 @@
 
 
     document.getElementById('amount').addEventListener('input', function () {
+
         const purchaseQuantity = parseInt(this.value);
-        const maxQuantity = parseInt(${product.productId});
+        const maxQuantity = parseInt($(this).attr("meta-amount"));
 
         if (purchaseQuantity < 1 || purchaseQuantity > maxQuantity) {
             alert('구매 수량은 1 이상 ' + maxQuantity + ' 이하여야 합니다.');
