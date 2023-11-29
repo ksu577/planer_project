@@ -14,10 +14,9 @@
 
     .container {
         padding-top: 70px;
-        max-width: 1900px;
+        width: 100vw;
         height: 100vh;
         border: 1px solid red;
-        position: absolute;
     }
 
     .cover {
@@ -87,7 +86,6 @@
         font-size: 15px;
         font-weight: 500;
         color: black;
-        left: 407px;
     }
 
     .em-check-btn2 {
@@ -101,6 +99,7 @@
         font-weight: 500;
         color: black;
         left: 407px;
+
     }
 
     .checkbtn {

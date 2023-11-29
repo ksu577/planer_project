@@ -10,8 +10,10 @@
     <title>loginpage</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+<%@ include file="/WEB-INF/inc/top.jsp" %>
 
 <style>
+
     .container {
         width: 100vw;
         height: 100vh;
@@ -117,13 +119,6 @@
 </style>
 
 <body>
-<%@ include file="/WEB-INF/inc/top.jsp" %>
-
-<%--<c:forEach items="${memberList}" var="memberlist">--%>
-<%--    <input type="text" name="id" value="${memberlist.id}">--%>
-<%--</c:forEach>--%>
-
-
 <div class="container">
     <div class="cover">
         <div class="id-input">

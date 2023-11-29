@@ -103,4 +103,9 @@ public class MemberServiceImpl implements IMemberService{
         int count = memberDao.changePw(member);
         if (count < 1) throw new BizNotEffectedException();
     }
+
+    @Override
+    public int findemail(MemberVO member) {
+        return memberDao.findemail(member);
+    }
 }
