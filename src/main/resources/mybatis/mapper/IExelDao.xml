@@ -21,6 +21,7 @@
         WHERE
             plan_title = #{title}
           AND id = #{id}
+        AND delete_yn = 'Y'
         ORDER BY day_Count
     </select>
 </mapper>
