@@ -55,6 +55,7 @@
         }
 
         .bottom {
+            /*text-align: left;*/
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -74,6 +75,10 @@
             cursor: pointer;
         }
 
+        .bottom h3 {
+            text-align: left;
+        }
+
         .modalcontainer {
             margin: 20px;
             padding: 20px;
@@ -84,12 +89,15 @@
 
         /*.nav-bar>div:nth-child(1)*/
         .modalcontainer > div {
+            text-align: left;
             margin: 20px;
             padding: 20px;
             border: 1px red;
             width: 90%;
             height: 90%;
         }
+
+
 
         .modal2 {
             background-color: white;
@@ -167,8 +175,9 @@
                 <div class="top">
                     <img height="240px" width="240px" src="" alt="">
                 </div>
-                <div class="bottom">
-                    <a href=""> ${place.placeName} </a>
+                <div class="bottom" style="text-align: left;">
+                    <h1> ${place.englishName} </h1>
+                    <h3> ${place.placeName} </h3>
                     <a href="" hidden="true"> ${place.placeNum} </a>
                 </div>
             </div>
@@ -183,9 +192,12 @@
                  alt="">
             <div class="modalcontainer">
                 <div>
-                    <h1 id="AreaTitle"></h1>
-                    <hr>
-                    <h4 id="AreaContents"></h4>
+                        <h1 id="AreaTitle"></h1>
+                        <hr>
+                        <h4 id="AreaContents"></h4>
+                    <div style="display: flex; justify-content: flex-end;">
+                        <button class="btn btn-primary" onclick="makeplanner()" style="width: 80px; height: 30px;"> 일정만들기 </button>
+                    </div>
                 </div>
                 <div>
 
@@ -228,6 +240,9 @@
         v_modal2.classList.add("d-none2");
     }
 
+    function makeplanner() {
+        window.location.href = "/plan/title.wow"
+    }
 
 </script>
 
