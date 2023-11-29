@@ -17,12 +17,6 @@
         margin: 0;
     }
 
-    /*p {*/
-    /*    color: gray;*/
-    /*    margin-left: 30px;*/
-    /*    margin-top: 10px;*/
-    /*}*/
-
     .login-container {
         width: 100vw;
         height: 100vh;

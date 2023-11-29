@@ -30,10 +30,15 @@
 
 <body>
 <div class="container">
-    <div class="cover">
-
+    <div class="cover" id="cover">
+        <c:forEach items="${result}" var="result">
+            <p> ${result.id} </p>
+        </c:forEach>
     </div>
 </div>
-
 </body>
+<script>
+
+</script>
+
 </html>
