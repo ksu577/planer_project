@@ -99,7 +99,7 @@
                     <div class="product-quantity">
                         <label for="purchase-quantity">구매 수량</label>
                         <input type="number" id="purchase-quantity" name="purchaseQuantity" min="1"
-                               onchange="checkAndUpdateAmount()" max="${product.productAmount}">
+                                max="${product.productAmount}">
                         개
                     </div>
                 </div>
@@ -135,16 +135,6 @@
         window.location.href = "/product/productupdate(admin)?product=${product.productId}"
     }
 
-    function checkAndUpdateAmount() {
-        let amountInput = document.getElementById('amount');
-        let amountValue = parseInt(amountInput.value);
-
-        if (amountValue < 1) {
-            alert('수량은 1개 이상이어야 합니다.');
-            // 입력된 값이 0보다 작으면 값을 1로 변경하도록 설정
-            amountInput.value = 1;
-        }
-    }
 
     document.getElementById('purchase-quantity').addEventListener('input', function () {
         const purchaseQuantity = parseInt(this.value);

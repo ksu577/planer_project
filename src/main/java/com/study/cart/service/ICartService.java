@@ -1,6 +1,7 @@
     package com.study.cart.service;
 
     import com.study.cart.vo.CartVO;
+    import com.study.product.vo.ProductVO;
 
     import java.util.List;
 
@@ -29,4 +30,5 @@
 
         //8. 장바구니 전체 삭제
         public void clearCart(String userId);
+
     }
