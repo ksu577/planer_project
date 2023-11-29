@@ -3,6 +3,9 @@ package com.study.cart.web;
 import com.study.cart.service.ICartService;
 import com.study.cart.vo.CartVO;
 import com.study.login.vo.UserVO;
+import com.study.product.dao.ProductDao;
+import com.study.product.service.IproductService;
+import com.study.product.vo.ProductVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +24,9 @@ public class CartController {
 
     @Inject
     ICartService cartService;
+
+    @Inject
+    IproductService iproductService;
 
     //카트 테이블 자체가 장바구니로 보는게 편하다.
 
@@ -45,16 +51,36 @@ public class CartController {
     ;
 
     // 2. 장바구니 목록(장바구니 전체 - 카트 페이지)
-    @GetMapping("/shoppingcartview")
-    public String cartList(Model model, HttpSession session) {
-        UserVO user = (UserVO) session.getAttribute("user");
+//    @GetMapping("/shoppingcartview")
+//    public String cartList(Model model, HttpSession session, int productId) {
+//        UserVO user = (UserVO) session.getAttribute("user");
+//        ProductVO product = iproductService.getproduct(productId);
+//        if (user != null) {
+//            String userId = user.getId();
+//            List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
+//            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
+//            model.addAttribute("product", product);
+//            model.addAttribute("listCart", list); // 장바구니 정보 추가
+//            model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
+//
+//            return "cart/shoppingcartview";
+//
+//        } else {
+//            return "redirect:/login/login.wow";
+//        }
+//
+//    }
 
+    @GetMapping("/shoppingcartview")
+    public String cartList(Model model, HttpSession session, ProductVO productVO) {
+        UserVO user = (UserVO) session.getAttribute("user");
         if (user != null) {
             String userId = user.getId();
             List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
             int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
             model.addAttribute("listCart", list); // 장바구니 정보 추가
             model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
+            model.addAttribute("product", productVO);
 
             return "cart/shoppingcartview";
 

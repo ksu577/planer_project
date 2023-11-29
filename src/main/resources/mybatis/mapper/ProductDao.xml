@@ -8,6 +8,8 @@
         <result column="price" property="productPrice"/>
         <result column="product_desc" property="productDesc"/>
         <result column="img" property="img"/>
+        <result column="product_amount" property="productAmount"/>
+
     </resultMap>
 
 

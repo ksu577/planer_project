@@ -1,6 +1,7 @@
 package com.study.cart.dao;
 
 import com.study.cart.vo.CartVO;
+import com.study.product.vo.ProductVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -37,6 +38,7 @@ public interface CartDao {
 
     //8. 장바구니 전체 삭제
     public void clearCart(String userId);
+
 
     // 임의 장바구니 제품이름 가격보기
 

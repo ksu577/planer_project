@@ -3,6 +3,7 @@ package com.study.cart.service;
 import com.study.cart.dao.CartDao;
 import com.study.cart.vo.CartVO;
 import com.study.product.dao.ProductDao;
+import com.study.product.vo.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,5 +77,6 @@ public class ICartServiceImpl implements ICartService {
     @Override
     public void clearCart(String userId) { cartDao.clearCart(userId);}
 
-    }
+
+}
 

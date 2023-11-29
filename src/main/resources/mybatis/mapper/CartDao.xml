@@ -87,4 +87,6 @@
                           and product_id = #{product_id}), 0)
         FROM DUAL
     </select>
+
+
 </mapper>
