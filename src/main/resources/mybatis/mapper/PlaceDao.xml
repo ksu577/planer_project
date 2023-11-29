@@ -16,6 +16,7 @@
             ,PLACE_CATEGORY
             ,PLACE_CONTEXT
             ,PLACE_NUM
+            ,ENGLISH_NAME
         from place
         WHERE PLACE_NUM = #{placeNum}
     </select>
