@@ -1,7 +1,6 @@
 package com.study.member.web;
 
 import com.study.cart.service.ICartService;
-import com.study.cart.vo.CartVO;
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.ResultMessageVO;
 import com.study.common.vo.SearchVO;
@@ -28,7 +27,6 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
@@ -113,7 +111,7 @@ public class MemberController {
     public String memberModify(Model model, MemberVO member, HttpSession session, String id, MultipartHttpServletRequest Request) throws Exception {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
 
-        String profile = FileUtil.modifyMember(Request);   //multipart 라이브러리의 함수들을 통해, 파일의 값을 가져오고 지정된 로컬에 저장, 저장된이름을 profile 에 담았다.
+        String profile = FileUtil.modifyMember(Request);
 
         UserVO user = (UserVO) session.getAttribute("user");
         member.setProfile(profile);
@@ -122,7 +120,6 @@ public class MemberController {
 
         session.setAttribute("user", user);
 
-        //jsp로 가기위한 코드
         resultMessageVO.messageSetting(true, "수정", "회원정보가 수정되었습니다."
                 , "/member/memberList.wow", "목록으로");
         model.addAttribute("resultMessageVO", resultMessageVO);
@@ -142,7 +139,7 @@ public class MemberController {
 
 
     @GetMapping("/member/memberForm.wow")
-    public String memberForm(Model model) {
+    public String memberForm() {
         return "member/memberForm";
     }
 
@@ -155,7 +152,6 @@ public class MemberController {
                 , "/member/memberRegist.wow", "회원가입");
         model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
-//        return resultMessageVO.getUrl();
     }
 
 
@@ -187,9 +183,25 @@ public class MemberController {
 
     @PostMapping("/login/findId.wow")
     @ResponseBody
-    public List<MemberVO> findId(String name, String email, HttpSession session, Model model) {
+    public String findId(String name, String email) {
         List<MemberVO> result = memberService.findId(name, email);
-        return result;
+        return "/login/myId.wow";
+    }
+
+    @GetMapping("/login/myId.wow")
+    public String myId() {
+        return "redirect:/login/findId.wow";
+    }
+
+
+    @PostMapping("/login/myId.wow")
+    public String myId(String name, String email, Model model) {
+
+        List <MemberVO> result = memberService.findId(name, email);
+
+        model.addAttribute("result", result);
+
+        return "/login/myId";
     }
 
     @ResponseBody
@@ -223,7 +235,7 @@ public class MemberController {
     }
 
     @PostMapping("/login/findPw.wow")
-    public String findPw(String email, HttpSession session, Model model) throws BizException {
+    public String findPw(String email, HttpSession session, Model model) {
         UserVO user = (UserVO) session.getAttribute("user");
 
         if (user != null) {

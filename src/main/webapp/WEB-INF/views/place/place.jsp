@@ -98,7 +98,6 @@
         }
 
 
-
         .modal2 {
             background-color: white;
             width: 400px;
@@ -173,7 +172,9 @@
         <c:forEach var="place" items="${placeList}">
             <div class="cell" onclick="f_summon('${place.placeNum}')">
                 <div class="top">
-                    <img height="240px" width="240px" src="" alt="">
+                    <img height="240px" width="240px"
+                         src="<%=request.getContextPath()%>/imgDownload/showImg.wow?fileName=${place.img}&filePath=${place.imgPath}"
+                         alt="">
                 </div>
                 <div class="bottom" style="text-align: left;">
                     <h1> ${place.englishName} </h1>
@@ -192,14 +193,17 @@
                  alt="">
             <div class="modalcontainer">
                 <div>
-                        <h1 id="AreaTitle"></h1>
-                        <hr>
-                        <h4 id="AreaContents"></h4>
+                    <h1 id="AreaTitle"></h1>
+                    <hr>
+                    <h4 id="AreaContents"></h4>
                     <div style="display: flex; justify-content: flex-end;">
-                        <button class="btn btn-primary" onclick="makeplanner()" style="width: 80px; height: 30px;"> 일정만들기 </button>
+                        <button class="btn btn-primary" onclick="makeplanner()" style="width: 80px; height: 30px;">
+                            일정만들기
+                        </button>
                     </div>
                 </div>
                 <div>
+                    <img id="modalImage" height="240px" width="240px" src="" alt="">
 
                 </div>
             </div>
@@ -213,28 +217,29 @@
 
     function f_summon(placeNum) {
         $.ajax({
-            url:'/place/placeView'
-            , dataType: 'json'
-            , data : {
-                'placeNum' : placeNum
-            }
-            , type : "post"
-            , success: function (data) {
-                console.log(data)
+            url: '/place/placeView',
+            dataType: 'json',
+            data: {
+                'placeNum': placeNum
+            },
+            type: "post",
+            success: function (data) {
+                console.log(data);
                 $("#AreaTitle").html(data['placeName']);
                 $("#AreaContents").html(data['placeContext']);
+
+                // 이미지를 가져와서 모달 이미지에 설정
+                var modalImgElement = $("#modalImage");
+                modalImgElement.attr('src', '<%=request.getContextPath()%>/imgDownload/showImg.wow?fileName=' + data['img'] + '&filePath=' + data['imgPath']);
 
                 v_modal2.classList.remove("d-none2");
             },
             error: function (error) {
                 console.log(error);
             }
-        })
-
-
-
-
+        });
     }
+
 
     function f_close2() {
         v_modal2.classList.add("d-none2");

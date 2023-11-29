@@ -6,148 +6,176 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <title>아이디 찾기</title>
     <%@include file="/WEB-INF/inc/header.jsp" %>
-    <title>loginpage</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+<%@ include file="/WEB-INF/inc/top.jsp" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
+    body {
+        margin: 0;
+    }
 
     .container {
         padding-top: 70px;
         width: 100vw;
         height: 100vh;
-        border: 1px solid red;
+        background-color: rgba(220, 220, 220, 0.30);
+        position: relative;
     }
 
     .cover {
-        margin-top: 50px;
-        margin-left: 50px;
-        width: 400px;
-        height: 300px;
+        border: 1px solid #98dde3;
+        width: 510px;
+        height: 500px;
+        transform: translate(80%, 40%);
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .findId > p {
+        transform: translate(35%, 20%);
+        font-size: 30px;
     }
 
     .name-input {
-        width: 400px;
-        height: 50px;
-        border: 1px solid black;
+        margin-top: 40px;
+        margin-left: 20px;
+        width: 465px;
+        height: 60px;
         border-radius: 5px;
+        position: relative;
+        background-color: rgba(220, 220, 220, 0.30);
     }
 
     .email-input {
-        width: 400px;
-        height: 50px;
-        border: 1px solid black;
+        width: 465px;
+        height: 60px;
         border-radius: 5px;
-        margin-top: 20px;
+        margin-top: 40px;
+        margin-left: 20px;
+        position: relative;
+        background-color: rgba(220, 220, 220, 0.30);
     }
 
     .emailcheck-input {
-        width: 400px;
-        height: 50px;
-        border: 1px solid black;
+        width: 465px;
+        height: 60px;
         border-radius: 5px;
-        margin-top: 20px;
+        margin-top: 40px;
+        margin-left: 20px;
+        position: relative;
+        border: 1px rgba(220, 220, 220, 0.20);
+        background-color: rgba(220, 220, 220, 0.30);
     }
 
     #name {
-        width: 350px;
-        height: 48px;
+        width: 460px;
+        height: 60px;
         margin-left: 5px;
-        border: 1px solid white;
-        font-size: 15px;
+        font-size: 18px;
         outline: none;
+        border: 1px rgba(220, 220, 220, 0.20);
+        background-color: rgba(220, 220, 220, 0);
+        border-radius: 5px;
     }
 
     #email {
-        width: 350px;
-        height: 48px;
+        width: 400px;
+        height: 60px;
         margin-left: 5px;
-        border: 1px solid white;
-        font-size: 15px;
+        font-size: 18px;
         outline: none;
+        border: 1px rgba(220, 220, 220, 0.20);
+        background-color: rgba(220, 220, 220, 0);
+        border-radius: 5px;
     }
 
     #emailcheck {
-        width: 350px;
-        height: 48px;
+        width: 400px;
+        height: 60px;
         margin-left: 5px;
-        border: 1px solid white;
-        font-size: 15px;
+        font-size: 18px;
         outline: none;
+        border: 1px rgba(220, 220, 220, 0.20);
+        background-color: rgba(220, 220, 220, 0);
+        border-radius: 5px;
     }
 
     .em-check-btn {
-        width: 50px;
-        height: 48px;
+        width: 60px;
+        height: 60px;
+        left: 404px;
         position: absolute;
-        background-color: white;
         border-radius: 5px;
         cursor: pointer;
-        font-size: 15px;
-        font-weight: 500;
-        color: black;
+        font-size: 20px;
+        font-weight: 700;
+        color: white;
+        border: 1px solid #98dde3;
+        background-color: #98dde3;
     }
 
     .em-check-btn2 {
-        width: 50px;
-        height: 48px;
+        width: 60px;
+        height: 60px;
+        left: 404px;
         position: absolute;
-        background-color: white;
         border-radius: 5px;
         cursor: pointer;
-        font-size: 15px;
-        font-weight: 500;
-        color: black;
+        font-size: 20px;
+        font-weight: 700;
+        color: white;
+        border: 1px solid #98dde3;
+        background-color: #98dde3;
     }
 
     .checkbtn {
-        width: 400px;
-        height: 50px;
-        font-size: 15px;
-        margin-top: 20px;
-        border-radius: 5px;
-        background-color: #f9f9f9;
+        border: 1px solid white;
+        width: 465px;
+        height: 60px;
+        border-radius: 8px;
+        background-color: #98dde3;
+        margin-left: 4%;
+        margin-top: 50px;
+        cursor: pointer;
     }
 
-    .result-section {
-        border: 1px solid black;
-        margin-top: 50px;
-        width: 800px;
-        height: 500px;
-        left: 500px;
-        position: absolute;
-        font-size: 5mm;
-        font-weight: 400;
-        overflow-y: scroll;
-        padding-left: 10px;
-        padding-top: 10px;
+    .checkbtn > p {
+        margin: auto;
+        font-size: 20px;
+        color: white;
     }
 
 </style>
-
+<%session.invalidate();%>
 <body>
-<%@ include file="/WEB-INF/inc/top.jsp" %>
+
 <div class="container">
     <div class="cover">
-        <div class="name-input">
-            <input type="text" name="name" id="name" placeholder="이름">
-        </div>
-        <div class="email-input">
-            <input type="text" name="email" id="email" placeholder="이메일">
-            <button type="button" id="emCheck" class="em-check-btn">인증</button>
-        </div>
-        <div class="emailcheck-input">
-            <input type="text" name="emailcheck" id="emailcheck" placeholder="인증번호">
-            <button type="button" id="emCheck2" class="em-check-btn2">확인</button>
-        </div>
-        <button class="checkbtn" id="checkbtn" onclick="findId_click()">확인</button>
+        <form id="searchId" action="/login/myId.wow" method="post">
+            <div class="findId"><p>아이디 찾기</p></div>
+            <div class="name-input">
+                <input type="text" name="name" id="name" placeholder="이름">
+            </div>
+            <div class="email-input">
+                <input type="text" name="email" id="email" placeholder="이메일">
+                <button type="button" id="emCheck" class="em-check-btn">인증</button>
+            </div>
+            <div class="emailcheck-input">
+                <input type="text" name="emailcheck" id="emailcheck" placeholder="인증번호">
+                <button type="button" id="emCheck2" class="em-check-btn2">확인</button>
+            </div>
+            <button class="checkbtn" id="checkbtn" type="button"><p>찾기</p></button>
+        </form>
     </div>
-    <div class="result-section" id="result-section"></div>
 </div>
 
 </body>
 <script>
 
+    let CheckEmailIdentify = false;
     let CheckIdentify = false;
 
 
@@ -161,8 +189,10 @@
             , success: function (data) {
                 if (data == "error") {
                     alert("이름 또는 이메일을 확인해주세요");
+                    CheckEmailIdentify = false;
                 } else {
                     alert("전송되었습니다.");
+                    CheckEmailIdentify = true;
                 }
             }, error: function (err) {
                 alert("에러");
@@ -198,32 +228,23 @@
     });
 
 
-    function findId_click() {
-        let curName = $("input[name=name]").val();
-        let curEmail = $("input[name=email]").val();
-        let curEmailCheck = $("input[name=emailcheck]").val();
-        $.ajax({
-            url: "/login/findId.wow",
-            type: "POST",
-            data: {"name": curName, "email": curEmail, "emailcheck": curEmailCheck},
-            success: function (data) {
-                if (data == null) {
-                    alert("회원정보를 확인해주세요.")
-                } else {
-                    document.getElementById("result-section").innerHTML = "";
-                    for (let i = 0; i < data.length; i++) {
-                        document.getElementById("result-section").innerHTML += '<div>' + data[i]["id"] + '</div>'
-                    }
-                }
-            }, error: function (error) {
-                console.log(error)
-                alert("에러발생");
-            }
-        })
-    }
-    // document.getElementById("result-section").innerHTML = "";
-    // for (let i = 0; i < data.length; i++) {
-    //     document.getElementById("result-section").innerHTML += '<div>' + data[i]["id"] + '</div>'
-    // }
+    $("#checkbtn").on("click", function (e) {
+        if (!CheckEmailIdentify) {
+            alert("이메일을 확인해주세요.")
+            return;
+        }
+
+        if (!CheckIdentify) {
+            alert("인증번호를 확인해주세요.")
+            return;
+        }
+
+        $("#email").prop('disabled', false);
+        $("#emailcheck").prop('disabled', false);
+
+        document.getElementById('searchId').submit();
+
+    })
+
 </script>
 </html>
