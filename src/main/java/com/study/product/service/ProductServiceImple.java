@@ -21,7 +21,6 @@ public class ProductServiceImple implements IproductService {
     ProductDao productDao;
 
 
-
     // 1. 상품 추가
     @Override
     public void insert(ProductVO productVO, MultipartFile imgFile) throws IOException {
@@ -53,11 +52,11 @@ public class ProductServiceImple implements IproductService {
     // 2. 상품 목록 ( 미니샾 )
     @Override
     public List<ProductVO> getprodList(PagingVO paging, SearchVO search) {
-        int totalRowCount = productDao.getTotalRowCount(paging,search);
+        int totalRowCount = productDao.getTotalRowCount(paging, search);
 
         paging.setTotalRowCount(totalRowCount);
         paging.pageSetting();
-        return productDao.getprodList(paging,search);
+        return productDao.getprodList(paging, search);
 
     }
 
@@ -69,8 +68,31 @@ public class ProductServiceImple implements IproductService {
 
     // 4. 상품 수정
     @Override
-    public void update(ProductVO product) {
-        productDao.update(product);
+    public void updateproduct(ProductVO productVO, MultipartFile imgFile) throws IOException {
+
+        String oriImgName = imgFile.getOriginalFilename();
+        String imgName = "";
+
+        String projectPath = System.getProperty("user.dir") + "/imgDownload/";
+
+        // UUID 를 이용하여 파일명 새로 생성
+        // UUID - 서로 다른 객체들을 구별하기 위한 클래스
+        UUID uuid = UUID.randomUUID();
+
+        String savedFileName = uuid + "_" + oriImgName; // 파일명 -> imgName
+
+        imgName = savedFileName;
+
+        File saveFile = new File(projectPath, imgName);
+
+        imgFile.transferTo(saveFile);
+
+        productVO.setImg(imgName);
+        productVO.setImgPath("/imgDownload");
+
+        System.out.println(productVO);
+
+        productDao.updateproduct(productVO);
     }
 
     // 5. 상품 상세
@@ -93,12 +115,10 @@ public class ProductServiceImple implements IproductService {
     }
 
     @Override
-    public List<ProductVO> viewProductInfo(String productid){
+    public List<ProductVO> viewProductInfo(String productid) {
         List<ProductVO> productinfo = productDao.selectProductInfo(productid);
         return productinfo;
     }
-
-
 
 
 }
