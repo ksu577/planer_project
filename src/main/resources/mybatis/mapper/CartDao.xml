@@ -14,14 +14,14 @@
 
     <!-- 2. 장바구니 목록 -->
     <select id="cartList" resultType="com.study.cart.vo.CartVO">
-        select c.cart_id as         cart_id,
-               c.user_id as         user_id,
-               p.id      as         product_id,
-               p.name    as         product_name,
-               m.name    as         user_name,
-               c.amount  as         amount,
-               p.price   as         price,
-
+        select c.cart_id        as  cart_id,
+               c.user_id        as  user_id,
+               p.id             as  product_id,
+               p.name           as  product_name,
+               m.name           as  user_name,
+               c.amount         as  amount,
+               p.price          as  price,
+               c.product_amount as  product_amount,
 
                (p.price * c.amount) money
         from member m,

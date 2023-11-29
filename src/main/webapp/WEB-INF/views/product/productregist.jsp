@@ -43,7 +43,7 @@
             </div>
             <div class="mb-3">
                 <label for="productPrice" class="form-label">상품갯수</label>
-                <input type="text" class="form-control" name="productAmount" id="productAmount" required placeholder="-등록 갯수를 적어주세요 ex.10000">
+                <input type="number" class="form-control" name="productAmount" id="productAmount" required placeholder="-등록 갯수를 적어주세요 ex.10000">
             </div>
             <div class="mb-3">
                 <label for="productDesc" class="form-label">상품 설명</label>

@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-@Data
+
 @Getter
 @Setter
 public class ProductVO {
@@ -18,7 +18,7 @@ public class ProductVO {
     private String img; // 물품 이미지
     private String imgPath;// 이미지 조회 경로
 
-    private String productAmount;//  물품 남은 재고량
+    private int productAmount;//  물품 남은 재고량
 
     private int price;
     private int amount;
@@ -85,6 +85,14 @@ public class ProductVO {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public int getProductAmount() {
+        return productAmount;
+    }
+
+    public void setProductAmount(int productAmount) {
+        this.productAmount = productAmount;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class CartVO{
     private int price; //상품 단가
     private int money; // 상품 가격
     private int amount; // 구매 수량
-    private int productAmount;// 전체 수
+    private int productAmount;// 물품의 전체 수
 
 
     public void addAmount(int amount) {
