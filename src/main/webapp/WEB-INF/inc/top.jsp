@@ -69,9 +69,9 @@
             </button>
 
             <ul class="dropdown-menu">
-                <c:if test="${user.getRole()=='MANAGER'}">
-                <li><a class="dropdown-item" href="/ManagerPage/manager.wow"> 관리자 페이지 </a></li>
-                    </c:if>
+                <c:if test="${user.getRole() =='MANAGER'}">
+                    <li><a class="dropdown-item" href="/ManagerPage/manager.wow"> 관리자 페이지 </a></li>
+                </c:if>
                 <li><a class="dropdown-item" href="/member/memberView.wow"> 내 정보 </a></li>
                 <li><a class="dropdown-item" href="/member/memberEdit.wow"> 회원 정보 수정 </a></li>
                 <li><a class="dropdown-item" href="/plan/myPlan.wow"> 나의 여행 일정 </a></li>

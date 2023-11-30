@@ -18,9 +18,9 @@ public class LoginService {
         if (member == null) {
             return null;
         } else {
-            String role="USER";
-            if(member.getRole().equals("admin")){
-                role="MANAGER";
+            String role = "MANAGER";
+            if (member.getRole() == null) {
+                role = "USER";
             }
             UserVO user = new UserVO(
                     member.getId()
