@@ -11,6 +11,20 @@
                  where id = #{productId}))
     </insert>
 
+    <!-- prodcut 수량 변경 -->
+    <update id="setProductCnt">
+        update PRODUCT
+        set PRODUCT_AMOUNT = (PRODUCT_AMOUNT - #{amount})
+        where ID = #{productId}
+    </update>
+
+    <!-- 장바구니 수정시 돌려주기 -->
+    <update id="returnProductCnt">
+        update PRODUCT
+        set PRODUCT_AMOUNT = (PRODUCT_AMOUNT + #{amount})
+        where ID = #{tempId}
+    </update>
+
 
     <!-- 2. 장바구니 목록 -->
     <select id="cartList" resultType="com.study.cart.vo.CartVO">
@@ -97,5 +111,11 @@
                         where user_id = #{userId}
                           and product_id = #{product_id}), 0)
         FROM DUAL
+    </select>
+
+    <select id="getAmountinProduct" resultType="java.lang.Integer">
+        select product_amount
+        from product
+        where id = #{productId}
     </select>
 </mapper>

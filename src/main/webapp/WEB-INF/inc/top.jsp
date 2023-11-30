@@ -18,7 +18,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: pointer;
             background: linear-gradient(to right, #b6d3e0, #65c4ea);
         }
 
@@ -28,8 +27,40 @@
             padding: 30px;
         }
 
+        .navcategory{
+            display: flex;
+        }
         .btn-gruop-right {
             display: flex;
+
+        }
+
+        .btn-gruop-right > a {
+            margin: 10px;
+        }
+
+        .name {
+            margin-right: -200px;
+        }
+
+        .member {
+            position: relative;
+            width: 130px;
+            border: 1px solid red;
+            text-align: left;
+            padding: 0;
+        }
+
+        .product {
+            position: relative;
+        }
+
+        .MemberList{
+            position: absolute;
+        }
+
+        .product_manager{
+            position: absolute;
         }
 
     </style>
@@ -49,7 +80,26 @@
         <a href="/place/place.wow"> 여행지 </a>
         <a href="/shop/minishop.wow"> 미니샵 </a>
         <a href="/free/freeList.wow"> 게시판 </a>
+
+        <c:if test="${user.getRole() =='MANAGER'}">
+            <li class="member">
+                <span class="memberList">회원관리</span>
+                <div class="MemberList">
+                    <a href="/member/memberList.wow">회원목록</a>
+                </div>
+            </li>
+
+            <li class="product">
+                <span class="productmanager">상품관리</span>
+                <div class="product_manager">
+                    <a href="/ManagerPage/managerproduct">상품 목록</a>
+                    <a href="/product/productregist">상품 등록</a>
+                </div>
+            </li>
+        </c:if>
+
     </div>
+
 
     <c:if test="${user==null}">
         <div class="btn-gruop-right">
@@ -60,14 +110,13 @@
     </c:if>
 
     <c:if test="${user!=null}">
-        <span id="login_log" style="border-bottom: 1px solid white;">${user.name} 님, 환영합니다.</span>
+        <span class="name" id="login_log" style="border-bottom: 1px solid white;">${user.name} 님, 환영합니다.</span>
 
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
                 My page
             </button>
-
             <ul class="dropdown-menu">
                 <c:if test="${user.getRole() =='MANAGER'}">
                     <li><a class="dropdown-item" href="/ManagerPage/manager.wow"> 관리자 페이지 </a></li>
