@@ -79,7 +79,7 @@
     </update>
 
     <!--6. 장바구니에 있는 것과 동일한 상품 코드 확인-->
-    <select id="getProductAmountInCart" resultType="int">
+    <select id="getAmountInCart" resultType="int">
         SELECT NVL(
                        (SELECT amount
                         from cart
@@ -89,4 +89,13 @@
     </select>
 
 
+    <!--    7. 장바구니에 있는 것에 대한 전체 수 확인?-->
+    <select id="getProductAmountInCart" resultType="java.lang.Integer">
+        SELECT NVL(
+                       (SELECT product_amount
+                        from cart
+                        where user_id = #{userId}
+                          and product_id = #{product_id}), 0)
+        FROM DUAL
+    </select>
 </mapper>
