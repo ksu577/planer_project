@@ -17,7 +17,6 @@
         }
 
         .container {
-            padding-top: 70px;
             margin-top: 20px;
             padding: 20px;
             border-radius: 8px; /* Add some border-radius for a softer look */
@@ -70,15 +69,15 @@
             padding: 10px;
         }
 
-        @media (max-width: 768px) {
+        @media {
             .paycontainer {
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
+                align-items: stretch;
             }
 
             .address, .bill {
-                width: 100%;
+                flex: 1;
             }
         }
     </style>
@@ -88,7 +87,7 @@
 
 <div class="container">
 
-    <div class="route mt-3">
+    <div class="route mt-3" style="padding-top: 30px">
         장바구니 > 주문결제 > 주문완료
     </div>
 
@@ -150,7 +149,6 @@
                 </div>
                 <button type="button" class="btn btn-primary testbtn" style="width: 100%;" onclick="validationCheck()" id="testbtn">결제하기</button>
             </div>
-<%--        </form>--%>
     </div>
 </div>
 
