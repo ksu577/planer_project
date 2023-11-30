@@ -34,14 +34,14 @@ public class LoginController {
     }
 
     @PostMapping("/login/login.wow")
-    public String loginPost(@ModelAttribute("memberVO") MemberVO memberVO, HttpSession session) throws IOException {
+    public String loginPost(@ModelAttribute("memberVO") MemberVO member, HttpSession session) throws IOException {
 
-        String Id = memberVO.getId();
-        String pw = memberVO.getPassword();
+        String Id = member.getId();
+        String pw = member.getPassword();
         UserVO user = loginService.getUser(Id);
 
         if (user == null) {
-            return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 입력해주세요.", "utf-8");
+            return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 확인해주세요.", "utf-8");
         } else {
             if (!user.getPassword().equals(pw)) {
                 return "redirect:/login/login.wow?msg=" + URLEncoder.encode("아이디 또는 비밀번호를 확인해주세요.", "utf-8");
