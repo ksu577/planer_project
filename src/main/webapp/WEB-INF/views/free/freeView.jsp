@@ -36,7 +36,9 @@
             height: auto;
         }
     </style>
+
     <title>자유게시판 - 글 보기</title>
+
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
@@ -45,6 +47,8 @@
         <h3>
             자유게시판 - <small>글 보기</small>
         </h3>
+        <div id="likeButton" onclick="toggleLike(${freeBoard.freeNum})">❤️</div>
+        <div id="likeStatus">현재 좋아요 상태: <span id="likeStatusLabel">${freeBoard.freeLike}</span></div>
     </div>
     <table id="viewPage" class="table table-striped table-bordered">
         <tbody>
@@ -64,7 +68,7 @@
             <td>내용</td>
             <td>
                 <div class="content-container">
-                    <div name="freeContext" class="form-control input-sm custom-input" style="overflow: auto; white-space: pre-line"
+                    <div name="freeContext"  style="overflow: auto; white-space: pre-line"
                          readonly="readonly">${freeBoard.freeContext }
                     </div>
                 </div>
@@ -78,6 +82,7 @@
             <td>등록일</td>
             <td>${freeBoard.createDate }</td>
         </tr>
+
 
 
         <tr>
@@ -256,6 +261,38 @@
         // 여기에 수정에 필요한 로직을 추가합니다.
         console.log("fn_modify 함수가 호출되었습니다.");
         // 필요한 로직을 추가하세요.
+    }
+
+    function toggleLike(freeNum) {
+        $.ajax({
+            type: "POST",
+            url:"${pageContext.request.contextPath}/free/toggleLike.wow",
+            data: { freeNum: freeNum},
+            success: function (response) {
+                if (response === success) {
+                    updateLikeStatus(freeNum);
+                }else {
+                    alert("좋아요 상태 전환에 실패")
+                }
+            },
+            error: function () {
+                alert("서버 오류로 좋아요 토글에 실패");
+            }
+        });
+    }
+
+    function upadteLikeStatus(freeNum){
+        $.ajax({
+            type: "GET",
+            url: "${pageContext.request.contextPath}/free/getLikeStatus.wow",
+            data: {freeNum:freeNum},
+            success:function (response) {
+                $("#likeStatusLabel").text(response.likeCount);
+            },
+            error: function (){
+                alert("좋아요 정보를 가져오는데 실패")
+            }
+        });
     }
 
 
