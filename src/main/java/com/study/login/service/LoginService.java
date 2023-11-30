@@ -17,11 +17,15 @@ public class LoginService {
         MemberVO member = memberDao.getMember(Id);
         if (member == null) {
             return null;
-        } else {
-            String role="USER";
-            if(member.getId().equals("admin")){
-                role="MANAGER";
+        }
+        else
+        {
+            String role="MANAGER";
+
+            if(member.getRole() == null) {
+                role="USER";
             }
+
             UserVO user = new UserVO(
                     member.getId()
                     , member.getName()
