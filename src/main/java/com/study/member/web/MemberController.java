@@ -70,7 +70,6 @@ public class MemberController {
         }
     }
 
-
     @GetMapping("/member/memberView.wow")
     public String memberView(@RequestParam(required = false) String Id, HttpSession session, Model model) throws BizException {
         UserVO user = (UserVO) session.getAttribute("user");
