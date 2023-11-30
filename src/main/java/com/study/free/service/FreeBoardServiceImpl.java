@@ -130,10 +130,9 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     }
 
     @Override
-    public int increaseLike(int freeNum) throws BizNotFoundException {
-        return 0;
+    public void toggleLike(int freeNum) {
+        freeBoardDao.updateLike(freeNum);
     }
-
 
     @Override
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException {

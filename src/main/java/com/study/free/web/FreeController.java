@@ -26,6 +26,7 @@ import com.study.login.vo.UserVO;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -221,12 +222,18 @@ public class FreeController {
         return a;
     }
 
-//    @PostMapping("free/freeForm")
-//    @ResponseBody
-//    public ResponseEntity<?> handleFileUpload(@RequestParam("file")MultipartFile file){
-//        try {
-//            UploadFile uploadFile = imageService.store(file)
-//        }
-//    }
+    @PostMapping("/free/toggleLike.wow")
+    @ResponseBody
+    public ResponseEntity<String> toggleLike(@RequestParam("freeNum")int freeNum){
+        try {
+            freeBoardService.toggleLike(freeNum);
+            return ResponseEntity.ok("success");
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error");
+        }
+    }
+
+
 
 }

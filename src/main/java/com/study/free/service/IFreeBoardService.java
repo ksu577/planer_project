@@ -27,10 +27,11 @@ public interface IFreeBoardService {
 
     public int increaseView(int freeNum) throws BizNotFoundException;
 
-    int increaseLike(int freeNum) throws BizNotFoundException;
 
 
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException;
 
     public void updateCommentCount(int free_num) throws Exception;
+
+    void toggleLike(int freeNum);
 }
