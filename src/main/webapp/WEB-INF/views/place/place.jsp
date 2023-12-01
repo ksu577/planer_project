@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
-
     <style>
         .container {
             padding-top: 80px;
@@ -85,8 +84,8 @@
         }
 
         .modalcontainer {
-            margin: 20px;
-            padding: 20px;
+            margin: 10px;
+            padding: 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;;
@@ -144,7 +143,7 @@
         }
 
         .modal-summon {
-            /*animation: summon 1s forwards;*/
+            /*animation: summon 1s forwards; 애니메이션 효과로 뜨게하는거 아래는 바로 뜨게하는거*/
             animation: summon forwards;
         }
 
@@ -198,18 +197,20 @@
                  alt="">
             <div class="modalcontainer">
                 <div>
-                    <h1 id="AreaTitle"></h1>
+                    <p id="AreaTitleEng" style="font-size: 20px; color: #8a8a8a; font-weight: bold;"></p>
+                    <p id="AreaTitle" style="font-size: 35px; color: black; font-weight: bold;"></p>
                     <hr>
-                    <h4 id="AreaContents"></h4>
+<%--                    <p id="AreaContents" style="font-size: 20px; color: black;" ></p>--%>
+                    <h3 id="AreaContents"></h3>
+                    <hr>
                     <div style="display: flex; justify-content: flex-end;">
-                        <button class="btn btn-primary" onclick="makeplanner()" style="width: 80px; height: 30px;">
-                            일정만들기
+                        <button class="btn btn-primary" onclick="makeplanner()" style="width: 120px; height: 35px; font-size: 15px">
+                            일정만들기 >
                         </button>
                     </div>
                 </div>
                 <div>
-                    <img id="modalImage" height="240px" width="240px" src="" alt="">
-
+                    <img id="modalImage" height="330px" width="330px" src="" alt="">
                 </div>
             </div>
         </div>
@@ -240,6 +241,7 @@
                 // 한글 ㄱㄴㄷㄹㅁㅂㅅ 식으로 정렬추가
 
                 $("#AreaTitle").html(data['placeName']);
+                $("#AreaTitleEng").html(data['englishName'])
                 $("#AreaContents").html(data['placeContext']);
 
                 // 이미지를 가져와서 모달 이미지에 설정
@@ -253,7 +255,6 @@
             }
         });
     }
-
 
     function f_close2() {
         v_modal2.classList.add("d-none2");
