@@ -16,4 +16,5 @@ public interface ITourDao {
     public String getPlanTitle(@Param("planTitle") String tourTitle, @Param("user") String user);
 
     public List<ShareVO> sharePlan(String id);
+
 }
