@@ -50,26 +50,6 @@ public class CartController {
 
     ;
 
-    // 2. 장바구니 목록(장바구니 전체 - 카트 페이지)
-//    @GetMapping("/shoppingcartview")
-//    public String cartList(Model model, HttpSession session, int productId) {
-//        UserVO user = (UserVO) session.getAttribute("user");
-//        ProductVO product = iproductService.getproduct(productId);
-//        if (user != null) {
-//            String userId = user.getId();
-//            List<CartVO> list = cartService.listCart(userId); // 장바구니 정보
-//            int sumMoney = cartService.sumMoney(userId);// 장바구니 전체 금액
-//            model.addAttribute("product", product);
-//            model.addAttribute("listCart", list); // 장바구니 정보 추가
-//            model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액 추가
-//
-//            return "cart/shoppingcartview";
-//
-//        } else {
-//            return "redirect:/login/login.wow";
-//        }
-//
-//    }
 
     @GetMapping("/shoppingcartview")
     public String cartList(Model model, HttpSession session) {

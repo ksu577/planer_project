@@ -42,7 +42,15 @@ public interface CartDao {
 
     // 임의 장바구니 제품이름 가격보기
 
-    public int getProductAmountInCart(@Param("product_id") int prodcut_id
+    public int getAmountInCart(@Param("product_id") int prodcut_id
             , @Param("userId") String userId);
+
+    public int getProductAmountInCart(@Param("product_id") int product_id, @Param("userId") String userId);
+
+    void setProductCnt(CartVO cartVo);
+
+    void returnProductCnt(@Param("amount") int amount, @Param("tempId") int tempId);
+
+    int getAmountinProduct(@Param("productId")int productId);
 }
 

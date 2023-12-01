@@ -28,4 +28,6 @@ public interface IFreeBoardDao {
     public int increaseView(int freeNum);
 
     public void updateCommentCount(int free_num)throws Exception;
+
+    public void updateLike(int freeNum);
 }

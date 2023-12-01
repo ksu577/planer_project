@@ -18,16 +18,20 @@ public class LoginService {
         if (member == null) {
             return null;
         } else {
-            String role="USER";
-            if(member.getId().equals("admin")){
-                role="MANAGER";
+            if (member.getDelYn().equals("Y")) {
+                return null;
+            } else {
+                String role = "MANAGER";
+                if (member.getRole() == null) {
+                    role = "USER";
+                }
+                UserVO user = new UserVO(
+                        member.getId()
+                        , member.getName()
+                        , member.getPassword()
+                        , role);
+                return user;
             }
-            UserVO user = new UserVO(
-                    member.getId()
-                    , member.getName()
-                    , member.getPassword()
-                    , role);
-            return user;
         }
     }
 }

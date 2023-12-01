@@ -70,7 +70,6 @@ public class MemberController {
         }
     }
 
-
     @GetMapping("/member/memberView.wow")
     public String memberView(@RequestParam(required = false) String Id, HttpSession session, Model model) throws BizException {
         UserVO user = (UserVO) session.getAttribute("user");
@@ -94,28 +93,37 @@ public class MemberController {
     }
 
     @GetMapping("/member/memberEdit.wow")
-    public String memberEdit(Model model, HttpSession session) throws BizException {
+    public String memberEdit(@RequestParam(required = false) String Id, Model model, HttpSession session) throws BizException {
         UserVO user = (UserVO) session.getAttribute("user");
-        if (user != null) {
-            String Id = user.getId();
-            MemberVO member = memberService.getMember(Id);
-            model.addAttribute("member", member);
+        try {
+            if (user == null) {
+                return "redirect:/login/login.wow";
+            }
+            if ("MANAGER".equals(user.getRole()) && Id != null) {
+                MemberVO member = memberService.getMember(Id);
+                model.addAttribute("member", member);
+            } else {
+                String userId = user.getId();
+                MemberVO member = memberService.getMember(userId);
+                model.addAttribute("member", member);
+            }
             return "member/memberEdit";
-        } else {
+        } catch (BizNotFoundException e) {
             return "redirect:/login/login.wow";
         }
     }
 
 
     @PostMapping("/member/memberModify.wow")
-    public String memberModify(Model model, MemberVO member, HttpSession session, String id, MultipartHttpServletRequest Request) throws Exception {
+    public String memberModify(MemberVO member, Model model, HttpSession session, MultipartHttpServletRequest Request) throws Exception {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
-
         String profile = FileUtil.modifyMember(Request);
 
         UserVO user = (UserVO) session.getAttribute("user");
+
         member.setProfile(profile);
-        member.setId(user.getId());
+        //member.setId(user.getId());
+
         memberService.modifyMember(member);  // 이름, 사는곳 등등 회원정보 변경하는 코드
 
         session.setAttribute("user", user);
@@ -125,6 +133,7 @@ public class MemberController {
         model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
     }
+
 
 
     @PostMapping("/member/memberDelete.wow")
@@ -153,10 +162,6 @@ public class MemberController {
         model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
     }
-
-
-
-
 
 
     //img파일 썸네일
@@ -197,7 +202,7 @@ public class MemberController {
     @PostMapping("/login/myId.wow")
     public String myId(String name, String email, Model model) {
 
-        List <MemberVO> result = memberService.findId(name, email);
+        List<MemberVO> result = memberService.findId(name, email);
 
         model.addAttribute("result", result);
 
@@ -291,7 +296,6 @@ public class MemberController {
 
         return resultMessageVO;
     }
-
 
 
     @GetMapping("/login/changePw.wow")

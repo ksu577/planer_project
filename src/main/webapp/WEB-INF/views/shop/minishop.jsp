@@ -1,12 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+
 <head>
     <% request.setCharacterEncoding("UTF-8"); %>
     <%@include file="/WEB-INF/inc/header.jsp" %>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+          crossorigin="anonymous">
 
 
     <title></title>
@@ -15,9 +18,9 @@
     <!-- Bootstrap CSS -->
     <% request.setCharacterEncoding("UTF-8"); %>
     <%@include file="/WEB-INF/inc/header.jsp" %>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
     <style>
-
         .container {
             padding-top: 70px;
             width: 1225px;
@@ -35,10 +38,15 @@
         }
 
         .cell {
-            background-color: white;
-            /*border-radius: 20px;*/
-            box-shadow: 0px 0px 4px 2px gainsboro;
+            background-color: rgb(255, 255, 255);
+            box-shadow: none; /* 초기에는 그림자 없음 */
+            transition: box-shadow 0.3s ease; /* 그림자에 트랜지션 효과 적용 */
         }
+
+        .cell:hover {
+            box-shadow: 0px 0px 3px 2px rgb(92, 54, 54); /* 마우스 호버 시 그림자 나타남 */
+        }
+
 
         .item-box a {
             text-decoration: none;
@@ -52,22 +60,22 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            /*border-radius: 20px;*/
+
+
         }
 
-        .item-box > div {
+        .item-box>div {
             width: calc(1200px / 4 - 20px);
             height: 400px;
-            border: 0;
-            box-shadow: 1px 1px 4px 1px black;
+            border: solid 1px lightgrey;
             border-bottom: 20px;
             overflow: hidden;
             margin: 10px;
+
         }
 
         .top {
             height: 80%;
-            /*border-radius: 20px;*/
             box-shadow: 0px 0px 4px 2px gainsboro;
         }
 
@@ -75,24 +83,22 @@
             display: flex;
             justify-content: space-between;
             height: 20%;
-            background-color: #0d6efd;
-            color: rgb(0, 102, 0);
             flex-direction: column;
         }
 
         .bottom a {
-            color: white;
+            color: black;
             padding-top: 8px;
             padding-bottom: 8px;
             padding-left: 12px;
             padding-right: 12px;
-            /*border-radius: 20px;*/
             cursor: pointer;
+            font-size: 20px;
+
         }
-
-
     </style>
 </head>
+
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <div class="container">
@@ -108,11 +114,13 @@
                 <img src="${product.img}" class="d-block w-100" alt="...">
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -125,22 +133,7 @@
     </div>
     </c:if>
 
-    <div class="selectcategory">
-        <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                보는순서설정
-            </button>
 
-            <ul class="dropdown-menu">
-
-                <li><a class="dropdown-item" href="#"> 인기상품순 </a></li>
-                <li><a class="dropdown-item" href="#"> 낮은가격순 </a></li>
-                <li><a class="dropdown-item" href="#"> 높은가격순 </a></li>
-
-            </ul>
-        </div>
-    </div>
 
     <div class="item-box">
         <c:forEach var="product" items="${list}">
@@ -156,9 +149,7 @@
         </c:forEach>
     </div>
 
-    <%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"--%>
-    <%--        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"--%>
-    <%--        crossorigin="anonymous"></script>--%>
+
 
     <script>
         function detailView(productId) {
@@ -172,5 +163,5 @@
 
 
 </body>
-</html>
 
+</html>

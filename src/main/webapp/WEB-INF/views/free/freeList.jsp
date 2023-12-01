@@ -44,9 +44,100 @@
             padding: 8px;
         }
 
+        body {
+            font-size: 100%;
+        }
+
         .container {
             padding-top: 70px;
         }
+
+        #mainList {
+            border: 1px solid red;
+            padding: 0px 10px 40px;
+            width: 1300px;
+            position: absolute;
+        }
+
+        #sidebar {
+            float: left;
+            margin: 0;
+            padding: 0 20px;
+            width: 193px;
+            overflow: hidden;
+            border: 1px solid red;
+            position: relative;
+            right: 15%;
+        }
+
+        .skip {
+            position: absolute;
+            left: -1000%;
+            top: 0;
+            width: 1px;
+            height: 1px;
+            font-size: 0;
+            line-height: 0;
+            overflow: hidden;
+        }
+
+        #side_title {
+            color: #0f0f0f;
+            margin: 0;
+            padding: 0;
+            width: 193px;
+            height: 60px;
+
+        }
+
+        #side_title h2 {
+            vertical-align: top;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #sidemenu {
+            width: 193px;
+            padding: 0;
+            margin: 0;
+        }
+
+        #sidemenu ul {
+            list-style: none;
+            margin: 10px 0 0 0;
+            padding: 0;
+            width: 193px;
+        }
+
+        #sidemenu ul li {
+            margin: 0;
+            padding: 6px 0 6px 20px;
+            width: 181px;
+            vertical-align: top;
+        }
+
+        .page-header {
+            right: 10%;
+        }
+
+        .hit {
+            animation-name: blink;
+            animation-duration: 1.5s;
+            animation-timing-function: ease;
+            animation-iteration-count: infinite;
+            /* 위 속성들을 한 줄로 표기하기 */
+            /* -webkit-animation: blink 1.5s ease infinite; */
+        }
+
+        /* 애니메이션 지점 설정하기 */
+        /* 익스플로러 10 이상, 최신 모던 브라우저에서 지원 */
+        @keyframes blink {
+            from {color: white;}
+            30% {color: yellow;}
+            to {color: red; font-weight: bold;}
+
+        }
+
     </style>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -111,167 +202,192 @@
 <div class="container">
 
     <!-- START : 검색 폼  -->
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <form name="search" action="freeList.wow" method="get" class="form-horizontal">
-                <input type="hidden" name="curPage" value="${paging.curPage}">
-                <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
-                <div class="form-group">
-                    <label for="id_searchType" class="col-sm-1 control-label"></label>
-                    <div class="col-sm-2">
-                        <select id="id_searchType" name="searchType" class="form-control input-sm">
-                            <option value="T"  ${search.searchType=='T' ? "selected='selected'" :""} >제목</option>
-                            <option value="W" ${search.searchType=='W' ? "selected='selected'"  :""} >작성자</option>
-                            <option value="C" ${search.searchType=='C' ? "selected='selected'"  : ""} >내용</option>
-                        </select>
+    <div id="searchBar">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form name="search" action="freeList.wow" method="get" class="form-horizontal">
+                    <input type="hidden" name="curPage" value="${paging.curPage}">
+                    <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
+                    <div class="form-group">
+                        <label for="id_searchType" class="col-sm-1 control-label"></label>
+                        <div class="col-sm-2">
+                            <select id="id_searchType" name="searchType" class="form-control input-sm">
+                                <option value="T"  ${search.searchType=='T' ? "selected='selected'" :""} >제목</option>
+                                <option value="W" ${search.searchType=='W' ? "selected='selected'"  :""} >작성자</option>
+                                <option value="C" ${search.searchType=='C' ? "selected='selected'"  : ""} >내용</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" name="searchWord" class="form-control input-sm"
+                                   value="${search.searchWord}"
+                                   placeholder="검색어">
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}"
-                               placeholder="검색어">
+                    <div class="form-group">
+                        <div class="col-sm-2 col-sm-offset-9 text-right">
+                            <button type="button" id="id_btn_reset" class="btn btn-sm btn-default">
+                                <i class="fa fa-sync"></i> &nbsp;&nbsp;초기화
+                            </button>
+                        </div>
+                        <div class="col-sm-1 text-right">
+                            <button type="submit" class="btn btn-sm btn-primary ">
+                                <i class="fa fa-search"></i> &nbsp;&nbsp;검 색
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-2 col-sm-offset-9 text-right">
-                        <button type="button" id="id_btn_reset" class="btn btn-sm btn-default">
-                            <i class="fa fa-sync"></i> &nbsp;&nbsp;초기화
-                        </button>
-                    </div>
-                    <div class="col-sm-1 text-right">
-                        <button type="submit" class="btn btn-sm btn-primary ">
-                            <i class="fa fa-search"></i> &nbsp;&nbsp;검 색
-                        </button>
-                    </div>
-                </div>
-            </form>
+                </form>
 
+            </div>
         </div>
     </div>
     <!-- END : 검색 폼  -->
 
-
-    <div class="page-header">
-        <h3>자유게시판 - <small>글 목록</small></h3>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-2 col-sm-offset-10 text-right" style="margin-bottom: 5px;">
-            <a href="freeForm.wow" class="btn btn-primary btn-sm">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                &nbsp;새글쓰기
-            </a>
+    <div id="sidebar">
+        <h2 class="skip">사이드 메뉴</h2>
+        <div id="side_title">
+            <h2>
+                게시판
+            </h2>
         </div>
-        <div class="col-sm-2 col-sm-offset-0 text-left" style="margin-bottom: 5px;" >
-            <a href="noticeList.wow" class="btn btn-primary btn-sm">
-                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                공지 더보기
-            </a>
+        <div id="sidemenu">
+            <ul id="side2m">
+                <li><a href="noticeList.wow">공지게시판</a></li>
+                <li><a href="freeList.wow">자유게시판</a></li>
+            </ul>
         </div>
     </div>
 
-    <table id="noticeTable" class="table table-striped table-bordered table-hover">
-        <thead>
-        <tr>
-            <th>글번호</th>
-            <th>작성자</th>
-            <th>제목</th>
-            <th>등록일</th>
-            <th>조회수</th>
+    <div id="mainList">
+        <div class="page-header">
+            <h3>자유게시판 - <small>글 목록</small></h3>
+        </div>
 
-        </tr>
-        </thead>
-        <colgroup>
-            <col width="10%"/>
-            <col width="15%"/>
-            <col/>
-            <col width="10%"/>
-            <col width="10%"/>
-        </colgroup>
-        <tbody></tbody>
-    </table>
-
-
-    <table id="freeTable" class="table table-striped table-bordered table-hover">
-        <colgroup>
-            <col width="10%"/>
-            <col width="15%"/>
-            <col/>
-            <col width="10%"/>
-            <col width="10%"/>
-        </colgroup>
-        <tbody>
-        <c:forEach items="${freeBoardList }" var="freeBoard">
-        <c:choose>
-        <c:when test="${fn:startsWith(freeBoard.title,'[공지]') and freeBoard.notice.equals('Y')}">
-        <tr class="text-center">
-            <td>${freeBoard.freeNum}</td>
-            <td>${freeBoard.id}</td>
-            <td>
-                <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}
-                    <c:if test="${freeBoard.commentCount ne 0}">
-                        <small><b>[&nbsp;<c:out value="${freeBoard.commentCount}"/>&nbsp;] </b></small>
-                    </c:if>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-10 text-right" style="margin-bottom: 5px;">
+                <a href="freeForm.wow" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                    &nbsp;새글쓰기
                 </a>
-            </td>
-            <td>${freeBoard.createDate}</td>
-            <td>${freeBoard.viewRate}</td>
-        </tr>
-        </c:when>
-
-        <c:when test="${not fn:startsWith(freeBoard.title,'[공지]')}">
-        <tr class="text-center">
-            <td>${freeBoard.freeNum}</td>
-
-            <td>
-                    ${freeBoard.id }
-            </td>
-            <td>
-                <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}
-                    <c:if test="${freeBoard.commentCount ne 0}">
-                        <small><b>[&nbsp;<c:out value="${freeBoard.commentCount}"/>&nbsp;] </b></small>
-                    </c:if></a></td>
-            <td>${freeBoard.createDate }</td>
-            <td>${freeBoard.viewRate}</td>
-        </tr>
-        </c:when>
-        </c:choose>
-        </c:forEach>
-    </table>
+            </div>
+            <%--        <div class="col-sm-2 col-sm-offset-0 text-left" style="margin-bottom: 5px;">--%>
+            <%--            <a href="noticeList.wow" class="btn btn-primary btn-sm">--%>
+            <%--                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>--%>
+            <%--                공지 더보기--%>
+            <%--            </a>--%>
+            <%--        </div>--%>
+        </div>
 
 
-    <!-- START : 페이지네이션  -->
-    <nav class="text-center">
-        <ul class="pagination">
-            <!-- 첫 페이지  -->
-            <li><a href="freeList.wow?curPage=1" data-page="1"><span aria-hidden="true">&laquo;</span></a></li>
-            <!-- 이전 페이지 -->
-            <c:if test="${paging.firstPage ne 1}">
-                <li><a href="freeList.wow?curPage=${paging.firstPage-1}" data-page="${paging.firstPage-1}"><span
-                        aria-hidden="true">&lt;</span></a></li>
-            </c:if>
+        <table id="noticeTable" class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>글번호</th>
+                <th>작성자</th>
+                <th>제목</th>
+                <th>등록일</th>
+                <th>조회수</th>
 
-            <!-- 페이지 넘버링  -->
-            <c:forEach begin="${paging.firstPage}" end="${paging.lastPage}" var="i">
-                <c:if test="${paging.curPage ne i}">
-                    <li><a href="freeList.wow?curPage=${i}" data-page="${i}">${i}</a></li>
-                </c:if>
-                <c:if test="${paging.curPage eq i}">
-                    <li class="active"><a href="#">${i}</a></li>
-                </c:if>
+            </tr>
+            </thead>
+            <colgroup>
+                <col width="5%"/>
+                <col width="10%"/>
+                <col width="30%"/>
+                <col width="10%"/>
+                <col width="10%"/>
+            </colgroup>
+            <tbody></tbody>
+        </table>
 
+
+        <table id="freeTable" class="table table-striped table-bordered table-hover">
+            <colgroup>
+                <col width="5%"/>
+                <col width="10%"/>
+                <col width="30%"/>
+                <col width="10%"/>
+                <col width="10%"/>
+            </colgroup>
+            <tbody>
+            <c:forEach items="${freeBoardList }" var="freeBoard">
+            <c:choose>
+            <c:when test="${fn:startsWith(freeBoard.title,'[공지]') and freeBoard.notice.equals('Y')}">
+            <tr class="text-center">
+                <td>${freeBoard.freeNum}</td>
+                <td>${freeBoard.id}</td>
+                <td>
+                    <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}
+                        <c:if test="${freeBoard.commentCount ne 0}">
+                            <small><b>[&nbsp;<c:out value="${freeBoard.commentCount}"/>&nbsp;] </b></small>
+                        </c:if>
+                    </a>
+                </td>
+                <td>${freeBoard.createDate}</td>
+                <td>${freeBoard.viewRate}</td>
+            </tr>
+            </c:when>
+
+            <c:when test="${not fn:startsWith(freeBoard.title,'[공지]')}">
+            <tr class="text-center">
+                <td>${freeBoard.freeNum}</td>
+
+                <td>
+                        ${freeBoard.id }
+                </td>
+                <td>
+                    <a href="freeView.wow?freeNum=${freeBoard.freeNum}">${freeBoard.title}
+                        <c:if test="${freeBoard.commentCount ne 0}">
+                            <small><b>[&nbsp;<c:out value="${freeBoard.commentCount}"/>&nbsp;] </b></small>
+                        </c:if>
+                        <c:if test="${freeBoard.viewRate >= 20}">
+                            <span class="hit">hit!</span>
+                        </c:if>
+                    </a></td>
+                <td>${freeBoard.createDate }</td>
+                <td>${freeBoard.viewRate}</td>
+            </tr>
+            </c:when>
+            </c:choose>
             </c:forEach>
+        </table>
 
-            <!-- 다음  페이지  -->
-            <c:if test="${paging.lastPage ne paging.totalPageCount}">
-                <li><a href="freeList.wow?curPage=${paging.lastPage+1}" data-page="${paging.lastPage+1}"><span
-                        aria-hidden="true">&gt;</span></a></li>
-            </c:if>
+        <!-- START : 페이지네이션  -->
+        <nav class="text-center">
+            <ul class="pagination">
+                <!-- 첫 페이지  -->
+                <li><a href="freeList.wow?curPage=1" data-page="1"><span aria-hidden="true">&laquo;</span></a></li>
+                <!-- 이전 페이지 -->
+                <c:if test="${paging.firstPage ne 1}">
+                    <li><a href="freeList.wow?curPage=${paging.firstPage-1}" data-page="${paging.firstPage-1}"><span
+                            aria-hidden="true">&lt;</span></a></li>
+                </c:if>
 
-            <!-- 마지막 페이지 -->
-            <li><a href="freeList.wow?curPage=${paging.totalPageCount}" data-page="${paging.totalPageCount}"><span
-                    aria-hidden="true">&raquo;</span></a></li>
-        </ul>
-    </nav>
-    <!-- END : 페이지네이션  -->
+
+
+                <!-- 페이지 넘버링  -->
+                <c:forEach begin="${paging.firstPage}" end="${paging.lastPage}" var="i">
+                    <c:if test="${paging.curPage ne i}">
+                        <li><a href="freeList.wow?curPage=${i}" data-page="${i}">${i}</a></li>
+                    </c:if>
+                    <c:if test="${paging.curPage eq i}">
+                        <li class="active"><a href="#">${i}</a></li>
+                    </c:if>
+
+                </c:forEach>
+
+                <!-- 다음  페이지  -->
+                <c:if test="${paging.lastPage ne paging.totalPageCount}">
+                    <li><a href="freeList.wow?curPage=${paging.lastPage+1}" data-page="${paging.lastPage+1}"><span
+                            aria-hidden="true">&gt;</span></a></li>
+                </c:if>
+
+                <!-- 마지막 페이지 -->
+                <li><a href="freeList.wow?curPage=${paging.totalPageCount}" data-page="${paging.totalPageCount}"><span
+                        aria-hidden="true">&raquo;</span></a></li>
+            </ul>
+        </nav>
+        <!-- END : 페이지네이션  -->
+    </div>
 </div>
 </body>
 <script type="text/javascript">

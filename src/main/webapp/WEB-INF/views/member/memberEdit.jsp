@@ -8,6 +8,7 @@
 <head>
     <title>memberEdit</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <body>
 <form action="memberModify.wow" method="post" enctype="multipart/form-data">
     <table border="1">
@@ -59,16 +60,25 @@
         <tr>
             <td>
                 <button type="submit">적용</button>
-                <button type="submit" formaction="memberDelete.wow">삭제</button>
+                <c:if test="${user.getRole() =='USER'}">
+                    <button id="delete_btn" type="submit" formaction="memberDelete.wow">탈퇴</button>
+                </c:if>
+                <c:if test="${user.getRole() =='MANAGER'}">
+                    <button id="delete_btn" type="submit" formaction="memberDelete.wow">삭제</button>
+                </c:if>
             </td>
         </tr>
-
     </table>
 </form>
 </body>
 <script>
-    // function hidepassword(password) {
-    //     return '*'.repeat(password.length);
-    // }
+    $("#delete_btn").on("click", function (e) {
+        if (confirm("탈퇴 하시겠습니까?") == true) {
+            alert("탈퇴 되었습니다.");
+            document.getElementById('delete_btn').submit();
+        } else {
+            return false;
+        }
+    })
 </script>
 </html>

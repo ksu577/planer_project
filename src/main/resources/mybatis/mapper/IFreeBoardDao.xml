@@ -89,6 +89,12 @@
         WHERE free_num = #{freeNum}
     </update>
 
+    <update id="updateLike" parameterType="map">
+        UPDATE free_board
+        SET free_like = CASE WHEN free_like = 1 THEN 0 ELSE 1 END
+        WHERE free_num = #{freeNum}
+    </update>
+
 
     <delete id="deleteBoard"
             parameterType="com.study.free.vo.FreeBoardVO">

@@ -172,7 +172,7 @@
                     #{phnum},
                     #{email},
                     #{birth},
-                    #{profile},
+                    'b1ab8644b329428c95caf6b9e18b8a7b.png',
                     sysdate,
                     'N')
     </insert>

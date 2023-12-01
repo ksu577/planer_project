@@ -8,6 +8,28 @@
 
 
     <style>
+
+        @font-face {
+            font-family: 'yg-jalnan';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'KCCChassam';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'JalnanGothic';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body {
             padding-top: 70px;
         }
@@ -198,14 +220,6 @@
             color: #777;
         }
 
-        div {
-            border: 1px solid red;
-        }
-
-        body {
-            border: 1px solid red;
-        }
-
         .container {
             width: 100%;
             height: 100%;
@@ -214,7 +228,7 @@
 
         .first {
             display: flex;
-            height: 943px;
+            height: 100%;
             background-size: cover;
         }
 
@@ -246,16 +260,45 @@
         }
 
         #addedbox {
-            width: 500px;
+            color: #031b27;
+            width: 350px;
             overflow: scroll;
-            background-color: lightgray;
+            background-color: #98dde3;
         }
 
         #addedbox > div {
-            margin-bottom: 10px;
-            text-align: center;
-            border-radius: 17px;
+            margin: 10px;
+            padding: 5px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            height: 170px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+            background-color: #a7f3fa;
         }
+
+        @font-face {
+            font-family: 'KOTRAHOPE';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        #addedbox > div > div span {
+            padding-top: 5px;
+            font-weight: 500;
+            color: #06405b;
+            font-family: 'KOTRAHOPE';
+        }
+
+        #addedbox > div > div > h5 {
+            font-weight: 300;
+            font-size: 17px;
+            font-family: "yg-jalnan";
+        }
+
 
         .plan-data {
             font-size: 20px;
@@ -281,7 +324,7 @@
             display: block;
         }
 
-        .none {
+        .d-none {
             display: none;
         }
 
@@ -295,9 +338,47 @@
         }
 
         .delete {
-            width: 50px;
             font-size: 15px;
         }
+
+        input[type='date'] {
+            border: none;
+            /*/ / 테두리 설정은 본인 맘대로 position: relative;*/
+            /*/ / 캘린더 아이콘을 클릭해야만 달력이 보이기 때문에 이 영역 자체를 제어하기 위해 설정 width: 100 %;*/
+            padding: 10px;
+            background: url(../../../assets/Calendar.svg) no-repeat right 10px center /35px auto;
+            /*/ / 배경에 커스텀 아이콘을 넣어주자 ! x축은 오른쪽에서부터 10 px 떨어지게 하고, y축은 가운데 정렬하고, width 35 px에 height auto라는 크기를 부여한다 . background-color: #bbbbbb;*/
+            box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+            font-size: 100%;
+            margin-bottom: 20px;
+        }
+
+        .pd {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .day {
+            color: #ffffff;
+        }
+
+        .mg_btm {
+            margin-bottom: 30px;
+        }
+
+        @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .choice-box {
+            font-family: 'Pretendard-Regular';
+        }
+
     </style>
 </head>
 <body>
@@ -306,27 +387,71 @@
 
 <div class="first">
     <div class="choice-box">
-        <div>
+        <div style="text-align: center">
             <input type="date" id="startdate">
             <input type="date" id="enddate">
             <!-- <div class="box" id="box1">여행지설정</div>
             <div class="box" id="box2">날짜생성</div> -->
-            <div class="box" id="box3" onclick="f_date()">확인!</div>
-            <div class="box" id="box3" onclick="f_day1()">임시!</div>
-            <div class="day1 none" id="day1" onclick="f_day(1)">1일차</div>
-            <div class="day2 none" id="day2" onclick="f_day(2)">2일차</div>
-            <div class="day3 none" id="day3" onclick="f_day(3)">3일차</div>
-            <div class="day4 none" id="day4" onclick="f_day(4)">4일차</div>
-            <div class="day5 none" id="day5" onclick="f_day(5)">5일차</div>
-            <div class="day6 none" id="day6" onclick="f_day(6)">6일차</div>
-            <div class="day7 none" id="day7" onclick="f_day(7)">7일차</div>
+            <%--            <div class="box" id="box3" onclick="f_date()">확인!</div>--%>
+            <%--            <div class="box" id="box3" onclick="f_day1()">임시!</div>--%>
+            <div class="d-grid gap-2">
+                <button type="button" onclick="f_date()" class="btn btn-outline-info btn-lg">확인</button>
+            </div>
+            <div class="d-grid gap-5">
+                <div class="pd">
+
+                </div>
+                <div class="day1 d-none pd">
+                    <button type="button" class="btn btn-info btn-lg day1 day w-50" id="day1" onclick="f_day(1)">1일차
+                    </button>
+                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                </div>
+                <div class="day2 d-none pd">
+                    <button type="button" class="btn btn-info btn-lg day2 day w-50" id="day2" onclick="f_day(2)">2일차
+                    </button>
+                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                </div>
+                <div class="day3 d-none pd">
+                    <button type="button" class="btn btn-info btn-lg day3 day w-50" id="day3" onclick="f_day(3)">3일차
+                    </button>
+                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                </div>
+                <div class="day4 d-none pd">
+                    <button type="button" class="btn btn-info btn-lg day4 day w-50" id="day4" onclick="f_day(4)">4일차
+                    </button>
+                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                </div>
+                <div class="day5 d-none pd">
+                    <button type="button" class="btn btn-info btn-lg day5 day w-50" id="day5" onclick="f_day(5)">5일차
+                    </button>
+                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                </div>
+                <div class="day6 d-none pd">
+                    <button type="button" class="btn btn-info btn-lg day6 day w-50" id="day6" onclick="f_day(6)">6일차
+                    </button>
+                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                </div>
+                <div class="day7 d-none pd">
+                    <button type="button" class="btn btn-info btn-lg day7 day w-50" id="day7" onclick="f_day(7)">7일차
+                    </button>
+                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                </div>
+            </div>
+            <%--            <div class="day1 none" id="day1" onclick="f_day(1)">1일차</div>--%>
+            <%--            <div class="day2 none" id="day2" onclick="f_day(2)">2일차</div>--%>
+            <%--            <div class="day3 none" id="day3" onclick="f_day(3)">3일차</div>--%>
+            <%--            <div class="day4 none" id="day4" onclick="f_day(4)">4일차</div>--%>
+            <%--            <div class="day5 none" id="day5" onclick="f_day(5)">5일차</div>--%>
+            <%--            <div class="day6 none" id="day6" onclick="f_day(6)">6일차</div>--%>
+            <%--            <div class="day7 none" id="day7" onclick="f_day(7)">7일차</div>--%>
         </div>
-        <div>
-            <div class="edit" onclick="f_send()">저장</div>
+        <div class="mg_btm" style="text-align: center; height: 50px">
+            <button type="button" class="h-100 w-75 btn btn-outline-secondary btn-block btn-lg" onclick="f_send()">저장
+            </button>
         </div>
     </div>
 
-    <div id="addedbox">
+    <div id="addedbox" class="d-none">
 
     </div>
     <div class="map-content">
@@ -609,13 +734,20 @@
     $(document).on("click", ".info", function () {
         // 버튼을 클릭할 때 발생하는 이벤트
 
+        // $("#addedbox").scrollTop($("#addedbox")[0].scrollHeight);
+
+        var objDiv = document.getElementById("addedbox");
+        objDiv.scrollTop = objDiv.scrollHeight;
 
         const button_id = "minus" + buttonpointer;
         const box_id = "plus" + buttonpointer;
 
 
-        addedbox.innerHTML += "<div class='draggable' draggable='true' id ='" + box_id + "'> <div class='data'>" + $(this)[0].innerHTML + "</div><button class='delete' id='" + button_id +
-            "'  onclick=\"f_minus('" + box_id + "')\" > 제거 </button></div>";
+        addedbox.innerHTML += "<div class='draggable' draggable='true' id ='" + box_id + "'> " +
+            "<div class='data'>" + $(this)[0].innerHTML + "</div><div class='d-grid gap-2'>" +
+            "<button class='delete btn btn-outline-primary' id='" + button_id +
+            "'  onclick=\"f_minus('" + box_id + "')\" > 제거 </button></div></div>";
+
         buttonpointer = buttonpointer + 1
     });
 
@@ -626,8 +758,9 @@
     };
 
     function f_date() {
+        addedbox.classList.remove("d-none")
         for (let i = 1; i <= 7; i++) {
-            document.querySelector(".day" + i + "").classList.add("none");
+            document.querySelector(".day" + i + "").classList.add("d-none");
         }
         console.log(plan_Array)
 
@@ -663,7 +796,7 @@
             alert("과거로 갈 수는 없습니다...")
         } else {
             for (let i = 1; i <= diff; i++) {
-                document.querySelector(".day" + i + "").classList.remove("none");
+                document.querySelector(".day" + i + "").classList.remove("d-none");
             }
         }
     }
@@ -715,90 +848,89 @@
 
         (async () => {
             try {
-                for (let i = 0; i < $("#addedbox").find("div").find("div").length; i++) {
+
+                const addbox = $("#addedbox").find("div").find(".data");
+
+
+                console.log("addbox");
+                console.log(addbox);
+
+                for (let i = 0; i < addbox.length; i++) {
                     // init
                     day1 = {};
 
 
-                    const addressInfo = $("#addedbox").find("div").find("div")[i];
+                    const addressInfo = addbox[i];
 
 
                     const childrens = addressInfo.children;
 
-                    //
-                    // // 첫번째 방법
-                    // if(childrens.length == 4)
-                    // {
-                    //
-                    // }
-                    // else if(childrens.length == 3)
-                    // {
-                    //
-                    // }
-                    //
-                    // // 두번째 방법
-                    // const json = JSON.parse(childrens);
-                    //
-                    // if( isEmpty(json.placeLoadAddress) )
-                    // {
-                    //
-                    // }
+                    console.log("childrens");
+                    console.log(childrens);
 
                     day1["placeName"] = (childrens[0].innerHTML);
                     //  세번째 방법
 
                     try {
                         day1["placeLoadAddress"] = (childrens[1].innerHTML);
+                        console.log(day1["placeLoadAddress"]);
                     } catch (error) {
-                        console.error(error);
+                        //console.error(error);
                     }
+
 
                     try {
                         day1["placeAddress"] = (childrens[2].innerHTML);
+                        console.log(day1["placeAddress"]);
                     } catch (error) {
-                        console.error(error);
+                        //console.error(error);
                     }
+
 
                     try {
                         day1["planNum"] = (childrens[3].innerHTML);
+                        console.log(day1["planNum"]);
                     } catch (error) {
-                        console.error(error);
+                        // day1["planNum"] == 9999
                     }
 
                     try {
                         day1["totalDay"] = (day_count);
                     } catch (error) {
-                        console.error(error);
+                        //console.error(error);
                     }
 
                     try {
                         day1["startDate"] = ((startdate_date).yyyymmdd)();
                     } catch (error) {
-                        console.error(error);
+                        //console.error(error);
                     }
                     try {
                         day1["endDate"] = ((enddate_date).yyyymmdd());
                     } catch (error) {
-                        console.error(error);
+                        //console.error(error);
                     }
 
-                    const data = await addressSearch(childrens[1].innerHTML);
+                    if (day1["placeLoadAddress"] != null) {
+                        const data = await addressSearch(childrens[1].innerHTML);
 
-                    try {
-                        day1["xlab"] = data.result[0].x;  //data.result[0].y, data.result[0].x
-                    } catch (error) {
-                        console.error(error);
+                        try {
+                            day1["xlab"] = data.result[0].x;  //data.result[0].y, data.result[0].x
+                        } catch (error) {
+                            //console.error(error);
+                        }
+
+                        try {
+                            day1["ylab"] = data.result[0].y;
+                        } catch (error) {
+                            //console.error(error);
+                        }
                     }
 
-                    try {
-                        day1["ylab"] = data.result[0].y;
-                    } catch (error) {
-                        console.error(error);
-                    }
 
                     day1["planTitle"] = ("${title}");
 
-                    schedule1.push(day1)
+                    schedule1.push(day1);
                 }
             } catch (e) {
                 console.error(e);
@@ -837,15 +969,18 @@
             let day_schedule = schedule[i];
             html += '<div class="draggable" draggable="true" id="plus' + i + '">';
             html += '<div class="data">';
-            html += '<h5>' + day_schedule["placeName"] + '</h5>'
-            html += '<span>' + day_schedule["placeLoadAddress"] + '</span>'
-            html += '<span class="jibun gray">' + day_schedule["placeAddress"] + '</span>'
-            if (day_schedule["planNum"] != null) {
-                html += '<span class="tel"></span>' + day_schedule["planNum"] + '</span>'
-            }
-            html += '</div>'
-            html += '<button class="delete" id="minus' + i + '" onclick="f_minus(\'plus' + i + '\')"> 제거 </button>'
-            html += '</div>'
+            html += '<h5>' + day_schedule["placeName"] + '</h5>';
+            html += '<span>' + day_schedule["placeLoadAddress"] + '</span>';
+            html += '<span class="jibun gray">' + day_schedule["placeAddress"] + '</span>';
+            //
+            // if (day_schedule["planNum"] != 9999) {
+            //     html += '<span class="tel"></span>' + day_schedule["planNum"] + '</span>';
+            // }
+            html += '</div>';
+            html += '<div class="d-grid gap-2">';
+            html += '<button class="delete btn btn-outline-danger" id="minus' + i + '" onclick="f_minus(\'plus' + i + '\')"> 제거 </button>';
+            html += '</div>';
+            html += '</div>';
         }
 
         $('#addedbox').html(html);
@@ -858,7 +993,7 @@
         $.ajax({
             type: "post",
             url: "/plan/plan.wow",
-            data: {"plan": JSON.stringify(plan_Array),"title": title},
+            data: {"plan": JSON.stringify(plan_Array), "title": title},
             success: function (data) {
                 console.log(data)
                 location.href = encodeURI("/plan/marker.wow?planTitle=${title}&id=${id}");
@@ -931,6 +1066,7 @@
 
         console.log("last :", plan_Array)
     }
+
     f_day(1)
 
 </script>

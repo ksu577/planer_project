@@ -51,7 +51,7 @@
             id = #{id}
           AND plan_title = #{title}
         AND delete_yn = 'Y'
-        ORDER BY day_count
+        ORDER BY day_count, place_num
     </select>
 
     <select id="planMarkerDao" resultType="com.study.plan.vo.PlanVo">
@@ -69,6 +69,7 @@
                 AND day_count = #{dayCount}
             </when>
         </choose>
+        order by place_num asc
     </select>
 
     <select id="topPlan" resultType="com.study.plan.vo.PlanVo">
@@ -76,7 +77,6 @@
             place_name, place_load_address, count(place_name) as count
         FROM
             user_plan
-        where delete_yn = 'Y'
         group by place_name , place_load_address
         order by count(place_name) DESC
     </select>
