@@ -62,6 +62,7 @@ public class KakaoController {
     public String approval(HttpSession session,
                                  HttpServletRequest httpServletRequest,
                                  @RequestParam("pg_token") String pgToken
+
     ) {
 
         UserVO user = (UserVO) session.getAttribute("user");
@@ -97,7 +98,7 @@ public class KakaoController {
                 .from("tid", map.get("tid").toString())
                 .path("/")
                 .httpOnly(true)
-                .maxAge(60 * 3)
+                .maxAge(60 * 5)
                 .build();
 
         httpServletResponse.setHeader(HttpHeaders.SET_COOKIE, responseCookie.toString());

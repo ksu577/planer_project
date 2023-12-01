@@ -12,7 +12,7 @@
     <style>
         .container {
             padding-top: 80px;
-            width: 1225px;
+            width: 1250px;
         }
 
         .selectcategory {
@@ -20,8 +20,9 @@
         }
 
         .cell {
-            width: 288px;
-            height: 385px;
+            text-align: center;
+            width: 350px;
+            height: 330px;
             background-color: white;
         }
 
@@ -51,17 +52,21 @@
 
         .top > img {
             border-radius: 20px;
-            box-shadow: 0px 0px 4px 2px gainsboro;
+            /*box-shadow: 10px 100px 30px 0px #50c8cd;*/
+            /*box-shadow: 0px 0px 10px 10px gainsboro; 원래 기존 그림자 색상*/
+            box-shadow: 10px 100px 30px 0px #0ea5e9;
         }
 
         .bottom {
-            /*text-align: left;*/
+            text-align: center;
+            padding-top: 10px;
             display: flex;
-            align-items: center;
+            align-items: self-end;
+            /*align-items: center; 지역 글씨 가운데로 내 생각엔 오른쪽 끝이 이뻐서 그렇게 해둠*/
             justify-content: space-between;
             width: 232px;
             height: 65px;
-            color: rgb(0, 102, 0);
+            color: white;
             flex-direction: column;
         }
 
@@ -156,14 +161,14 @@
 <div class="container">
     <div class="selectcategory">
         <div class="btn-group">
-            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                보는순서설정
+                여행지 보는 순서 설정
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#"> 인기순 </a></li>
-                <li><a class="dropdown-item" href="#"> 글자순 </a></li>
-                <li><a class="dropdown-item" href="#"> 글자역순 </a></li>
+                <li><a class="dropdown-item" href="#"> 한글 글자순서 </a></li>
+                <li><a class="dropdown-item" href="#"> 영어 스펠링순서 </a></li>
             </ul>
         </div>
     </div>
@@ -172,7 +177,7 @@
         <c:forEach var="place" items="${placeList}">
             <div class="cell" onclick="f_summon('${place.placeNum}')">
                 <div class="top">
-                    <img height="240px" width="240px"
+                    <img height="280px" width="280px"
                          src="<%=request.getContextPath()%>/imgDownload/showImg.wow?fileName=${place.img}&filePath=${place.imgPath}"
                          alt="">
                 </div>
@@ -215,6 +220,11 @@
 <script>
     const v_modal2 = document.getElementsByClassName("modal2")[0];
 
+                // 한글 ㄱㄴㄷㄹㅁㅂㅅ 식으로 정렬추가
+    // function koreanSort(a, b) {
+    //     return a.localeCompare(b, 'ko-KR');
+    // }
+
     function f_summon(placeNum) {
         $.ajax({
             url: '/place/placeView',
@@ -225,6 +235,10 @@
             type: "post",
             success: function (data) {
                 console.log(data);
+
+                // data.placeList.sort((a, b) => koreanSort(a.placeName, b.placeName));
+                // 한글 ㄱㄴㄷㄹㅁㅂㅅ 식으로 정렬추가
+
                 $("#AreaTitle").html(data['placeName']);
                 $("#AreaContents").html(data['placeContext']);
 

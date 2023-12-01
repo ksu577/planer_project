@@ -55,9 +55,57 @@ public class KakaoService {
         return map;
     }
 
+
+    //근데 이렇게되면 order table 하나 따로 생성해야되고 저장하는 table 따로 해야해서 테이블 하나 더 만들어야되지않나
     public void saveOrder(String userId, Map<String,Object> map) {
+//        List<CartVO> cartList = cartDao.cartList(userId);
+
+//        SaveCartVO order = new SaveCartVO();
+//        order.setUserId(userId);
+//        order.setTotalAmount(Integer.parseInt(kakaoPayResponse.get("total_amount").toString()));
 
     }
+
+
+//    public void saveOrder(String userId, Map<String,Object> map)
+//    @Transactional
+//    public void saveOrder(String userId, Map<String, Object> kakaoPayResponse) {
+//        try {
+//            // 카트에서 주문 상품 조회
+//            List<CartVO> cartList = cartDao.cartList(userId);
+//
+//            // 주문 정보 생성
+//            SaveCartVO order = new SaveCartVO();
+//            order.setUserId(userId);
+//            order.setTotalAmount(Integer.parseInt(kakaoPayResponse.get("total_amount").toString()));
+//            // 기타 주문 정보 설정...
+//
+//            // 주문 정보 저장
+//            ProductDao.insertOrder(order);
+//
+//            // 주문 상세 정보 저장
+//            for (CartVO cart : cartList) {
+//                OrderDetailVO orderDetail = new OrderDetailVO();
+//                orderDetail.setOrderId(order.getOrderId()); 현재 없는거 이게 아마... save_num
+//                orderDetail.setProductId(cart.getProductId());
+//                orderDetail.setProductName(cart.getProductName());
+//                orderDetail.setPrice(cart.getPrice());
+//                orderDetail.setQuantity(cart.getProductAmount());
+//
+//                // 주문 상세 정보 저장
+//                orderDetailDao.insertOrderDetail(orderDetail);
+//
+//                // 카트에서 상품 제거
+//                cartDao.deleteCart(cart.getCartId());
+//            }
+//
+//        } catch (Exception e) {
+//            // 주문 처리 중 에러 발생 시 롤백
+//            log.error("주문이 실패되었습니다.: {}", e.getMessage());
+//            throw new RuntimeException("주문이 실패되었습니다. 다시 주문해주세요!", e);
+//        }
+//    }
+
 
     public Map ready(String userId) {
 
