@@ -27,9 +27,10 @@
             padding: 30px;
         }
 
-        .navcategory{
+        .navcategory {
             display: flex;
         }
+
         .btn-gruop-right {
             display: flex;
 
@@ -43,25 +44,7 @@
             margin-right: -200px;
         }
 
-        .member {
-            position: relative;
-            width: 130px;
-            border: 1px solid red;
-            text-align: left;
-            padding: 0;
-        }
 
-        .product {
-            position: relative;
-        }
-
-        .MemberList{
-            position: absolute;
-        }
-
-        .product_manager{
-            position: absolute;
-        }
 
     </style>
 </head>
@@ -77,25 +60,32 @@
     </div>
 
     <div class="navcategory">
-        <a href="/place/place.wow"> 여행지 </a>
-        <a href="/shop/minishop.wow"> 미니샵 </a>
-        <a href="/free/freeList.wow"> 게시판 </a>
+        <a href="/place/place.wow" style="padding-top: 57px "> 여행지 </a>
+        <a href="/shop/minishop.wow" style="padding-top: 57px "> 미니샵 </a>
+        <a href="/free/freeList.wow" style="padding-top: 57px "> 게시판 </a>
 
         <c:if test="${user.getRole() =='MANAGER'}">
-            <li class="member">
-                <span class="memberList">회원관리</span>
-                <div class="MemberList">
-                    <a href="/member/memberList.wow">회원목록</a>
-                </div>
+            <li class="nav-item dropdown" style="padding-bottom: 25px">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    회원관리
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/ManagerPage/managerproduct">회원 목록</a></li>
+                </ul>
             </li>
 
-            <li class="product">
-                <span class="productmanager">상품관리</span>
-                <div class="product_manager">
-                    <a href="/ManagerPage/managerproduct">상품 목록</a>
-                    <a href="/product/productregist">상품 등록</a>
-                </div>
+            <li class="nav-item dropdown"  style="" >
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    상품관리
+                </a>
+                <ul class="dropdown-menu" >
+                    <li><a href="/ManagerPage/managerproduct">상품 목록</a></li>
+                    <li><a href="/product/productregist">상품 등록</a></li>
+                </ul>
             </li>
+
         </c:if>
 
     </div>
@@ -118,9 +108,6 @@
                 My page
             </button>
             <ul class="dropdown-menu">
-                <c:if test="${user.getRole() =='MANAGER'}">
-                    <li><a class="dropdown-item" href="/ManagerPage/manager.wow"> 관리자 페이지 </a></li>
-                </c:if>
                 <li><a class="dropdown-item" href="/member/memberView.wow"> 내 정보 </a></li>
                 <li><a class="dropdown-item" href="/member/memberEdit.wow"> 회원 정보 수정 </a></li>
                 <li><a class="dropdown-item" href="/plan/myPlan.wow"> 나의 여행 일정 </a></li>
