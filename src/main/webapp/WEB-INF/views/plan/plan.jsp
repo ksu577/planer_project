@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <% request.setCharacterEncoding("UTF-8"); %>
@@ -260,6 +261,7 @@
         }
 
         #addedbox {
+            position: relative;
             color: #031b27;
             width: 350px;
             overflow: scroll;
@@ -284,6 +286,12 @@
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
             font-weight: normal;
             font-style: normal;
+        }
+
+        #addedbox {
+            color: #06193d;
+            font-size: 50px;
+            font-family: "yg-jalnan";
         }
 
         #addedbox > div > div span {
@@ -379,6 +387,18 @@
             font-family: 'Pretendard-Regular';
         }
 
+        .save {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .date{
+            font-family: 'yg-jalnan';
+        }
+        .choice-box {
+            padding-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -388,7 +408,9 @@
 <div class="first">
     <div class="choice-box">
         <div style="text-align: center">
+            <div class="date">출발일</div>
             <input type="date" id="startdate">
+            <div class="date">도착일</div>
             <input type="date" id="enddate">
             <!-- <div class="box" id="box1">여행지설정</div>
             <div class="box" id="box2">날짜생성</div> -->
@@ -404,37 +426,37 @@
                 <div class="day1 d-none pd">
                     <button type="button" class="btn btn-info btn-lg day1 day w-50" id="day1" onclick="f_day(1)">1일차
                     </button>
-                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                    <%--                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>--%>
                 </div>
                 <div class="day2 d-none pd">
                     <button type="button" class="btn btn-info btn-lg day2 day w-50" id="day2" onclick="f_day(2)">2일차
                     </button>
-                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                    <%--                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>--%>
                 </div>
                 <div class="day3 d-none pd">
                     <button type="button" class="btn btn-info btn-lg day3 day w-50" id="day3" onclick="f_day(3)">3일차
                     </button>
-                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                    <%--                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>--%>
                 </div>
                 <div class="day4 d-none pd">
                     <button type="button" class="btn btn-info btn-lg day4 day w-50" id="day4" onclick="f_day(4)">4일차
                     </button>
-                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                    <%--                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>--%>
                 </div>
                 <div class="day5 d-none pd">
                     <button type="button" class="btn btn-info btn-lg day5 day w-50" id="day5" onclick="f_day(5)">5일차
                     </button>
-                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                    <%--                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>--%>
                 </div>
                 <div class="day6 d-none pd">
                     <button type="button" class="btn btn-info btn-lg day6 day w-50" id="day6" onclick="f_day(6)">6일차
                     </button>
-                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                    <%--                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>--%>
                 </div>
                 <div class="day7 d-none pd">
                     <button type="button" class="btn btn-info btn-lg day7 day w-50" id="day7" onclick="f_day(7)">7일차
                     </button>
-                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>
+                    <%--                    <button type="button" onclick="f_day1()" class="btn btn-outline-info btn-lg">저장</button>--%>
                 </div>
             </div>
             <%--            <div class="day1 none" id="day1" onclick="f_day(1)">1일차</div>--%>
@@ -499,9 +521,15 @@
 
     const addedbox = document.getElementById("addedbox");
     let buttonpointer = 0;
-
+    let checkFirst = false;
 
     init();
+    $(document).ready(function () {
+        <c:if test="${fn:length(planList) == 0}">
+        checkFirst = true;
+        </c:if>
+    });
+
 
     // 마커를 담을 배열입니다
     var markers = [];
@@ -731,6 +759,7 @@
 
     }
 
+
     $(document).on("click", ".info", function () {
         // 버튼을 클릭할 때 발생하는 이벤트
 
@@ -741,7 +770,6 @@
 
         const button_id = "minus" + buttonpointer;
         const box_id = "plus" + buttonpointer;
-
 
         addedbox.innerHTML += "<div class='draggable' draggable='true' id ='" + box_id + "'> " +
             "<div class='data'>" + $(this)[0].innerHTML + "</div><div class='d-grid gap-2'>" +
@@ -755,10 +783,27 @@
 
         const deleteb = document.getElementById(box_id);
         deleteb.remove();
-    };
+    }
+
+    function isSameDat(start, today) {
+
+        let returnBoolean = false;
+
+
+        if (start.getFullYear() >= today.getFullYear()) {
+            if (start.getMonth() >= today.getMonth()) {
+                if (start.getDate() > today.getDate()) {
+                    returnBoolean = true;
+                }
+            }
+        }
+
+        console.log(returnBoolean);
+
+        return returnBoolean;
+    }
 
     function f_date() {
-        addedbox.classList.remove("d-none")
         for (let i = 1; i <= 7; i++) {
             document.querySelector(".day" + i + "").classList.add("d-none");
         }
@@ -779,22 +824,30 @@
         // const headerTag = document.createElement('h1');
         // const textNode = document.createTextNode('textNode of headerTag');
 
-        if (diff < plan_Array.length) {
-            console.log(diff);
-            console.log(plan_Array.length);
-            for (let i = plan_Array.length; i > diff; --i) {
-                plan_Array.length = i
-            }
-        }
 
         if (diff > 8) {
             alert("8일 이상은 지정할 수 없습니다.");
 
         } else if (diff <= 0) {
             alert("시간을 거꾸로 할 수는 없습니다..;");
-        } else if ((startdate_date - today) < 0) {
-            alert("과거로 갈 수는 없습니다...")
+        } else if (!isSameDat(startdate_date, today)) {
+            console.log(checkFirst);
+            if (checkFirst == false) {
+                console.log(checkFirst);
+                checkFirst = true;
+                console.log(checkFirst);
+            } else {
+                alert("과거로 갈 수는 없습니다...");
+            }
         } else {
+            addedbox.classList.remove("d-none")
+            if (diff < plan_Array.length) {
+                console.log(diff);
+                console.log(plan_Array.length);
+                for (let i = plan_Array.length; i > diff; --i) {
+                    plan_Array.length = i
+                }
+            }
             for (let i = 1; i <= diff; i++) {
                 document.querySelector(".day" + i + "").classList.remove("d-none");
             }
@@ -802,7 +855,11 @@
     }
 
     function f_day(count) {
-        addedbox.innerHTML = "";
+        if (count == 0 || count == undefined || count == null) {
+            addedbox.innerHTML = '';
+        } else {
+            addedbox.innerHTML = count + '일차 <button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>';
+        }
         day_count = count;
         makeSchedulePlace(count)
     }
@@ -964,7 +1021,8 @@
         }
 
         let html = "";
-
+        html += day + '일차';
+        html += '<button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>'
         for (let i = 0; i < Object.keys(schedule).length; i++) {
             let day_schedule = schedule[i];
             html += '<div class="draggable" draggable="true" id="plus' + i + '">';
@@ -984,6 +1042,8 @@
         }
 
         $('#addedbox').html(html);
+
+        // $('#addedbox').html(day + '일차');
 
     }
 

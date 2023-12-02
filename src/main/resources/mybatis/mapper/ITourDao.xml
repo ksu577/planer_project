@@ -42,4 +42,15 @@
         where
             share_id = #{id}
     </select>
+    <select id="sameTitleDao" resultType="com.study.plan.vo.PlanVo">
+        SELECT
+            id
+             , plan_title
+        FROM
+            plan
+        where
+            id = #{id}
+          AND
+            plan_title = #{title}
+    </select>
 </mapper>

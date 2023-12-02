@@ -31,6 +31,10 @@ public class TourController {
         if (user == null) {
             return "redirect:/login/login.wow";
         } else {
+            boolean sameYN = tourService.sameTitle(planTitle, user.getId());
+            if (sameYN == false){
+             return "/plan/alert";
+            }
             tourService.TourPlan(planTitle, user.getId());
             System.out.println(user.getId());
             return "redirect:/plan/plan.wow?planTitle=" + URLEncoder.encode(planTitle,"UTF-8");
