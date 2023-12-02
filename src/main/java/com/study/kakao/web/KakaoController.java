@@ -76,6 +76,9 @@ public class KakaoController {
 
         kakaoService.approval(pgToken, tid, userId);
 
+
+
+
         return "redirect:/shop/afterpay.wow";
     }
 

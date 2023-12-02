@@ -1,5 +1,6 @@
 package com.study.kakao.service;
 
+
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.study.cart.dao.CartDao;
 import com.study.cart.vo.CartVO;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.ibatis.annotations.One;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -36,9 +38,14 @@ public class KakaoService {
     private final ProductDao productDao;
     private final CartDao cartDao;
 
-    private final static String HOST = "https://kapi.kakao.com";
-    private final static String APP_KEY = "3c757d5ad8df5f534911c2a4f1504def";
-    private final static String C_ID = "TC0ONETIME";
+    @Value("#{util['kakao.pay.host']}")
+    private String HOST;
+
+    @Value("#{util['kakao.pay.key']}")
+    private String APP_KEY;
+
+    @Value("#{util['kakao.pay.cid']}")
+    private String C_ID;
 
     public Map<String, Object> approval(String pgToken, String tid, String userId) {
 
@@ -75,7 +82,7 @@ public class KakaoService {
 //            List<CartVO> cartList = cartDao.cartList(userId);
 //
 //            // 주문 정보 생성
-//            SaveCartVO order = new SaveCartVO();
+//            OrderVO order = new OrderVO();
 //            order.setUserId(userId);
 //            order.setTotalAmount(Integer.parseInt(kakaoPayResponse.get("total_amount").toString()));
 //            // 기타 주문 정보 설정...
@@ -86,7 +93,7 @@ public class KakaoService {
 //            // 주문 상세 정보 저장
 //            for (CartVO cart : cartList) {
 //                OrderDetailVO orderDetail = new OrderDetailVO();
-//                orderDetail.setOrderId(order.getOrderId()); 현재 없는거 이게 아마... save_num
+//                orderDetail.setOrderId(order.getOrderId()); 현재 없는거 => 우리는 이걸 save_num 쓰고 있긴함
 //                orderDetail.setProductId(cart.getProductId());
 //                orderDetail.setProductName(cart.getProductName());
 //                orderDetail.setPrice(cart.getPrice());

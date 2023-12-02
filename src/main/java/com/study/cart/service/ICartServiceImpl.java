@@ -51,11 +51,10 @@ public class ICartServiceImpl implements ICartService {
     public List<CartVO> listCart(String userId) {
         List<CartVO> temp = cartDao.cartList(userId);
 
-        for (int i = 0; i < temp.size(); i++) {
+        /*for (int i = 0; i < temp.size(); i++) {
             temp.get(i).setAmount(cartDao.getAmountinProduct(temp.get(i).getProductId())+temp.get(i).getAmount());
             System.out.println(temp.get(i).getProductId() + " : " + temp.get(i).getAmount());
-        }
-
+        }*/
 
         return temp;
     }

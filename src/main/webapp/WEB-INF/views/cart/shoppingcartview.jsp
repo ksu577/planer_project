@@ -121,21 +121,21 @@
     }
 
 
-    // document.getElementById('amount').addEventListener('input', function () {
-    //
-    //     const purchaseQuantity = parseInt(this.value);
-    //     const maxQuantity = parseInt($(this).attr("meta-amount"));
-    //
-    //     if (purchaseQuantity < 1 || purchaseQuantity > maxQuantity) {
-    //         alert('구매 수량은 1 이상 ' + maxQuantity + ' 이하여야 합니다.');
-    //         this.value = 1;
-    //     }
-    //
-    //     if (purchaseQuantity > maxQuantity) {
-    //         alert('죄송합니다. 현재 재고수량은 ' + maxQuantity + '개입니다.');
-    //         this.value = maxQuantity;
-    //     }
-    // });
+    document.getElementById('amount').addEventListener('input', function () {
+
+        const purchaseQuantity = parseInt(this.value);
+        const maxQuantity = parseInt($(this).attr("meta-amount"));
+
+        if (purchaseQuantity < 1 || purchaseQuantity > maxQuantity) {
+            alert('구매 수량은 1 이상 ' + maxQuantity + ' 이하여야 합니다.');
+            this.value = 1;
+        }
+
+        if (purchaseQuantity > maxQuantity) {
+            alert('죄송합니다. 현재 재고수량은 ' + maxQuantity + '개입니다.');
+            this.value = maxQuantity;
+        }
+    });
 
 
 

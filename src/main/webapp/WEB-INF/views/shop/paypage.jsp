@@ -137,7 +137,6 @@
                         <span> 가격 : ${cartItem.price * cartItem.amount} 원</span>
                         <hr>
                     </div>
-                </c:forEach>
                 <br>
                 <div class="mb-3 d-flex justify-content-between">
                     <span>총 상품금액 : ${sumMoney} 원</span>
@@ -149,6 +148,7 @@
                 </div>
                 <button type="button" class="btn btn-primary testbtn" style="width: 100%;" onclick="validationCheck()" id="testbtn">결제하기</button>
             </div>
+                </c:forEach>
     </div>
 </div>
 
@@ -192,7 +192,7 @@
             , type : "post"
             , contentType : "application/json"
             ,success: function (data) {
-                window.open(data.next_redirect_pc_url, "_blank", "width=500, height=700")
+                window.open(data.next_redirect_pc_url, "_blank", "width=500, height=700");
             },
             error: function (error) {
                 console.log(error);
