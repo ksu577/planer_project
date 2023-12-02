@@ -9,4 +9,5 @@ public interface ITourService {
     public void TourPlan(String tourTitle, String user);
     public List<TourVO> myPlan(String user);
     public List<ShareVO> sharePlan(String id);
+    public boolean sameTitle(String planTitle, String id);
 }

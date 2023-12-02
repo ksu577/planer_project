@@ -18,6 +18,13 @@
         }
 
         @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
             font-family: 'KCCChassam';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2') format('woff2');
             font-weight: normal;
@@ -70,6 +77,8 @@
             position: relative;
             width: 300px;
             text-align: center;
+            font-family: 'Pretendard-Regular';
+            font-size: 20px;
         }
 
 
@@ -104,7 +113,7 @@
 
         .selectplace-nav > div > div {
             margin-bottom: 50px;
-            height: 100px;
+            height: 120px;
             display: flex;
             justify-content: space-between;
             flex-direction: column;
@@ -119,6 +128,15 @@
 
         .selectplace-nav > div > div > div:first-child {
             font-size: 25px;
+        }
+
+        .selectplace-nav > div > div > div:nth-child(2) {
+            font-size: 17px;
+        }
+
+        .selectplace-nav > div > div > div:nth-child(3) {
+            font-family: 'KOTRAHOPE';
+            font-size: 15px;
         }
 
         .place-list > div {
@@ -165,6 +183,12 @@
         .atag {
             text-decoration: none;
             color: #1e1e1e;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -289,7 +313,8 @@
         };
 
     var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
+    let marker_list = [];
+    let polyline_list = [];
 
     $(document).on("click", ".day_count", function () {
 
@@ -316,10 +341,18 @@
             },
             success: function (result) {
                 let json_marker = result;
-                console.log(json_marker)
+                console.log(json_marker);
+
+                for (let i = 0; i < marker_list.length; i++) {
+                    marker_list[i].setMap(null);
+                }
+                for (let i = 0; i < polyline_list.length; i++) {
+                    console.log(polyline_list[i]);
+                    polyline_list[i].setMap(null);
+                }
 
 
-                var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+                // var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
                 var points = [];
 
@@ -339,6 +372,8 @@
                     // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
                     marker = new kakao.maps.Marker({position: points[i]});
                     marker.setMap(map);
+                    marker_list.push(marker);
+
 
                     // LatLngBounds 객체에 좌표를 추가합니다
                     bounds.extend(points[i]);
@@ -378,7 +413,8 @@
                         title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                         image: markerImage // 마커 이미지
                     });
-                }
+
+                    marker_list.push(marker);                }
 
                 // 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
 
@@ -408,6 +444,8 @@
                         strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
                         strokeStyle: 'solid' // 선의 스타일입니다
                     });
+
+                    polyline_list.push(polyline);
 
                     distance = Math.round(lineLine.getLength());
                     displayCircleDot(positions[i].latlng, distance);
@@ -450,36 +488,36 @@
                     if (result[i]["placeLoadAddress"].substring(0, 2) == "서울") {
                         p_img.src = flaticon + "/128/2195/2195482.png";
                     } else if (result[i]["placeLoadAddress"].substring(0, 2) == "대전") {
-                        p_img.src = flaticon + "/128/4670/4670781.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "경기") {
+                        p_img.src = flaticon + "/128/992/992710.png";
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "경기") {
                         p_img.src = flaticon + "/128/3048/3048352.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "충북") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "충북") {
                         p_img.src = flaticon + "/128/1150/1150353.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "세종") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "세종") {
                         p_img.src = flaticon + "/128/5789/5789257.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "전남") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "전남") {
                         p_img.src = flaticon + "/128/7389/7389073.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "강원") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "강원") {
                         p_img.src = flaticon + "/128/933/933248.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "충남") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "충남") {
                         p_img.src = flaticon + "/128/1146/1146825.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "전북") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "전북") {
                         p_img.src = flaticon + "/128/8269/8269621.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "제주") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "제주") {
                         p_img.src = flaticon + "/128/4789/4789874.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "부산") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "부산") {
                         p_img.src = flaticon + "/128/10641/10641465.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "대구") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "대구") {
                         p_img.src = flaticon + "/128/5139/5139161.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "인천") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "인천") {
                         p_img.src = flaticon + "/128/4244/4244785.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "광주") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "광주") {
                         p_img.src = flaticon + "/128/2861/2861698.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "울산") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "울산") {
                         p_img.src = flaticon + "/128/1045/1045140.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "경북") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "경북") {
                         p_img.src = flaticon + "/128/2639/2639378.png";
-                    }else if (result[i]["placeLoadAddress"].substring(0, 2) == "경남") {
+                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "경남") {
                         p_img.src = flaticon + "/128/2271/2271030.png";
                     }
                 }
