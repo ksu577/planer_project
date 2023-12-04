@@ -41,7 +41,7 @@
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <c:if test="${bnf==null}">
-<form action="memberModify.wow" method="get" enctype="multipart/form-data">
+<form action="memberEdit.wow" method="get" enctype="multipart/form-data">
     <div class="body-container">
         <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
              style="background-color: white; border-radius: 50px; border: 1px solid darkgray; width: 100px; height: 100px; transform: translate(900%, 250%)">
@@ -85,9 +85,7 @@
                     <td>${member.createDate} </td>
                 </tr>
                 <tr>
-                        <%--                    <td>--%>
-                        <%--                        <a href="memberEdit.wow?Id=${member.id}">수정</a>--%>
-                        <%--                    </td>--%>
+                    <input type="hidden" name="Id" value="${member.id}">
                     <td>
                         <button id="edit_btn" type="submit"
                                 style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;"

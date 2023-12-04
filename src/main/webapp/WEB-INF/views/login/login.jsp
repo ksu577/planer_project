@@ -18,7 +18,7 @@
     }
 
     .login-container {
-        width: 100vw;
+        width: 99.2vw;
         height: 100vh;
         background-color: rgba(220, 220, 220, 0.30);
         position: relative;
@@ -33,7 +33,7 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-47%, -39%);
+        transform: translate(-47%, -50%);
     }
 
     .login-logo {
@@ -122,9 +122,16 @@
         margin-top: 30px;
         font-size: 17px;
     }
+
+    .top-background{
+        height: 70px;
+        width: 100%;
+        background-color: #98dde3;
+    }
 </style>
 <%session.invalidate();%>
 <body>
+<div class="top-background"></div>
 
 <div class="login-container">
     <div class="login-box">
