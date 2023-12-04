@@ -288,9 +288,9 @@
             font-style: normal;
         }
 
-        #addedbox {
+        #addedbox > h1 {
+            margin: 20px;
             color: #06193d;
-            font-size: 50px;
             font-family: "yg-jalnan";
         }
 
@@ -578,7 +578,6 @@
             Array.from(data).forEach(item => {
                 console.log(item.x);
             })
-            // console.log(data[0].x);
 
             // 페이지 번호를 표출합니다
             displayPagination(pagination);
@@ -802,7 +801,6 @@
         //     }
         // }
 
-        console.log(returnBoolean);
 
         return returnBoolean;
     }
@@ -828,7 +826,6 @@
         enddate_date = new Date(enddate);
 
         diff = Math.ceil(((enddate_date - startdate_date) / (60 * 60 * 24) / 1000)) + 1;
-        console.log(diff)
 
 
         // const headerTag = document.createElement('h1');
@@ -840,19 +837,15 @@
         } else if (diff <= 0) {
             alert("시간을 거꾸로 할 수는 없습니다..;");
         } else if (!isSameDat(startdate_date, today)) {
-            console.log(checkFirst);
             if (checkFirst == false) {
-                console.log(checkFirst);
                 checkFirst = true;
-                console.log(checkFirst);
             } else {
                 alert("과거로 갈 수는 없습니다...");
             }
         } else {
             addedbox.classList.remove("d-none");
             if (diff < plan_Array.length) {
-                console.log(diff);
-                console.log(plan_Array.length);
+
                 for (let i = plan_Array.length; i > diff; --i) {
                     plan_Array.length = i;
                 }
@@ -875,7 +868,7 @@
         if (count == 0 || count == undefined || count == null) {
             addedbox.innerHTML = '';
         } else {
-            addedbox.innerHTML = count + '일차 <button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>';
+            addedbox.innerHTML = count + '<h1>일차</h1> <button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>';
         }
         day_count = count;
         makeSchedulePlace(count)
@@ -916,9 +909,6 @@
 
                 const addbox = $("#addedbox").find("div").find(".data");
 
-
-                console.log("addbox");
-                console.log(addbox);
 
                 for (let i = 0; i < addbox.length; i++) {
                     // init
@@ -1029,7 +1019,7 @@
         }
 
         let html = "";
-        html += day + '일차';
+        html += '<h1>' + day + '일차</h1>';
         html += '<button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>'
         for (let i = 0; i < Object.keys(schedule).length; i++) {
             let day_schedule = schedule[i];

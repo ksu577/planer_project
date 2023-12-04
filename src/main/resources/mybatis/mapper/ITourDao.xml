@@ -30,6 +30,7 @@
             plan
         WHERE
             id = #{USER}
+        AND del_yn = 'N'
     </select>
     <select id="sharePlan" resultType="com.study.plan.vo.ShareVO">
         SELECT

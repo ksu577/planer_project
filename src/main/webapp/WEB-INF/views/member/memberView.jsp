@@ -9,6 +9,13 @@
     <%@ include file="/WEB-INF/inc/header.jsp" %>
     <title>memberView</title>
 </head>
+<style>
+    .body-container {
+        height: 310px;
+        position: relative;
+        background-color: #98dde3;
+    }
+</style>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <c:if test="${bnf==null}">
