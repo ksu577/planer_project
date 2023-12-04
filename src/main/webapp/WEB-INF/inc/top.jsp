@@ -63,7 +63,7 @@
     <c:if test="${user!=null}">
         <span id="login_log" style="border-bottom: 1px solid white;">${user.name} 님, 환영합니다.</span>
 
-        <div class="btn-group">
+        <div class="btn-group" style="right: 10px">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
                 My page
