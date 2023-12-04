@@ -204,6 +204,11 @@
             <div class="place-btn">
                 <button class="btn btn-info w-75 h-75" onclick="f_return()">일정 홈</button>
             </div>
+            <c:if test="${user.getId() ne param.id}">
+                <div class="place-btn">
+                    <button class="btn btn-info w-75 h-75" onclick="f_shareDel()">공유취소</button>
+                </div>
+            </c:if>
             <c:if test="${user.getId() eq param.id}">
                 <div class="place-btn">
                     <button type="button" class="btn btn-info w-75 h-75" data-bs-toggle="modal"
@@ -274,6 +279,9 @@
     const day_div = document.getElementById("day");
     const tour_div = document.getElementById("select-box");
 
+    function f_shareDel(){
+        location.href = encodeURI("/plan/shareDel.wow?id=${param.id}&planTitle=${param.planTitle}&shareId=${user.getId()}")
+    }
 
     // 전송 버튼 동작
     function submitForm() {
@@ -466,9 +474,10 @@
                 }
 
                 map.setBounds(bounds);
-                console.log(result);
 
                 const flaticon = "https://cdn-icons-png.flaticon.com";
+
+                tour_div.innerHTML = result[0]["dayCount"] + "일차";
 
                 for (let i = 0; i < result.length; i++) {
                     tour_div.innerHTML += '<div>' +
