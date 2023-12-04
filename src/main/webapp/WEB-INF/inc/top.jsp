@@ -124,18 +124,20 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
 <script>
-    window.onscroll = function () {
-        scrollFunction()
-    };
+    window.onscroll = function() {scrollFunction()};
 
     function scrollFunction() {
         var navbar = document.getElementById("navbar");
+        var id = document.getElementById("login_log");
+
 
         // 현재 스크롤 위치가 20px 이상이면 배경 색상을 흰색으로 변경
         if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
             navbar.style.backgroundColor = "#b6d3e0"; // 원하는 색상으로 변경
+            id.style.color = "#000000";
         } else {
             navbar.style.backgroundColor = "transparent"; // 투명한 배경 색상으로 변경
+            id.style.color = "#ffffff";
         }
     }
 </script>
