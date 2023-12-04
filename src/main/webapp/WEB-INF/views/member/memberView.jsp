@@ -15,65 +15,88 @@
         position: relative;
         background-color: #98dde3;
     }
+
+    .my-container {
+        border: 1px solid #98dde3;
+        transform: translate(70%, 60%);
+        width: 800px;
+        height: 500px;
+        border-radius: 15px;
+    }
+
+    table {
+        transform: translate(50%, 10%);
+        width: 400px;
+        height: 400px;
+        font-size: 15px;
+        position: absolute;
+    }
+
+    input {
+        border: 1px solid #98dde3;
+        border-radius: 5px;
+    }
 </style>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <c:if test="${bnf==null}">
-    <div class="container" style="padding-top: 120px">
-        <table class="table table-striped table-bordered" style="font-size: 13px">
-            <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
-                 width="100px" height="100px"
-                 style="transform: translate(600%); border-radius: 50px; border: 1px solid gainsboro">
+    <div class="body-container">
+        <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
+             style="background-color: white; border-radius: 50px; border: 1px solid darkgray; width: 100px; height: 100px; transform: translate(900%, 250%)">
 
-            <div style="margin-top: 40px;">
-                <tr>
-                    <td>아이디</td>
-                    <td>${member.id} </td>
-                </tr>
-                <tr>
-                    <td>비밀번호</td>
-                    <td>${member.password} </td>
-                </tr>
-                <tr>
-                    <td>이름</td>
-                    <td>${member.name} </td>
-                </tr>
-                <tr>
-                    <td>생년월일</td>
-                    <td>${member.birth} </td>
-                </tr>
-                <tr>
-                    <td>주소</td>
-                    <td>${member.address} </td>
-                </tr>
-                <tr>
-                    <td>상세주소</td>
-                    <td>${member.address2} </td>
-                </tr>
-                <tr>
-                    <td>휴대전화번호</td>
-                    <td>${member.phnum} </td>
-                </tr>
-                <tr>
-                    <td>이메일</td>
-                    <td>${member.email} </td>
-                </tr>
-                <tr>
-                    <td>회원가입일</td>
-                    <td>${member.createDate} </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="memberEdit.wow?Id=${member.id}">수정</a>
-                    </td>
-                </tr>
-            </div>
-        </table>
+        <div class="my-container">
+            <table>
+            <tr>
+                <td>아이디</td>
+                <td>${member.id} </td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td>${member.password} </td>
+            </tr>
+            <tr>
+                <td>이름</td>
+                <td>${member.name} </td>
+            </tr>
+            <tr>
+                <td>생년월일</td>
+                <td>${member.birth} </td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td>${member.address} </td>
+            </tr>
+            <tr>
+                <td>상세주소</td>
+                <td>${member.address2} </td>
+            </tr>
+            <tr>
+                <td>휴대전화번호</td>
+                <td>${member.phnum} </td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td>${member.email} </td>
+            </tr>
+            <tr>
+                <td>회원가입일</td>
+                <td>${member.createDate} </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="memberEdit.wow?Id=${member.id}">수정</a>
+                </td>
+                <td>
+                    <button id="edit_btn" type="submit" style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;" formaction="memberEdit.wow?Id=${member.id}">수정</button>
+                </td>
+            </tr>
+            </table>
+        </div>
     </div>
 </c:if>
 
-<div class="paycontainer mt-3" style="transform: translate(16%)">
-    <div class="address col-md-8">
+<div class="paycontainer mt-3"  style="transform: translate(0%, 400%); padding-left: 100px; font-size: 15px;">
+    <div class="address col-md-8" style="transform: translate(20%, 350%)">
         <h2>최근 주문정보</h2>
         <hr>
         <form>
@@ -93,7 +116,7 @@
             </div>
         </form>
     </div>
-    <div class="bill col-md-8">
+    <div class="bill col-md-8" style="transform: translate(20%, 1150%)">
         <c:set var="totalAmount" value="0"/>
 
         <c:forEach items="${productinfo}" var="productinfo">
@@ -114,7 +137,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 </html>

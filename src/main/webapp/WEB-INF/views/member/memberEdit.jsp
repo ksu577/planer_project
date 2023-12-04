@@ -42,11 +42,11 @@
 
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
-<div class="body-container">
-    <form action="memberModify.wow" method="post" enctype="multipart/form-data">
+<form action="memberModify.wow" method="post" enctype="multipart/form-data">
+    <div class="body-container">
         <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
              id="profile"
-             style="background-color: white; border-radius: 50px;  border: 1px solid darkgray; width: 100px; height: 100px; transform: translate(900%, 250%)">
+             style="background-color: white; border-radius: 50px; border: 1px solid darkgray; width: 100px; height: 100px; transform: translate(900%, 250%)">
         <input type="file" name="file"
                style="font-size: 13px; cursor: pointer; transform: translate(330%, 950%);">
 
@@ -93,19 +93,28 @@
 
                 <tr>
                     <td>
-                        <button id="edit_btn" type="submit" style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;">적용</button>
+                        <button id="edit_btn" type="submit"
+                                style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;">
+                            적용
+                        </button>
                         <c:if test="${user.getRole() =='USER'}">
-                            <button id="delete_btn" type="submit" style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;" formaction="memberDelete.wow">탈퇴</button>
+                            <button id="delete_btn" type="submit"
+                                    style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;"
+                                    formaction="memberDelete.wow">탈퇴
+                            </button>
                         </c:if>
                         <c:if test="${user.getRole() =='MANAGER'}">
-                            <button id="delete_btn" type="submit" style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;" formaction="memberDelete.wow">삭제</button>
+                            <button id="delete_btn" type="submit"
+                                    style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;"
+                                    formaction="memberDelete.wow">삭제
+                            </button>
                         </c:if>
                     </td>
                 </tr>
             </table>
         </div>
-    </form>
-</div>
+    </div>
+</form>
 </body>
 <script>
     $("#delete_btn").on("click", function (e) {
