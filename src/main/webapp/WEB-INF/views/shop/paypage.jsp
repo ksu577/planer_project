@@ -103,7 +103,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="phoneNumber" class="form-label">휴대폰 번호</label>
-                    <input type="tel" class="form-control" name="takeHp" id="phoneNumber" placeholder="-를 제외한 숫자만 입력 (ex.01012345678)"
+                    <input type="tel" class="form-control" name="takeHp" id="phoneNumber"
+                           placeholder="-를 제외한 숫자만 입력 (ex.01012345678)"
                            value="${member.phnum}">
 
                 </div>
@@ -113,8 +114,10 @@
                     <input class="btn btn-primary mt-2" type="button" onclick="sample6_execDaumPostcode()"
                            value="우편번호 찾기"><br>
                     <input type="text" class="form-control mt-2" name="takeAdd" id="sample6_address" placeholder="주소">
-                    <input type="text" class="form-control" name="takeDetailAdd" id="sample6_detailAddress" placeholder="상세주소">
-                    <input type="text" class="form-control" name="takeAutoAdd" id="sample6_extraAddress" placeholder="참고항목">
+                    <input type="text" class="form-control" name="takeDetailAdd" id="sample6_detailAddress"
+                           placeholder="상세주소">
+                    <input type="text" class="form-control" name="takeAutoAdd" id="sample6_extraAddress"
+                           placeholder="참고항목">
                 </div>
                 <div class="mb-3">
                     <label for="deliveryRequest" name="takeReq" class="form-label">배송 요청 사항</label>
@@ -149,7 +152,9 @@
                 <div class="mb-3">
                     <span>결제 예정 금액 :  ${sumMoney + 3000}원</span>
                 </div>
-                <button type="button" class="btn btn-primary testbtn" style="width: 100%;" onclick="kpay()" id="testbtn">결제하기</button>
+                <button type="button" class="btn btn-primary testbtn" style="width: 100%;" onclick="kpay()"
+                        id="testbtn">결제하기
+                </button>
             </div>
         </form>
     </div>
@@ -158,24 +163,31 @@
 <%--https://postcode.map.daum.net/guide 다음우편주소api--%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-
     function kpay() {
-        $.ajax({
-            url:'/test/kakaopay.wow'
-            , dataType: 'json'
-            , type : "post"
-            , contentType : "application/json"
-            ,success: function (data) {
-                const msg = JSON.parse(data.message);
-                console.log(msg) // tid
-                const next_redirect_pc_url = msg.next_redirect_pc_url;
-                window.open(next_redirect_pc_url, "_blank", "width=500, height=700")
-            },
-            error: function (error) {
-                alert(error);
-            }
-        })
+        var takeAddValue = document.getElementById("sample6_address").value;
+        if (!takeAddValue || takeAddValue.trim() === "") {
+            alert('주소가 비었습니다.');
+            return false;
+        } else {
+            $.ajax({
+                url: '/test/kakaopay.wow',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                success: function (data) {
+                    const msg = JSON.parse(data.message);
+                    console.log(msg); // tid
+                    const next_redirect_pc_url = msg.next_redirect_pc_url;
+                    window.open(next_redirect_pc_url, "_blank", "width=500, height=700");
+
+                },
+                error: function (error) {
+                    alert(error);
+                }
+            });
+        }
     }
+
 
     function sample6_execDaumPostcode() {
         new daum.Postcode({
