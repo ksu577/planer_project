@@ -6,34 +6,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>loginpage</title>
     <%@include file="/WEB-INF/inc/header.jsp" %>
+    <title>비밀번호 변경</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 <style>
     body {
         margin: 0;
-        max-width: 2000px;
+        background-color: rgba(220, 220, 220, 0.30);
     }
 
     .container {
         padding-top: 70px;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(220, 220, 220, 0.30);
         position: relative;
     }
 
     .cover {
         border: 1px solid #98dde3;
-        width: 500px;
+        width: 510px;
         height: 500px;
-        transform: translate(80%, 50%);
-        border-radius: 10px;
-        position: absolute;
+        transform: translate(80%, 40%);
         background-color: white;
+        border-radius: 10px;
     }
 
     .cover > p {
@@ -92,15 +90,9 @@
         color: white;
     }
 
-    .message {
-        color: red;
-        margin-left: 110px;
-        margin-top: 15px;
-    }
-
 </style>
 <body>
-<%@ include file="/WEB-INF/inc/top.jsp" %>
+
 <div class="container">
     <form id="changeForm" action="/login/changePw.wow" method="post" enctype="multipart/form-data">
         <div class="cover">

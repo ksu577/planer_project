@@ -148,10 +148,26 @@
         color: white;
     }
 
+    .bingbing {
+        display: none;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+    }
+
+
 </style>
 <%session.invalidate();%>
 <body>
-
+<div class="overlay"></div>
 <div class="container">
     <div class="cover">
         <form id="searchId" action="/login/myId.wow" method="post">
@@ -170,6 +186,12 @@
             <button class="checkbtn" id="checkbtn" type="button"><p>찾기</p></button>
         </form>
     </div>
+    <div class="bingbing">
+        <div class="spinner-border" style="position: fixed; left: 50%; top: 50%; width: 4rem; height: 4rem;"
+             role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
 </div>
 
 </body>
@@ -180,6 +202,9 @@
 
 
     $("#emCheck").on("click", function (e) {
+        $(".bingbing").show();
+        $(".overlay").show();
+
         let testName = $("input[name='name']").val();
         let mailAddress = $("input[name='email']").val();
         $.ajax({
@@ -189,9 +214,13 @@
             , success: function (data) {
                 if (data == "error") {
                     alert("이름 또는 이메일을 확인해주세요");
+                    $(".bingbing").hide();
+                    $(".overlay").hide();
                     CheckEmailIdentify = false;
                 } else {
                     alert("전송되었습니다.");
+                    $(".bingbing").hide();
+                    $(".overlay").hide();
                     CheckEmailIdentify = true;
                 }
             }, error: function (err) {

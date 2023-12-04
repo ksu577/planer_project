@@ -67,7 +67,7 @@
 
 <div class="paycontainer mt-3" style="transform: translate(16%)">
     <div class="address col-md-8">
-        <h2>주문정보</h2>
+        <h2>최근 주문정보</h2>
         <hr>
         <form>
             <div class="mb-3">

@@ -12,7 +12,7 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/inc/top.jsp"%>
-	<div style="padding-top: 70px" class="container">
+	<div style="padding-top: 100px; transform: translate(20%)" class="container">
 		<div class="row col-md-8 col-md-offset-2">
 			<div class="page-header">
 				<h3>${resultMessageVO.title}</h3>

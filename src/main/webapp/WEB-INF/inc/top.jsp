@@ -12,13 +12,15 @@
 
     <style>
         .nav-bar {
+            background-color: transparent;
             font-size: 20px;
-            border: 1px solid red;
+            /*border: 1px solid red;*/
             height: 70px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to right, #b6d3e0, #65c4ea);
+            cursor: pointer;
+            transition: background-color 0.5s ease;
         }
 
         .navcategory a {
@@ -27,31 +29,16 @@
             padding: 30px;
         }
 
-        .navcategory {
-            display: flex;
-        }
-
         .btn-gruop-right {
             display: flex;
-
         }
-
-        .btn-gruop-right > a {
-            margin: 10px;
-        }
-
-        .name {
-            margin-right: -200px;
-        }
-
-
 
     </style>
 </head>
 <body>
 
 <!-- navbar 시작 -->
-<div class="nav-bar fixed-top">
+<div class="nav-bar fixed-top" id="navbar">
     <div class="homepagelogo">
         <img width="70px" height="70px"
              src="https://blogpfthumb-phinf.pstatic.net/MjAyMjEwMTZfMTI3/MDAxNjY1OTExMjQzOTEw.UVI-Y_plYDNPSB0xvcf94a312JWd-9G13TGbY5zFLQgg.rB78JXJkmCKSUYARca2qkLUu6NGqdlYCUoIsJ-wmIsAg.PNG.beatitude98/profileImage.png?type=w161"
@@ -60,54 +47,32 @@
     </div>
 
     <div class="navcategory">
-        <a href="/place/place.wow" style="padding-top: 57px "> 여행지 </a>
-        <a href="/shop/minishop.wow" style="padding-top: 57px "> 미니샵 </a>
-        <a href="/free/freeList.wow" style="padding-top: 57px "> 게시판 </a>
-
-        <c:if test="${user.getRole() =='MANAGER'}">
-            <li class="nav-item dropdown" style="padding-bottom: 25px">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false">
-                    회원관리
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="/ManagerPage/managerproduct">회원 목록</a></li>
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown"  style="" >
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false">
-                    상품관리
-                </a>
-                <ul class="dropdown-menu" >
-                    <li><a href="/ManagerPage/managerproduct">상품 목록</a></li>
-                    <li><a href="/product/productregist">상품 등록</a></li>
-                </ul>
-            </li>
-
-        </c:if>
-
+        <a href="/place/place.wow"> 여행지 </a>
+        <a href="/shop/minishop.wow"> 미니샵 </a>
+        <a href="/free/freeList.wow"> 게시판 </a>
     </div>
-
 
     <c:if test="${user==null}">
         <div class="btn-gruop-right">
-            <a href="/login/login.wow">로그인</a>
-
-            <a href="/member/memberForm.wow">회원가입</a>
+            <a href="/login/login.wow" style="text-decoration: none;">로그인</a>
+            &nbsp;&nbsp;
+            <a href="/member/memberForm.wow" style="text-decoration: none;">회원가입</a>&nbsp;
         </div>
     </c:if>
 
     <c:if test="${user!=null}">
-        <span class="name" id="login_log" style="border-bottom: 1px solid white;">${user.name} 님, 환영합니다.</span>
+        <span id="login_log" style="border-bottom: 1px solid white;">${user.name} 님, 환영합니다.</span>
 
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
                 My page
             </button>
+
             <ul class="dropdown-menu">
+                <c:if test="${user.getRole() =='MANAGER'}">
+                    <li><a class="dropdown-item" href="/ManagerPage/manager.wow"> 관리자 페이지 </a></li>
+                </c:if>
                 <li><a class="dropdown-item" href="/member/memberView.wow"> 내 정보 </a></li>
                 <li><a class="dropdown-item" href="/member/memberEdit.wow"> 회원 정보 수정 </a></li>
                 <li><a class="dropdown-item" href="/plan/myPlan.wow"> 나의 여행 일정 </a></li>
@@ -121,8 +86,23 @@
     </c:if>
 </div>
 <!-- navbar 끝 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
+<script>
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        var navbar = document.getElementById("navbar");
+
+        // 현재 스크롤 위치가 20px 이상이면 배경 색상을 흰색으로 변경
+        if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
+            navbar.style.backgroundColor = "#b6d3e0"; // 원하는 색상으로 변경
+        } else {
+            navbar.style.backgroundColor = "transparent"; // 투명한 배경 색상으로 변경
+        }
+    }
+</script>
 
 </body>

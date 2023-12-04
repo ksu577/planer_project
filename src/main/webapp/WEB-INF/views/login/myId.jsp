@@ -46,6 +46,15 @@
         margin-top: 50px;
     }
 
+    .findMe {
+        transform: translate(0%, 800%);
+        text-align: center;
+    }
+
+    .findMe > a {
+        font-size: 15px;
+        text-decoration: none;
+    }
 
 </style>
 
@@ -56,6 +65,10 @@
         <c:forEach items="${result}" var="result">
             <p class="idName"> ${result.id} </p>
         </c:forEach>
+        <div class="findMe">
+            <a href="/login/login.wow">로그인</a>&nbsp;&nbsp;&nbsp;
+            <a href="/login/findPw.wow">비밀번호 찾기</a>
+        </div>
     </div>
 </div>
 </body>

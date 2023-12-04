@@ -108,7 +108,6 @@
     }
 
     .findMe > a {
-        color: #606060;
         font-size: 15px;
         text-decoration: none;
     }
