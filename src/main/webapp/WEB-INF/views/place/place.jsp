@@ -25,6 +25,19 @@
             background-color: white;
         }
 
+
+        .cell {
+            background-color: rgb(255, 255, 255);
+            box-shadow: none; /* 초기에는 그림자 없음 */
+            transition: box-shadow 0.3s ease; /* 그림자에 트랜지션 효과 적용 */
+        }
+
+        .cell:hover {
+            border-radius: 20px;
+            box-shadow: 0px 0px 3px 2px rgb(135, 206, 250); /* 마우스 호버 시 그림자 나타남 */
+            transform: scale(1.1); /* 이미지 크기를 1.1배로 확대 */
+        }
+
         .place-box a {
             text-decoration: none;
         }

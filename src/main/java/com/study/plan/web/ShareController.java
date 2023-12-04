@@ -10,9 +10,7 @@ import com.study.plan.vo.ShareVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
@@ -65,6 +63,12 @@ public class ShareController {
         return result;
     }
 }*/
+
+    @GetMapping("plan/shareDel.wow")
+    public String shareDel (@RequestParam("id") String id,@RequestParam("planTitle") String planTitle, @RequestParam String shareId){
+        shareService.shareDel(id, planTitle, shareId);
+        return "redirect:/plan/myPlan.wow";
+    }
 
 
     @PostMapping("/share/plan")

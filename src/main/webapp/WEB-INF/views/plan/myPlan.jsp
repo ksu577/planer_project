@@ -65,6 +65,7 @@
                         ${myPlan.planTitle} 계획
                 </span>
                 </p>
+                <div>${myPlan.regDate}</div>
             </div>
         </c:forEach>
     </div>
@@ -97,6 +98,8 @@
         let id = $(this).data("id")
         location.href = encodeURI("/plan/marker.wow?planTitle=" + title + "&id=" + id);
     });
+
+
 </script>
 </body>
 </html>

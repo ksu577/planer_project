@@ -288,9 +288,9 @@
             font-style: normal;
         }
 
-        #addedbox {
+        #addedbox > h1 {
+            margin: 20px;
             color: #06193d;
-            font-size: 50px;
             font-family: "yg-jalnan";
         }
 
@@ -393,9 +393,10 @@
             top: 20px;
         }
 
-        .date{
+        .date {
             font-family: 'yg-jalnan';
         }
+
         .choice-box {
             padding-top: 30px;
         }
@@ -468,7 +469,7 @@
             <%--            <div class="day7 none" id="day7" onclick="f_day(7)">7일차</div>--%>
         </div>
         <div class="mg_btm" style="text-align: center; height: 50px">
-            <button type="button" class="h-100 w-75 btn btn-outline-secondary btn-block btn-lg" onclick="f_send()">저장
+            <button type="button" class="h-100 w-75 btn btn-outline-secondary btn-block btn-lg" onclick="f_send()">다음
             </button>
         </div>
     </div>
@@ -577,7 +578,6 @@
             Array.from(data).forEach(item => {
                 console.log(item.x);
             })
-            // console.log(data[0].x);
 
             // 페이지 번호를 표출합니다
             displayPagination(pagination);
@@ -789,16 +789,18 @@
 
         let returnBoolean = false;
 
-
-        if (start.getFullYear() >= today.getFullYear()) {
-            if (start.getMonth() >= today.getMonth()) {
-                if (start.getDate() > today.getDate()) {
-                    returnBoolean = true;
-                }
-            }
+        // 24/1/1
+        // 23/12/4
+        if (Math.ceil((startdate_date - today) / (60 * 60 * 24) / 1000) + 1) {
+            returnBoolean = true;
         }
+        // if (start.getFullYear() >= today.getFullYear()) {
+        //     if (start.getMonth() >= today.getMonth()) {
+        //         if (start.getDate() > today.getDate()) {
+        //         }
+        //     }
+        // }
 
-        console.log(returnBoolean);
 
         return returnBoolean;
     }
@@ -814,6 +816,11 @@
         const startdate = document.getElementById("startdate").value;
         const enddate = document.getElementById("enddate").value;
         const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth();
+        const date = today.getDate();
+        const realToday = year + "" + month + "" + date;
+
 
         startdate_date = new Date(startdate);
         enddate_date = new Date(enddate);
@@ -827,25 +834,20 @@
 
         if (diff > 8) {
             alert("8일 이상은 지정할 수 없습니다.");
-
         } else if (diff <= 0) {
             alert("시간을 거꾸로 할 수는 없습니다..;");
         } else if (!isSameDat(startdate_date, today)) {
-            console.log(checkFirst);
             if (checkFirst == false) {
-                console.log(checkFirst);
                 checkFirst = true;
-                console.log(checkFirst);
             } else {
                 alert("과거로 갈 수는 없습니다...");
             }
         } else {
-            addedbox.classList.remove("d-none")
+            addedbox.classList.remove("d-none");
             if (diff < plan_Array.length) {
-                console.log(diff);
-                console.log(plan_Array.length);
+
                 for (let i = plan_Array.length; i > diff; --i) {
-                    plan_Array.length = i
+                    plan_Array.length = i;
                 }
             }
             for (let i = 1; i <= diff; i++) {
@@ -854,23 +856,22 @@
         }
     }
 
-    function f_day(count) {
-        if (count == 0 || count == undefined || count == null) {
-            addedbox.innerHTML = '';
-        } else {
-            addedbox.innerHTML = count + '일차 <button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>';
-        }
-        day_count = count;
-        makeSchedulePlace(count)
-    }
-
-
     Date.prototype.yyyymmdd = function () {
         var yyyy = this.getFullYear().toString();
         var mm = (this.getMonth() + 1).toString();
         var dd = this.getDate().toString();
 
         return yyyy + "" + (mm[1] ? mm : '0' + mm[0]) + "" + (dd[1] ? dd : '0' + dd[0]);
+    }
+
+    function f_day(count) {
+        if (count == 0 || count == undefined || count == null) {
+            addedbox.innerHTML = '';
+        } else {
+            addedbox.innerHTML = count + '<h1>일차</h1> <button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>';
+        }
+        day_count = count;
+        makeSchedulePlace(count)
     }
 
 
@@ -908,9 +909,6 @@
 
                 const addbox = $("#addedbox").find("div").find(".data");
 
-
-                console.log("addbox");
-                console.log(addbox);
 
                 for (let i = 0; i < addbox.length; i++) {
                     // init
@@ -1021,7 +1019,7 @@
         }
 
         let html = "";
-        html += day + '일차';
+        html += '<h1>' + day + '일차</h1>';
         html += '<button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>'
         for (let i = 0; i < Object.keys(schedule).length; i++) {
             let day_schedule = schedule[i];

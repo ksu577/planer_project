@@ -10,7 +10,7 @@
 
 </body>
 <script>
-    alert("병신")
+    alert("이미 있는 제목입니다.")
     location.href = "plan/title.wow"
 </script>
 </html>

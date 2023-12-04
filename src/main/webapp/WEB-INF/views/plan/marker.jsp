@@ -111,6 +111,11 @@
             width: 100%;
         }
 
+        .place-list > h1 {
+            margin: 20px;
+            font-family: 'yg-jalnan';
+        }
+
         .selectplace-nav > div > div {
             margin-bottom: 50px;
             height: 120px;
@@ -204,6 +209,11 @@
             <div class="place-btn">
                 <button class="btn btn-info w-75 h-75" onclick="f_return()">일정 홈</button>
             </div>
+            <c:if test="${user.getId() ne param.id}">
+                <div class="place-btn">
+                    <button class="btn btn-info w-75 h-75" onclick="f_shareDel()">공유취소</button>
+                </div>
+            </c:if>
             <c:if test="${user.getId() eq param.id}">
                 <div class="place-btn">
                     <button type="button" class="btn btn-info w-75 h-75" data-bs-toggle="modal"
@@ -274,6 +284,9 @@
     const day_div = document.getElementById("day");
     const tour_div = document.getElementById("select-box");
 
+    function f_shareDel() {
+        location.href = encodeURI("/plan/shareDel.wow?id=${param.id}&planTitle=${param.planTitle}&shareId=${user.getId()}")
+    }
 
     // 전송 버튼 동작
     function submitForm() {
@@ -322,13 +335,13 @@
 
         let day_num = $(this).text();
         let regex = /[^0-9]/g;
-        let result = day_num.replace(regex, "");
-        console.log(result)
-        if (result == null || result == "") {
-            result = 0
+        let result1 = day_num.replace(regex, "");
+        console.log(result1)
+        if (result1 == null || result1 == "") {
+            result1 = 0
         }
 
-        console.log(result)
+        console.log(result1)
 
         $.ajax({
             url: "/plan/marker.wow",
@@ -336,7 +349,7 @@
             dataType: "json",
             data: {
                 "id": new URL(location.href).searchParams.get('id'),
-                "result": result,
+                "result": result1,
                 "title": title
             },
             success: function (result) {
@@ -414,7 +427,8 @@
                         image: markerImage // 마커 이미지
                     });
 
-                    marker_list.push(marker);                }
+                    marker_list.push(marker);
+                }
 
                 // 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
 
@@ -466,9 +480,14 @@
                 }
 
                 map.setBounds(bounds);
-                console.log(result);
 
                 const flaticon = "https://cdn-icons-png.flaticon.com";
+
+                if (result1 != 0) {
+                    tour_div.innerHTML = '<h1>' + result[0]["dayCount"] + "일차" + '</h1>';
+                } else {
+                    tour_div.innerHTML = '<h1>전체일정</h1>';
+                }
 
                 for (let i = 0; i < result.length; i++) {
                     tour_div.innerHTML += '<div>' +
