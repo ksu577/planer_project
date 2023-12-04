@@ -39,4 +39,5 @@
           AND SHARE_ID = #{shareId}
           AND DEL_YN = 'Y'
     </select>
+
 </mapper>

@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%
     request.setCharacterEncoding("UTF-8");
 
@@ -44,6 +46,19 @@
                 <th>작성자</th>
                 <td><input readonly type="text" name="id" class="form-control " value="<%= loggedInUserName %>"></td>
             </tr>
+            <c:if test="${planList ne null}">
+                <input type="hidden" name="planTitle" value="${planList[0].planTitle}">
+                <tr>
+                    <th>여행공유</th>
+                    <td>
+                        <ul>
+                            <c:forEach items="${planList}" var="planVo" varStatus="i">
+                                <li>${planVo.dayCount}일차 : ${planVo.placeName}(${planVo.placeLoadAddress})</li>
+                            </c:forEach>
+                        </ul>
+                    </td>
+                </tr>
+            </c:if>
             <tr>
                 <th>내용</th>
                 <td><textarea id="summernote" rows="10"  name="freeContext"> </textarea></td>
@@ -62,7 +77,7 @@
             </tr>
 
             <tr>
-                <td colspan="2">
+                <td>
                     <div class="pull-right">
 
                         <a href="freeList.wow" class="btn btn-info btn-sm"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp;목록으로

@@ -23,6 +23,8 @@ import com.study.exception.BizNotFoundException;
 import com.study.exception.BizPasswordNotMatchedException;
 import com.study.free.service.IFreeBoardService;
 import com.study.login.vo.UserVO;
+import com.study.plan.service.IPlanService;
+import com.study.plan.vo.PlanVo;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,8 @@ public class FreeController {
     ICommCodeService codeService;
     @Autowired
     IFreeBoardService freeBoardService;
+    @Autowired
+    IPlanService planService;
 
     @Autowired
     private StudyAttachUtils attachUtils;
@@ -98,6 +102,17 @@ public class FreeController {
             UserVO loginUser = (UserVO) session.getAttribute("user");
 
             boolean canEdit = loginUser != null && (loginUser.getId().equals(freeBoard.getId()) || loginUser.getRole().equals("MANAGER"));
+
+            List<PlanVo> planList = null;
+
+            if (freeBoard.getPlanTitle() != null) {
+                planList = planService.planView(freeBoard.getId(), freeBoard.getPlanTitle());
+                if (planList != null) {
+                    model.addAttribute("planList", planList);
+                }
+            }
+
+
 
             model.addAttribute("freeBoard", freeBoard);
             model.addAttribute("canEdit", canEdit);
@@ -172,6 +187,35 @@ public class FreeController {
         }
 
         return "free/freeForm";
+    }
+
+    @RequestMapping("/free/freeFormShare.wow")
+    public String freeFormShare(@RequestParam("title") String title, Model model, HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+
+        if (user == null || user.getId().equals("") || user.getId() == null || title == null || title.equals("")) {
+            ResultMessageVO msg = new ResultMessageVO();
+            msg.setMessage("올바르지 않은 요청입니다.<br>지속될경우 관리자에게 문의하세요.");
+            msg.setTitle("오류 발생");
+            return "common/message";
+        }
+
+        List<PlanVo> planList = planService.planView(user.getId(), title);
+
+        if (planList == null || planList.size() == 0) {
+            ResultMessageVO msg = new ResultMessageVO();
+            msg.setMessage("존재하지 않는 여행일정입니다.<br>지속될경우 관리자에게 문의하세요.");
+            msg.setTitle("오류 발생");
+            return "common/message";
+        }
+
+//        일차별 개수를 가지고 있는
+
+
+        model.addAttribute("planList", planList);
+
+        return "free/freeForm";
+
     }
 
     @PostMapping("/free/freeRegist.wow")

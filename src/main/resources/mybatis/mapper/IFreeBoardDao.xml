@@ -67,7 +67,7 @@
     <select id="getBoard" resultType="com.study.free.vo.FreeBoardVO" parameterType="int" resultMap="freeAttaches">
         SELECT id,free_num,free_context,
                create_date,update_date,view_rate,
-               free_like,title,notice
+               free_like,title,notice,plan_title
         FROM free_board
         where free_num=#{free_num}
     </select>
@@ -111,11 +111,11 @@
         INSERT INTO free_board (
         id, free_num, free_context,
         create_date, update_date, view_rate,
-        free_like, title, notice
+        free_like, title, notice, plan_title
         )VALUES (
             #{id}, #{freeNum}, #{freeContext},
         SYSDATE, SYSTIMESTAMP, #{viewRate},
-        #{freeLike}, #{title}, #{notice})
+        #{freeLike}, #{title}, #{notice}, #{planTitle})
 
     </insert>
 

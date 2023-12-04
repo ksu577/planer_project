@@ -202,7 +202,7 @@
 <div class="container1" onclick="f_drawer()">
     <div class="side-bar">
         <div class="box1">
-            <button type="button" class="btn btn-secondary h-100 w-75 day_count">전체일정</button>
+            <button type="button" id="all-plan" class="btn btn-secondary h-100 w-75 day_count">전체일정</button>
         </div>
         <div class="place" id="day"></div>
         <div class="btns">
@@ -219,6 +219,10 @@
                     <button type="button" class="btn btn-info w-75 h-75" data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
                             data-bs-whatever="@mdo">친구에게 공유하기
+                    </button>
+                </div>
+                <div class="place-btn">
+                    <button type="button" class="btn btn-info w-75 h-75" onclick="f_boshare()">게시판에 공유하기
                     </button>
                 </div>
                 <div class="place-btn">
@@ -246,18 +250,18 @@
 <!-- 모달 창 -->
 
 
-<form action="/share/plan" id="shareForm" method="post">
+<form action="/share/plan" id="shareForm" method="post" onsubmit="return false;">
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">친구 공유</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                            <label for="recipient-name" class="col-form-label">공유 아이디:</label>
                             <input type="text" class="form-control" name="shareId" id="recipient-name">
                             <input type="hidden" name="planTitle" value="${title}">
                             <input type="hidden" name="id" value="${user.getId()}">
@@ -310,6 +314,9 @@
 
     }
 
+    function f_boshare(){
+        location.href = "/free/freeFormShare.wow?title=${title}";
+    }
 
     function f_drawer() {
         v_drawer.classList.remove("d-none");
@@ -581,6 +588,9 @@
         location.href = encodeURI("/plan/plan.wow?planTitle=" + title + "");
     }
 
+    // "https://map.naver.com/p/search/"
+
+    document.getElementById("all-plan").click()
 </script>
 
 </html>
