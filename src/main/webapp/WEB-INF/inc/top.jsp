@@ -33,6 +33,16 @@
             display: flex;
         }
 
+        .manager-box {
+            display: flex;
+            list-style-type: none;
+        }
+
+
+        ul {
+            list-style: none;
+        }
+
     </style>
 </head>
 <body>
@@ -52,10 +62,36 @@
         <a href="/free/freeList.wow"> 게시판 </a>
     </div>
 
+    <div class="manager-box">
+        <c:if test="${user.getRole() =='MANAGER'}">
+
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false" style="height: 20px">
+                    회원관리
+                </a>
+                <ul class="dropdown-menu" STYLE="bottom: 100px">
+                    <li><a href="/member/memberList.wow">회원 목록</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-linK" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false" style="margin-left: 30px">
+                    상품관리</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/ManagerPage/managerproduct">상품 목록</a></li>
+                    <li><a href="/product/productregist">상품 등록</a></li>
+                </ul>
+            </li>
+
+        </c:if>
+    </div>
+
     <c:if test="${user==null}">
         <div class="btn-gruop-right">
             <a href="/login/login.wow" style="text-decoration: none;">로그인</a>
-            &nbsp;&nbsp;
+
             <a href="/member/memberForm.wow" style="text-decoration: none;">회원가입</a>&nbsp;
         </div>
     </c:if>
@@ -70,9 +106,6 @@
             </button>
 
             <ul class="dropdown-menu">
-                <c:if test="${user.getRole() =='MANAGER'}">
-                    <li><a class="dropdown-item" href="/ManagerPage/manager.wow"> 관리자 페이지 </a></li>
-                </c:if>
                 <li><a class="dropdown-item" href="/member/memberView.wow"> 내 정보 </a></li>
                 <li><a class="dropdown-item" href="/member/memberEdit.wow"> 회원 정보 수정 </a></li>
                 <li><a class="dropdown-item" href="/plan/myPlan.wow"> 나의 여행 일정 </a></li>
@@ -91,7 +124,9 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
 <script>
-    window.onscroll = function() {scrollFunction()};
+    window.onscroll = function () {
+        scrollFunction()
+    };
 
     function scrollFunction() {
         var navbar = document.getElementById("navbar");
