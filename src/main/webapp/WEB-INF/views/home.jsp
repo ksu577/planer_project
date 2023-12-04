@@ -174,6 +174,12 @@
         .go-trip {
             font-size: 50px;
             position: absolute;
+            transform: translate(100%, 1000%);
+        }
+
+        .go-trip2 {
+            font-size: 50px;
+            position: absolute;
             transform: translate(100%, 100%);
         }
 
@@ -199,6 +205,7 @@
                     </div>
                     <div class="cover1">
                         <p>여행을 준비하는 연준이는 <br> 순자산 3조를 통해 <br> 2시간을 아꼈어요!</p>
+                        <a class="go-trip" href="plan/title.wow">여행 가자!</a>
                     </div>
                 </div>
             </div>
@@ -208,6 +215,7 @@
                     <img src="/resources/img/부산야경.jpg" class="d-block w-100" alt="...">
                     <div class="cover2">
                         <p>The night view of <br> Busan is beautiful</p>
+                        <a class="go-trip" href="plan/title.wow">여행 가자!</a>
                     </div>
                 </div>
             </div>
@@ -217,6 +225,7 @@
                          class="d-block w-100" alt="...">
                     <div class="cover3">
                         <p>Experience <br> The best trip ever</p>
+                        <a class="go-trip" href="plan/title.wow">여행 가자!</a>
                     </div>
                 </div>
             </div>
@@ -238,7 +247,7 @@
 
 <div class="container4">
     <div class="ranking-container"></div>
-    <a class="go-trip" href="plan/title.wow">여행 가자!</a>
+    <a class="go-trip2" href="plan/title.wow">여행 가자!</a>
 </div>
 </body>
 <script>

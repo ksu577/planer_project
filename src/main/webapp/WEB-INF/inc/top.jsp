@@ -33,6 +33,11 @@
             display: flex;
         }
 
+        .login_log {
+            color: white;
+            transition: color 0.5s ease;
+        }
+
     </style>
 </head>
 <body>
@@ -61,7 +66,7 @@
     </c:if>
 
     <c:if test="${user!=null}">
-        <span id="login_log" style="border-bottom: 1px solid white;">${user.name} 님, 환영합니다.</span>
+        <span class="login_log" id="login_log" style="border-bottom: 1px solid white;">${user.name} 님, 환영합니다.</span>
 
         <div class="btn-group" style="right: 10px">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
@@ -95,12 +100,16 @@
 
     function scrollFunction() {
         var navbar = document.getElementById("navbar");
+        var id = document.getElementById("login_log");
+
 
         // 현재 스크롤 위치가 20px 이상이면 배경 색상을 흰색으로 변경
         if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
             navbar.style.backgroundColor = "#b6d3e0"; // 원하는 색상으로 변경
+            id.style.color = "#000000";
         } else {
             navbar.style.backgroundColor = "transparent"; // 투명한 배경 색상으로 변경
+            id.style.color = "#ffffff";
         }
     }
 </script>
