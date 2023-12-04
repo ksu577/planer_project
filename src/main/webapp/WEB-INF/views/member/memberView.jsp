@@ -9,23 +9,45 @@
     <%@ include file="/WEB-INF/inc/header.jsp" %>
     <title>memberView</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
     .body-container {
         height: 310px;
         position: relative;
         background-color: #98dde3;
     }
+
+    .my-container {
+        border: 1px solid #98dde3;
+        transform: translate(70%, 60%);
+        width: 800px;
+        height: 500px;
+        border-radius: 15px;
+    }
+
+    table {
+        transform: translate(50%, 10%);
+        width: 400px;
+        height: 400px;
+        font-size: 15px;
+        position: absolute;
+    }
+
+    input {
+        border: 1px solid #98dde3;
+        border-radius: 5px;
+    }
 </style>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <c:if test="${bnf==null}">
-    <div class="container" style="padding-top: 120px">
-        <table class="table table-striped table-bordered" style="font-size: 13px">
-            <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
-                 width="100px" height="100px"
-                 style="transform: translate(600%); border-radius: 50px; border: 1px solid gainsboro">
+<form action="memberModify.wow" method="get" enctype="multipart/form-data">
+    <div class="body-container">
+        <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
+             style="background-color: white; border-radius: 50px; border: 1px solid darkgray; width: 100px; height: 100px; transform: translate(900%, 250%)">
 
-            <div style="margin-top: 40px;">
+        <div class="my-container">
+            <table>
                 <tr>
                     <td>아이디</td>
                     <td>${member.id} </td>
@@ -63,58 +85,69 @@
                     <td>${member.createDate} </td>
                 </tr>
                 <tr>
+                        <%--                    <td>--%>
+                        <%--                        <a href="memberEdit.wow?Id=${member.id}">수정</a>--%>
+                        <%--                    </td>--%>
                     <td>
-                        <a href="memberEdit.wow?Id=${member.id}">수정</a>
+                        <button id="edit_btn" type="submit"
+                                style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;"
+                                formaction="memberEdit.wow?Id=${member.id}">수정
+                        </button>
                     </td>
                 </tr>
-            </div>
-        </table>
+            </table>
+        </div>
     </div>
-</c:if>
+    </c:if>
 
-<div class="paycontainer mt-3" style="transform: translate(16%)">
-    <div class="address col-md-8">
-        <h2>최근 주문정보</h2>
-        <hr>
-        <form>
+    <div class="paycontainer mt-3" style="transform: translate(0%, 400%); padding-left: 100px; font-size: 15px;">
+        <div class="address col-md-8" style="transform: translate(20%, 350%)">
+            <h2>최근 주문정보</h2>
+            <hr>
+            <form>
+                <div class="mb-3">
+                    <span>수령인 : ${userinfo.takeName}</span>
+                </div>
+                <div class="mb-3">
+                    <span> 연락처 : ${userinfo.takeHp} </span>
+
+                </div>
+                <div class="mb-3">
+                    <span>배송지 : ${userinfo.takeAdd}</span>
+                </div>
+
+                <div class="mb-3">
+                    <span>배송 메모 : ${userinfo.takeReq}</span>
+                </div>
+            </form>
+        </div>
+        <div class="bill col-md-8" style="transform: translate(20%, 1150%)">
+            <c:set var="totalAmount" value="0"/>
+
+            <c:forEach items="${productinfo}" var="productinfo">
+                <div class="mb-3" style="display: flex; flex-direction: column;">
+                    <span>상품명 : ${productinfo.productName} </span>
+                    <hr>
+                    <span>개수 : ${productinfo.amount} 개</span>
+                    <span>상품금액 : ${productinfo.price} 원</span>
+                    <hr>
+                </div>
+                <c:set var="totalAmount" value="${totalAmount + productinfo.price}"/>
+            </c:forEach>
+            <hr>
             <div class="mb-3">
-                <span>수령인 : ${userinfo.takeName}</span>
-            </div>
-            <div class="mb-3">
-                <span> 연락처 : ${userinfo.takeHp} </span>
+                <div class="mb-3" style="display: flex; flex-direction: column;">
 
-            </div>
-            <div class="mb-3">
-                <span>배송지 : ${userinfo.takeAdd}</span>
-            </div>
-
-            <div class="mb-3">
-                <span>배송 메모 : ${userinfo.takeReq}</span>
-            </div>
-        </form>
-    </div>
-    <div class="bill col-md-8">
-        <c:set var="totalAmount" value="0"/>
-
-        <c:forEach items="${productinfo}" var="productinfo">
-            <div class="mb-3" style="display: flex; flex-direction: column;">
-                <span>상품명 : ${productinfo.productName} </span>
-                <hr>
-                <span>개수 : ${productinfo.amount} 개</span>
-                <span>상품금액 : ${productinfo.price} 원</span>
-                <hr>
-            </div>
-            <c:set var="totalAmount" value="${totalAmount + productinfo.price}"/>
-        </c:forEach>
-        <hr>
-        <div class="mb-3">
-            <div class="mb-3" style="display: flex; flex-direction: column;">
-
-                <span>결제된 금액 : 총액 ${totalAmount} 원</span>
+                    <span>결제된 금액 : 총액 ${totalAmount} 원</span>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</div>
+</form>
 </body>
+<script>
+    $("#edit_btn").on("click", function (e) {
+        document.getElementById('edit_btn').submit();
+    })
+</script>
 </html>
