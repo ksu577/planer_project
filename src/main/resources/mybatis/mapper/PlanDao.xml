@@ -80,11 +80,6 @@
         group by place_name , place_load_address
         order by count(place_name) DESC
     </select>
-    <select id="shareId" resultType="java.lang.String">
-
-    </select>
-
-
     <update id="planYn">
         UPDATE user_plan
         SET delete_yn = 'N'

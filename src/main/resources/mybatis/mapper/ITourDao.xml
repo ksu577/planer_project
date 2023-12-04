@@ -41,6 +41,8 @@
             share_plan
         where
             share_id = #{id}
+        AND
+            del_yn = 'Y'
     </select>
     <select id="sameTitleDao" resultType="com.study.plan.vo.PlanVo">
         SELECT

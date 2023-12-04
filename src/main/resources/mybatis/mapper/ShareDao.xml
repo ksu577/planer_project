@@ -14,6 +14,16 @@
                )
 
     </insert>
+    <update id="shareDelDao">
+        UPDATE share_plan
+        SET
+            DEL_YN = 'N'
+        WHERE
+            id = #{id}
+          AND plan_title = #{title}
+          AND share_id = #{shareId}
+          AND del_yn = 'Y'
+    </update>
     <select id="memberCheck" resultType="java.lang.Integer">
         SELECT COUNT(*)
         FROM MEMBER

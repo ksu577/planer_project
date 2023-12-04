@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 public class ShareService {
+
     @Autowired
     ShareDao shareDao;
 
@@ -34,6 +35,9 @@ public class ShareService {
             if (memberCheck != 1) {
                 return "없는 아이디입니다";
             }
+            if (shareVO.getId().equals(shareVO.getShareId())){
+                return "본인은 공유할 수 없습니다";
+            }
             int shareInsertService = shareDao.insertShare(shareVO);
             if (shareInsertService != 1) {
                 throw new BizNotEffectedException();
@@ -43,5 +47,9 @@ public class ShareService {
 
         return "이미 공유된 사람입니다";
 
+    }
+
+    public void shareDel(String id, String planTitle, String shareId) {
+        shareDao.shareDelDao(id, planTitle, shareId);
     }
 }
