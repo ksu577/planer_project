@@ -164,12 +164,20 @@
             display: none;
         }
 
+        .top-background{
+            height: 70px;
+            background-color: #98dde3;
+        }
+
     </style>
 
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 
+<div class="top-background">
+
+</div>
 <div class="container">
     <div class="selectcategory">
         <div class="btn-group">
