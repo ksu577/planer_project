@@ -33,7 +33,7 @@ public class placecontroller {
     public String placeList(PlaceVO placeVO, Model model) {
         List<PlaceVO> placeList = placeService.getplaceList(placeVO);
         model.addAttribute("placeList", placeList);
-        return "place/place";
+        return "/place/place";
     }
 
     // 2. 장소 상세 (모달창으로)
