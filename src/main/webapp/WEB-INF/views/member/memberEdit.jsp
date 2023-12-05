@@ -38,6 +38,17 @@
         border-radius: 5px;
     }
 
+    input[type=file]::file-selector-button {
+        background-color: #0d6efd;
+        border: 1px solid white;
+        color: white;
+        border-radius: 5px;
+        width: 192px;
+        height: 40px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
 </style>
 
 <body>
@@ -48,7 +59,7 @@
              id="profile"
              style="background-color: white; border-radius: 75px; border: 10px solid white; width: 150px; height: 150px; transform: translate(590%, 160%)">
         <input type="file" name="file"
-               style="font-size: 13px; cursor: pointer; transform: translate(330%, 950%);">
+               style="transform: translate(447%, 580%);">
 
         <div class="my-container">
             <table>

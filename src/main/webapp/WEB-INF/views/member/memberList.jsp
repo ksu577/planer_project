@@ -91,7 +91,7 @@
             <td style="background-color: #98dde3; color: white; border: 1px solid white;">휴대전화번호</td>
             <td style="background-color: #98dde3; color: white; border: 1px solid white;">이메일</td>
             <td style="background-color: #98dde3; color: white; border: 1px solid white;">회원가입일</td>
-            <td style="background-color: #98dde3; color: white; border: 1px solid white;">삭제</td>
+            <td style="background-color: #98dde3; color: white; border: 1px solid white;">삭 제</td>
             <td hidden="true">삭제여부</td>
         </tr>
         </thead>
@@ -109,9 +109,9 @@
                 <td style="background-color: white; border: 1px solid #98dde3;">${member.createDate}</td>
                 <td style="border: 1px solid #98dde3;">
                     <form action="memberDelete.wow" method="post" enctype="multipart/form-data">
-                        <button class="delete_btn" type="button" formaction="memberDelete.wow?Id=${member.id}"
-                                style="width: 50px; height: 30px; border: 1px solid #98dde3; border-radius: 5px; background-color: white;">
-                            삭제
+                        <button id="delete_btn" class="delete_btn" type="submit" formaction="memberDelete.wow?Id=${member.id}"
+                                style="width: 50px; height: 30px; border: 1px solid white; border-radius: 5px; background-color: #0d6efd; color: white;">
+                            삭 제
                         </button>
                     </form>
                 </td>
@@ -146,9 +146,9 @@
 </body>
 <script>
     $(".delete_btn").on("click", function () {
-        if (confirm("ID : ${member.id} 회원을 삭제 하시겠습니까?")) {
+        if (confirm("회원을 삭제 하시겠습니까?")) {
             alert("삭제 되었습니다.");
-            $(this).closest('form').submit();
+            document.getElementById('delete_btn').submit();
         } else {
             return false;
         }
