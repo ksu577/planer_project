@@ -21,6 +21,16 @@ public class FreeBoardVO {
     private String thumbnailImagePath;
     private String notice;
     private int commentCount;
+    private String planTitle;
+
+
+    public String getPlanTitle() {
+        return planTitle;
+    }
+
+    public void setPlanTitle(String planTitle) {
+        this.planTitle = planTitle;
+    }
 
     public int getCommentCount() {
         return commentCount;

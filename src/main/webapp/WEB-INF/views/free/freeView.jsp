@@ -64,6 +64,18 @@
             <td>작성자</td>
             <td>${freeBoard.id }</td>
         </tr>
+        <c:if test="${planList ne null}">
+            <tr>
+                <th>여행공유</th>
+                <td>
+                    <ul>
+                        <c:forEach items="${planList}" var="planVo" varStatus="i">
+                            <li>${planVo.dayCount}일차 : ${planVo.placeName}(${planVo.placeLoadAddress})</li>
+                        </c:forEach>
+                    </ul>
+                </td>
+            </tr>
+        </c:if>
         <tr>
             <td>내용</td>
             <td>

@@ -19,21 +19,21 @@
         </if>
     </sql>
 
-    <update id="updateCommentCount" parameterType="int">
-        update free_board b
-        set b.comment_count = (select count(free_num)
-                               from free_board_comment
-                               where free_num = #{free_num})
-        where b.free_num = #{free_num}
-    </update>
+<update id="updateCommentCount" parameterType="int">
+    update free_board b
+    set b.comment_count = (select count(free_num)
+                           from free_board_comment
+                           where free_num=#{free_num})
+    where b.free_num=#{free_num}
+</update>
 
 
     <select id="getTotalRowCount" resultType="int" parameterType="java.util.Map">
-        SELECT count(*)
+        SELECT  count(*)
         FROM free_board
         WHERE 1=1
         AND bo_del_yn='N'
-        <include refid="searchInFree"/>
+        <include refid="searchInFree"  />
     </select>
 
     <select id="getBoardList" resultType="com.study.free.vo.FreeBoardVO" resultMap="freeAttaches">
@@ -65,18 +65,13 @@
     </resultMap>
 
     <select id="getBoard" resultType="com.study.free.vo.FreeBoardVO" parameterType="int" resultMap="freeAttaches">
-        SELECT id,
-               free_num,
-               free_context,
-               create_date,
-               update_date,
-               view_rate,
-               free_like,
-               title,
-               notice
+        SELECT id,free_num,free_context,
+               create_date,update_date,view_rate,
+               free_like,title,notice,plan_title
         FROM free_board
-        where free_num = #{free_num}
+        where free_num=#{free_num}
     </select>
+
 
 
     <update id="updateBoard"
@@ -94,13 +89,18 @@
         WHERE free_num = #{freeNum}
     </update>
 
+    <update id="updateLike" parameterType="map">
+        UPDATE free_board
+        SET free_like = CASE WHEN free_like = 1 THEN 0 ELSE 1 END
+        WHERE free_num = #{freeNum}
+    </update>
+
 
     <delete id="deleteBoard"
             parameterType="com.study.free.vo.FreeBoardVO">
         UPDATE free_board
         SET bo_del_yn = 'Y'
-        WHERE free_num = #{freeNum, jdbcType=INTEGER}
-          AND bo_del_yn = 'N'
+        WHERE free_num = #{freeNum, jdbcType=INTEGER} AND bo_del_yn = 'N'
     </delete>
 
 
@@ -111,11 +111,11 @@
         INSERT INTO free_board (
         id, free_num, free_context,
         create_date, update_date, view_rate,
-        free_like, title, notice
+        free_like, title, notice, plan_title
         )VALUES (
-        #{id}, #{freeNum}, #{freeContext},
+            #{id}, #{freeNum}, #{freeContext},
         SYSDATE, SYSTIMESTAMP, #{viewRate},
-        #{freeLike}, #{title}, #{notice})
+        #{freeLike}, #{title}, #{notice}, #{planTitle})
 
     </insert>
 

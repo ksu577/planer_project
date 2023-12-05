@@ -24,9 +24,14 @@
         }
 
         .navcategory a {
+            color: black;
             text-decoration: none;
             margin: 10px;
             padding: 30px;
+        }
+
+        .btn-gruop-right a{
+            color: white;
         }
 
         .btn-gruop-right {
@@ -50,10 +55,11 @@
 <!-- navbar 시작 -->
 <div class="nav-bar fixed-top" id="navbar">
     <div class="homepagelogo">
-        <img width="70px" height="70px"
-             src="https://blogpfthumb-phinf.pstatic.net/MjAyMjEwMTZfMTI3/MDAxNjY1OTExMjQzOTEw.UVI-Y_plYDNPSB0xvcf94a312JWd-9G13TGbY5zFLQgg.rB78JXJkmCKSUYARca2qkLUu6NGqdlYCUoIsJ-wmIsAg.PNG.beatitude98/profileImage.png?type=w161"
-             alt="">
-        <a href="/"> 왼쪽엔 홈페이지 로고 </a>
+        <img width="100px" height="100px"
+             src="https://media.discordapp.net/attachments/1161840837647421475/1181133924332752956/marker-001.png?ex=657ff3af&is=656d7eaf&hm=bcaefc7a3c5f2dfb414d16ffe8be49dc15d9a2b7a673e23536598c8c10ca7e09&=&format=webp&quality=lossless&width=625&height=625"
+             alt=""
+             onclick="location.href='/'"
+        >
     </div>
 
     <div class="navcategory">
@@ -133,7 +139,8 @@
 
         // 현재 스크롤 위치가 20px 이상이면 배경 색상을 흰색으로 변경
         if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
-            navbar.style.backgroundColor = "#b6d3e0"; // 원하는 색상으로 변경
+            // navbar.style.backgroundColor = "#b6d3e0"; // 원하는 색상으로 변경
+            navbar.style.backgroundColor = "#ffffff"; // 원하는 색상으로 변경
             id.style.color = "#000000";
         } else {
             navbar.style.backgroundColor = "transparent"; // 투명한 배경 색상으로 변경

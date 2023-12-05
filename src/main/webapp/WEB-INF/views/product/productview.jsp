@@ -67,10 +67,21 @@
             width: 100%;
             height: 35px;
         }
+
+            .top-background{
+                height: 70px;
+                background-color: #98dde3;
+            }
+
     </style>
+
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
+
+<div class="top-background">
+
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-6">

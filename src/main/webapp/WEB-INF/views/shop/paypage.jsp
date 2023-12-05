@@ -80,11 +80,22 @@
             .address, .bill {
                 width: 100%;
             }
+
+            .top-backgroun{
+                height: 70px;
+                background-color: #98dde3;
+            }
+
         }
+
     </style>
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
+
+
+<div class="top-backgroun">
+</div>
 
 <div class="container">
 

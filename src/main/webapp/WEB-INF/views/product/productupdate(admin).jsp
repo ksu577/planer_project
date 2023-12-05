@@ -41,19 +41,20 @@
                 padding: 20px;
             }
 
-            .product-options {
-                margin-top: 20px;
+            .top-background{
+                height: 70px;
+                background-color: #98dde3;
             }
 
-            .product-quantity {
-                margin-top: 10px;
-            }
         </style>
-
 
     </head>
     <body>
     <%@include file="/WEB-INF/inc/top.jsp" %>
+
+    <div class="top-background">
+
+    </div>
     <div class="container">
         <h1 class="text-center">상품 상세 페이지</h1>
         <form action="/product/productModify(admin)" method="post"  enctype="multipart/form-data">

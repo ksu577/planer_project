@@ -31,6 +31,7 @@ public class ShareService {
         int checkAlready = shareDao.checkAlready(shareVO);
 
 
+
         if (checkAlready == 0) {
             if (memberCheck != 1) {
                 return "없는 아이디입니다";

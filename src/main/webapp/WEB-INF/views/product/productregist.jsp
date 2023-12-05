@@ -11,6 +11,7 @@
         .container {
             width: 80%;
             margin: auto;
+            padding-top: 30px;
         }
 
         .form-container {
@@ -20,6 +21,10 @@
             border-radius: 5px;
         }
 
+        .top-background{
+            height: 70px;
+            background-color: #98dde3;
+        }
 
     </style>
 
@@ -27,8 +32,8 @@
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 
-
-
+<div class="top-background">
+</div>
 <div class="container">
     <h1 class="text-center">상품 등록</h1>
     <div class="form-container" >

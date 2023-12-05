@@ -68,6 +68,11 @@
       margin-bottom: 15px;
     }
 
+    .top-background{
+      height: 70px;
+      background-color: #98dde3;
+    }
+
     .mb-3 {
       margin-bottom: 15px;
     }
@@ -75,7 +80,10 @@
 
 </head>
 <body>
+
 <%@ include file="/WEB-INF/inc/top.jsp" %>
+<div class="top-background">
+</div>
 <div class="container">
 
 

@@ -5,6 +5,42 @@
     <% request.setCharacterEncoding("UTF-8"); %>
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <style>
+
+        @font-face {
+            font-family: 'yg-jalnan';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'JalnanGothic';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'KCCChassam';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'KOTRAHOPE';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         .mp-title {
             color: #333;
             text-align: center;
@@ -12,9 +48,9 @@
         }
 
         .schedule {
-            background-color: #fff;
+            background-color: #fcfcfd;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 1px 5px 1px #98dde3;
             padding: 20px;
             margin-top: 30px;
             margin-bottom: 30px;
@@ -22,8 +58,12 @@
             width: 300px;
             text-align: center;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
         }
-        .schedule-container{
+
+        .schedule-container {
             display: flex;
         }
 
@@ -40,32 +80,54 @@
             z-index: 1;
         }
 
-        .schedule > p {
+        .schedule > div > p {
             font-size: 15px;
             cursor: pointer;
+            font-family: 'yg-jalnan';
         }
 
         .mp-span {
             font-weight: bold;
             color: #007bff;
         }
+
+        h2 {
+            font-family: 'JalnanGothic';
+        }
+
+        .top {
+            height: 300px;
+            background-color: #98dde3;
+        }
+
+        .regdate {
+            font-family: 'Pretendard-Regular';
+            font-size: 13px;
+            color: #797979;
+        }
     </style>
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
+<div class="top">
+</div>
 <div class="container">
-
-    <h2 class="mp-title">나의 일정</h2>
+    <h2 class="mp-title">${user.getName()}님의 일정</h2>
     <div class="schedule-container" id="scheduleContainer">
         <!-- 동적으로 생성될 나의 일정이 여기에 들어갑니다. -->
         <c:forEach items="${myPlan}" var="myPlan">
             <div class="schedule" data-title="${myPlan.planTitle}" data-id="${myPlan.id}">
-                <p>
-                <span class="mp-span" >
-                        ${myPlan.planTitle} 계획
+                <div>
+                    <img src="/resources/img/planG.png" width="70px" height="70px">
+                </div>
+                <div>
+                    <p>
+                <span class="mp-span">
+                        ${myPlan.planTitle}
                 </span>
-                </p>
-                <div>${myPlan.regDate}</div>
+                    </p>
+                    <div id="regdate" class="regdate">작성일 : ${myPlan.regDate}</div>
+                </div>
             </div>
         </c:forEach>
     </div>
@@ -75,31 +137,29 @@
     <div class="schedule-container" id="sharedScheduleContainer">
         <c:forEach items="${sharedPlans}" var="sharedPlan">
             <div class="schedule" data-title="${sharedPlan.planTitle}" data-id="${sharedPlan.id}">
-                <p>
-                <span class="mp-span" >
-                        ${sharedPlan.id}의 ${sharedPlan.planTitle} 계획
+                <div>
+                    <img src="/resources/img/shareG.png" width="70px" height="70px">
+                </div>
+                <div>
+                    <p>
+                <span class="mp-span">
+                        ${sharedPlan.id}의 ${sharedPlan.planTitle}
                 </span>
-                </p>
+                    </p>
+                </div>
             </div>
         </c:forEach>
     </div>
 </div>
 
 <script>
-
-
-    // 나의 일정을 추가
-
-
-    // 공유된 일정을 추가
-
     $(document).on("click", ".schedule", function () {
         let title = $(this).data("title")
         let id = $(this).data("id")
         location.href = encodeURI("/plan/marker.wow?planTitle=" + title + "&id=" + id);
     });
-
-
+    const regdate = document.getElementById("regdate")
+    regdate.innerHTML = regdate.innerHTML.substring(0,16)
 </script>
 </body>
 </html>

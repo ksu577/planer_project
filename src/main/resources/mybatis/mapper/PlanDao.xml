@@ -15,26 +15,21 @@
                               , place_load_address
                               , plan_hp
                               , plan_title)
-        VALUES (
-                #{id}
+        VALUES ( #{id}
                , place_num_seq.nextval
                , #{placeName}
                , #{xlab}, #{ylab}, #{placeAddress}, #{startDate}
                , #{endDate}, #{dayCount}, #{placeLoadAddress}, #{planHp}
-               , #{planTitle}
-               )
+               , #{planTitle})
     </insert>
     <delete id="deletePlan">
-        update
+        update plan
         SET del_yn = 'Y'
-        WHERE
-            id = #{id}
-        AND
-            plan_title = #{title}
+        WHERE id = #{id}
+          AND plan_title = #{title}
     </delete>
     <select id="getPlan" resultType="com.study.plan.vo.PlanVo">
-        SELECT
-            id
+        SELECT id
              , place_name
              , xlab
              , ylab
@@ -44,23 +39,21 @@
              , day_count
              , place_load_address
              , plan_hp
-        , plan_title
-        FROM
-            user_plan
-        WHERE
-            id = #{id}
+             , plan_title
+        FROM user_plan
+        WHERE id = #{id}
           AND plan_title = #{title}
-        AND delete_yn = 'Y'
+          AND delete_yn = 'Y'
         ORDER BY day_count, place_num
     </select>
 
     <select id="planMarkerDao" resultType="com.study.plan.vo.PlanVo">
         SELECT
-            id , place_name , xlab
-             , ylab , place_address , start_date
-             , end_date , day_count , place_load_address , plan_hp , plan_title
+        id , place_name , xlab
+        , ylab , place_address , start_date
+        , end_date , day_count , place_load_address , plan_hp , plan_title
         FROM
-            user_plan
+        user_plan
         WHERE id = #{id}
         AND plan_title = #{title}
         AND delete_yn = 'Y'
@@ -73,13 +66,15 @@
     </select>
 
     <select id="topPlan" resultType="com.study.plan.vo.PlanVo">
-        SELECT
-            place_name, place_load_address, count(place_name) as count
+        SELECT place_name,
+               place_load_address,
+               count(place_name) as count
         FROM
             user_plan
-        group by place_name , place_load_address
-        order by count(place_name) DESC
+        group by place_name, place_load_address
+        order by count (place_name) DESC
     </select>
+
     <update id="planYn">
         UPDATE user_plan
         SET delete_yn = 'N'
