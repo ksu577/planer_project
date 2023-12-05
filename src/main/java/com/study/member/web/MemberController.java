@@ -131,7 +131,7 @@ public class MemberController {
         resultMessageVO.messageSetting(true, "수정", "회원정보가 수정되었습니다."
                 , "/member/memberList.wow", "목록으로");
         model.addAttribute("resultMessageVO", resultMessageVO);
-        return "common/message";
+        return "redirect:/member/memberView.wow";
     }
 
 

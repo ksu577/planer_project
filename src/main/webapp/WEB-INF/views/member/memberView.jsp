@@ -47,7 +47,7 @@
 <form action="memberEdit.wow" method="get" enctype="multipart/form-data">
     <div class="body-container">
         <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
-             style="background-color: white; border-radius: 50px; border: 1px solid darkgray; width: 100px; height: 100px; transform: translate(900%, 250%)">
+             style="background-color: white; border-radius: 75px; border: 10px solid white; width: 150px; height: 150px; transform: translate(590%, 160%)">
 
         <div class="my-container">
             <table>
@@ -91,7 +91,7 @@
                     <input type="hidden" name="Id" value="${member.id}">
                     <td>
                         <button id="edit_btn" type="submit"
-                                style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;"
+                                style="width: 80px; height: 30px; border-radius: 5px; background-color: #0d6efd; border: 1px solid white; color: white"
                                 formaction="memberEdit.wow?Id=${member.id}">수정
                         </button>
                     </td>

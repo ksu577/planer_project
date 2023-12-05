@@ -15,13 +15,13 @@
 	<div style="padding-top: 100px; transform: translate(20%)" class="container">
 		<div class="row col-md-8 col-md-offset-2">
 			<div class="page-header">
-				<h3>${resultMessageVO.title}</h3>
+				<h1>${resultMessageVO.title}</h1>
 			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
+			<div class="panel panel-default" style="border: 1px solid #98dde3; border-radius: 10px; background-color: #98dde3;">
+				<div class="panel-heading" style="font-size: 15px; border-radius: 10px; background-color: #98dde3;">
 					<p>${resultMessageVO.message}</p>
 				</div>
-				<div class="panel-body">
+				<div class="panel-body"	>
 					<a href="${pageContext.request.contextPath}/"
 						class="btn btn-primary"> 
 						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
