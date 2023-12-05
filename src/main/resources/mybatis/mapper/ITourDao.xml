@@ -11,7 +11,6 @@
         ) VALUES (
                      #{user}, #{tourTitle} , sysdate
                  )
-
     </insert>
 
     <select id="getPlanTitle" resultType="String">
@@ -22,16 +21,13 @@
     </select>
 
     <select id="myPlanDao" resultType="com.study.plan.vo.TourVO">
-        SELECT
-            id
+        SELECT id
              , plan_title
              , reg_date
-        FROM
-            plan
-        WHERE
-            id = #{USER}
-        AND del_yn = 'N'
+        FROM plan
+        WHERE id = #{USER}
     </select>
+
     <select id="sharePlan" resultType="com.study.plan.vo.ShareVO">
         SELECT
             id
@@ -42,9 +38,8 @@
             share_plan
         where
             share_id = #{id}
-        AND
-            del_yn = 'Y'
     </select>
+
     <select id="sameTitleDao" resultType="com.study.plan.vo.PlanVo">
         SELECT
             id
@@ -53,7 +48,7 @@
             plan
         where
             id = #{id}
-          AND
+        AND
             plan_title = #{title}
     </select>
 </mapper>

@@ -15,14 +15,15 @@
 
     </insert>
     <update id="shareDelDao">
-        UPDATE share_plan
-        SET
-            DEL_YN = 'N'
+        delete
+        from share_plan
         WHERE
-            id = #{id}
-          AND plan_title = #{title}
-          AND share_id = #{shareId}
-          AND del_yn = 'Y'
+        id = #{id}
+        AND plan_title = #{title}
+        <if test="shareId != null">
+            AND share_id = #{shareId}
+        </if>
+        AND del_yn = 'Y'
     </update>
     <select id="memberCheck" resultType="java.lang.Integer">
         SELECT COUNT(*)

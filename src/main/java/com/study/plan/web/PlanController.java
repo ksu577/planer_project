@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.study.login.vo.UserVO;
 import com.study.plan.service.IPlanService;
 import com.study.plan.service.ITourService;
+import com.study.plan.service.ShareService;
 import com.study.plan.vo.PlanVo;
 import com.study.plan.vo.ShareVO;
 import com.study.plan.vo.TourVO;
@@ -32,6 +33,9 @@ public class PlanController {
 
     @Autowired
     ITourService tourService;
+
+    @Autowired
+    ShareService shareService;
 
     Logger logger = LoggerFactory.getLogger(PlanController.class);
 
@@ -125,6 +129,9 @@ public class PlanController {
     public String planDelete(@RequestParam("title") String title, HttpSession session){
         UserVO user = (UserVO) session.getAttribute("user");
         planService.deletePlan(title, user.getId());
+        planService.updateYn(title, user.getId());
+        shareService.shareDel(user.getId() ,title, null);
+
         return "redirect:/plan/myPlan.wow?user="+ user.getId();
     }
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.study.plan.dao.PlanDao">
-
     <insert id="insertPlan" parameterType="com.study.plan.vo.PlanVo">
         INSERT INTO user_plan ( id
                               , place_num
@@ -23,8 +22,8 @@
                , #{planTitle})
     </insert>
     <delete id="deletePlan">
-        update plan
-        SET del_yn = 'Y'
+        delete
+        from plan
         WHERE id = #{id}
           AND plan_title = #{title}
     </delete>

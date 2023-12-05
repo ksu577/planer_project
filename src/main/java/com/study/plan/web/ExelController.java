@@ -3,9 +3,8 @@ package com.study.plan.web;
 import com.study.login.vo.UserVO;
 import com.study.plan.service.ExelService;
 import com.study.plan.vo.PlanVo;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,36 +31,47 @@ public class ExelController {
         Cell cell = null;
         wb = new XSSFWorkbook();
         sheet = wb.createSheet(URLEncoder.encode(title));
+        XSSFCellStyle style = wb.createCellStyle();
+        style.setFillForegroundColor(IndexedColors.YELLOW.getIndex()); //배경색
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        Font font = wb.createFont();
 
+        // 폰트 스타일 설정
+        font = wb.createFont();
+        font.setBoldweight(font.BOLDWEIGHT_BOLD); // 굵게
+        font.setFontHeightInPoints((short) 20); // 크기 20포인트
+        font.setColor(IndexedColors.BLUE.getIndex()); // 파란색
+        style.setFont(font);
 
         List<PlanVo> planExel = exelService.getPlanExel(title, id);
 
         // row(행) 생성
-        row = sheet.createRow(0); //0번째 행
-        cell = row.createCell(0);
+        row = sheet.createRow(1); // 0번째 행
+        cell = row.createCell(1);
         cell.setCellValue(title);
+        cell.setCellStyle(style);
 
-        row = sheet.createRow(1);
-        cell = row.createCell(0);
-        cell.setCellValue(planExel.get(0).getStartDate().substring(0,10));
+        row = sheet.createRow(3);
         cell = row.createCell(1);
-        cell.setCellValue(planExel.get(0).getEndDate().substring(0,10));
-
-        row = sheet.createRow(3); //3번째 행
-        cell = row.createCell(0);
-        cell.setCellValue("day");
-        cell = row.createCell(1);
-        cell.setCellValue("장소");
+        cell.setCellValue(planExel.get(0).getStartDate().substring(0, 10)); // 출발날짜
         cell = row.createCell(2);
+        cell.setCellValue(planExel.get(0).getEndDate().substring(0, 10)); // 도착날짜
+
+        row = sheet.createRow(5); //3번째 행
+        cell = row.createCell(1);
+        cell.setCellValue("day");
+        cell = row.createCell(2);
+        cell.setCellValue("장소");
+        cell = row.createCell(3);
         cell.setCellValue("주소");
 
         for (int i = 0; i < planExel.size(); i++) {
-            row=sheet.createRow(i+4);  //4번째 행
-            cell = row.createCell(0);
-            cell.setCellValue(planExel.get(i).getDayCount() + "일차");
+            row = sheet.createRow(i + 7 + planExel.get(i).getDayCount());  //4번째 행
             cell = row.createCell(1);
-            cell.setCellValue(planExel.get(i).getPlaceName());
+            cell.setCellValue(planExel.get(i).getDayCount() + "일차");
             cell = row.createCell(2);
+            cell.setCellValue(planExel.get(i).getPlaceName());
+            cell = row.createCell(3);
             cell.setCellValue(planExel.get(i).getPlaceLoadAddress());
         }
 
