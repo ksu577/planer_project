@@ -109,7 +109,7 @@
                 <td style="background-color: white; border: 1px solid #98dde3;">${member.createDate}</td>
                 <td style="border: 1px solid #98dde3;">
                     <form action="memberDelete.wow" method="post" enctype="multipart/form-data">
-                        <button id="delete_btn" type="submit" formaction="memberDelete.wow?Id=${member.id}"
+                        <button class="delete_btn" type="button" formaction="memberDelete.wow?Id=${member.id}"
                                 style="width: 50px; height: 30px; border: 1px solid #98dde3; border-radius: 5px; background-color: white;">
                             삭제
                         </button>
@@ -145,10 +145,10 @@
 <%--</c:if>--%>
 </body>
 <script>
-    $("#delete_btn").on("click", function (e) {
-        if (confirm("ID : ${member.id} 회원을 삭제 하시겠습니까?") == true) {
+    $(".delete_btn").on("click", function () {
+        if (confirm("ID : ${member.id} 회원을 삭제 하시겠습니까?")) {
             alert("삭제 되었습니다.");
-            document.getElementById('delete_btn').submit();
+            $(this).closest('form').submit();
         } else {
             return false;
         }

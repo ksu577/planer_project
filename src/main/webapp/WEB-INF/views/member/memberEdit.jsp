@@ -98,13 +98,13 @@
                             적용
                         </button>
                         <c:if test="${user.getRole() =='USER'}">
-                            <button id="delete_btn" type="submit"
+                            <button class="delete_btn" type="submit"
                                     style="width: 80px; height: 30px; color: white; border-radius: 5px; background-color: #0d6efd; border: 1px solid white;"
                                     formaction="memberDelete.wow">탈퇴
                             </button>
                         </c:if>
                         <c:if test="${user.getRole() =='MANAGER'}">
-                            <button id="delete_btn2" type="submit"
+                            <button class="delete_btn2" type="submit"
                                     style="width: 80px; height: 30px; color: white; border-radius: 5px; background-color: #0d6efd; border: 1px solid white;"
                                     formaction="memberDelete.wow">삭제
                             </button>
@@ -117,7 +117,7 @@
 </form>
 </body>
 <script>
-    $("#delete_btn").on("click", function (e) {
+    $(".delete_btn").on("click", function (e) {
         if (confirm("탈퇴 하시겠습니까?") == true) {
             alert("탈퇴 되었습니다.");
             document.getElementById('delete_btn').submit();
@@ -126,7 +126,7 @@
         }
     })
 
-    $("#delete_btn2").on("click", function (e) {
+    $(".delete_btn2").on("click", function (e) {
         if (confirm("ID : ${member.id} 회원을 삭제 하시겠습니까?") == true) {
             alert("삭제 되었습니다.");
             document.getElementById('delete_btn2').submit();
