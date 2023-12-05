@@ -29,7 +29,7 @@
         .cell {
             background-color: rgb(255, 255, 255);
             box-shadow: none; /* 초기에는 그림자 없음 */
-            transition: box-shadow 0.3s ease; /* 그림자에 트랜지션 효과 적용 */
+            transition: box-shadow 0.3s ease, transform 0.5s ease; /* 그림자에 트랜지션 효과 적용 */
         }
 
         .cell > .bottom > h1{
@@ -38,7 +38,7 @@
 
         .cell:hover {
             border-radius: 20px;
-            box-shadow: 0px 0px 3px 2px rgb(135, 206, 250); /* 마우스 호버 시 그림자 나타남 */
+            /*box-shadow: 0px 0px 3px 2px rgb(135, 206, 250); !* 마우스 호버 시 그림자 나타남 *!*/
             transform: scale(1.1); /* 이미지 크기를 1.1배로 확대 */
         }
 
@@ -68,10 +68,12 @@
 
         .top > img {
             border-radius: 20px;
-            /*box-shadow: 10px 100px 30px 0px #50c8cd;*/
-            /*box-shadow: 0px 0px 10px 10px gainsboro; 원래 기존 그림자 색상*/
-            /*box-shadow: 10px 100px 30px 0px #0ea5e9;*/
         }
+
+        .top > img:hover{
+            box-shadow: 0px 0px 3px 3px rgb(135, 206, 250); /* 마우스 호버 시 그림자 나타남 */
+        }
+
 
         .bottom {
             text-align: center;

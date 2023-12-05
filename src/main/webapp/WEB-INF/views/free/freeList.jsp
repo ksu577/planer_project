@@ -101,6 +101,7 @@
             margin: 0;
             padding: 0 20px;
             width: 193px;
+            height: 300px;
             overflow: hidden;
             border: 1px solid red;
             position: relative;
@@ -154,6 +155,10 @@
             padding: 6px 0 6px 20px;
             width: 181px;
             vertical-align: top;
+        }
+
+        #side2m li a{
+            font-size: 1.5em;
         }
 
         .page-header {

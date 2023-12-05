@@ -22,6 +22,11 @@
             padding-top: 70px;
         }
 
+        .top-background{
+            height: 70px;
+            background-color: #98dde3;
+        }
+
         .content-container {
             width: 100%;
             box-sizing: border-box;
@@ -31,10 +36,6 @@
             width: 100%;
             word-wrap: break-word;
         }
-        .custom-input{
-            width: auto;
-            height: auto;
-        }
     </style>
 
     <title>자유게시판 - 글 보기</title>
@@ -42,13 +43,17 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
+
+<div class="top-background">
+
+</div>
 <div class="container">
     <div class="page-header">
         <h3>
             자유게시판 - <small>글 보기</small>
         </h3>
-<%--        <div id="likeButton" onclick="toggleLike(${freeBoard.freeNum})">❤️</div>--%>
-<%--        <div id="likeStatus">현재 좋아요 상태: <span id="likeStatusLabel">${freeBoard.freeLike}</span></div>--%>
+        <div id="likeButton" onclick="toggleLike(${freeBoard.freeNum})">좋아❤️</div>
+        <div id="likeStatus">현재 좋아요 상태: <span id="likeStatusLabel">${freeBoard.freeLike}</span></div>
     </div>
     <table id="viewPage" class="table table-striped table-bordered">
         <tbody>

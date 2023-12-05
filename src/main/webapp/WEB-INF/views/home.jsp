@@ -37,6 +37,7 @@
             height: 80%;
             position: relative;
             transform: translate(220%, 20%);
+            z-index: 1;
         }
 
         .cover1 {
@@ -192,10 +193,6 @@
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
-<%-- 1. 절벽바다 밝진않음/ 한국이아님.  https://img.freepik.com/free-photo/sunset-over-majestic-coastal-cliff-waves-breaking-generative-ai_188544-12582.jpg?w=1380&t=st=1701418451~exp=1701419051~hmac=a9421e8ed86a1d50b75c6d3687d4b14c2b11f8e551effeb5d1504c6e4c92fc60--%>
-<%-- 2. 부산야경 어두운편  https://img.freepik.com/free-photo/view-of-downtown-cityscape-at-dongjak-bridge-and-seoul-tower-over-han-river-in-seoul-south-korea_335224-511.jpg?w=1380&t=st=1701414043~exp=1701414643~hmac=f10e2934cdfdff3af8de2519144b9c19ba9b2d2c4b30948f2f4977e8d560eb0f--%>
-<%-- 3. 북한산 나쁘지않음   https://img.freepik.com/free-photo/bukhansan-mountains-is-covered-by-morning-fog-and-sunrise-in-bukhansan-national-park-seoul-in-south-korea_335224-305.jpg?w=1480&t=st=1701419608~exp=1701420208~hmac=3b866924035540a70e56462affa51cf27b6e0c71664a7aa49b979ea7058cf7ef--%>
-<%-- 4. 오로라 애매함 https://img.freepik.com/free-photo/beautiful-landscape-with-aurora-borealis_23-2150439618.jpg?w=1380&t=st=1701419917~exp=1701420517~hmac=7bc1b5caa172a77d7299fed6a221c2a8dc5946ee5de685f4f0f0efa6f743c2ee--%>
 <div class="container1">
     <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
@@ -250,6 +247,8 @@
     <div class="ranking-container"></div>
     <a class="go-trip2" href="plan/title.wow">여행 가자!</a>
 </div>
+
+
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
