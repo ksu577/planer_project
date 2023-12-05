@@ -1,7 +1,7 @@
 <%@ page import="com.study.login.vo.UserVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%
@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <%@include file="/WEB-INF/inc/header.jsp" %>
+    <%@ include file="/WEB-INF/inc/header.jsp" %>
     <script src="${pageContext.request.contextPath}/resource/smarteditor/summernote-lite.js"></script>
     <script src="${pageContext.request.contextPath}/resource/smarteditor/js/summernote/lang/summernote-ko-KR.js"></script>
 
@@ -61,7 +61,7 @@
             </c:if>
             <tr>
                 <th>내용</th>
-                <td><textarea id="summernote" rows="10"  name="freeContext"> </textarea></td>
+                <td><textarea id="summernote" rows="10"  name="freeContext"></textarea></td>
             </tr>
 
             <tr>
@@ -77,7 +77,7 @@
             </tr>
 
             <tr>
-                <td>
+                <td colspan="2">
                     <div class="pull-right">
 
                         <a href="freeList.wow" class="btn btn-info btn-sm"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> &nbsp;목록으로
@@ -107,31 +107,20 @@
             focus: true,
             lang: "ko-KR",
             toolbar: [
-                // 글꼴 설정
                 ['fontname', ['fontname']],
-                // 글자 크기 설정
                 ['fontsize', ['fontsize']],
-                // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
                 ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-                // 글자색
                 ['color', ['forecolor','color']],
-                // 표만들기
                 ['table', ['table']],
-                // 글머리 기호, 번호매기기, 문단정렬
                 ['para', ['ul', 'ol', 'paragraph']],
-                // 줄간격
                 ['height', ['height']],
-                // 그림첨부, 링크만들기, 동영상첨부
                 ['insert',['picture','link','video']],
-                // 코드보기, 확대해서보기, 도움말
                 ['view', ['codeview','fullscreen', 'help']]
             ],
-            // 추가한 글꼴
             fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
-            // 추가한 폰트사이즈
             fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
             placeholder: '최대 2048자까지 쓸수 있습니다.',
-            collback: {
+            callback: {
                 onImageUpload: function (files, editor, welEditable){
                     for (var i = files.length -1; i >= 0; i--){
                         uploadSummernoteImageFile(files[i], this);
@@ -139,7 +128,6 @@
                 }
             }
         });
-        $('#summernote').summernote(setting);
     });
 
     function uploadSummernoteImageFile(file, editor){
@@ -172,24 +160,21 @@
         $(this).closest('div').remove();
     });
 
-    // 목록 링크 클릭
     $('.btn-info').click(function() {
         if (!confirm('목록으로 돌아가시겠습니까?')) {
-            return false; // 목록으로의 이동을 취소함
+            return false;
         }
     });
 
-    // 저장 버튼 클릭
     $('button.btn-primary').click(function() {
         if (!confirm('등록하시겠습니까?')) {
-            return false; // 저장을 취소함
+            return false;
         }
     });
 
-    // 삭제 버튼 클릭
     $('button.btn-danger').click(function() {
         if (!confirm('정말로 삭제하시겠습니까?')) {
-            return false; // 삭제를 취소함
+            return false;
         }
     });
 </script>

@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-<%@ include file="/WEB-INF/inc/top.jsp" %>
+<%--<%@ include file="/WEB-INF/inc/top.jsp" %>--%>
 
 <div class="container">
     <div class="page-header">
