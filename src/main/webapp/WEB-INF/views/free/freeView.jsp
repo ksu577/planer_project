@@ -47,8 +47,8 @@
         <h3>
             자유게시판 - <small>글 보기</small>
         </h3>
-        <div id="likeButton" onclick="toggleLike(${freeBoard.freeNum})">❤️</div>
-        <div id="likeStatus">현재 좋아요 상태: <span id="likeStatusLabel">${freeBoard.freeLike}</span></div>
+<%--        <div id="likeButton" onclick="toggleLike(${freeBoard.freeNum})">❤️</div>--%>
+<%--        <div id="likeStatus">현재 좋아요 상태: <span id="likeStatusLabel">${freeBoard.freeLike}</span></div>--%>
     </div>
     <table id="viewPage" class="table table-striped table-bordered">
         <tbody>
@@ -93,9 +93,9 @@
                         <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ${f.atchOriginalName}
                     </a> Size : ${f.atchFancySize} Down : ${f.atchDownHit}
 
-<%--                        <img alt=""--%>
-<%--                             src="<%=request.getContextPath()%>/attach/showImg.wow?fileName=${f.atchFileName}&filePath=${f.atchPath}"--%>
-<%--                             width="750px" height="500px">--%>
+                            <%--                        <img alt=""--%>
+                            <%--                             src="<%=request.getContextPath()%>/attach/showImg.wow?fileName=${f.atchFileName}&filePath=${f.atchPath}"--%>
+                            <%--                             width="750px" height="500px">--%>
                     </div>
                 </c:forEach>
             </td>
@@ -133,7 +133,7 @@
             <form name="frm_reply" action="/comment/commentRegist.wow" method="post">
                 <input type="hidden" name="freeNum" value="${freeBoard.freeNum}">
                 <input
-                type="hidden" name="id" value="${USER_INFO.user }">
+                        type="hidden" name="id" value="${USER_INFO.user }">
                 <div class="form-group">
                     <label class="col-sm-2  control-label">댓글</label>
                     <div class="col-sm-8">
@@ -141,7 +141,7 @@
                     </div>
                     <div class="col-sm-2">
                         <button id="btn_reply_regist" type="button"
-                        class="btn btn-sm btn-info">등록
+                                class="btn btn-sm btn-info">등록
                         </button>
                     </div>
                 </div>

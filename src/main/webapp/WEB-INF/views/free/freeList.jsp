@@ -14,13 +14,50 @@
 
     <!-- 추가된 스타일과 스크립트 -->
     <style type="text/css">
+
+        .top-background{
+            height: 70px;
+            background-color: #98dde3;
+        }
+
+        body a {
+            text-decoration: none; /* 밑줄 제거 */
+            color: inherit; /* 링크의 기본 색상 유지 */
+        }
+
+        .panel-body {
+            background-color: #98dde3; /* 배경색 설정 */
+        }
+
+        #mainList {
+            background-color: #ffffff;
+        }
+
+
         #noticeTable {
             margin: auto;
+        }
+
+
+        #noticeTable td {
+            color: #0f0f0f; /* 글자 색깔 */
+            font-size: 12px; /* 글자 크기 */
+        }
+
+        #freeTable td {
+            color:#5e5e5e ; /* 글자 색깔 */
+            font-size: 12px; /* 글자 크기 */
         }
 
         #noticeTable tbody tr {
             display: table-row;
             text-align: center;
+        }
+
+        #noticeTable th {
+            background-color: #98dde3; /* 헤더 배경색 */
+            color: #ffffff; /* 글자 색깔 */
+            font-size: 12px; /* 글자 크기 */
         }
 
         #noticeTable thead tr {
@@ -35,7 +72,7 @@
         }
 
         #noticeTable tbody tr:nth-child(odd) {
-            background-color: #f2f2f2;
+            background-color: #0f0f0f;
         }
 
         #noticeTable td {
@@ -68,6 +105,9 @@
             border: 1px solid red;
             position: relative;
             right: 15%;
+        }
+        #side_title{
+            background-color: #98dde3;
         }
 
         .skip {
@@ -199,6 +239,11 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
+
+<div class="top-background">
+
+</div>
+
 <div class="container">
 
     <!-- START : 검색 폼  -->
@@ -278,7 +323,7 @@
         </div>
 
 
-        <table id="noticeTable" class="table table-striped table-bordered table-hover">
+        <table id="noticeTable" class="table table table-bordered table-hover">
             <thead>
             <tr>
                 <th>글번호</th>
@@ -300,7 +345,7 @@
         </table>
 
 
-        <table id="freeTable" class="table table-striped table-bordered table-hover">
+        <table id="freeTable" class="table table table-bordered table-hover">
             <colgroup>
                 <col width="5%"/>
                 <col width="10%"/>

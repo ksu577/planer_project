@@ -94,7 +94,7 @@ public class FreeController {
                            HttpSession session,
                            @RequestParam(name = "freeNum") int freeNum) throws Exception {
         FreeBoardVO freeBoard = freeBoardService.getBoard(freeNum);
-        if(freeBoard != null){
+        if (freeBoard != null) {
             UserVO loginUser = (UserVO) session.getAttribute("user");
 
             boolean canEdit = loginUser != null && (loginUser.getId().equals(freeBoard.getId()) || loginUser.getRole().equals("MANAGER"));
@@ -110,9 +110,9 @@ public class FreeController {
     }
 
     @GetMapping("/free/freeEdit.wow")
-    public String freeEdit(Model model, HttpSession session ,int freeNum) throws BizNotFoundException {
+    public String freeEdit(Model model, HttpSession session, int freeNum) throws BizNotFoundException {
 
-        if (session.getAttribute("user") == null){
+        if (session.getAttribute("user") == null) {
             return "redirect:/login/login.wow";
         }
         FreeBoardVO freeBoard = freeBoardService.getBoard(freeNum);
@@ -121,15 +121,15 @@ public class FreeController {
     }
 
     @PostMapping("/free/freeModify.wow")
-    public String freeModify(Model model, HttpSession session ,FreeBoardVO freeBoard, @RequestParam(name = "boFiles", required = false) MultipartFile[] boFiles) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException, IOException {
+    public String freeModify(Model model, HttpSession session, FreeBoardVO freeBoard, @RequestParam(name = "boFiles", required = false) MultipartFile[] boFiles) throws BizNotFoundException, BizPasswordNotMatchedException, BizNotEffectedException, IOException {
 
-        if (session.getAttribute("user") == null){
+        if (session.getAttribute("user") == null) {
             return "redirect:/login/login.wow";
         }
 
         UserVO user = (UserVO) session.getAttribute("user");
 
-        if (!"MANAGER".equals(user.getRole()) && !freeBoard.getId().equals(user.getId())){
+        if (!"MANAGER".equals(user.getRole()) && !freeBoard.getId().equals(user.getId())) {
             throw new AccessDeniedException("수정 권한이 없습니다.");
         }
 
@@ -167,7 +167,7 @@ public class FreeController {
     @GetMapping("/free/freeForm.wow")
     public String freeForm(Model model, HttpSession session) {
 
-        if (session.getAttribute("user")==null){
+        if (session.getAttribute("user") == null) {
             return "redirect:/login/login.wow";
         }
 
@@ -175,7 +175,7 @@ public class FreeController {
     }
 
     @PostMapping("/free/freeRegist.wow")
-    public String freeRegist(Model model, FreeBoardVO freeBoard, @RequestParam(name = "boFiles" ,required = false) MultipartFile[] boFiles) throws BizException, IOException {
+    public String freeRegist(Model model, FreeBoardVO freeBoard, @RequestParam(name = "boFiles", required = false) MultipartFile[] boFiles) throws BizException, IOException {
         if (boFiles != null) {
 
             List<AttachVO> attaches = attachUtils.getAttachListByMultiparts(boFiles, "FREE", "free");
@@ -198,42 +198,28 @@ public class FreeController {
         JsonObject jsonObject = new JsonObject();
 
         String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-        String fileRoot = contextRoot+"/free/freeImage";
+        String fileRoot = contextRoot + "/free/freeImage";
 
         String originalFileName = multipartFile.getOriginalFilename();
 
         String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
-        String savedFileName = UUID.randomUUID()+ extension;
+        String savedFileName = UUID.randomUUID() + extension;
 
         File targetFile = new File(fileRoot + savedFileName);
 
         try {
             InputStream fileStream = multipartFile.getInputStream();
-            FileUtils.copyInputStreamToFile(fileStream,targetFile);
-            jsonObject.addProperty("url","/free/freeImage"+savedFileName);
-            jsonObject.addProperty("responseCode","success");
-        }catch (IOException e){
+            FileUtils.copyInputStreamToFile(fileStream, targetFile);
+            jsonObject.addProperty("url", "/free/freeImage" + savedFileName);
+            jsonObject.addProperty("responseCode", "success");
+        } catch (IOException e) {
             FileUtils.deleteQuietly(targetFile);
-            jsonObject.addProperty("responseCode","error");
+            jsonObject.addProperty("responseCode", "error");
             e.printStackTrace();
         }
         String a = jsonObject.toString();
         return a;
     }
-
-    @PostMapping("/free/toggleLike.wow")
-    @ResponseBody
-    public ResponseEntity<String> toggleLike(@RequestParam("freeNum")int freeNum){
-        try {
-            freeBoardService.toggleLike(freeNum);
-            return ResponseEntity.ok("success");
-        }catch (Exception e){
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error");
-        }
-    }
-
-
 
 }

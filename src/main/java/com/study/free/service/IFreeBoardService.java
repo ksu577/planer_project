@@ -9,6 +9,8 @@ import com.study.exception.BizNotFoundException;
 import com.study.exception.BizPasswordNotMatchedException;
 import com.study.free.vo.FreeBoardVO;
 
+import javax.servlet.http.HttpSession;
+
 public interface IFreeBoardService {
 
     public List<FreeBoardVO>
@@ -28,10 +30,10 @@ public interface IFreeBoardService {
     public int increaseView(int freeNum) throws BizNotFoundException;
 
 
+    String toggleLike(int freeNum, HttpSession session);
 
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException;
 
     public void updateCommentCount(int free_num) throws Exception;
 
-    void toggleLike(int freeNum);
 }

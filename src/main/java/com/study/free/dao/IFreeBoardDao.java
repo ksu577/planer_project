@@ -29,5 +29,4 @@ public interface IFreeBoardDao {
 
     public void updateCommentCount(int free_num)throws Exception;
 
-    public void updateLike(int freeNum);
 }
