@@ -23,19 +23,56 @@
         .container {
             padding-top: 70px;
         }
+
+        .top-background {
+            height: 70px;
+            background-color: #ade8ef;
+        }
+
+        /* 글번호 셀의 배경색을 바꾸는 스타일 */
+        #formTable tbody tr th:nth-child(1) {
+            background-color: #ade8ef; /* 적절한 배경색을 선택하세요 */
+        }
+
+        /* 제목 셀의 배경색을 바꾸는 스타일 */
+        #formTable tbody tr th:nth-child(2) {
+            background-color: #ade8ef; /* 적절한 배경색을 선택하세요 */
+        }
+
+        /* 작성자 셀의 배경색을 바꾸는 스타일 */
+        #formTable tbody tr th:nth-child(3) {
+            background-color: #ade8ef; /* 적절한 배경색을 선택하세요 */
+        }
+
+        /* 내용 셀의 배경색을 바꾸는 스타일 */
+        #formTable tbody tr th:nth-child(4) {
+            background-color: #ade8ef; /* 적절한 배경색을 선택하세요 */
+        }
+
+        /* 조회수 셀의 배경색을 바꾸는 스타일 */
+        #formTable tbody tr th:nth-child(5) {
+            background-color: #ade8ef; /* 적절한 배경색을 선택하세요 */
+        }
+
+
     </style>
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
+
+<div class="top-background">
+
+</div>
+
 <div class="container">
     <div class="page-header">
-        <h3>자유게시판 - <small>글 등록</small></h3>
+        <h3>게시판 - <small>글 등록</small></h3>
     </div>
     <form action="freeRegist.wow" method="post" modelAttribute="freeBoard" enctype="multipart/form-data">
 
-        <table class="table table-striped table-bordered">
+        <table id="formTable" class="table table-bordered">
             <colgroup>
-                <col width="20%"/>
+                <col width="10%"/>
                 <col/>
             </colgroup>
             <tr>

@@ -36,6 +36,51 @@
             width: 100%;
             word-wrap: break-word;
         }
+
+        .col-sm-2.text-right {
+            font-size: 12px; /* 적절한 글씨 크기를 선택하세요 */
+        }
+
+        /* 글번호 셀의 배경색을 바꾸는 스타일 */
+        #viewPage tbody tr:nth-child(1) th {
+            background-color: #98dde3; /* 적절한 배경색을 선택하세요 */
+        }
+
+        /* 제목 셀의 배경색을 바꾸는 스타일 */
+        #viewPage tbody tr:nth-child(2) th {
+            background-color: #98dde3; /* 적절한 배경색을 선택하세요 */
+        }
+
+        /* 작성자 셀의 배경색을 바꾸는 스타일 */
+        #viewPage tbody tr:nth-child(3) th {
+            background-color: #98dde3; /* 적절한 배경색을 선택하세요 */
+        }
+
+        /* 내용 셀의 배경색을 바꾸는 스타일 */
+        #viewPage tbody tr:nth-child(4) th {
+            background-color: #98dde3; /* 적절한 배경색을 선택하세요 */
+        }
+
+
+        /* 조회수 셀의 배경색을 바꾸는 스타일 */
+        #viewPage tbody tr:nth-child(5) th {
+            background-color: #98dde3; /* 적절한 배경색을 선택하세요 */
+        }
+
+        #viewPage tbody tr:nth-child(6) th {
+            background-color: #98dde3; /* 적절한 배경색을 선택하세요 */
+        }
+
+        /* 등록일 셀의 배경색을 바꾸는 스타일 */
+        #viewPage tbody tr:nth-child(7) th {
+            background-color: #98dde3; /* 적절한 배경색을 선택하세요 */
+        }
+
+        /* 첨부파일 셀의 배경색을 바꾸는 스타일 */
+        #viewPage tbody tr:nth-child(9) th {
+            background-color: #98dde3;
+        }
+
     </style>
 
     <title>자유게시판 - 글 보기</title>
@@ -52,21 +97,24 @@
         <h3>
             자유게시판 - <small>글 보기</small>
         </h3>
-        <div id="likeButton" onclick="toggleLike(${freeBoard.freeNum})">좋아❤️</div>
+        <div id="likeButton" onclick="toggleLike(${freeBoard.freeNum})">좋아요❤️</div>
         <div id="likeStatus">현재 좋아요 상태: <span id="likeStatusLabel">${freeBoard.freeLike}</span></div>
     </div>
-    <table id="viewPage" class="table table-striped table-bordered">
+    <table id="viewPage" class="table table-bordered">
         <tbody>
+        <colgroup>
+            <col width="10%"/>
+        </colgroup>
         <tr>
-            <td>글번호</td>
+            <th>글번호</th>
             <td>${freeBoard.freeNum}</td>
         </tr>
         <tr>
-            <td>제목</td>
+            <th>제목</th>
             <td>${freeBoard.title}</td>
         </tr>
         <tr>
-            <td>작성자</td>
+            <th>작성자</th>
             <td>${freeBoard.id }</td>
         </tr>
         <c:if test="${planList ne null}">
@@ -82,7 +130,7 @@
             </tr>
         </c:if>
         <tr>
-            <td>내용</td>
+            <th>내용</th>
             <td>
                 <div class="content-container">
                     <div name="freeContext"  style="overflow: auto; white-space: pre-line"
@@ -96,7 +144,7 @@
             <td>${freeBoard.viewRate }</td>
         </tr>
         <tr>
-            <td>등록일</td>
+            <th>등록일</th>
             <td>${freeBoard.createDate }</td>
         </tr>
 

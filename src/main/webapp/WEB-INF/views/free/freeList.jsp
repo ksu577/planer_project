@@ -29,9 +29,6 @@
             background-color: #98dde3; /* 배경색 설정 */
         }
 
-        #mainList {
-            background-color: #ffffff;
-        }
 
 
         #noticeTable {
@@ -65,6 +62,13 @@
             text-align: center;
         }
 
+        #noticeTable td:nth-child(2) {
+            text-align: left;
+        }
+
+        #freeTable td:nth-child(2) {
+            text-align: left;
+        }
 
         #noticeTable {
             border-collapse: collapse;
@@ -85,31 +89,31 @@
             font-size: 100%;
         }
 
+
         .container {
             padding-top: 70px;
         }
 
         #mainList {
-            border: 1px solid red;
+            /*border: 1px solid red;*/
             padding: 0px 10px 40px;
             width: 1300px;
             position: absolute;
+            background-color: #ffffff;
         }
 
         #sidebar {
             float: left;
             margin: 0;
-            padding: 0 20px;
+            padding: 0px;
             width: 193px;
             height: 300px;
             overflow: hidden;
-            border: 1px solid red;
             position: relative;
             right: 15%;
+            top: 123px;
         }
-        #side_title{
-            background-color: #98dde3;
-        }
+
 
         .skip {
             position: absolute;
@@ -128,10 +132,12 @@
             padding: 0;
             width: 193px;
             height: 60px;
-
+            background-color: #98dde3;
         }
 
         #side_title h2 {
+            text-align: center;
+            align-content: center;
             vertical-align: top;
             padding: 0px;
             margin: 0px;
@@ -188,6 +194,15 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            function getParameterByName(name, url) {
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+
             function applyNoticeLogic() {
                 // 상단 공지글 개수 제한
                 var maxNoticeCount = 3;
@@ -217,6 +232,18 @@
                     noticeRows.slice(3).toggle();
                 });
 
+                // 현재 페이지 번호 확인
+                var currentPage = getParameterByName('curPage', window.location.href);
+
+                // 현재 페이지가 2 이상이면 공지글 숨기기
+                if (currentPage >= 2) {
+                    $("#noticeTable thead").show();
+                    $("#noticeTable tbody").hide();
+                } else {
+                    $("#noticeTable thead").show();
+                    $("#noticeTable tbody").show();
+                }
+
                 if (noticeCount >= maxNoticeCount) {
                     $("#freeTable tbody tr").each(function () {
                         if ($(this).find("td:nth-child(3) a").text().startsWith("[공지]")) {
@@ -226,16 +253,18 @@
                 }
             }
 
-            applyNoticeLogic();
             $('ul.pagination li a[data-page]').click(function (e) {
+                var curPage = $(this).data('page');
+
+                if (curPage >= 2) {
+                    $('#noticeTable').hide();
+                } else {
+                    $("#noticeTable").show();
+                }
                 e.preventDefault();
-                let curPage = $(this).data('page');
                 $curPage.val(curPage);
                 $form.submit();
-
-                setTimeout(function () {
-                    applyNoticeLogic();
-                }, 100);
+                applyNoticeLogic();
             });
             applyNoticeLogic();
         });
@@ -275,7 +304,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-2 col-sm-offset-9 text-right">
-                            <button type="button" id="id_btn_reset" class="btn btn-sm btn-default">
+                            <button type="button" id="id_btn_reset" class="btn btn-sm btn-light">
                                 <i class="fa fa-sync"></i> &nbsp;&nbsp;초기화
                             </button>
                         </div>
@@ -319,12 +348,6 @@
                     &nbsp;새글쓰기
                 </a>
             </div>
-            <%--        <div class="col-sm-2 col-sm-offset-0 text-left" style="margin-bottom: 5px;">--%>
-            <%--            <a href="noticeList.wow" class="btn btn-primary btn-sm">--%>
-            <%--                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>--%>
-            <%--                공지 더보기--%>
-            <%--            </a>--%>
-            <%--        </div>--%>
         </div>
 
 
@@ -339,6 +362,7 @@
 
             </tr>
             </thead>
+            <tbody>
             <colgroup>
                 <col width="5%"/>
                 <col width="10%"/>
@@ -346,7 +370,7 @@
                 <col width="10%"/>
                 <col width="10%"/>
             </colgroup>
-            <tbody></tbody>
+            </tbody>
         </table>
 
 
