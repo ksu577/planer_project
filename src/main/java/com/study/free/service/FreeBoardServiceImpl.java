@@ -156,10 +156,6 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
             throw new BizNotEffectedException();
         }
 
-//        int cnt = freeBoardDao.insertBoard(freeBoard);
-//        if (cnt == 0)
-//            throw new BizNotEffectedException();
-
         List<AttachVO> attaches = freeBoard.getAttaches();
         if (attaches != null) {
             for (AttachVO attach : attaches) {
