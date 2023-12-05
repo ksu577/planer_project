@@ -37,9 +37,12 @@
         border: 1px solid #98dde3;
         border-radius: 5px;
     }
+
 </style>
+</head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
+
 <c:if test="${bnf==null}">
 <form action="memberEdit.wow" method="get" enctype="multipart/form-data">
     <div class="body-container">

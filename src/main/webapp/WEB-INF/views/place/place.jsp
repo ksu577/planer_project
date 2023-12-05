@@ -11,7 +11,7 @@
     <style>
         .container {
             padding-top: 80px;
-            width: 1250px;
+            width: 1700px;
         }
 
         .selectcategory {
@@ -20,7 +20,7 @@
 
         .cell {
             text-align: center;
-            width: 350px;
+            width: 330px;
             height: 330px;
             background-color: white;
         }
@@ -30,6 +30,10 @@
             background-color: rgb(255, 255, 255);
             box-shadow: none; /* 초기에는 그림자 없음 */
             transition: box-shadow 0.3s ease; /* 그림자에 트랜지션 효과 적용 */
+        }
+
+        .cell > .bottom > h1{
+            text-align: end;
         }
 
         .cell:hover {
@@ -46,7 +50,7 @@
             text-decoration: none;
             cursor: pointer;
             margin: auto;
-            width: 1200px;
+            width: 1400px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
@@ -66,7 +70,7 @@
             border-radius: 20px;
             /*box-shadow: 10px 100px 30px 0px #50c8cd;*/
             /*box-shadow: 0px 0px 10px 10px gainsboro; 원래 기존 그림자 색상*/
-            box-shadow: 10px 100px 30px 0px #0ea5e9;
+            /*box-shadow: 10px 100px 30px 0px #0ea5e9;*/
         }
 
         .bottom {
@@ -78,7 +82,7 @@
             justify-content: space-between;
             width: 232px;
             height: 65px;
-            color: white;
+            color: black;
             flex-direction: column;
         }
 
@@ -238,14 +242,11 @@
     </div>
 
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
     const v_modal2 = document.getElementsByClassName("modal2")[0];
 
-                // 한글 ㄱㄴㄷㄹㅁㅂㅅ 식으로 정렬추가
-    // function koreanSort(a, b) {
-    //     return a.localeCompare(b, 'ko-KR');
-    // }
+
 
     function f_summon(placeNum) {
         $.ajax({
@@ -258,8 +259,7 @@
             success: function (data) {
                 console.log(data);
 
-                // data.placeList.sort((a, b) => koreanSort(a.placeName, b.placeName));
-                // 한글 ㄱㄴㄷㄹㅁㅂㅅ 식으로 정렬추가
+
 
                 $("#AreaTitle").html(data['placeName']);
                 $("#AreaTitleEng").html(data['englishName'])

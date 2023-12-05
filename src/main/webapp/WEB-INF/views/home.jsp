@@ -40,6 +40,7 @@
         }
 
         .cover1 {
+            background: linear-gradient(to right, #98dde3, #0ea5e9);
             position: absolute;
             top: 0;
             left: 0;
