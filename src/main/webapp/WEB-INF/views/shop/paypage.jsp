@@ -74,7 +74,7 @@
             .paycontainer {
                 display: flex;
                 justify-content: space-between;
-                text-align: center;
+                align-items: center;
             }
 
             .address, .bill {
@@ -84,7 +84,7 @@
             .top-backgroun{
                 height: 70px;
                 background-color: #98dde3;
-            }
+            },
 
         }
 
@@ -141,7 +141,7 @@
                 </div>
 
             </div>
-            <div class="bill col-md-8">
+            <div class="bill">
                 <h2>주문서</h2>
                 <hr>
                 <c:forEach var="cartItem" items="${listCart}">
