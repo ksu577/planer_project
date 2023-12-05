@@ -366,7 +366,7 @@
                     <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
                 </div>
                 <div class="address-cover2">
-                    <input name="address2" id="member-address2" type="text" placeholder="상세주소">
+                    <input name="address2" id="member-address2" type="text" placeholder="상세주소" required="required">
                 </div>
             </div>
             <button class="member-btn" id="member-btn" type="button"><p>회원가입</p></button>

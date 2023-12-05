@@ -46,7 +46,7 @@
     <div class="body-container">
         <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
              id="profile"
-             style="background-color: white; border-radius: 50px; border: 1px solid darkgray; width: 100px; height: 100px; transform: translate(900%, 250%)">
+             style="background-color: white; border-radius: 75px; border: 10px solid white; width: 150px; height: 150px; transform: translate(590%, 160%)">
         <input type="file" name="file"
                style="font-size: 13px; cursor: pointer; transform: translate(330%, 950%);">
 
@@ -94,18 +94,18 @@
                 <tr>
                     <td>
                         <button id="edit_btn" type="submit"
-                                style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;">
+                                style="width: 80px; height: 30px; color: white; border-radius: 5px; background-color: #0d6efd; border: 1px solid white;">
                             적용
                         </button>
                         <c:if test="${user.getRole() =='USER'}">
                             <button id="delete_btn" type="submit"
-                                    style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;"
+                                    style="width: 80px; height: 30px; color: white; border-radius: 5px; background-color: #0d6efd; border: 1px solid white;"
                                     formaction="memberDelete.wow">탈퇴
                             </button>
                         </c:if>
                         <c:if test="${user.getRole() =='MANAGER'}">
-                            <button id="delete_btn" type="submit"
-                                    style="width: 80px; height: 30px; border-radius: 5px; background-color: #EFEFEF; border: 1px solid #98dde3;"
+                            <button id="delete_btn2" type="submit"
+                                    style="width: 80px; height: 30px; color: white; border-radius: 5px; background-color: #0d6efd; border: 1px solid white;"
                                     formaction="memberDelete.wow">삭제
                             </button>
                         </c:if>
@@ -121,6 +121,15 @@
         if (confirm("탈퇴 하시겠습니까?") == true) {
             alert("탈퇴 되었습니다.");
             document.getElementById('delete_btn').submit();
+        } else {
+            return false;
+        }
+    })
+
+    $("#delete_btn2").on("click", function (e) {
+        if (confirm("ID : ${member.id} 회원을 삭제 하시겠습니까?") == true) {
+            alert("삭제 되었습니다.");
+            document.getElementById('delete_btn2').submit();
         } else {
             return false;
         }
