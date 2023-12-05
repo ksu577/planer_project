@@ -326,6 +326,7 @@
         .choice-box {
             width: 200px;
             font-size: 15px;
+            height: 777px;
         }
 
         #addedbox span {
@@ -372,10 +373,6 @@
             color: #ffffff;
         }
 
-        .mg_btm {
-            margin-bottom: 30px;
-        }
-
         @font-face {
             font-family: 'Pretendard-Regular';
             src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -420,7 +417,7 @@
             <div class="d-grid gap-2">
                 <button type="button" onclick="f_date()" class="btn btn-outline-info btn-lg">확인</button>
             </div>
-            <div class="d-grid gap-5">
+            <div class="d-grid gap-3">
                 <div class="pd">
 
                 </div>
@@ -468,14 +465,11 @@
             <%--            <div class="day6 none" id="day6" onclick="f_day(6)">6일차</div>--%>
             <%--            <div class="day7 none" id="day7" onclick="f_day(7)">7일차</div>--%>
         </div>
-        <c:if test="${fn:length(planList) != 0}">
-            <div class="mg_btm" style="text-align: center; height: 50px">
-                <button type="button" class="h-100 w-75 btn btn-outline-secondary btn-block btn-lg" onclick="f_turn()">
-                    이전
-                </button>
-            </div>
-        </c:if>
         <div class="mg_btm" style="text-align: center; height: 50px">
+        <c:if test="${fn:length(planList) != 0}">
+                <button type="button" class="h-100 w-75 btn btn-outline-secondary btn-block btn-lg" onclick="f_turn()">이전
+                </button>
+        </c:if>
             <button type="button" class="h-100 w-75 btn btn-outline-secondary btn-block btn-lg" onclick="f_send()">다음
             </button>
         </div>
@@ -879,7 +873,7 @@
         if (count == 0 || count == undefined || count == null) {
             addedbox.innerHTML = '';
         } else {
-            addedbox.innerHTML = '<h1>' + count + '일차</h1> <button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>';
+            addedbox.innerHTML = '<h1>'+count+'일차</h1> <button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>';
         }
         day_count = count;
         makeSchedulePlace(count)
