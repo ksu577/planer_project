@@ -9,12 +9,19 @@
 <html>
 <style>
     .container{padding-top: 70px}
+    .top-background{
+        height: 70px;
+        background-color: #98dde3;
+    }
 </style>
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
+<div class="top-background">
+
+</div>
 <div class="container">
 
     <!-- START : 검색 폼  -->

@@ -8,10 +8,21 @@
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
 
+    <style>
+        .top-background{
+            height: 70px;
+            background-color: #98dde3;
+        }
+
+    </style>
+
 </head>
 <body>
-<%@ include file="/WEB-INF/inc/top.jsp" %>
-<%--<c:if test="${user.getRole()=='MANAGER'}">--%>
+<%@include file="/WEB-INF/inc/top.jsp" %>
+
+<div class="top-background">
+
+</div>
 <div style="padding-top: 120px;" class="container">
     <div class="panel panel-default" id="id_search_area">
         <div class="panel-body">

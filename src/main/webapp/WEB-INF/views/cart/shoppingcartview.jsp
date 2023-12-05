@@ -32,10 +32,20 @@
             align-items: center;
             margin-bottom: 10px;
         }
+        .top-background{
+            height: 70px;
+            background-color: #98dde3;
+        }
+
     </style>
+
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
+
+<div class="top-background">
+
+</div>
 <div class="route mt-3">
     장바구니 > 주문결제 > 주문완료
 </div>

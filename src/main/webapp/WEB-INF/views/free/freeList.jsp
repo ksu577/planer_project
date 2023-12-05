@@ -49,7 +49,7 @@
         }
 
         .container {
-            padding-top: 70px;
+            padding-top: 40px;
         }
 
         #mainList {
@@ -138,6 +138,11 @@
 
         }
 
+
+        .top-background{
+            height: 70px;
+            background-color: #98dde3;
+        }
     </style>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -199,6 +204,9 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
+<div class="top-background">
+
+</div>
 <div class="container">
 
     <!-- START : 검색 폼  -->

@@ -11,29 +11,42 @@
             background-color: #f1f1f1;
             justify-content: center;
         }
+
         .container {
             text-align: center;
             padding-top: 350px;
         }
+
+        .top-background {
+            height: 70px;
+            background-color: #98dde3;
+        }
+
     </style>
+
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
-<div class="container">
-    <div class="input-group-lg has-validation">
-        <form action="/title" id="title" method="GET">
-            <div class="form-floating is-invalid">
-                <input type="text" class="form-control form-control-lg is-invalid input-title" name="planTitle" id="floatingInputGroup2"
-                       placeholder="Username" required>
-                <label for="floatingInputGroup2">PLAN TITLE</label>
-            </div>
-            <div class="invalid-feedback">
-                제목을 입력해주세요.
-            </div>
-            <button type="submit" class="btn-lg btn btn-outline-warning">저장</button>
-        </form>
-    </div>
+
+<div class="top-background">
+
 </div>
+    <div class="container">
+        <div class="input-group-lg has-validation">
+            <form action="/title" id="title" method="GET">
+                <div class="form-floating is-invalid">
+                    <input type="text" class="form-control form-control-lg is-invalid input-title" name="planTitle"
+                           id="floatingInputGroup2"
+                           placeholder="Username" required>
+                    <label for="floatingInputGroup2">PLAN TITLE</label>
+                </div>
+                <div class="invalid-feedback">
+                    제목을 입력해주세요.
+                </div>
+                <button type="submit" class="btn-lg btn btn-outline-warning">저장</button>
+            </form>
+        </div>
+    </div>
 </body>
 <script>
     function f_title() {
