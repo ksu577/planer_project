@@ -20,19 +20,17 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            transition: background-color 0.5s ease;
+            transition: background-color 0.7s ease;
         }
 
-        .navcategory a {
-            color: black;
+        .letter {
+
             text-decoration: none;
             margin: 10px;
             padding: 30px;
+            transition: color 0.7s ease;
         }
 
-        .btn-gruop-right a{
-            color: white;
-        }
 
         .btn-gruop-right {
             display: flex;
@@ -42,7 +40,6 @@
             display: flex;
             list-style-type: none;
         }
-
 
         ul {
             list-style: none;
@@ -63,16 +60,16 @@
     </div>
 
     <div class="navcategory">
-        <a href="/place/place.wow"> 여행지 </a>
-        <a href="/shop/minishop.wow"> 미니샵 </a>
-        <a href="/free/freeList.wow"> 게시판 </a>
+        <a class="letter" href="/place/place.wow"> 여행지 </a>
+        <a class="letter" href="/shop/minishop.wow"> 미니샵 </a>
+        <a class="letter" href="/free/freeList.wow"> 게시판 </a>
     </div>
 
     <div class="manager-box">
         <c:if test="${user.getRole() =='MANAGER'}">
 
             <li class="nav-item dropdown">
-                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                <a class="nav-link letter" href="#" role="button" data-bs-toggle="dropdown"
                    aria-expanded="false" style="height: 20px">
                     회원관리
                 </a>
@@ -82,7 +79,7 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-linK" href="#" role="button" data-bs-toggle="dropdown"
+                <a class="nav-linK letter" href="#" role="button" data-bs-toggle="dropdown"
                    aria-expanded="false" style="margin-left: 30px">
                     상품관리</a>
                 <ul class="dropdown-menu">
@@ -96,14 +93,14 @@
 
     <c:if test="${user==null}">
         <div class="btn-gruop-right">
-            <a href="/login/login.wow" style="text-decoration: none;">로그인</a>
+            <a class="letter" href="/login/login.wow" style="text-decoration: none;">로그인</a>
 
-            <a href="/member/memberForm.wow" style="text-decoration: none;">회원가입</a>&nbsp;
+            <a class="letter" href="/member/memberForm.wow" style="text-decoration: none;">회원가입</a>&nbsp;
         </div>
     </c:if>
 
     <c:if test="${user!=null}">
-        <span id="login_log" style="border-bottom: 1px solid white;">${user.name} 님, 환영합니다.</span>
+        <span class="letter" id="login_log" style="border-bottom: 1px;">${user.name} 님, 환영합니다.</span>
 
         <div class="btn-group" style="right: 10px">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
@@ -130,23 +127,34 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
 <script>
-    window.onscroll = function() {scrollFunction()};
+    window.onload = function () {
+        scrollFunction();
+    };
 
     function scrollFunction() {
         var navbar = document.getElementById("navbar");
         var id = document.getElementById("login_log");
-
+        var letters = document.getElementsByClassName("letter");
 
         // 현재 스크롤 위치가 20px 이상이면 배경 색상을 흰색으로 변경
-        if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
-            // navbar.style.backgroundColor = "#b6d3e0"; // 원하는 색상으로 변경
+        if (window.pageYOffset > 5) {
             navbar.style.backgroundColor = "#ffffff"; // 원하는 색상으로 변경
             id.style.color = "#000000";
+            // 모든 .letter 클래스를 가진 요소에 대해 스타일을 적용
+            for (var i = 0; i < letters.length; i++) {
+                letters[i].style.color = "#000000";
+            }
         } else {
             navbar.style.backgroundColor = "transparent"; // 투명한 배경 색상으로 변경
             id.style.color = "#ffffff";
+            // 모든 .letter 클래스를 가진 요소에 대해 스타일을 적용
+            for (var i = 0; i < letters.length; i++) {
+                letters[i].style.color = "#ffffff";
+            }
         }
     }
+
+    window.addEventListener('scroll', scrollFunction);
 </script>
 
 </body>

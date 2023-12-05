@@ -143,7 +143,7 @@ public class MemberController {
         resultMessageVO.messageSetting(true, "탈퇴", "회원탈퇴가 완료되었습니다."
                 , "/member/memberList.wow", "탈퇴완료.");
         model.addAttribute("resultMessageVO", resultMessageVO);
-        return "common/message";
+        return "redirect:/member/memberList.wow";
     }
 
 

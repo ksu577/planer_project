@@ -53,7 +53,7 @@ public class MemberServiceImpl implements IMemberService{
     public void removeMember(MemberVO member /* member = 유저가 쓴 아이디 */ ) throws BizNotEffectedException, BizNotFoundException {
         MemberVO DBmember = memberDao.getMember(member.getId());
         if (DBmember == null) throw new BizNotFoundException();
-        if (!DBmember.getPassword().equals(member.getPassword())) throw new BizNotEffectedException();
+//        if (!DBmember.getPassword().equals(member.getPassword())) throw new BizNotEffectedException();
         int count = memberDao.deleteMember(member);
         if (count < 1) throw new BizNotEffectedException();
     }
