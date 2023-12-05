@@ -36,6 +36,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         freeBoardDao.updateCommentCount(free_num);
     }
 
+
     @Override
     public List<FreeBoardVO> getBoardList(PagingVO paging, SearchVO search, String searchCategory) {
         int totalRowCount = freeBoardDao.getTotalRowCount(paging, search, searchCategory);
@@ -130,9 +131,10 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     }
 
     @Override
-    public void toggleLike(int freeNum) {
-        freeBoardDao.updateLike(freeNum);
+    public String toggleLike(int freeNum, HttpSession session) {
+        return null;
     }
+
 
     @Override
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException {

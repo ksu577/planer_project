@@ -7,7 +7,7 @@
     <style>
         body {
             margin: 0;
-            padding-top: 70px;
+
             background-color: #f1f1f1;
             justify-content: center;
         }
@@ -29,8 +29,8 @@
 <%@include file="/WEB-INF/inc/top.jsp" %>
 
 <div class="top-background">
-
 </div>
+
     <div class="container">
         <div class="input-group-lg has-validation">
             <form action="/title" id="title" method="GET">

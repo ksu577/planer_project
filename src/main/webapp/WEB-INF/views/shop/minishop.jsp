@@ -64,7 +64,7 @@
 
         }
 
-        .item-box>div {
+        .item-box > div {
             width: calc(1200px / 4 - 20px);
             height: 400px;
             border: solid 1px lightgrey;
@@ -93,10 +93,11 @@
             padding-left: 12px;
             padding-right: 12px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 15px;
 
         }
-        .top-background{
+
+        .top-background {
             height: 70px;
             background-color: #98dde3;
         }
@@ -111,10 +112,10 @@
 
 </div>
 <div class="container">
-    <div id="carouselExample" class="carousel slide">
+    <div id="carouselExample" class="carousel slide" style="transform: translate(4.5%, 0%)">
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img id="#" src="${product.img}" class="d-block w-100" alt="...">
+            <div class="carousel-item active" style="height: 500px;">
+                <img id="#" src="https://img.asiatoday.co.kr/file/2015y/07m/13d/2015071301001337300071601.jpg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
                 <img src="${product.img}" class="d-block w-100" alt="...">
@@ -135,19 +136,11 @@
         </button>
     </div>
 
-    <div>
 
-        <c:if test="${user.getRole()=='MANAGER'}">
-        <button type="button" class="regist" onclick="registProduct()">물건 등록</button>
-    </div>
-    </c:if>
-
-
-
-    <div class="item-box">
-        <c:forEach var="product" items="${list}">
-            <div class="cell" onclick="detailView(${product.productId})">
-                <img alt=""
+    <div class="item-box" style="padding-top: 50px; " >
+        <c:forEach var="product" items="${list}" >
+            <div class="cell" onclick="detailView(${product.productId})" style="margin: 10px; margin-top: 30px; margin-left: 10px; margin-right: 10px">
+                <img style="height: 300px" alt=""
                      src="<%=request.getContextPath()%>/imgDownload/showImg.wow?fileName=${product.img}&filePath=${product.imgPath}"
                      width="320px" height="328px">
                 <div class="bottom">
@@ -158,17 +151,27 @@
         </c:forEach>
     </div>
 
+</div>
 
 
-    <script>
-        function detailView(productId) {
-            window.location.href = "/product/productview.wow?productId=" + productId;
-        }
+<div>
 
-        function registProduct() {
-            window.location.href = "/product/productregist";
-        }
-    </script>
+    <c:if test="${user.getRole()=='MANAGER'}">
+        <button type="button" class="regist" onclick="registProduct()">물건 등록</button>
+
+    </c:if>
+</div>
+
+
+<script>
+    function detailView(productId) {
+        window.location.href = "/product/productview.wow?productId=" + productId;
+    }
+
+    function registProduct() {
+        window.location.href = "/product/productregist";
+    }
+</script>
 
 
 </body>

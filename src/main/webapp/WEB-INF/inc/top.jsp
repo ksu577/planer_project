@@ -55,7 +55,7 @@
 <!-- navbar 시작 -->
 <div class="nav-bar fixed-top" id="navbar">
     <div class="homepagelogo">
-        <img width="120px" height="120px"
+        <img width="100px" height="100px"
              src="https://media.discordapp.net/attachments/1161840837647421475/1181133924332752956/marker-001.png?ex=657ff3af&is=656d7eaf&hm=bcaefc7a3c5f2dfb414d16ffe8be49dc15d9a2b7a673e23536598c8c10ca7e09&=&format=webp&quality=lossless&width=625&height=625"
              alt=""
              onclick="location.href='/'"
