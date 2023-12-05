@@ -36,8 +36,34 @@
             width: 25%;
             height: 80%;
             position: relative;
-            transform: translate(220%, 20%);
+            transform: translate(250%, 20%);
             z-index: 1;
+        }
+
+        .search-travel-cover {
+            position: absolute;
+            z-index: 9999;
+            height: 60px;
+            border-bottom: 2px solid white;
+            transform: translate(130%, -200%);
+        }
+
+        .search-travel {
+            width: 480px;
+            height: 60px;
+            outline: none;
+            border: 1px solid transparent;
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            font-size: 30px;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .search-travel::placeholder {
+            color: white;
         }
 
         .cover1 {
@@ -203,7 +229,6 @@
                     </div>
                     <div class="cover1">
                         <p>여행을 준비하는 연준이는 <br> 순자산 3조를 통해 <br> 2시간을 아꼈어요!</p>
-                        <a class="go-trip" href="plan/title.wow">여행 가자!</a>
                     </div>
                 </div>
             </div>
@@ -213,7 +238,6 @@
                     <img src="/resources/img/부산야경.jpg" class="d-block w-100" alt="...">
                     <div class="cover2">
                         <p>The night view of <br> Busan is beautiful</p>
-                        <a class="go-trip" href="plan/title.wow">여행 가자!</a>
                     </div>
                 </div>
             </div>
@@ -223,11 +247,22 @@
                          class="d-block w-100" alt="...">
                     <div class="cover3">
                         <p>Experience <br> The best trip ever</p>
-                        <a class="go-trip" href="plan/title.wow">여행 가자!</a>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <div class="search-travel-cover">
+            <input class="search-travel" type="text" placeholder="목적지를 입력해주세요.">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
+                 class="bi bi-search" viewBox="0 0 16 16" style="transform: translate(0%, -20%)">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+        </div>
+
+
+
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"
                 style="justify-content: start;">
             <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 80px; height: 80px;"></span>
@@ -238,10 +273,8 @@
             <span class="carousel-control-next-icon" aria-hidden="true" style="width: 80px; height: 80px;"></span>
             <span class="visually-hidden">Next</span>
         </button>
-
     </div>
 </div>
-
 
 <div class="container4">
     <div class="ranking-container"></div>

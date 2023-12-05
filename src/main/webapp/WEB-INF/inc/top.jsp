@@ -70,17 +70,17 @@
 
             <li class="nav-item dropdown">
                 <a class="nav-link letter" href="#" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false" style="height: 20px">
+                   aria-expanded="false" style="height: 20px; display: flex; padding: 0;">
                     회원관리
                 </a>
-                <ul class="dropdown-menu" STYLE="bottom: 100px">
+                <ul class="dropdown-menu" style="bottom: 100px;">
                     <li><a href="/member/memberList.wow">회원 목록</a></li>
                 </ul>
             </li>
 
             <li class="nav-item dropdown">
                 <a class="nav-linK letter" href="#" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false" style="margin-left: 30px">
+                   aria-expanded="false" style="margin-left: 30px; display: flex; padding: 0;">
                     상품관리</a>
                 <ul class="dropdown-menu">
                     <li><a href="/ManagerPage/managerproduct">상품 목록</a></li>
