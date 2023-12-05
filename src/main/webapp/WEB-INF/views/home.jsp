@@ -213,7 +213,6 @@
                     <img src="/resources/img/부산야경.jpg" class="d-block w-100" alt="...">
                     <div class="cover2">
                         <p>The night view of <br> Busan is beautiful</p>
-                        <button onclick="addressbeforepay()" class="btn btn-primary">여행 플래너 만들기</button>
                         <a class="go-trip" href="plan/title.wow">여행 가자!</a>
                     </div>
                 </div>
