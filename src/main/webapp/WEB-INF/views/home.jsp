@@ -36,7 +36,7 @@
             width: 25%;
             height: 80%;
             position: relative;
-            transform: translate(250%, 20%);
+            transform: translate(270%, 20%);
             z-index: 1;
         }
 
@@ -254,7 +254,7 @@
 
 
         <div class="search-travel-cover">
-            <input class="search-travel" type="text" placeholder="목적지를 입력해주세요">
+            <input id="search-travel" class="search-travel" type="text" placeholder="목적지를 입력해주세요" onclick="hidePlaceholder()" onblur="showPlaceholder()">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white  "
                  class="bi bi-search" viewBox="0 0 16 16" style="transform: translate(0%, -20%)">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -334,6 +334,25 @@
             rankingItem.appendChild(addr);
 
             rankingContainer.appendChild(rankingItem);
+        }
+    });
+
+    function hidePlaceholder() {
+        var input = document.getElementById('search-travel');
+        input.placeholder = '';
+    }
+
+    function showPlaceholder() {
+        var input = document.getElementById('search-travel');
+        input.placeholder = '목적지를 입력해주세요';
+    }
+
+    document.addEventListener('click', function(event) {
+        var input = document.getElementById('search-travel');
+        var isInputClicked = input.contains(event.target);
+
+        if (!isInputClicked) {
+            showPlaceholder();
         }
     });
 </script>
