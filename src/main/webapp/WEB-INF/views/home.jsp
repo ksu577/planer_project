@@ -5,6 +5,13 @@
     <% request.setCharacterEncoding("UTF-8"); %>
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <style>
+
+        @font-face {
+            font-family: 'JalnanGothic';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
         body {
             margin: 0;
             background-color: #f1f1f1;
@@ -48,6 +55,29 @@
             transform: translate(130%, -200%);
         }
 
+        .plan-count {
+            position: absolute;
+            right: 350px;
+            bottom: 50px;
+        }
+
+        .plan-count > div {
+            font-family: 'JalnanGothic';
+            text-align: end;
+            color: white;
+            margin-bottom: 20px;
+        }
+        @font-face {
+            font-family: 'HakgyoansimWoojuR';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .plan-count > div > h2{
+            font-family: 'HakgyoansimWoojuR';
+        }
+
         .search-travel {
             width: 480px;
             height: 60px;
@@ -76,8 +106,9 @@
         }
 
         .cover1 > p {
+            font-family: 'JalnanGothic';
             color: white;
-            font-size: 60px;
+            font-size: 55px;
             font-weight: 200;
             transform: translate(30%, 120%);
             position: absolute;
@@ -237,7 +268,7 @@
             transition: box-shadow 0.3s ease, transform 0.5s ease; /* 그림자에 트랜지션 효과 적용 */
         }
 
-        .cell > .bottom > h1{
+        .cell > .bottom > h1 {
             text-align: end;
         }
 
@@ -275,7 +306,7 @@
             border-radius: 20px;
         }
 
-        .top > img:hover{
+        .top > img:hover {
             box-shadow: 0px 0px 3px 3px rgb(135, 206, 250); /* 마우스 호버 시 그림자 나타남 */
         }
 
@@ -425,6 +456,15 @@
             </form>
         </div>
 
+        <div class="plan-count">
+            <div>
+                <h2>여행지 수</h2>
+            </div>
+            <div>
+                <h1>${planCount}</h1>
+            </div>
+        </div>
+
 
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"
                 style="justify-content: start;">
@@ -472,7 +512,8 @@
                     <h3 id="AreaContents"></h3>
                     <hr>
                     <div style="display: flex; justify-content: flex-end;">
-                        <button class="btn btn-primary" onclick="makeplanner()" style="width: 120px; height: 35px; font-size: 15px">
+                        <button class="btn btn-primary" onclick="makeplanner()"
+                                style="width: 120px; height: 35px; font-size: 15px">
                             일정만들기 >
                         </button>
                     </div>
@@ -587,7 +628,6 @@
             type: "post",
             success: function (data) {
                 console.log(data);
-
 
 
                 $("#AreaTitle").html(data['placeName']);

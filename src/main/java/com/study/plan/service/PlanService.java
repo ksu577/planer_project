@@ -46,4 +46,10 @@ public class PlanService implements IPlanService {
         return topPlan;
     }
 
+    @Override
+    public int planCount() {
+        int planCount = planDao.planCount();
+        return planCount;
+    }
+
 }

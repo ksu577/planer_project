@@ -17,4 +17,5 @@ public interface IPlanService {
     public void updateYn(String title, String id);
 
     public List<PlanVo> topPlan();
+    public int planCount();
 }

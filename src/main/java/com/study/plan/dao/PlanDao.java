@@ -15,5 +15,6 @@ public interface PlanDao {
     public int deletePlan(@Param("title") String title, @Param("id") String id);
     public int planYn (@Param("title") String title, @Param("id") String id);
     public List<PlanVo> topPlan();
+    public int planCount();
 
 }

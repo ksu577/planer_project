@@ -73,6 +73,10 @@
         group by place_name, place_load_address
         order by count (place_name) DESC
     </select>
+    <select id="planCount" resultType="java.lang.Integer">
+        select count(*)
+        from plan
+    </select>
 
     <update id="planYn">
         UPDATE user_plan

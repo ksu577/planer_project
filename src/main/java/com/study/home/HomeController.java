@@ -31,8 +31,10 @@ public class HomeController {
     public String home(Model model, PlaceVO placeVO){
         List<PlanVo> planService = this.planService.topPlan();
         List<PlaceVO> placeList = placeService.getplaceList(placeVO);
+        int planCount = this.planService.planCount();
         model.addAttribute("placeList", placeList);
         model.addAttribute("topPlan", planService);
+        model.addAttribute("planCount", planCount);
         return "/home";
     }
 
