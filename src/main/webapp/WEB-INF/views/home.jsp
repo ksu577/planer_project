@@ -228,7 +228,7 @@
                         <img src="/resources/img/한국지도.png" class="d-block w-100" alt="...">
                     </div>
                     <div class="cover1">
-                        <p>여행을 준비하는 연준이는 <br> 순자산 3조를 통해 <br> 2시간을 아꼈어요!</p>
+                        <p>여행을 준비하는 연준이는 <br> G-Route를 통해 <br> 2시간을 아꼈어요!</p>
                     </div>
                 </div>
             </div>
