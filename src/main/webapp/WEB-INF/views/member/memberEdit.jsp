@@ -7,7 +7,7 @@
 <html>
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
-    <title>memberEdit</title>
+    <title>회원 정보 수정</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>

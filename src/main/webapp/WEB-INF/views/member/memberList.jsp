@@ -7,7 +7,7 @@
 <html lang="ko">
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
-
+    <title>회원 목록</title>
 </head>
 <style>
     td {
@@ -29,15 +29,14 @@
     <div class="panel panel-default" id="id_search_area" style="background-color: #98dde3;">
         <div class="panel-body">
             <form name="search" action="memberList.wow" method="post" class="form-horizontal">
-                <input type="hidden" name="curPage" value="${paging.curPage}"> <input type="hidden"
-                                                                                      name="rowSizePerPage"
-                                                                                      value="${paging.rowSizePerPage}">
+                <input type="hidden" name="curPage" value="${paging.curPage}">
+                <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
                 <div class="form-group">
+                    <label for="id_searchType" class="col-sm-1 control-label"></label>
                     <div class="col-sm-2">
                         <select id="id_searchType" name="searchType" class="form-control input-sm"
                                 style="font-size: 13px; padding: 0rem 0.75rem;">
-                            <option value="NAME" ${search.searchType=='NAME' ? "selected='selected'" :""} >이름
-                            </option>
+                            <option value="NAME" ${search.searchType=='NAME' ? "selected='selected'" :""} >이름</option>
                             <option value="ID" ${search.searchType=='ID' ? "selected='selected'" :""} >아이디</option>
                         </select>
                     </div>
@@ -98,7 +97,9 @@
         <tbody>
         <c:forEach items="${memberList}" var="member">
             <tr style="font-size: 12px; text-align: center;">
-                <td style="background-color: white; border: 1px solid #98dde3;"><a STYLE="text-decoration: none;" href="memberView.wow?Id=${member.id}">${member.id}</a></td>
+                <td style="background-color: white; border: 1px solid #98dde3;"><a STYLE="text-decoration: none;"
+                                                                                   href="memberView.wow?Id=${member.id}">${member.id}</a>
+                </td>
                 <td style="background-color: white; border: 1px solid #98dde3;">${member.password}</td>
                 <td style="background-color: white; border: 1px solid #98dde3;">${member.name}</td>
                 <td style="background-color: white; border: 1px solid #98dde3;">${member.birth}</td>
@@ -109,7 +110,8 @@
                 <td style="background-color: white; border: 1px solid #98dde3;">${member.createDate}</td>
                 <td style="border: 1px solid #98dde3;">
                     <form action="memberDelete.wow" method="post" enctype="multipart/form-data">
-                        <button id="delete_btn" class="delete_btn" type="submit" formaction="memberDelete.wow?Id=${member.id}"
+                        <button id="delete_btn" class="delete_btn" type="submit"
+                                formaction="memberDelete.wow?Id=${member.id}"
                                 style="width: 50px; height: 30px; border: 1px solid white; border-radius: 5px; background-color: #0d6efd; color: white;">
                             삭 제
                         </button>
@@ -153,5 +155,9 @@
             return false;
         }
     })
+
+    $('#id_btn_reset').click(function() {
+        $form.find("input[name='searchWord']").val("");
+    });
 </script>
 </html>

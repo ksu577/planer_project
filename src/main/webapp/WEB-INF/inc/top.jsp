@@ -136,18 +136,15 @@
         var id = document.getElementById("login_log");
         var letters = document.getElementsByClassName("letter");
 
-        // 현재 스크롤 위치가 20px 이상이면 배경 색상을 흰색으로 변경
         if (window.pageYOffset > 5) {
-            navbar.style.backgroundColor = "#ffffff"; // 원하는 색상으로 변경
+            navbar.style.backgroundColor = "#ffffff";
             id.style.color = "#000000";
-            // 모든 .letter 클래스를 가진 요소에 대해 스타일을 적용
             for (var i = 0; i < letters.length; i++) {
                 letters[i].style.color = "#000000";
             }
         } else {
-            navbar.style.backgroundColor = "transparent"; // 투명한 배경 색상으로 변경
+            navbar.style.backgroundColor = "transparent";
             id.style.color = "#ffffff";
-            // 모든 .letter 클래스를 가진 요소에 대해 스타일을 적용
             for (var i = 0; i < letters.length; i++) {
                 letters[i].style.color = "#ffffff";
             }
