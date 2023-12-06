@@ -23,12 +23,16 @@
             transition: background-color 0.7s ease;
         }
 
-        .letter {
-
-            text-decoration: none;
+        .letter, .letter2 {
+            text-decoration-line: none;
             margin: 10px;
             padding: 30px;
             transition: color 0.7s ease;
+
+        }
+        .letter:hover {
+            ;
+
         }
 
 
@@ -60,7 +64,7 @@
     </div>
 
     <div class="navcategory">
-        <a class="letter" href="/place/place.wow"> 여행지 </a>
+        <a class="letter" href="#box-title" > 여행지 </a>
         <a class="letter" href="/shop/minishop.wow"> 미니샵 </a>
         <a class="letter" href="/free/freeList.wow"> 게시판 </a>
     </div>
@@ -100,7 +104,7 @@
     </c:if>
 
     <c:if test="${user!=null}">
-        <span class="letter" id="login_log" style="border-bottom: 1px;">${user.name} 님, 환영합니다.</span>
+        <span class="letter2" id="login_log" style="border-bottom: 1px;">${user.name} 님, 환영합니다.</span>
 
         <div class="btn-group" style="right: 10px">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
@@ -127,7 +131,9 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
 <script>
-    window.onload = function () {
+
+
+    window.onload = function() {
         scrollFunction();
     };
 
@@ -151,7 +157,24 @@
         }
     }
 
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const letterLink = document.querySelector('.letter');
+        const boxTitle = document.querySelector('.box-title');
+
+        letterLink.addEventListener('click', function(e) {
+            e.preventDefault(); // 링크의 기본 동작(페이지 이동) 방지
+
+            const targetOffset = boxTitle.offsetTop; // 대상 요소의 위치 계산
+            window.scrollTo({
+                top: targetOffset,
+                behavior: 'smooth' // 부드러운 스크롤 적용
+            });
+        });
+    });
+
     window.addEventListener('scroll', scrollFunction);
+
 </script>
 
 </body>

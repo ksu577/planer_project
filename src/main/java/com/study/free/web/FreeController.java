@@ -131,6 +131,20 @@ public class FreeController {
             return "redirect:/login/login.wow";
         }
         FreeBoardVO freeBoard = freeBoardService.getBoard(freeNum);
+
+        List<PlanVo> planList = null;
+
+        if (freeBoard.getPlanTitle() != null) {
+            planList = planService.planView(freeBoard.getId(), freeBoard.getPlanTitle());
+            if (planList != null) {
+                model.addAttribute("planList", planList);
+            }
+        }
+
+
+
+        model.addAttribute("freeBoard", freeBoard);
+
         model.addAttribute("freeBoard", freeBoard);
         return "free/freeEdit";
     }
