@@ -7,7 +7,7 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/inc/header.jsp" %>
-    <title>memberView</title>
+    <title>마이페이지</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
@@ -18,7 +18,7 @@
     }
 
     .my-container {
-        border: 1px solid #98dde3;
+        border: 2px solid #98dde3;
         transform: translate(70%, 60%);
         width: 800px;
         height: 500px;
@@ -39,7 +39,6 @@
     }
 
 </style>
-</head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 
