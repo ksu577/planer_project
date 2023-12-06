@@ -8,14 +8,26 @@
 <!DOCTYPE html>
 <html>
 <style>
-    .container{padding-top: 70px}
+    td {
+        background-color: #98dde3;
+    }
+
+    .container{
+        padding-top: 70px
+    }
+
     .top-background{
         height: 70px;
         background-color: #98dde3;
     }
+
+
+
+
+
 </style>
 <head>
-    <%@include file="/WEB-INF/inc/header.jsp" %>
+        <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
@@ -25,34 +37,38 @@
 <div class="container">
 
     <!-- START : 검색 폼  -->
-    <div class="panel panel-default">
+    <div class="panel panel-default" id="id_search_area" style="background-color: #98dde3;">
         <div class="panel-body">
-            <form name="search" action="managerproduct.wow" method="get" class="form-horizontal">
-                <input type="hidden" name="curPage" value="${paging.curPage}">
-                <input type="hidden" name="rowSizePerPage" value="${paging.rowSizePerPage}">
+            <form name="search" action="memberList.wow" method="post" class="form-horizontal">
+                <input type="hidden" name="curPage" value="${paging.curPage}"> <input type="hidden"
+                                                                                      name="rowSizePerPage"
+                                                                                      value="${paging.rowSizePerPage}">
+
                 <div class="form-group">
-                    <label for="id_searchType" class="col-sm-1 control-label"></label>
                     <div class="col-sm-2">
-                        <select id="id_searchType" name="searchType" class="form-control input-sm">
-                            <option value="T"  ${search.searchType=='T' ? "selected='selected'" :""} >제목</option>
-                            <option value="W" ${search.searchType=='W' ? "selected='selected'"  :""} >작성자</option>
-                            <option value="C" ${search.searchType=='C' ? "selected='selected'"  : ""} >내용</option>
+                        <select id="id_searchType" name="searchType" class="form-control input-sm"
+                                style="font-size: 13px; padding: 0rem 0.75rem;">
+                            <option value="NAME" ${search.searchType=='NAME' ? "selected='selected'" :""} >이름
+                            </option>
+                            <option value="ID" ${search.searchType=='ID' ? "selected='selected'" :""} >아이디</option>
                         </select>
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" name="searchWord" class="form-control input-sm" value="${search.searchWord}"
+                        <input style="font-size: 13px;" type="text" name="searchWord" class="form-control input-sm"
+                               value="${search.searchWord}"
                                placeholder="검색어">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2 col-sm-offset-9 text-right">
-                        <button type="button" id="id_btn_reset" class="btn btn-sm btn-default">
-                            <i class="fa fa-sync"></i> &nbsp;&nbsp;초기화
+                        <button type="button" id="id_btn_reset" class="btn btn-sm btn-default"
+                                style="background-color: white; font-size: 13px; width: 70px;">
+                            <i class="fa fa-sync"></i> 초기화
                         </button>
                     </div>
                     <div class="col-sm-1 text-right">
-                        <button type="submit" class="btn btn-sm btn-primary ">
-                            <i class="fa fa-search"></i> &nbsp;&nbsp;검 색
+                        <button type="submit" class="btn btn-sm btn-primary" style="width: 50px; font-size: 13px;">
+                            <i class="fa fa-search"></i> 검 색
                         </button>
                     </div>
                 </div>
@@ -68,16 +84,7 @@
     </div>
 
     <!-- START : 목록건수 및 새글쓰기 버튼  -->
-    <div class="row" style="margin-bottom: 10px;">
-        <div class="col-sm-2  text-right">
-            전체 ${paging.totalRowCount}건 조회
-            <select id="id_rowSizePerPage" name="rowSizePerPage" class="form-control input-sm">
-                <c:forEach var="i" begin="10" end="50" step="10">
-                    <option value="${i}" ${paging.rowSizePerPage eq i ? "selected='selected'" : ""} >${i}</option>
-                </c:forEach>
-            </select>
-        </div>
-    </div>
+
 
     <div class="row">
         <div class="col-sm-2 col-sm-offset-10 text-right" style="margin-bottom: 5px;">
@@ -87,14 +94,14 @@
             </a>
         </div>
     </div>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table  table-bordered table-hover">
         <thead>
         <tr>
-            <th>물품 번호</th>
-            <th>가격</th>
-            <th>물품 설명</th>
-            <th>물품 이름</th>
-            <th>삭제</th>
+            <th style="background-color: #98dde3; color: white; border: 1px solid white;">물품 번호</th>
+            <th style="background-color: #98dde3; color: white; border: 1px solid white;">가격</th>
+            <th style="background-color: #98dde3; color: white; border: 1px solid white;">물품 설명</th>
+            <th style="background-color: #98dde3; color: white; border: 1px solid white;">물품 이름</th>
+            <th style="background-color: #98dde3; color: white; border: 1px solid white;">삭제</th>
         </tr>
         </thead>
         <tbody>
@@ -102,15 +109,15 @@
 
         <c:forEach items="${productList}" var="productList">
 
-            <tr class="text-center">
-                <td>${productList.productId}</td>
-                <td>${productList.productPrice}</td>
-                <td>${productList.productDesc}</td>
-                <td><a href="/product/productview.wow?productId=${productList.productId}">${productList.productName}</a></td>
-                <td>
+            <tr style="font-size: 12px; text-align: center;" class="text-center">
+                <td style="background-color: white; border: 1px solid #98dde3;" >${productList.productId}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" >${productList.productPrice}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" >${productList.productDesc}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" ><a href="/product/productview.wow?productId=${productList.productId}">${productList.productName}</a></td>
+                <td style="background-color: white; border: 1px solid #98dde3;">
                     <form action="/product/productDelete" method="post">
                         <input type="hidden" name="product" value="${productList.productId}">
-                        <button type="submit">삭제</button>
+                        <button type="submit" >삭제</button>
                     </form>
                 </td>
             </tr>

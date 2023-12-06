@@ -137,6 +137,15 @@
     </div>
 
 
+
+    <div>
+
+        <c:if test="${user.getRole()=='MANAGER'}">
+            <button type="button" class="regist" onclick="registProduct()">물건 등록</button>
+
+        </c:if>
+    </div>
+
     <div class="item-box" style="padding-top: 50px; " >
         <c:forEach var="product" items="${list}" >
             <div class="cell" onclick="detailView(${product.productId})" style="margin: 10px; margin-top: 30px; margin-left: 10px; margin-right: 10px">
@@ -153,14 +162,6 @@
 
 </div>
 
-
-<div>
-
-    <c:if test="${user.getRole()=='MANAGER'}">
-        <button type="button" class="regist" onclick="registProduct()">물건 등록</button>
-
-    </c:if>
-</div>
 
 
 <script>
