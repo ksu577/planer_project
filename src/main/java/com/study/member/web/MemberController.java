@@ -126,12 +126,13 @@ public class MemberController {
 
         memberService.modifyMember(member);  // 이름, 사는곳 등등 회원정보 변경하는 코드
 
+
         session.setAttribute("user", user);
 
         resultMessageVO.messageSetting(true, "수정", "회원정보가 수정되었습니다."
                 , "/member/memberList.wow", "목록으로");
         model.addAttribute("resultMessageVO", resultMessageVO);
-        return "redirect:/member/memberView.wow";
+        return "redirect:/member/memberView.wow?Id="+ member.getId();
     }
 
 
