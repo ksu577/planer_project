@@ -215,6 +215,164 @@
             background-color: #afafaf;
             font-weight: 900;
         }
+
+        .container5 {
+            padding-top: 80px;
+            width: 1700px;
+        }
+
+
+        .cell {
+            text-align: center;
+            width: 330px;
+            height: 330px;
+            background-color: white;
+        }
+
+
+        .cell {
+            background-color: rgb(255, 255, 255);
+            box-shadow: none; /* 초기에는 그림자 없음 */
+            transition: box-shadow 0.3s ease, transform 0.5s ease; /* 그림자에 트랜지션 효과 적용 */
+        }
+
+        .cell > .bottom > h1{
+            text-align: end;
+        }
+
+        .cell:hover {
+            border-radius: 20px;
+            /*box-shadow: 0px 0px 3px 2px rgb(135, 206, 250); !* 마우스 호버 시 그림자 나타남 *!*/
+            transform: scale(1.1); /* 이미지 크기를 1.1배로 확대 */
+        }
+
+        .place-box a {
+            text-decoration: none;
+        }
+
+        .place-box {
+            text-decoration: none;
+            cursor: pointer;
+            margin: auto;
+            width: 1400px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            border-radius: 20px;
+        }
+
+        .place-box > div {
+            width: calc(1200px / 4 - 20px);
+            height: 400px;
+            border: 0;
+            border-bottom: 20px;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .top > img {
+            border-radius: 20px;
+        }
+
+        .top > img:hover{
+            box-shadow: 0px 0px 3px 3px rgb(135, 206, 250); /* 마우스 호버 시 그림자 나타남 */
+        }
+
+
+        .bottom {
+            text-align: center;
+            padding-top: 10px;
+            display: flex;
+            align-items: self-end;
+            /*align-items: center; 지역 글씨 가운데로 내 생각엔 오른쪽 끝이 이뻐서 그렇게 해둠*/
+            justify-content: space-between;
+            width: 232px;
+            height: 65px;
+            color: black;
+            flex-direction: column;
+        }
+
+        .bottom a {
+            color: rgb(0, 102, 0);
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 12px;
+            padding-right: 12px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .bottom h3 {
+            text-align: left;
+        }
+
+        .modalcontainer {
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;;
+        }
+
+        /*.nav-bar>div:nth-child(1)*/
+        .modalcontainer > div {
+            text-align: left;
+            margin: 20px;
+            padding: 20px;
+            border: 1px red;
+            width: 90%;
+            height: 90%;
+        }
+
+
+        .modal2 {
+            background-color: white;
+            width: 400px;
+            height: 300px;
+            border-radius: 20px;
+            box-shadow: 4px 4px 4px 4px gainsboro;
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+        .align-end2 {
+            text-align: end;
+        }
+
+        @keyframes summon {
+            0% {
+                height: 0;
+                width: 0;
+            }
+
+            100% {
+                height: 512px;
+                width: 960px;
+            }
+        }
+
+        @keyframes down {
+            0% {
+                top: 0%;
+                transform: translate(-50%, -100%);
+            }
+
+            100% {
+                top: 10%;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .modal-summon {
+            /*animation: summon 1s forwards; 애니메이션 효과로 뜨게하는거 아래는 바로 뜨게하는거*/
+            animation: summon forwards;
+        }
+
+        .d-none2 {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -255,7 +413,8 @@
 
         <div class="search-travel-cover">
             <form action="/title" id="title" method="GET">
-                <input class="search-travel" type="text" placeholder="목적지를 입력해주세요" id="title-ip" name="planTitle" onclick="hidePlaceholder()" onblur="showPlaceholder()">
+                <input class="search-travel" type="text" placeholder="목적지를 입력해주세요" id="title-ip" name="planTitle"
+                       onclick="hidePlaceholder()" onblur="showPlaceholder()">
                 <div id="sm-div" style="display: inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white  "
                          class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(0%, -20%)">
@@ -264,7 +423,6 @@
                 </div>
             </form>
         </div>
-
 
 
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"
@@ -277,6 +435,25 @@
             <span class="carousel-control-next-icon" aria-hidden="true" style="width: 80px; height: 80px;"></span>
             <span class="visually-hidden">Next</span>
         </button>
+    </div>
+</div>
+
+<div class="container5">
+    <div class="place-box">
+        <c:forEach var="place" items="${placeList}">
+            <div class="cell" onclick="f_summon('${place.placeNum}')">
+                <div class="top">
+                    <img height="280px" width="280px"
+                         src="<%=request.getContextPath()%>/imgDownload/showImg.wow?fileName=${place.img}&filePath=${place.imgPath}"
+                         alt="">
+                </div>
+                <div class="bottom" style="text-align: left;">
+                    <h1> ${place.englishName} </h1>
+                    <h3> ${place.placeName} </h3>
+                    <a href="" hidden="true"> ${place.placeNum} </a>
+                </div>
+            </div>
+        </c:forEach>
     </div>
 </div>
 
@@ -359,7 +536,7 @@
         input.placeholder = '목적지를 입력해주세요';
     }
 
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         var input = document.getElementById('title-ip');
         var isInputClicked = input.contains(event.target);
 
