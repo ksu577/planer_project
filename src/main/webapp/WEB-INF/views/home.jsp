@@ -175,9 +175,9 @@
         }
 
         .container4 {
+            padding-top: 80px;
             width: 99vw;
-            height: 100vh;
-            position: relative;
+            height: 100px;
             font-family: 'Arial', sans-serif;
         }
 
@@ -248,8 +248,9 @@
         }
 
         .container5 {
-            padding-top: 150px;
+            padding-top: 550px;
             width: 1700px;
+            padding-left: 240px;
 
         }
 
@@ -283,6 +284,7 @@
         }
 
         .place-box {
+            padding-top: 70px;
             text-decoration: none;
             cursor: pointer;
             margin: auto;
@@ -358,6 +360,7 @@
 
 
         .modal2 {
+            z-index: 5;
             background-color: white;
             width: 400px;
             height: 300px;
@@ -366,7 +369,7 @@
             position: fixed;
             top: 10%;
             left: 50%;
-            transform: translate(-50%, 0);
+            transform: translate(-50%, 20%);
         }
 
         .align-end2 {
@@ -400,6 +403,13 @@
         .modal-summon {
             /*animation: summon 1s forwards; 애니메이션 효과로 뜨게하는거 아래는 바로 뜨게하는거*/
             animation: summon forwards;
+        }
+
+        .box-title{
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            font-size: 50px;
         }
 
         .d-none2 {
@@ -443,7 +453,7 @@
         </div>
 
 
-        <div class="search-travel-cover">
+        <div class="search-travel-cover" style="z-index: 1">
             <form action="/title" id="title" method="GET">
                 <input class="search-travel" type="text" placeholder="목적지를 입력해주세요" id="title-ip" name="planTitle"
                        onclick="hidePlaceholder()" onblur="showPlaceholder()">
@@ -479,7 +489,14 @@
     </div>
 </div>
 
+<div class="container4">
+    <div class="ranking-container"></div>
+</div>
+
 <div class="container5">
+
+    <div class="box-title"> 여행 가자! </div>
+
     <div class="place-box">
         <c:forEach var="place" items="${placeList}">
             <div class="cell" onclick="f_summon('${place.placeNum}')">
@@ -527,10 +544,6 @@
 
 </div>
 
-<div class="container4">
-    <div class="ranking-container"></div>
-    <a class="go-trip2" href="plan/title.wow">여행 가자!</a>
-</div>
 
 
 </body>
