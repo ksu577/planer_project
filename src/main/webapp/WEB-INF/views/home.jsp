@@ -215,13 +215,6 @@
             background-color: #afafaf;
             font-weight: 900;
         }
-
-        .hidden-button {
-            overflow: hidden;
-        }
-        .svg-1{
-            overflow: visible;
-        }
     </style>
 </head>
 <body>
@@ -261,16 +254,13 @@
 
 
         <div class="search-travel-cover">
-            <form action="/title" id="title" method="GET">
-                <input class="search-travel" type="text" placeholder="목적지를 입력해주세요" id="title-ip" name="planTitle">
-                <div id="sm-div" style="display: inline-block">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white  "
-                         class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(0%, -20%)">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                </div>
-            </form>
+            <input class="search-travel" type="text" placeholder="목적지를 입력해주세요">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white  "
+                 class="bi bi-search" viewBox="0 0 16 16" style="transform: translate(0%, -20%)">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
         </div>
+
 
 
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"
@@ -346,14 +336,5 @@
             rankingContainer.appendChild(rankingItem);
         }
     });
-
-        document.getElementById('sm-div').addEventListener('click', function () {
-            if ($("#title-ip").val() == null || $("#title-ip").val() == "") {
-                alert("아이디를 입력해주세요");
-                return;
-            }
-        document.getElementById('title').submit();
-    });
-
 </script>
 </html>
