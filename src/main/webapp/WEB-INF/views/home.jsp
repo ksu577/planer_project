@@ -255,7 +255,7 @@
 
         <div class="search-travel-cover">
             <form action="/title" id="title" method="GET">
-                <input class="search-travel" type="text" placeholder="목적지를 입력해주세요" id="title-ip" name="planTitle">
+                <input class="search-travel" type="text" placeholder="목적지를 입력해주세요" id="title-ip" name="planTitle" onclick="hidePlaceholder()" onblur="showPlaceholder()">
                 <div id="sm-div" style="display: inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white  "
                          class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(0%, -20%)">
@@ -347,6 +347,25 @@
             return;
         }
         document.getElementById('title').submit();
+    });
+
+    function hidePlaceholder() {
+        var input = document.getElementById('title-ip');
+        input.placeholder = '';
+    }
+
+    function showPlaceholder() {
+        var input = document.getElementById('title-ip');
+        input.placeholder = '목적지를 입력해주세요';
+    }
+
+    document.addEventListener('click', function(event) {
+        var input = document.getElementById('title-ip');
+        var isInputClicked = input.contains(event.target);
+
+        if (!isInputClicked) {
+            showPlaceholder();
+        }
     });
 
 </script>

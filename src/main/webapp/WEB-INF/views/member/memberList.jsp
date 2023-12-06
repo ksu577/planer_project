@@ -98,7 +98,7 @@
         <tbody>
         <c:forEach items="${memberList}" var="member">
             <tr style="font-size: 12px; text-align: center;">
-                <td style="background-color: white; border: 1px solid #98dde3;"><a href="memberView.wow?Id=${member.id}">${member.id}</a></td>
+                <td style="background-color: white; border: 1px solid #98dde3;"><a STYLE="text-decoration: none;" href="memberView.wow?Id=${member.id}">${member.id}</a></td>
                 <td style="background-color: white; border: 1px solid #98dde3;">${member.password}</td>
                 <td style="background-color: white; border: 1px solid #98dde3;">${member.name}</td>
                 <td style="background-color: white; border: 1px solid #98dde3;">${member.birth}</td>
