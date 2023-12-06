@@ -86,6 +86,7 @@
             /*border: 1px solid red;*/
             position: relative;
             right: 15%;
+            top: 100px;
         }
 
         #side_title {
