@@ -107,8 +107,13 @@ public class ProductServiceImple implements IproductService {
     }
 
     @Override
-    public void getSave(SaveCartVO saveCartVO) {
+    public void getSave(SaveCartVO saveCartVO) throws Exception {
+
+        int sibalSeGGi = productDao.getSaveCartKey();
+        saveCartVO.setSaveNum(sibalSeGGi);
+
         productDao.insertSaveCart(saveCartVO);
+        productDao.updateProductBuy(saveCartVO);
     }
 
 

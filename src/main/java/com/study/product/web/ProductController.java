@@ -147,7 +147,7 @@ public class ProductController {
 //    https://developers.kakao.com/docs/latest/ko/kakaopay/single-payment
 //    https://blog.naver.com/PostView.naver?blogId=dudghks2814&logNo=222470808715
     @PostMapping("/shop/insertOrder.wow")
-    public String paypage(@ModelAttribute SaveCartVO saveCartVO, HttpSession session) {
+    public String paypage(@ModelAttribute SaveCartVO saveCartVO, HttpSession session) throws Exception {
         UserVO user = (UserVO) session.getAttribute("user");
         String userId = user.getId();
         saveCartVO.setUserId(userId);
@@ -181,10 +181,10 @@ public class ProductController {
         SaveCartVO userinfo = iproductService.viewUserInfo(user.getId());
         List<ProductVO> productinfo = iproductService.viewProductInfo(user.getId());
 
-        if (user != null) {
-            String userId = user.getId();
-            cartService.clearCart(userId);
-        }
+//        if (user != null) {
+//            String userId = user.getId();
+//            cartService.clearCart(userId);
+//        }
         model.addAttribute("userinfo", userinfo);
         model.addAttribute("productinfo", productinfo);
 
