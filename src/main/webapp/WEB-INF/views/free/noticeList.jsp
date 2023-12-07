@@ -20,6 +20,10 @@
             color: inherit; /* 링크의 기본 색상 유지 */
         }
 
+        .page-header {
+            font-family: 'yg-jalnan';
+        }
+
         .panel-body {
             background-color: #98dde3; /* 배경색 설정 */
         }
@@ -86,7 +90,8 @@
             /*border: 1px solid red;*/
             position: relative;
             right: 15%;
-            top: 100px;
+            top: 123px;
+            font-family: 'yg-jalnan';
         }
 
         #side_title {
@@ -153,6 +158,7 @@
             background-color: #98dde3; /* 헤더 배경색 */
             color: #ffffff; /* 글자 색깔 */
             font-size: 12px; /* 글자 크기 */
+            font-family: 'yg-jalnan';
         }
 
         #noticeTable thead tr {

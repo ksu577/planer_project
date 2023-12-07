@@ -65,6 +65,7 @@
 
         .schedule-container {
             display: flex;
+            flex-wrap: wrap;
         }
 
         .schedule-dropdown {
@@ -104,6 +105,10 @@
             font-family: 'Pretendard-Regular';
             font-size: 13px;
             color: #797979;
+        }
+
+        .schedule {
+            width: calc(100% / 4 - 50px);
         }
     </style>
 </head>
@@ -158,8 +163,11 @@
         let id = $(this).data("id")
         location.href = encodeURI("/plan/marker.wow?planTitle=" + title + "&id=" + id);
     });
-    const regdate = document.getElementById("regdate")
-    regdate.innerHTML = regdate.innerHTML.substring(0,16)
+
+    const regdate = document.getElementsByClassName("regdate")
+    for (let i = 0; i < regdate.length; i++) {
+        regdate[i].innerHTML = regdate[i].innerHTML.substring(0, 16)
+    }
 </script>
 </body>
 </html>

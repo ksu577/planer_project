@@ -155,6 +155,10 @@
             top: 15px;
         }
 
+        .d-none {
+            display: none;
+        }
+
 
         @keyframes slideIn {
             0% {
@@ -392,193 +396,198 @@
             },
             success: function (result) {
                 let json_marker = result;
-                console.log(json_marker);
+                if (json_marker.length != 0) {
 
-                for (let i = 0; i < marker_list.length; i++) {
-                    marker_list[i].setMap(null);
-                }
-                for (let i = 0; i < polyline_list.length; i++) {
-                    console.log(polyline_list[i]);
-                    polyline_list[i].setMap(null);
-                }
+                    console.log(json_marker);
+
+                    for (let i = 0; i < marker_list.length; i++) {
+                        marker_list[i].setMap(null);
+                    }
+                    for (let i = 0; i < polyline_list.length; i++) {
+                        console.log(polyline_list[i]);
+                        polyline_list[i].setMap(null);
+                    }
 
 
-                // var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+                    // var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-                var points = [];
+                    var points = [];
 
-                for (let i = 0; i < result.length; i++) {
+                    for (let i = 0; i < result.length; i++) {
 
-                    points[i] = (new kakao.maps.LatLng(result[i].ylab, result[i].xlab));
+                        points[i] = (new kakao.maps.LatLng(result[i].ylab, result[i].xlab));
 
-                    console.log(result[i].ylab, result[i].xlab);
+                        console.log(result[i].ylab, result[i].xlab);
 
-                }
+                    }
 
-                // 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
-                var bounds = new kakao.maps.LatLngBounds();
+                    // 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+                    var bounds = new kakao.maps.LatLngBounds();
 
-                marker = new kakao.maps.Marker({position: points[i]});
-                for (i = 0; i < points.length; i++) {
-                    // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
                     marker = new kakao.maps.Marker({position: points[i]});
-                    marker.setMap(map);
-                    marker_list.push(marker);
+                    for (i = 0; i < points.length; i++) {
+                        // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
+                        marker = new kakao.maps.Marker({position: points[i]});
+                        marker.setMap(map);
+                        marker_list.push(marker);
 
 
-                    // LatLngBounds 객체에 좌표를 추가합니다
-                    bounds.extend(points[i]);
-                }
-
-
-                // 마커를 표시할 위치와 title 객체 배열입니다
-                var positions = [];
-
-                for (let i = 0; i < result.length; i++) {
-                    positions[i] = {
-                        title: '"' + result[i].placeName + '"',
-                        latlng: new kakao.maps.LatLng(result[i].ylab, result[i].xlab)
-                    }
-                }
-
-                // 마커 이미지의 이미지 주소입니다
-                for (var i = 0; i < positions.length; i++) {
-
-                    if (i + 2 <= 9) {
-                        var imageSrc = "/resources/img/00" + (i + 2) + ".png";
-                    } else {
-                        var imageSrc = "/resources/img/0" + (i + 2) + ".png";
+                        // LatLngBounds 객체에 좌표를 추가합니다
+                        bounds.extend(points[i]);
                     }
 
-                    // 마커 이미지의 이미지 크기 입니다
-                    var imageSize = new kakao.maps.Size(45, 45);
 
-                    // 마커 이미지를 생성합니다
-                    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+                    // 마커를 표시할 위치와 title 객체 배열입니다
+                    var positions = [];
 
-
-                    // 마커를 생성합니다
-                    var marker = new kakao.maps.Marker({
-                        map: map, // 마커를 표시할 지도
-                        position: positions[i].latlng, // 마커를 표시할 위치
-                        title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                        image: markerImage // 마커 이미지
-                    });
-
-                    marker_list.push(marker);
-                }
-
-                // 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
-
-                // var linePath = [
-                // new kakao.maps.LatLng(33.452344169439975, 126.56878163224233),
-                // new kakao.maps.LatLng(33.452739313807456, 126.5709308145358),
-                // new kakao.maps.LatLng(33.45178067090639, 126.5726886938753)
-                // ];
-
-                let linePath;
-                let lineLine = new daum.maps.Polyline();
-                let distance;
-
-                for (var i = 0; i < positions.length; i++) {
-                    if (i != 0) {
-                        linePath = [positions[i - 1].latlng, positions[i].latlng]
+                    for (let i = 0; i < result.length; i++) {
+                        positions[i] = {
+                            title: '"' + result[i].placeName + '"',
+                            latlng: new kakao.maps.LatLng(result[i].ylab, result[i].xlab)
+                        }
                     }
 
-                    lineLine.setPath(linePath);
+                    // 마커 이미지의 이미지 주소입니다
+                    for (var i = 0; i < positions.length; i++) {
+
+                        if (i + 2 <= 9) {
+                            var imageSrc = "/resources/img/00" + (i + 2) + ".png";
+                        } else {
+                            var imageSrc = "/resources/img/0" + (i + 2) + ".png";
+                        }
+
+                        // 마커 이미지의 이미지 크기 입니다
+                        var imageSize = new kakao.maps.Size(45, 45);
+
+                        // 마커 이미지를 생성합니다
+                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
 
-                    // 지도에 표시할 선을 생성합니다
-                    var polyline = new kakao.maps.Polyline({
-                        path: linePath, // 선을 구성하는 좌표배열 입니다
-                        strokeWeight: 3, // 선의 두께 입니다
-                        strokeColor: '#28ad02', // 선의 색깔입니다
-                        strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-                        strokeStyle: 'solid' // 선의 스타일입니다
-                    });
-
-                    polyline_list.push(polyline);
-
-                    distance = Math.round(lineLine.getLength());
-                    displayCircleDot(positions[i].latlng, distance);
-
-                }
-
-                function displayCircleDot(position, distance) {
-                    if (distance > 0) {
-                        var distanceOverlay = new daum.maps.CustomOverlay({
-                            content: '<div class="dotOverlay "> 거리 <span class="number">'
-                                + distance + '</span>m</div>',
-                            position: position,
-                            yAnchor: 1,
-                            zIndex: 2
+                        // 마커를 생성합니다
+                        var marker = new kakao.maps.Marker({
+                            map: map, // 마커를 표시할 지도
+                            position: positions[i].latlng, // 마커를 표시할 위치
+                            title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                            image: markerImage // 마커 이미지
                         });
-                        polyline.setMap(map);
+
+                        marker_list.push(marker);
                     }
-                }
 
-                map.setBounds(bounds);
+                    // 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
 
-                const flaticon = "https://cdn-icons-png.flaticon.com";
+                    // var linePath = [
+                    // new kakao.maps.LatLng(33.452344169439975, 126.56878163224233),
+                    // new kakao.maps.LatLng(33.452739313807456, 126.5709308145358),
+                    // new kakao.maps.LatLng(33.45178067090639, 126.5726886938753)
+                    // ];
 
-                if (result1 != 0) {
-                    tour_div.innerHTML = '<h1>' + result[0]["dayCount"] + "일차" + '</h1>';
+                    let linePath;
+                    let lineLine = new daum.maps.Polyline();
+                    let distance;
+
+                    for (var i = 0; i < positions.length; i++) {
+                        if (i != 0) {
+                            linePath = [positions[i - 1].latlng, positions[i].latlng]
+                        }
+
+                        lineLine.setPath(linePath);
+
+
+                        // 지도에 표시할 선을 생성합니다
+                        var polyline = new kakao.maps.Polyline({
+                            path: linePath, // 선을 구성하는 좌표배열 입니다
+                            strokeWeight: 3, // 선의 두께 입니다
+                            strokeColor: '#28ad02', // 선의 색깔입니다
+                            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                            strokeStyle: 'solid' // 선의 스타일입니다
+                        });
+
+                        polyline_list.push(polyline);
+
+                        distance = Math.round(lineLine.getLength());
+                        displayCircleDot(positions[i].latlng, distance);
+
+                    }
+
+                    function displayCircleDot(position, distance) {
+                        if (distance > 0) {
+                            var distanceOverlay = new daum.maps.CustomOverlay({
+                                content: '<div class="dotOverlay "> 거리 <span class="number">'
+                                    + distance + '</span>m</div>',
+                                position: position,
+                                yAnchor: 1,
+                                zIndex: 2
+                            });
+                            polyline.setMap(map);
+                        }
+                    }
+
+                    map.setBounds(bounds);
+
+                    const flaticon = "https://cdn-icons-png.flaticon.com";
+
+                    if (result1 != 0) {
+                        tour_div.innerHTML = '<h1>' + result[0]["dayCount"] + "일차" + '</h1>';
+                    } else {
+                        tour_div.innerHTML = '<h1>전체일정</h1>';
+                    }
+
+                    for (let i = 0; i < result.length; i++) {
+                        tour_div.innerHTML += '<div>' +
+                            '<div>'
+                            + (i + 1) +
+                            '</div>' +
+                            '<div>'
+                            + result[i]["placeName"] +
+                            '</div>' +
+                            '<div>'
+                            + result[i]["placeLoadAddress"] +
+                            '</div>' +
+                            '<img id="place-img' + i + '"  class="place-img" width="40px" height="40px">' +
+                            '</div>';
+
+                        let p_img = document.getElementById("place-img" + i)
+                        if (result[i]["placeLoadAddress"].substring(0, 2) == "서울") {
+                            p_img.src = flaticon + "/128/2195/2195482.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "대전") {
+                            p_img.src = flaticon + "/128/992/992710.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "경기") {
+                            p_img.src = flaticon + "/128/3048/3048352.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "충북") {
+                            p_img.src = flaticon + "/128/1150/1150353.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "세종") {
+                            p_img.src = flaticon + "/128/5789/5789257.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "전남") {
+                            p_img.src = flaticon + "/128/7389/7389073.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "강원") {
+                            p_img.src = flaticon + "/128/933/933248.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "충남") {
+                            p_img.src = flaticon + "/128/1146/1146825.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "전북") {
+                            p_img.src = flaticon + "/128/8269/8269621.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "제주") {
+                            p_img.src = flaticon + "/128/4789/4789874.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "부산") {
+                            p_img.src = flaticon + "/128/10641/10641465.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "대구") {
+                            p_img.src = flaticon + "/128/5139/5139161.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "인천") {
+                            p_img.src = flaticon + "/128/4244/4244785.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "광주") {
+                            p_img.src = flaticon + "/128/2861/2861698.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "울산") {
+                            p_img.src = flaticon + "/128/1045/1045140.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "경북") {
+                            p_img.src = flaticon + "/128/2639/2639378.png";
+                        } else if (result[i]["placeLoadAddress"].substring(0, 2) == "경남") {
+                            p_img.src = flaticon + "/128/2271/2271030.png";
+                        }
+                    }
+
                 } else {
-                    tour_div.innerHTML = '<h1>전체일정</h1>';
+                    document.getElementsByClassName("selectplace-nav")[0].classList.add("d-none")
                 }
-
-                for (let i = 0; i < result.length; i++) {
-                    tour_div.innerHTML += '<div>' +
-                        '<div>'
-                        + (i + 1) +
-                        '</div>' +
-                        '<div>'
-                        + result[i]["placeName"] +
-                        '</div>' +
-                        '<div>'
-                        + result[i]["placeLoadAddress"] +
-                        '</div>' +
-                        '<img id="place-img' + i + '"  class="place-img" width="40px" height="40px">' +
-                        '</div>';
-
-                    let p_img = document.getElementById("place-img" + i)
-                    if (result[i]["placeLoadAddress"].substring(0, 2) == "서울") {
-                        p_img.src = flaticon + "/128/2195/2195482.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "대전") {
-                        p_img.src = flaticon + "/128/992/992710.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "경기") {
-                        p_img.src = flaticon + "/128/3048/3048352.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "충북") {
-                        p_img.src = flaticon + "/128/1150/1150353.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "세종") {
-                        p_img.src = flaticon + "/128/5789/5789257.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "전남") {
-                        p_img.src = flaticon + "/128/7389/7389073.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "강원") {
-                        p_img.src = flaticon + "/128/933/933248.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "충남") {
-                        p_img.src = flaticon + "/128/1146/1146825.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "전북") {
-                        p_img.src = flaticon + "/128/8269/8269621.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "제주") {
-                        p_img.src = flaticon + "/128/4789/4789874.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "부산") {
-                        p_img.src = flaticon + "/128/10641/10641465.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "대구") {
-                        p_img.src = flaticon + "/128/5139/5139161.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "인천") {
-                        p_img.src = flaticon + "/128/4244/4244785.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "광주") {
-                        p_img.src = flaticon + "/128/2861/2861698.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "울산") {
-                        p_img.src = flaticon + "/128/1045/1045140.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "경북") {
-                        p_img.src = flaticon + "/128/2639/2639378.png";
-                    } else if (result[i]["placeLoadAddress"].substring(0, 2) == "경남") {
-                        p_img.src = flaticon + "/128/2271/2271030.png";
-                    }
-                }
-
 
             }, error: function (error) {
                 console.log(error);
