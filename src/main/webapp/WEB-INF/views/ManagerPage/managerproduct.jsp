@@ -117,7 +117,7 @@
                 <td style="background-color: white; border: 1px solid #98dde3;">
                     <form action="/product/productDelete" method="post">
                         <input type="hidden" name="product" value="${productList.productId}">
-                        <button type="submit" >삭제</button>
+                        <button type="submit" style="width: 50px; height: 25px; border: 1px solid white; border-radius: 5px; background-color: #0d6efd; color: white;">삭 제</button>
                     </form>
                 </td>
             </tr>
