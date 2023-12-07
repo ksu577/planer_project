@@ -112,7 +112,7 @@
                                take_detail_add, take_auto_add, take_req, pay_date)
         VALUES ( #{userId}, SAVE_CART_SEQ.nextval, #{takeName}
                , #{takeHp}, #{takeMail}, #{takeAdd}
-               , #{takeDetailAdd}, #{takeAutoAdd}, #{takeReq}, sysdate)
+               , #{takeDetailAdd}, #{takeAutoAdd}, #{takeReq}, sysdate , #{select })
     </insert>
 
     <!--    장바구니의 정보를 가져오려고함 근데 가장 최신에 생성된 장바구니여야되니까 save_num이 max값인걸 불러온거임 11월 23일-->

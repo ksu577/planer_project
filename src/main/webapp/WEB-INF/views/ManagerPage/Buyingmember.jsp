@@ -93,6 +93,7 @@
             <th style="background-color: #98dde3; color: white; border: 1px solid white;">이름</th>
             <th style="background-color: #98dde3; color: white; border: 1px solid white;">전화번호</th>
             <th style="background-color: #98dde3; color: white; border: 1px solid white;">주소</th>
+            <th style="background-color: #98dde3; color: white; border: 1px solid white;">날짜</th>
             <th style="background-color: #98dde3; color: white; border: 1px solid white;">삭제</th>
         </tr>
         </thead>
@@ -106,7 +107,7 @@
                 <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.takeName}</td>
                 <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.takeHp}</td>
                 <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.takeAdd}</td>
-                <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.name}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.payDate}</td>
             </tr>
         </c:forEach>
 

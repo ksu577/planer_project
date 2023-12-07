@@ -709,7 +709,7 @@
                 for (let i = 0; i < data.length; i++) {
                     html += '<div class="cell" onclick="f_summon(' + data[i]["placeNum"] + ')">';
                     html += '<div class="top">';
-                    html += '<img height="280px" width="280px" src="<%=request.getContextPath()%>/imgDownload/showImg.wow?fileName=' + data[i]["img"] + '&filePath=' + data[i]["imgPath"] + ' alt="">'
+                    html += '<img height="280px" width="280px" src="<%=request.getContextPath()%>/imgDownload/showImg.wow?fileName=' + data[i]["img"] + '&filePath=' + data[i]["imgPath"]+'" alt="">'
                     html += '</div>';
                     html += '<div class="bottom" style="text-align: left;">';
                     html += '<h1> ' + data[i]["englishName"] + ' </h1>';
