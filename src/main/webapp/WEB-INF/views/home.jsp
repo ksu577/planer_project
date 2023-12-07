@@ -448,19 +448,20 @@
         }
 
         .search-local-cover {
-            border-bottom: 2px solid gainsboro;
+            box-shadow: 1px 1px 10px 2px gainsboro;
             margin-top: 100px;
-            transform: translate(135%);
-            width: 400px;
-            height: 100px;
+            transform: translate(72%);
+            width: 600px;
+            height: 60px;
+            border-radius: 30px;
         }
 
         .search-local {
-            transform: translate(2%, 90%);
+            transform: translate(2%, 10%);
             outline: none;
             border: 1px solid transparent;
             background: transparent;
-            width: 350px;
+            width: 500px;
             height: 50px;
             text-align: center;
             font-size: 25px;
@@ -590,9 +591,9 @@
     <div class="box-title" id="box-title"> 여행지역</div>
 
     <div class="search-local-cover">
-        <input type="search" class="search-local" onkeyup="f_place()">
+        <input type="search" id="title-ip2" class="search-local" onkeyup="f_place()" placeholder="찾고있는 지역을 검색해주세요" onclick="hidePlaceholder2()" onblur="showPlaceholder2()">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black"
-             class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(20%, 100%); cursor: pointer;">
+             class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(45%, 0%); cursor: pointer;">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg>
     </div>
@@ -680,7 +681,6 @@
                 </svg>
             </a>
         </div>
-
     </div>
 </div>
 
@@ -800,11 +800,30 @@
     }
 
     document.addEventListener('click', function (event) {
-        var input = document.getElementById('title-ip');
+        var input = document.getElementById('title-ip2');
         var isInputClicked = input.contains(event.target);
 
         if (!isInputClicked) {
             showPlaceholder();
+        }
+    });
+
+    function hidePlaceholder2() {
+        var input2 = document.getElementById('title-ip2');
+        input2.placeholder = '';
+    }
+
+    function showPlaceholder2() {
+        var input2 = document.getElementById('title-ip2');
+        input2.placeholder = '찾고있는 지역을 검색해주세요';
+    }
+
+    document.addEventListener('click', function (event) {
+        var input2 = document.getElementById('title-ip2');
+        var isInputClicked2 = input2.contains(event.target);
+
+        if (!isInputClicked2) {
+            showPlaceholder2();
         }
     });
 
