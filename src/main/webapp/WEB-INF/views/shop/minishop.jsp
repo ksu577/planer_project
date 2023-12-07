@@ -97,9 +97,80 @@
 
         }
 
+        .carousel-item img {
+            max-height: 500px; /* 또는 다른 원하는 크기로 조절 */
+            width: 100%; /* 이미지가 부모 요소에 꽉 차도록 함 */
+            object-fit: cover; /* 이미지 비율을 유지한 채로 부모 요소에 맞춤 */
+        }
+
         .top-background {
             height: 70px;
             background-color: #98dde3;
+        }
+
+        .main-wing__fixed {
+            position: fixed;
+            top: 30%;
+            z-index: 1000;
+            right: 10%;
+
+        }
+
+        .main-wing__box {
+            width: 70px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .wing-box__cart {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .wing-box__cart a:before {
+            width: 34px;
+            height: 34px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='48' height='48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23555' stroke-linejoin='round' stroke-width='2.8235294118' d='m15.48 29.038-2.597-14.807H40.08a1 1 0 0 1 .985 1.173l-2.392 13.634a2 2 0 0 1-1.97 1.654H17.451a2 2 0 0 1-1.97-1.654Z'/%3E%3Ccircle cx='20.923' cy='37.846' r='3.615' stroke='%23555' stroke-width='2.8235294118'/%3E%3Ccircle cx='33.231' cy='37.846' r='3.615' stroke='%23555' stroke-width='2.8235294118'/%3E%3Cpath stroke='%23555' stroke-linecap='round' stroke-width='2.8235294118' d='M6.726 7.9h4.035a1 1 0 0 1 .977.788L13 14.5'/%3E%3C/svg%3E");
+            content: "";
+            display: block;
+            margin: -4px auto 4px;
+        }
+
+        .wing-box {
+            border: 1px solid #e7e7e7;
+            padding: 15px 0 12px 0;
+            line-height: 14px;
+            text-align: center;
+            background-color:  transparent;
+            border-radius: 4px;
+        }
+
+        .wing-box__link:visited {
+            color: #555;
+        }
+
+        .wing-box__link{
+            font-size: 12px;
+            display: block;
+            position: relative;
+            letter-spacing: -0.2px;
+        }
+        .main-wing__box .wing-box__link {
+            color: black; /* 원하는 텍스트 색상으로 변경, 예: 검정색 */
+        }
+
+        a {
+            text-decoration: none;
+            cursor: pointer;
+
+        }
+
+        .wing-box__link .txt{
+            display: inline-block;
+            text-align: center;
         }
 
     </style>
@@ -112,16 +183,16 @@
 
 </div>
 <div class="container">
-    <div id="carouselExample" class="carousel slide" style="transform: translate(4.5%, 0%)">
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="transform: translate(4.5%, 0%)">
         <div class="carousel-inner">
             <div class="carousel-item active" style="height: 500px;">
-                <img id="#" src="https://img.asiatoday.co.kr/file/2015y/07m/13d/2015071301001337300071601.jpg" class="d-block w-100" alt="...">
+                <img src="https://img.asiatoday.co.kr/file/2015y/07m/13d/2015071301001337300071601.jpg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="${product.img}" class="d-block w-100" alt="...">
+                <img src="https://cdn1.domeggook.com/upload/event/2022/04/07/16492911752D1034714CECAF752F3385/16492911752D1034714CECAF752F3385_mo_0.png?hash=068aa784014dca97ec0b75fa3d075533" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="${product.img}" class="d-block w-100" alt="...">
+                <img src="https://media.discordapp.net/attachments/825344638575181835/1182192834682552410/coupang20see.png?ex=6583cddf&is=657158df&hm=d14aec8c28e36c56ee0111d6d66465171814b5be5482634b3f46c1e57233acba&=&format=webp&quality=lossless" class="d-block w-100" alt="...">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
@@ -136,6 +207,16 @@
         </button>
     </div>
 
+    <div class="main-wing__fixed">
+        <div class="main-wing__box">
+            <div class="wing-box wing-box__cart">
+                <a href="javascript:void(0);" class="wing-box__link" onclick="goToShoppingCart()" onmousedown="trkEventLog('메뉴_장바구니');">
+
+                    <span class="txt">장바구니</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
 
     <div>
@@ -172,6 +253,14 @@
     function registProduct() {
         window.location.href = "/product/productregist";
     }
+
+    function goToShoppingCart() {
+        // 여기에서 현재 페이지에서의 이동 로직을 추가하세요
+        window.location.href = "/cart/shoppingcartview";
+    }
+
+
+
 </script>
 
 
