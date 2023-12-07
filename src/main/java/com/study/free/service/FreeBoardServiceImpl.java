@@ -32,7 +32,7 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     private HttpServletRequest request;
 
     @Override
-    public void updateCommentCount(int free_num)throws Exception{
+    public void updateCommentCount(int free_num) throws Exception {
         freeBoardDao.updateCommentCount(free_num);
     }
 
@@ -47,7 +47,6 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         List<FreeBoardVO> freeBoardList = freeBoardDao.getBoardList(paging, search, searchCategory);
         return freeBoardList;
     }
-
 
 
     @Override
@@ -131,10 +130,13 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
     }
 
     @Override
-    public String toggleLike(int freeNum, HttpSession session) {
-        return null;
+    public int updateLikeCount(int freeLike) throws BizNotEffectedException {
+        int count = freeBoardDao.updateLikeCount(freeLike);
+        if (count == 0) {
+            throw new BizNotEffectedException();
+        }
+        return count;
     }
-
 
     @Override
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException {
@@ -143,11 +145,11 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
 
         int cnt;
 
-        if (user != null && "MANAGER".equals(user.getRole())){
-            freeBoard.setTitle("[공지]"+freeBoard.getTitle());
+        if (user != null && "MANAGER".equals(user.getRole())) {
+            freeBoard.setTitle("[공지]" + freeBoard.getTitle());
             freeBoard.setNotice("Y");
             cnt = freeBoardDao.insertBoard(freeBoard);
-        }else {
+        } else {
             freeBoard.setNotice("N");
             cnt = freeBoardDao.insertBoard(freeBoard);
         }
@@ -155,7 +157,6 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         if (cnt == 0) {
             throw new BizNotEffectedException();
         }
-
         List<AttachVO> attaches = freeBoard.getAttaches();
         if (attaches != null) {
             for (AttachVO attach : attaches) {

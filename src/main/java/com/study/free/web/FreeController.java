@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.AccessDeniedException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -280,4 +282,19 @@ public class FreeController {
         return a;
     }
 
+    @PostMapping("/free/freeList.wow")
+    @ResponseBody
+    public ResponseEntity<Map<String,Object>>
+    likeFree(@RequestParam("freeNum")int freeNum){
+        Map<String,Object> response = new HashMap<>();
+        try {
+            int updatedLikeCount = freeBoardService.updateLikeCount(freeNum);
+            response.put("success", true);
+            response.put("likeCount",updatedLikeCount);
+        }catch (Exception e){
+            response.put("success",false);
+            response.put("error","좋아요 업데이트 실패");
+        }
+        return ResponseEntity.ok(response);
+    }
 }

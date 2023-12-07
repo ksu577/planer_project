@@ -24,6 +24,7 @@ public class FreeBoardVO {
     private String planTitle;
 
 
+
     public String getPlanTitle() {
         return planTitle;
     }

@@ -29,8 +29,7 @@ public interface IFreeBoardService {
 
     public int increaseView(int freeNum) throws BizNotFoundException;
 
-
-    String toggleLike(int freeNum, HttpSession session);
+    public int updateLikeCount(int freeLike) throws BizNotEffectedException;
 
     public void registBoard(FreeBoardVO freeBoard) throws BizNotEffectedException;
 

@@ -22,7 +22,7 @@
             padding-top: 70px;
         }
 
-        .top-background{
+        .top-background {
             height: 70px;
             background-color: #98dde3;
         }
@@ -76,6 +76,11 @@
             background-color: #98dde3; /* 적절한 배경색을 선택하세요 */
         }
 
+        /* 등록일 셀의 배경색을 바꾸는 스타일 */
+        #viewPage tbody tr:nth-child(8) th {
+            background-color: #98dde3; /* 적절한 배경색을 선택하세요 */
+        }
+
         /* 첨부파일 셀의 배경색을 바꾸는 스타일 */
         #viewPage tbody tr:nth-child(9) th {
             background-color: #98dde3;
@@ -97,8 +102,6 @@
         <h3>
             자유게시판 - <small>글 보기</small>
         </h3>
-        <div id="likeButton" onclick="toggleLike(${freeBoard.freeNum})">좋아요❤️</div>
-        <div id="likeStatus">현재 좋아요 상태: <span id="likeStatusLabel">${freeBoard.freeLike}</span></div>
     </div>
     <table id="viewPage" class="table table-bordered">
         <tbody>
@@ -133,7 +136,7 @@
             <th>내용</th>
             <td>
                 <div class="content-container">
-                    <div name="freeContext"  style="overflow: auto; white-space: pre-line"
+                    <div name="freeContext" style="overflow: auto; white-space: pre-line"
                          readonly="readonly">${freeBoard.freeContext }
                     </div>
                 </div>
@@ -144,10 +147,13 @@
             <td>${freeBoard.viewRate }</td>
         </tr>
         <tr>
+            <th>좋아요</th>
+            <td>${reviewBoard.reviewLike}</td>
+        </tr>
+        <tr>
             <th>등록일</th>
             <td>${freeBoard.createDate }</td>
         </tr>
-
 
 
         <tr>
@@ -158,9 +164,7 @@
                         <span class="glyphicon glyphicon-save" aria-hidden="true"></span> ${f.atchOriginalName}
                     </a> Size : ${f.atchFancySize} Down : ${f.atchDownHit}
 
-                            <%--                        <img alt=""--%>
-                            <%--                             src="<%=request.getContextPath()%>/attach/showImg.wow?fileName=${f.atchFileName}&filePath=${f.atchPath}"--%>
-                            <%--                             width="750px" height="500px">--%>
+
                     </div>
                 </c:forEach>
             </td>
@@ -173,6 +177,7 @@
                                                                                  aria-hidden="true"></span> &nbsp;&nbsp;목록
                     </a>
                 </div>
+                <button id="likeButton" onclick="likeReview(${freeBoard.freeLike})">좋아요</button>
                 <c:if test="${canEdit}">
                     <div class="pull-right">
                         <a href="freeEdit.wow?freeNum=${freeBoard.freeNum }" class="btn btn-success btn-sm"> <span
@@ -328,38 +333,6 @@
         // 필요한 로직을 추가하세요.
     }
 
-    function toggleLike(freeNum) {
-        $.ajax({
-            type: "POST",
-            url:"${pageContext.request.contextPath}/free/toggleLike.wow",
-            data: { freeNum: freeNum},
-            success: function (response) {
-                if (response === success) {
-                    updateLikeStatus(freeNum);
-                }else {
-                    alert("좋아요 상태 전환에 실패")
-                }
-            },
-            error: function () {
-                alert("서버 오류로 좋아요 토글에 실패");
-            }
-        });
-    }
-
-    function upadteLikeStatus(freeNum){
-        $.ajax({
-            type: "GET",
-            url: "${pageContext.request.contextPath}/free/getLikeStatus.wow",
-            data: {freeNum:freeNum},
-            success:function (response) {
-                $("#likeStatusLabel").text(response.likeCount);
-            },
-            error: function (){
-                alert("좋아요 정보를 가져오는데 실패")
-            }
-        });
-    }
-
 
     $(document).ready(function () {
 
@@ -396,7 +369,6 @@
                 }
             });
         });//등록버튼
-
 
 
         //수정버튼 : 댓글 영역안에 있는 수정버튼만  이벤트 등록
@@ -462,7 +434,28 @@
 
     });
 
-
+    function likeReview(freeNum) {
+        $.ajax({
+            url: '/free/freeLike.wow',
+            type: 'POST',
+            data: {freeNum: freeNum},
+            success: function (data) {
+                if (data.success) {
+                    var likeCountElement = $('#likeCount');
+                    var currentLikeCountText = likeCountElement.text().replace('좋아요').trim();
+                    var currentLikeCount = parseInt(currentLikeCountText);
+                    var newLikeCount = currentLikeCount + 1;
+                    likeCountElement.text('좋아요' + newLikeCount);
+                    alert('좋아요를 눌렀습니다.');
+                } else {
+                    alert('좋아요 업데이트 실패');
+                }
+            },
+            error: function () {
+                alert('좋아요 수 업데이트 중 오류 발생');
+            }
+        });
+    }
 
 </script>
 </html>
