@@ -11,6 +11,40 @@
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <style>
+
+        @font-face {
+            font-family: 'yg-jalnan';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'YanoljaYacheR';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YanoljaYacheR.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'LOTTERIACHAB';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .homepagelogo{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo{
+            font-family: 'LOTTERIACHAB';
+            font-size: 39px;
+            color: #5d92d2;
+            text-shadow: 1px 1px 2px #aabbe1;
+        }
+
         .nav-bar {
             background-color: transparent;
             font-size: 20px;
@@ -29,6 +63,7 @@
             padding: 30px;
             transition: color 0.7s ease;
             color: white;
+            font-family: 'yg-jalnan';
         }
 
 
@@ -52,15 +87,13 @@
 <!-- navbar 시작 -->
 <div class="nav-bar fixed-top" id="navbar">
     <div class="homepagelogo" style="padding-left: 20px">
-        <img width="100px" height="100px"
-             src="https://media.discordapp.net/attachments/1161840837647421475/1181133924332752956/marker-001.png?ex=657ff3af&is=656d7eaf&hm=bcaefc7a3c5f2dfb414d16ffe8be49dc15d9a2b7a673e23536598c8c10ca7e09&=&format=webp&quality=lossless&width=625&height=625"
-             alt=""
-             onclick="location.href='/'"
-        >
+        <div class="logo" onclick="location.href='/'">
+            G-ROUTE
+        </div>
     </div>
 
     <div class="navcategory">
-        <a class="letter" href="#box-title"> 여행지 </a>
+        <a class="letter" id="place"> 여행지 </a>
         <a class="letter" href="/shop/minishop.wow"> 미니샵 </a>
         <a class="letter" href="/free/freeList.wow"> 게시판 </a>
     </div>
@@ -103,7 +136,7 @@
         <span class="letter2" id="login_log" style="border-bottom: 1px;">${user.name} 님, 환영합니다.</span>
 
         <div class="btn-group" style="right: 10px">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+            <button type="button" class="btn btn-info dropdown-toggle h-100 w-100" data-bs-toggle="dropdown"
                     aria-expanded="false">
                 My page
             </button>
@@ -128,6 +161,16 @@
         crossorigin="anonymous"></script>
 <script>
 
+    const place = document.getElementById("place");
+
+    console.log(location.href)
+    if (location.href != "http://localhost:8081/"){
+        place.href = "http://localhost:8081/#box-title";
+        console.log(place.href)
+    } else {
+        place.href = "#box-title";
+        console.log(place.href)
+    }
 
     window.onload = function () {
         scrollFunction();
@@ -163,7 +206,7 @@
         const boxTitle = document.querySelector('.box-title');
 
         letterLink.addEventListener('click', function (e) {
-            e.preventDefault(); // 링크의 기본 동작(페이지 이동) 방지
+            // e.preventDefault(); // 링크의 기본 동작(페이지 이동) 방지
 
             const targetOffset = boxTitle.offsetTop; // 대상 요소의 위치 계산
             window.scrollTo({
@@ -174,6 +217,7 @@
     });
 
     window.addEventListener('scroll', scrollFunction);
+
 
 </script>
 

@@ -506,7 +506,7 @@
 
 <div class="container5">
 
-    <div class="box-title"> 여행 가자! </div>
+    <div class="box-title" id="box-title"> 여행 가자! </div>
 
     <div class="place-box">
         <c:forEach var="place" items="${placeList}">

@@ -10,6 +10,11 @@
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        .top-background {
+            height: 70px;
+            background-color: #ade8ef;
+        }
+
         @font-face {
             font-family: 'yg-jalnan';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
@@ -38,13 +43,9 @@
             font-style: normal;
         }
 
-        body {
-            padding-top: 70px;
-        }
-
         .container1 {
             display: flex;
-            height: 100%;
+            height: 91%;
         }
 
         .box1 {
@@ -199,6 +200,10 @@
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
+<div class="top-background">
+
+</div>
+
 <div class="container1" onclick="f_drawer()">
     <div class="side-bar">
         <div class="box1">
@@ -607,7 +612,15 @@
     console.log(title)
 
     function f_delete() {
-        location.href = encodeURI("/plan/planDelete.wow?title=" + title + "");
+        if (confirm("삭제하면 복구할 수 없습니다. 정말 삭제하시겠습니까?") == true) {    //확인
+
+            location.href = encodeURI("/plan/planDelete.wow?title=" + title + "");
+
+        } else {   //취소
+
+            return false;
+
+        }
     }
 
     function f_update() {

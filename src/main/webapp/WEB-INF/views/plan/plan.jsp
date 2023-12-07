@@ -10,6 +10,11 @@
 
     <style>
 
+        .top-background {
+            height: 70px;
+            background-color: #ade8ef;
+        }
+
         @font-face {
             font-family: 'yg-jalnan';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
@@ -29,10 +34,6 @@
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
             font-weight: normal;
             font-style: normal;
-        }
-
-        body {
-            padding-top: 70px;
         }
 
         .map_wrap,
@@ -229,7 +230,7 @@
 
         .first {
             display: flex;
-            height: 100%;
+            height: 91%;
             background-size: cover;
         }
 
@@ -401,7 +402,9 @@
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
+<div class="top-background">
 
+</div>
 
 <div class="first">
     <div class="choice-box">
@@ -466,10 +469,11 @@
             <%--            <div class="day7 none" id="day7" onclick="f_day(7)">7일차</div>--%>
         </div>
         <div class="mg_btm" style="text-align: center; height: 50px">
-        <c:if test="${fn:length(planList) != 0}">
-                <button type="button" class="h-100 w-75 btn btn-outline-secondary btn-block btn-lg" onclick="f_turn()">이전
+            <c:if test="${fn:length(planList) != 0}">
+                <button type="button" class="h-100 w-75 btn btn-outline-secondary btn-block btn-lg" onclick="f_turn()">
+                    이전
                 </button>
-        </c:if>
+            </c:if>
             <button type="button" class="h-100 w-75 btn btn-outline-secondary btn-block btn-lg" onclick="f_send()">다음
             </button>
         </div>
@@ -533,7 +537,15 @@
     });
 
     function f_turn() {
-        location.href = "/plan/marker.wow?planTitle=${title}&id=${user.getId()}";
+        if (confirm("수정된 내용은 저장되지 않습니다.") == true) {    //확인
+
+            location.href = "/plan/marker.wow?planTitle=${title}&id=${user.getId()}";
+
+        } else {   //취소
+
+            return false;
+
+        }
     }
 
 
@@ -873,7 +885,7 @@
         if (count == 0 || count == undefined || count == null) {
             addedbox.innerHTML = '';
         } else {
-            addedbox.innerHTML = '<h1>'+count+'일차</h1> <button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>';
+            addedbox.innerHTML = '<h1>' + count + '일차</h1> <button type="button" onclick="f_day1()" class="btn btn-outline-dark btn-lg save">저장</button>';
         }
         day_count = count;
         makeSchedulePlace(count)
