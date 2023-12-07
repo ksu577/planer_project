@@ -272,13 +272,12 @@
             padding-top: 300px;
             width: 1700px;
             padding-left: 240px;
-
+            text-align: center;
         }
 
 
         .cell {
             text-align: center;
-            width: 330px;
             height: 330px;
             background-color: white;
         }
@@ -312,12 +311,11 @@
             width: 1400px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
             border-radius: 20px;
         }
 
         .place-box > div {
-            width: calc(1200px / 4 - 20px);
+            width: calc(100% / 4 - 20px);
             height: 400px;
             border: 0;
             border-bottom: 20px;
