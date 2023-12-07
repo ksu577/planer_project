@@ -12,7 +12,7 @@ public interface PlaceDao {
 
 
     // 1. 리스트
-    public List<PlaceVO> getplaceList(PlaceVO placeVO);
+    public List<PlaceVO> getplaceList(String search);
 
     // 2. 세부사항
     public PlaceVO getplace(int placeNum);

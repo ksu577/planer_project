@@ -7,7 +7,7 @@ import java.util.List;
 public interface PlaceService {
 
     //1. 목록
-    public List<PlaceVO> getplaceList(PlaceVO placeVO);
+    public List<PlaceVO> getplaceList(String search);
 
     //2. 상세
     public PlaceVO getplace(int placeNum);

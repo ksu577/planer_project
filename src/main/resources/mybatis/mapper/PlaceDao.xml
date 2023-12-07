@@ -6,6 +6,7 @@
     <select id="getplaceList" resultType="com.study.place.vo.PlaceVO">
         select *
         from place
+        where place_name LIKE '%' || #{search} || '%'
     </select>
 
     <select id="getplace" resultType="com.study.place.vo.PlaceVO">

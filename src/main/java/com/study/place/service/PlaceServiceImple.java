@@ -14,8 +14,8 @@ public class PlaceServiceImple implements PlaceService {
     PlaceDao placeDao;
 
     @Override
-    public List<PlaceVO> getplaceList(PlaceVO placeVO) {
-        return placeDao.getplaceList(placeVO);
+    public List<PlaceVO> getplaceList(String search) {
+        return placeDao.getplaceList(search);
     }
 
     @Override
