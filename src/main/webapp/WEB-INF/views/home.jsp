@@ -410,6 +410,7 @@
             align-content: center;
             justify-content: center;
             font-size: 50px;
+            font-family: 'yg-jalnan';
         }
 
         .d-none2 {
@@ -506,7 +507,7 @@
 
 <div class="container5">
 
-    <div class="box-title" id="box-title"> 여행 가자! </div>
+    <div class="box-title" id="box-title"> 여행지역 </div>
 
     <div class="place-box">
         <c:forEach var="place" items="${placeList}">
