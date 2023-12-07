@@ -89,9 +89,10 @@
         WHERE free_num = #{freeNum}
     </update>
 
-    <update id="updateLike" parameterType="map">
+
+    <update id="updateLikeCount" parameterType="int">
         UPDATE free_board
-        SET free_like = CASE WHEN free_like = 1 THEN 0 ELSE 1 END
+        SET free_like = free_like+1
         WHERE free_num = #{freeNum}
     </update>
 

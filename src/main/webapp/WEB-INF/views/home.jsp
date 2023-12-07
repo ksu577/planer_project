@@ -415,6 +415,17 @@
         .d-none2 {
             display: none;
         }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
@@ -515,6 +526,7 @@
     </div>
 
 
+    <div id="overlay" class="overlay"></div>
     <div class="modal2 modal-summon d-none2">
         <div class="align-end2">
             <img onclick="f_close2()" height="35px" width="35px"
@@ -632,6 +644,9 @@
     });
 
     function f_summon(placeNum) {
+
+        document.getElementById('overlay').style.display = 'block';
+
         $.ajax({
             url: '/place/placeView',
             dataType: 'json',
@@ -660,6 +675,9 @@
     }
 
     function f_close2() {
+        // 오버레이 숨김
+        document.getElementById('overlay').style.display = 'none';
+
         v_modal2.classList.add("d-none2");
     }
 
