@@ -68,10 +68,10 @@
             height: 35px;
         }
 
-            .top-background{
-                height: 70px;
-                background-color: #98dde3;
-            }
+        .top-background {
+            height: 70px;
+            background-color: #98dde3;
+        }
 
     </style>
 
@@ -118,28 +118,29 @@
             <div class="product-price"> ${product.productPrice} </div>
             <div class="product-description">${product.productDesc}</div>
             <div>
-                <div class="product-amount">재고 : ${product.productAmount} 개 </div>
+                <div class="product-amount" style="margin-top: 250px;">재고 : ${product.productAmount} 개</div>
                 <div class="product-quantity">
-                    <div class="product-quantity">
-                        <label for="purchase-quantity">구매 수량</label>
-                        <input type="number" id="purchase-quantity" name="purchaseQuantity" min="1"
-                               max="${product.productAmount}">개
+                    <div class="product-quantity" style="font-size: 15px; margin-bottom: 10px;">
+                        <label style="margin-right: 10px" for="purchase-quantity">구매 수량</label>
+                        <input style="width: 100px; height: 25px;" type="number" id="purchase-quantity" name="purchaseQuantity" min="1"
+                               max="${product.productAmount}">&nbsp;개
                     </div>
                 </div>
-            </div>
-            <div class="product-buttons">
-                <button formaction="/cart/shoppingcartinsert" class="btn btn-primary" onclick="listCart()">장바구니에 담기
-                </button>
             </div>
             <c:if test="${user.getRole()=='MANAGER'}">
                 <%--        물건 수정 하는 곳으로 이동 버튼  --%>
                 <button onclick="productmodify(${product.productId})" name="product" class="btn btn-primary">수정</button>
+                <div style="margin-top: 20px"></div>
                 <%--        물건 삭제 버튼  --%>
                 <form action="/product/productdelete" method="post">
                     <input type="hidden" name="product" value="${product.productId}">
                     <button type="submit" class="btn btn-primary">삭제</button>
                 </form>
             </c:if>
+            <div class="product-buttons">
+                <button formaction="/cart/shoppingcartinsert" class="btn btn-primary" onclick="listCart()">장바구니에 담기
+                </button>
+            </div>
         </div>
     </div>
 </div>
