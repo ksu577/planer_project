@@ -41,6 +41,13 @@
             background-color: rgb(255, 255, 255);
             box-shadow: none; /* 초기에는 그림자 없음 */
             transition: box-shadow 0.3s ease; /* 그림자에 트랜지션 효과 적용 */
+            overflow: hidden;
+        }
+
+        .cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .cell:hover {
@@ -184,15 +191,15 @@
 </div>
 <div class="container">
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="transform: translate(4.5%, 0%)">
-        <div class="carousel-inner">
-            <div class="carousel-item active" style="height: 500px;">
-                <img src="https://img.asiatoday.co.kr/file/2015y/07m/13d/2015071301001337300071601.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-inner" >
+            <div class="carousel-item active" style="height: 100%;">
+                <img src="/resources/img/루트배송.jpg" class="d-block w-100" height="100%" alt="...">
             </div>
-            <div class="carousel-item">
-                <img src="https://cdn1.domeggook.com/upload/event/2022/04/07/16492911752D1034714CECAF752F3385/16492911752D1034714CECAF752F3385_mo_0.png?hash=068aa784014dca97ec0b75fa3d075533" class="d-block w-100" alt="...">
+            <div class="carousel-item" style="height: 100%;">
+                <img src="/resources/img/수면세트.png" class="d-block w-100" height="100%" alt="...">
             </div>
-            <div class="carousel-item">
-                <img src="https://media.discordapp.net/attachments/825344638575181835/1182192834682552410/coupang20see.png?ex=6583cddf&is=657158df&hm=d14aec8c28e36c56ee0111d6d66465171814b5be5482634b3f46c1e57233acba&=&format=webp&quality=lossless" class="d-block w-100" alt="...">
+            <div class="carousel-item" style="height: 100%;">
+                <img src="/resources/img/응급키트.png" class="d-block w-100" height="100%" alt="...">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
