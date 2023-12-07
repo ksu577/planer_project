@@ -18,8 +18,8 @@
     }
 
     .login-container {
-        width: 99.2vw;
-        height: 100vh;
+        width: 100vw;
+        height: 92.5vh;
         background-color: rgba(220, 220, 220, 0.30);
         position: relative;
     }
@@ -34,13 +34,6 @@
         left: 50%;
         top: 50%;
         transform: translate(-47%, -50%);
-    }
-
-    .login-logo {
-        font-size: 40px;
-        padding-top: 20px;
-        padding-left: 170px;
-        cursor: pointer;
     }
 
     .login-input-box {
@@ -135,7 +128,7 @@
 
 <div class="login-container">
     <div class="login-box">
-        <div class="login-logo">순자산 3조</div>
+        <div style="cursor: pointer; padding-top: 20px; padding-left: 160px;" class="member logo" onclick="location.href='/'">G-ROUTE</div>
         <div class="login-input-box">
             <form name="memberVO" action="login.wow" method="post">
                 <p style="margin-left: 30px; margin-top: 20px; color: rgba(0,0,0,0.73); font-size: 15px">아이디</p>

@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>memberform</title>
+    <title>회원가입</title>
     <%@include file="/WEB-INF/inc/header.jsp" %>
 </head>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
@@ -20,7 +20,6 @@
         height: 100vh;
         background-color: rgba(220, 220, 220, 0.30);
         position: relative;
-        margin-top: 70px;
     }
 
     .member-box {
@@ -35,12 +34,12 @@
         transform: translate(-50%, -50%);
     }
 
-    .member-logo {
-        font-size: 40px;
-        padding-top: 20px;
-        padding-left: 170px;
-        cursor: pointer;
-    }
+    /*.member logo {*/
+    /*    font-size: 40px;*/
+    /*    padding-top: 20px;*/
+    /*    padding-left: 170px;*/
+    /*    cursor: pointer;*/
+    /*}*/
 
     .member-input-box1 {
         /*border: 1px solid red;*/
@@ -325,14 +324,20 @@
         z-index: 9999;
     }
 
+    .top-background {
+        background-color: #98dde3;
+        height: 70px;
+    }
+
 </style>
 
 
 <body>
 <div class="overlay"></div>
+<div class="top-background"></div>
 <div class="member-container">
     <div class="member-box">
-        <div class="member-logo">순자산 3조</div>
+        <div style="cursor: pointer; padding-top: 20px; padding-left: 160px;" class="member logo" onclick="location.href='/'">G-ROUTE</div>
         <form id="memForm" name="memberVO" action="memberRegist.wow" method="post">
             <div class="member-input-box1">
                 <div class="id-cover">
