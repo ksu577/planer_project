@@ -125,12 +125,13 @@ public class ProductServiceImple implements IproductService {
         return productinfo;
     }
 
+    @Override
     public List<SaveCartVO> buyingMemberInfo(PagingVO paging, SearchVO search) {
         int totalRowCount = buyingDao.getTotalRowCount(paging, search);
         paging.setTotalRowCount(totalRowCount);
         paging.pageSetting();
         List<SaveCartVO> buyingMemberList = buyingDao.getsavecartList(paging, search);
-        return buyingDao.getsavecartList(paging, search);
+        return buyingMemberList;
     }
 
 }

@@ -14,8 +14,8 @@
             <if test='search.searchType=="takeName"'>
                 AND take_name LIKE '%' || #{search.searchWord} || '%'
             </if>
-            <if test='search.searchType=="productName"'>
-                AND name LIKE '%' || #{search.searchWord} || '%'
+            <if test='search.searchType=="userId"'>
+                AND user_id LIKE '%' || #{search.searchWord} || '%'
             </if>
         </if>
     </sql>
