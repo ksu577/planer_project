@@ -23,6 +23,7 @@
             margin-right: 20px;
             border-radius: 20px;
             background-color: white;
+            box-shadow: 0 0 10px 5px gainsboro;
         }
 
         .cart-summary {
@@ -31,6 +32,7 @@
             flex: 1;
             border-radius: 20px;
             background-color: white;
+            box-shadow: 0 0 10px 5px gainsboro;
         }
 
         .cart-item {
@@ -54,7 +56,7 @@
 <div class="top-background">
 
 </div>
-<div class="route mt-3" style=" transform: translate(15%, 220%); font-size: 15px; width: 500px;">
+<div class="route mt-3" style="transform: translate(15%, 220%); font-size: 15px; width: 500px;">
     <p style="font-size: 20px; display: inline-block;">장바구니</p> > 주문결제 > 주문완료
 </div>
 
@@ -93,12 +95,12 @@
 
         <%--     전체 삭제 버튼--%>
         <form action="/cart/shoppingCartClear" method="post">
-            <button type="submit" class="btn btn-primary" style="border: 1px solid #98dde3; background-color: #98dde3; font-size: 18px; margin-left: 10%; width: 80%; height: 40px; border-radius: 5px;">장바구니 비우기</button>
+            <button type="submit" class="btn btn-primary" style="border: 1px solid #98dde3; background-color: #98dde3; font-size: 18px; width: 100%; height: 40px; border-radius: 5px;">장바구니 비우기</button>
         </form>
 
         <%--        쇼핑 계속하기--%>
         <form action="/shop/minishop.wow" method="post">
-            <button type="submit" class="btn btn-primary" style="border: 1px solid #98dde3; background-color: #98dde3; font-size: 18px; margin-left: 10%;  width: 80%; height: 40px; border-radius: 5px;">쇼핑 계속하기</button>
+            <button type="submit" class="btn btn-primary" style="border: 1px solid #98dde3; background-color: #98dde3; font-size: 18px; width: 100%; height: 40px; border-radius: 5px;">쇼핑 계속하기</button>
         </form>
     </div>
 
@@ -107,22 +109,22 @@
         <hr>
 
         <hr>
-        <div class="mb-3 d-flex justify-content-between" style="padding-top: 20px;">
+        <div class="mb-3 d-flex justify-content-between" style="padding-top: 17px;">
             <span>총 상품금액</span>
             <span>${sumMoney}원</span>
         </div>
         <hr>
-        <div class="mb-3 d-flex justify-content-between" style="padding-top: 20px;">
+        <div class="mb-3 d-flex justify-content-between" style="padding-top: 18px;">
             <span>배송비</span>
             <span>3000원</span>
         </div>
         <hr>
-        <div class="mb-3 d-flex justify-content-between" style="padding-top: 20px;">
+        <div class="mb-3 d-flex justify-content-between" style="padding-top: 18px;">
             <span>결제 예정 금액</span>
             <span>${sumMoney + 3000}원</span>
         </div>
 
-        <button onclick="addressbeforepay()" class="btn btn-primary" style="border: 1px solid #98dde3; background-color: #98dde3; font-size: 18px; margin-left: 10%;  width: 80%; height: 40px; border-radius: 5px;">결제하기</button>
+        <button onclick="addressbeforepay()" class="btn btn-primary" style="border: 1px solid #98dde3; background-color: #98dde3; font-size: 18px; width: 100%; height: 40px; border-radius: 5px;">결제하기</button>
 
     </div>
 </div>

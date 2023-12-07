@@ -34,7 +34,7 @@
 
     .address, .bill {
       width: 100%;
-      border: 1px solid #ddd;
+      border: 1px solid #98dde3;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       padding: 20px;
       margin-top: 15px;
@@ -79,7 +79,7 @@
   </style>
 
 </head>
-<body>
+<body style="background-color: rgba(220, 220, 220, 0.30);">
 
 <%@ include file="/WEB-INF/inc/top.jsp" %>
 <div class="top-background">
@@ -87,8 +87,8 @@
 <div class="container">
 
 
-  <div class="route mt-3">
-    장바구니 > 주문결제 > 주문완료
+  <div class="route mt-3" style="transform: translate(45%, 80%); font-size: 15px; width: 500px;">
+    장바구니 > 주문결제 > <p style="font-size: 20px; display: inline-block;">주문완료</p>
   </div>
 
   <div class="paycontainer mt-3">
@@ -132,7 +132,7 @@
 
           <span>결제된 금액 : 총액 ${totalAmount} 원</span>
         </div>
-      <button onclick="home()" class="btn btn-primary" style="font-size: 16px">홈으로</button>
+      <button onclick="home()" class="btn btn-primary" style="font-size: 16px; background-color: #98dde3; border: 1px solid #98dde3;">홈으로</button>
       </div>
     </div>
   </div>

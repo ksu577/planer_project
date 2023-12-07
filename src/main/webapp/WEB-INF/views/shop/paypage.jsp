@@ -22,6 +22,8 @@
             padding: 20px;
             border-radius: 8px; /* Add some border-radius for a softer look */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            border: 1px solid #98dde3;
+            background-color: white;
         }
 
         .route {
@@ -30,10 +32,11 @@
         }
 
         .address, .bill {
-            border: 1px solid #ddd;
+            border: 1px solid #98dde3;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a slight box shadow */
             padding: 20px;
-            margin-top: 15px;
+            margin: auto;
+            margin-top: 50px;
             border-radius: 8px; /* Add border-radius for a softer look */
         }
 
@@ -81,26 +84,25 @@
                 width: 100%;
             }
 
-            .top-backgroun{
-                height: 70px;
-                background-color: #98dde3;
-            },
-
+        }
+        .top-background{
+            height: 70px;
+            background-color: #98dde3;
         }
 
     </style>
 </head>
-<body>
+<body style="background-color: rgba(220, 220, 220, 0.30);">
 <%@include file="/WEB-INF/inc/top.jsp" %>
 
 
-<div class="top-backgroun">
+<div class="top-background">
 </div>
 
 <div class="container">
 
-    <div class="route mt-3">
-        장바구니 > 주문결제 > 주문완료
+    <div class="route mt-3" style="transform: translate(45%, 110%); font-size: 15px; width: 500px;">
+        장바구니 > <p style="font-size: 20px; display: inline-block;">주문결제</p> > 주문완료
     </div>
 
     <div class="paycontainer mt-3">
@@ -122,7 +124,7 @@
                 <div class="mb-3">
                     <label for="sample6_address" class="form-label">주소입력</label>
                     <input type="text" class="form-control" name="takeMail" id="sample6_postcode" placeholder="우편번호">
-                    <input class="btn btn-primary mt-2" type="button" onclick="sample6_execDaumPostcode()"
+                    <input style="font-weight: 700; font-size: 18px; background-color: #98dde3; border: 1px solid #98dde3;" class="btn btn-primary mt-2" type="button" onclick="sample6_execDaumPostcode()"
                            value="우편번호 찾기"><br>
                     <input type="text" class="form-control mt-2" name="takeAdd" id="sample6_address" placeholder="주소">
                     <input type="text" class="form-control" name="takeDetailAdd" id="sample6_detailAddress"
@@ -163,7 +165,7 @@
                 <div class="mb-3">
                     <span>결제 예정 금액 :  ${sumMoney + 3000}원</span>
                 </div>
-                <button type="button" class="btn btn-primary testbtn" style="width: 100%;" onclick="kpay()"
+                <button type="button" class="btn btn-primary testbtn" style="width: 100%; background-color: #98dde3; border: 1px solid #98dde3" onclick="kpay()"
                         id="testbtn">결제하기
                 </button>
             </div>

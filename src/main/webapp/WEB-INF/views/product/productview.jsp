@@ -8,9 +8,13 @@
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <style>
         .container {
-            padding-top: 70px;
             width: 80%;
             margin: auto;
+            transform: translate(0%, 10%);
+            background-color: white;
+            border: 1px solid #98dde3;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 5px gainsboro;
         }
 
         .product-title {
@@ -24,6 +28,7 @@
             font-weight: bold;
             color: black;
             margin-top: 10px;
+            border-radius: 10px;
         }
 
         .product-price::after {
@@ -41,7 +46,7 @@
         }
 
         .col-md-6 {
-            border: 1px solid #ddd;
+            border-radius: 10px;
             box-shadow: 0 0 0 0;
             /*padding: 20px;*/
         }
@@ -76,12 +81,11 @@
     </style>
 
 </head>
-<body>
+<body style="background-color: rgba(220, 220, 220, 0.30);">
 <%@include file="/WEB-INF/inc/top.jsp" %>
 
-<div class="top-background">
+<div class="top-background"></div>
 
-</div>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -129,17 +133,16 @@
             </div>
             <c:if test="${user.getRole()=='MANAGER'}">
                 <%--        물건 수정 하는 곳으로 이동 버튼  --%>
-                <button onclick="productmodify(${product.productId})" name="product" class="btn btn-primary">수정</button>
+                <button style="font-weight: 700; font-size: 15px; background-color: #98dde3; border: 1px solid #98dde3;" onclick="productmodify(${product.productId})" name="product" class="btn btn-primary">수정</button>
                 <div style="margin-top: 20px"></div>
                 <%--        물건 삭제 버튼  --%>
                 <form action="/product/productdelete" method="post">
                     <input type="hidden" name="product" value="${product.productId}">
-                    <button type="submit" class="btn btn-primary">삭제</button>
+                    <button style="font-weight: 700; font-size: 15px; background-color: #98dde3; border: 1px solid #98dde3;" type="submit" class="btn btn-primary">삭제</button>
                 </form>
             </c:if>
             <div class="product-buttons">
-                <button formaction="/cart/shoppingcartinsert" class="btn btn-primary" onclick="listCart()">장바구니에 담기
-                </button>
+                <button style="margin-bottom: 10px; font-weight: 700; font-size: 15px; background-color: #98dde3; border: 1px solid #98dde3;" formaction="/cart/shoppingcartinsert" class="btn btn-primary" onclick="listCart()">장바구니에 담기</button>
             </div>
         </div>
     </div>
