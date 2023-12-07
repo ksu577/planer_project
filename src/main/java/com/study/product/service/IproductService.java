@@ -29,7 +29,7 @@ public interface IproductService {
 
     // 5. 상품 상세
     public ProductVO getproduct(int productId);
-    public void getSave(SaveCartVO saveCartVO);
+    public void getSave(SaveCartVO saveCartVO) throws Exception;
 
 
     //11월 23일

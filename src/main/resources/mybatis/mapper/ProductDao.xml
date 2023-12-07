@@ -106,11 +106,15 @@
         </if>
     </sql>
 
+    <select id="getSaveCartKey" resultType="java.lang.Integer">
+        SELECT SAVE_CART_SEQ.nextval FROM DUAL
+    </select>
+
     <insert id="insertSaveCart">
         INSERT INTO save_cart (user_id, save_num, take_name,
                                take_hp, take_mail, take_add,
                                take_detail_add, take_auto_add, take_req, pay_date)
-        VALUES ( #{userId}, SAVE_CART_SEQ.nextval, #{takeName}
+        VALUES ( #{userId}, #{saveNum}, #{takeName}
                , #{takeHp}, #{takeMail}, #{takeAdd}
                , #{takeDetailAdd}, #{takeAutoAdd}, #{takeReq}, sysdate)
 
@@ -147,5 +151,9 @@
         SELECT *
         FROM SAVE_CART
     </select>
+
+    <update id="updateProductBuy">
+            UPDATE CART SET BUY_YN = 'Y', SAVE_CART_KEY = #{saveNum} WHERE USER_ID = #{userId} AND BUY_YN = 'N' AND SAVE_CART_KEY = NULL
+    </update>
 
 </mapper>

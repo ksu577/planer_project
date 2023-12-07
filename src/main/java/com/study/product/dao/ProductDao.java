@@ -14,6 +14,8 @@ import java.util.List;
 @Mapper
 public interface ProductDao {
 
+
+
     // 1. 물건 등록
     public void insertproduct(ProductVO productVO);
 
@@ -44,4 +46,8 @@ public interface ProductDao {
     public List<ProductVO> selectProductInfo(String id);
 
     public List<SaveCartVO> getBuyingMemberList(@Param("paging") PagingVO paging, @Param("search") SearchVO search);
+
+    public void updateProductBuy(SaveCartVO saveCartVO) throws Exception;
+
+    public int getSaveCartKey();
 }
