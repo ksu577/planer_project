@@ -37,6 +37,8 @@ public interface IproductService {
 
     public  List<ProductVO> viewProductInfo(String productid);
 
+    public List<SaveCartVO> buyingMemberInfo(PagingVO paging,SearchVO search);
+
 
 
 

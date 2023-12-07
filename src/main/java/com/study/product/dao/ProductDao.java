@@ -42,4 +42,6 @@ public interface ProductDao {
     public SaveCartVO selectUserInfo(String id);
 
     public List<ProductVO> selectProductInfo(String id);
+
+    public List<SaveCartVO> getBuyingMemberList(@Param("paging") PagingVO paging, @Param("search") SearchVO search);
 }

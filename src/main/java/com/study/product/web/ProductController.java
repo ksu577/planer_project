@@ -8,6 +8,7 @@ import com.study.kakao.service.KakaoService;
 import com.study.login.vo.UserVO;
 import com.study.member.service.IMemberService;
 import com.study.member.vo.MemberVO;
+import com.study.product.dao.ProductDao;
 import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
 import com.study.product.vo.SaveCartVO;
@@ -35,7 +36,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class ProductController {
 
-    private final IproductService iproductService;
+    private IproductService iproductService;
     @Autowired
     IMemberService memberService;
 
@@ -212,5 +213,11 @@ public class ProductController {
         }
         return result;
     }
+
+
+
+
+
+
 }
 
