@@ -175,10 +175,30 @@
         }
 
         .container4 {
+            position: relative;
             padding-top: 80px;
-            width: 99vw;
-            height: 100px;
+            width: 99.7vw;
+            height: 80vh;
             font-family: 'Arial', sans-serif;
+        }
+
+        .cover4 {
+            width: 100%;
+            height: 100%;
+        }
+
+        .p_cover {
+            border-bottom: 2px solid gainsboro;
+            height: 150px;
+            width: 700px;
+            margin: auto;
+        }
+
+        .p_cover > p {
+            font-size: 40px;
+            position: absolute;
+            transform: translate(0%, 120%);
+            font-family: 'JalnanGothic';
         }
 
         .ranking-container {
@@ -187,9 +207,9 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transform: translate(13%, 10%);
+            transform: translate(13%, 40%);
+            border: 2px solid #98dde3;
         }
-
 
         .number {
             width: 50px;
@@ -427,6 +447,44 @@
             background-color: rgba(0,0,0,0.5);
             z-index: 1;
         }
+
+        .search-local-cover {
+            border-bottom: 2px solid gainsboro;
+            margin-top: 100px;
+            transform: translate(135%);
+            width: 400px;
+            height: 100px;
+        }
+
+        .search-local {
+            transform: translate(2%, 90%);
+            outline: none;
+            border: 1px solid transparent;
+            background: transparent;
+            width: 350px;
+            height: 50px;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .footer-container {
+            margin-top: 100px;
+            background-color: rgba(220, 220, 220, 0.30);
+            height: 310px;
+            color: #868e96;
+        }
+
+        h5 {
+            width: 500px;
+            transform: translate(40%, 100%);
+            padding-top: 10px;
+            color: white;
+        }
+
+        h4 {
+            width: 500px;
+            transform: translate(40%, 250%);
+        }
     </style>
 </head>
 <body>
@@ -502,12 +560,24 @@
 </div>
 
 <div class="container4">
-    <div class="ranking-container"></div>
+    <div class="cover4">
+        <div class="p_cover">
+            <p>G-Route 회원들이 선택한 장소 Top 5</p>
+        </div>
+        <div class="ranking-container"></div>
+    </div>
 </div>
-
 <div class="container5">
 
     <div class="box-title" id="box-title"> 여행지역 </div>
+
+    <div class="search-local-cover">
+        <input type="text" class="search-local">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black"
+             class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(20%, 100%); cursor: pointer;">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+    </div>
 
     <div class="place-box">
         <c:forEach var="place" items="${placeList}">
@@ -554,6 +624,17 @@
             </div>
         </div>
     </div>
+
+</div>
+<div class="footer-container">
+    <div class="footer logo" style="width: 300px; transform: translate(65%, 20%)">
+        G-ROUTE
+    </div>
+    <h5>주식회사 그루트 | 팀장 권순욱</h5>
+    <h5>대전광역시 중구 계룡로 825 (용두동) 2층</h5>
+    <h5>ksu577@naver.com</h5>
+    <h5>Tel : 042-719-8850</h5>
+    <h4>Copyright © G-Route. All Right Reserved</h4>
 
 </div>
 
