@@ -265,12 +265,11 @@
         }
 
         .ranking-container > div:first-child {
-            background-color: #afafaf;
             font-weight: 900;
         }
 
         .container5 {
-            padding-top: 550px;
+            padding-top: 300px;
             width: 1700px;
             padding-left: 240px;
 
@@ -549,7 +548,7 @@
                        onclick="hidePlaceholder()" onblur="showPlaceholder()">
                 <div id="sm-div" style="display: inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white  "
-                         class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(0%, -20%)">
+                         class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(0%, -20%); cursor: pointer; ">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
                 </div>
@@ -592,7 +591,7 @@
     <div class="box-title" id="box-title"> 여행지역</div>
 
     <div class="search-local-cover">
-        <input type="text" class="search-local">
+        <input type="search" class="search-local">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black"
              class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(20%, 100%); cursor: pointer;">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -620,7 +619,7 @@
     <div id="overlay" class="overlay"></div>
     <div class="modal2 modal-summon d-none2">
         <div class="align-end2">
-            <img onclick="f_close2()" height="35px" width="35px"
+            <img style="border-radius: 15px; cursor:pointer;" onclick="f_close2()" height="35px" width="35px"
                  src="data:image/png;base64,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"
                  alt="">
             <div class="modalcontainer">
@@ -658,13 +657,13 @@
 
     <div class="footer-icons">
         <div class="footer-icon">
-            <a href="https://blog.naver.com/nextit_center">
+            <a href="https://blog.naver.com/nextit_center" target="_blank">
                 <img style="width: 30px; height: 30px; margin-top: 10px; margin-left: 10px" src="https://cdn-icons-png.flaticon.com/128/3959/3959425.png">
             </a>
         </div>
 
         <div class="footer-icon">
-            <a href="https://www.youtube.com/@nextit_center">
+            <a href="https://www.youtube.com/@nextit_center" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-top: 10px;" width="30" height="30" fill="black" class="bi bi-youtube" viewBox="0 0 16 16">
                     <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
                 </svg>
@@ -672,7 +671,7 @@
         </div>
 
         <div class="footer-icon">
-            <a href="https://www.instagram.com/__nextit__/">
+            <a href="https://www.instagram.com/__nextit__/" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-top: 10px;" width="30" height="30" fill="black" class="bi bi-instagram"
                      viewBox="0 0 16 16">
                     <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
