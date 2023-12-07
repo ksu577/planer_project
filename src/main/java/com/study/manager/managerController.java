@@ -64,6 +64,7 @@ public class managerController {
                                    @ModelAttribute("paging")PagingVO paging,
                                    @ModelAttribute("search") SearchVO search ){
         List<SaveCartVO> buyingMemberList =  iproductService.buyingMemberInfo(paging, search);
+        
         model.addAttribute("buyingMemberList",buyingMemberList);
         return "/ManagerPage/Buyingmember";
     }
