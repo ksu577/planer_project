@@ -5,21 +5,7 @@
 <head>
     <% request.setCharacterEncoding("UTF-8"); %>
     <%@include file="/WEB-INF/inc/header.jsp" %>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-          crossorigin="anonymous">
-
-
-    <title></title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <% request.setCharacterEncoding("UTF-8"); %>
-    <%@include file="/WEB-INF/inc/header.jsp" %>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <style>
         .container {
             padding-top: 70px;
@@ -105,9 +91,9 @@
         }
 
         .carousel-item img {
-            max-height: 500px; /* 또는 다른 원하는 크기로 조절 */
-            width: 100%; /* 이미지가 부모 요소에 꽉 차도록 함 */
-            object-fit: cover; /* 이미지 비율을 유지한 채로 부모 요소에 맞춤 */
+            object-fit: cover; /* 이미지 비율을 유지하면서 요소에 맞게 조절 */
+            height: 100%;
+            width: 100%;
         }
 
         .top-background {
@@ -180,6 +166,16 @@
             text-align: center;
         }
 
+        .regist {
+            background-color: #98dde3;
+            font-family: 'yg-jalnan';
+            font-size: 15px;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 
 </head>
@@ -193,13 +189,13 @@
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="transform: translate(4.5%, 0%)">
         <div class="carousel-inner" >
             <div class="carousel-item active" style="height: 100%;">
-                <img src="/resources/img/루트배송.jpg" class="d-block w-100" height="100%" alt="...">
+                <img src="/resources/img/루트배송.jpg" class="d-block w-100" height="100%" alt="">
             </div>
             <div class="carousel-item" style="height: 100%;">
-                <img src="/resources/img/수면세트.png" class="d-block w-100" height="100%" alt="...">
+                <img src="/resources/img/수면세트.png" class="d-block w-100" height="100%" alt="">
             </div>
             <div class="carousel-item" style="height: 100%;">
-                <img src="/resources/img/응급키트.png" class="d-block w-100" height="100%" alt="...">
+                <img src="/resources/img/응급키트.png" class="d-block w-100" height="100%" alt="">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
@@ -215,10 +211,16 @@
     </div>
 
     <div class="main-wing__fixed">
+        <div>
+            <c:if test="${user.getRole()=='MANAGER'}">
+                <button type="button" class="wing-box__link regist" onclick="registProduct()">물건 등록</button>
+            </c:if>
+        </div>
+        <br>
+        <br>
         <div class="main-wing__box">
             <div class="wing-box wing-box__cart">
                 <a href="javascript:void(0);" class="wing-box__link" onclick="goToShoppingCart()" onmousedown="trkEventLog('메뉴_장바구니');">
-
                     <span class="txt">장바구니</span>
                 </a>
             </div>
@@ -226,13 +228,6 @@
     </div>
 
 
-    <div>
-
-        <c:if test="${user.getRole()=='MANAGER'}">
-            <button type="button" class="regist" onclick="registProduct()">물건 등록</button>
-
-        </c:if>
-    </div>
 
     <div class="item-box" style="padding-top: 50px; " >
         <c:forEach var="product" items="${list}" >
@@ -250,7 +245,7 @@
 
 </div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
 <script>
     function detailView(productId) {
