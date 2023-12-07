@@ -130,7 +130,7 @@ public class ProductServiceImple implements IproductService {
         paging.setTotalRowCount(totalRowCount);
         paging.pageSetting();
         List<SaveCartVO> buyingMemberList = buyingDao.getsavecartList(paging, search);
-        return buyingMemberList;
+        return buyingDao.getsavecartList(paging, search);
     }
 
 }

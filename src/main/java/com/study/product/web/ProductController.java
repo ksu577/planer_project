@@ -180,8 +180,14 @@ public class ProductController {
         UserVO user = (UserVO) session.getAttribute("user");
         SaveCartVO userinfo = iproductService.viewUserInfo(user.getId());
         List<ProductVO> productinfo = iproductService.viewProductInfo(user.getId());
+
+        if (user != null) {
+            String userId = user.getId();
+            cartService.clearCart(userId);
+        }
         model.addAttribute("userinfo", userinfo);
         model.addAttribute("productinfo", productinfo);
+
         return "/shop/afterpay";
     }
 

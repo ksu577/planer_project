@@ -5,6 +5,8 @@
     <select id="getsavecartList" resultType="com.study.product.vo.SaveCartVO">
         select *
         from save_cart
+        WHERE 1=1
+        <include refid="searchInBuying"/>
     </select>
 
     <sql id="searchInBuying">
@@ -20,7 +22,7 @@
 
     <select id="getTotalRowCount" resultType="java.lang.Integer">
         SELECT count(*)
-        FROM product
+        FROM save_cart
         WHERE 1=1
         <include refid="searchInBuying"/>
     </select>

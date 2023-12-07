@@ -16,8 +16,15 @@ public class SaveCartVO {
     private int amount;
     private String name;
     private int price;
+    private String payDate;
 
+    public String getPayDate() {
+        return payDate;
+    }
 
+    public void setPayDate(String payDate) {
+        this.payDate = payDate;
+    }
 
     public int getAmount() {
         return amount;
