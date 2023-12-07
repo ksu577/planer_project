@@ -97,15 +97,14 @@
 
     <sql id="searchInFree">
         <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
-            <if test='search.searchType=="T"'>
+            <if test='search.searchType=="productDesc"'>
                 AND product_desc LIKE '%' || #{search.searchWord} || '%'
             </if>
-            <if test='search.searchType=="W"'>
-                AND LIKE '%' || #{search.searchWord} || '%'
-            </if>
-            <if test='search.searchType=="C"'>
+            <if test='search.searchType=="productName"'>
                 AND name LIKE '%' || #{search.searchWord} || '%'
             </if>
+
+
         </if>
     </sql>
 
@@ -141,6 +140,11 @@
              product p
         WHERE c.USER_ID = #{id}
           AND c.product_id = p.id
+    </select>
+
+    <select id="getBuyingMemberList" resultType="com.study.product.vo.SaveCartVO">
+        SELECT *
+        FROM SAVE_CART
     </select>
 
 </mapper>

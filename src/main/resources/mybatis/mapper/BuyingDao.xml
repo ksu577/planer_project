@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.product.dao.BuyingDao">
+
+    <select id="getsavecartList" resultType="com.study.product.vo.SaveCartVO">
+        select *
+        from save_cart
+    </select>
+
+    <sql id="searchInBuying">
+        <if test='!@org.apache.commons.lang3.StringUtils@isBlank(search.searchWord)'>
+            <if test='search.searchType=="takeName"'>
+                AND take_name LIKE '%' || #{search.searchWord} || '%'
+            </if>
+            <if test='search.searchType=="productName"'>
+                AND name LIKE '%' || #{search.searchWord} || '%'
+            </if>
+        </if>
+    </sql>
+
+    <select id="getTotalRowCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM product
+        WHERE 1=1
+        <include refid="searchInBuying"/>
+    </select>
+
+</mapper>

@@ -108,6 +108,7 @@
                 </a>
                 <ul class="dropdown-menu" style="bottom: 100px;">
                     <li><a href="/member/memberList.wow">회원 목록</a></li>
+                    <li><a href="/ManagerPage/Buyingmember">구매 회원 </a></li>
                 </ul>
             </li>
 

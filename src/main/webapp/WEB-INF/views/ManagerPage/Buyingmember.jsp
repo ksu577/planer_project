@@ -39,7 +39,7 @@
     <!-- START : 검색 폼  -->
     <div class="panel panel-default" id="id_search_area" style="background-color: #98dde3;">
         <div class="panel-body">
-            <form name="search" action="managerproduct.wow" method="post" class="form-horizontal">
+            <form name="search" action="Buyingmember.wow" method="post" class="form-horizontal">
                 <input type="hidden" name="curPage" value="${paging.curPage}"> <input type="hidden"
                                                                                       name="rowSizePerPage"
                                                                                       value="${paging.rowSizePerPage}">
@@ -48,9 +48,9 @@
                     <div class="col-sm-2">
                         <select id="id_searchType" name="searchType" class="form-control input-sm"
                                 style="font-size: 13px; padding: 0rem 0.75rem;">
-                            <option value="productName" ${search.searchType=='productName' ? "selected='selected'" :""} >상품 이름
+                            <option value="takeName" ${search.searchType=='takeName' ? "selected='selected'" :""} >이름
                             </option>
-                            <option value="productDesc" ${search.searchType=='productDesc' ? "selected='selected'" :""} >내용</option>
+                            <option value="userId" ${search.searchType=='userId' ? "selected='selected'" :""} >아이디</option>
                         </select>
                     </div>
                     <div class="col-sm-6">
@@ -80,46 +80,40 @@
 
 
     <div class="page-header">
-        <h3>상품 - <small>물건 목록</small></h3>
+        <h3>주문 기 - <small>물건 목록</small></h3>
     </div>
 
     <!-- START : 목록건수 및 새글쓰기 버튼  -->
 
 
     <div class="row">
-        <div class="col-sm-2 col-sm-offset-10 text-right" style="margin-bottom: 5px;">
-            <a href="/product/productregist" class="btn btn-primary btn-sm">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                &nbsp;새 물품 등록
-            </a>
-        </div>
     </div>
     <table class="table  table-bordered table-hover">
         <thead>
         <tr>
-            <th style="background-color: #98dde3; color: white; border: 1px solid white;">물품 번호</th>
-            <th style="background-color: #98dde3; color: white; border: 1px solid white;">가격</th>
-            <th style="background-color: #98dde3; color: white; border: 1px solid white;">물품 설명</th>
-            <th style="background-color: #98dde3; color: white; border: 1px solid white;">물품 이름</th>
+            <th style="background-color: #98dde3; color: white; border: 1px solid white;">유저 아이디</th>
+            <th style="background-color: #98dde3; color: white; border: 1px solid white;">이름</th>
+            <th style="background-color: #98dde3; color: white; border: 1px solid white;">전화번호</th>
+            <th style="background-color: #98dde3; color: white; border: 1px solid white;">주소</th>
             <th style="background-color: #98dde3; color: white; border: 1px solid white;">삭제</th>
         </tr>
         </thead>
         <tbody>
 
 
-        <c:forEach items="${productList}" var="productList">
+        <c:forEach items="${buyingMemberList}" var="buyingMemberList">
 
             <tr style="font-size: 12px; text-align: center;" class="text-center">
-                <td style="background-color: white; border: 1px solid #98dde3;" >${productList.productId}</td>
-                <td style="background-color: white; border: 1px solid #98dde3;" >${productList.productPrice}</td>
-                <td style="background-color: white; border: 1px solid #98dde3;" >${productList.productDesc}</td>
-                <td style="background-color: white; border: 1px solid #98dde3;" ><a href="/product/productview.wow?productId=${productList.productId}">${productList.productName}</a></td>
-                <td style="background-color: white; border: 1px solid #98dde3;">
-                    <form action="/product/productDelete" method="post">
-                        <input type="hidden" name="product" value="${productList.productId}">
-                        <button type="submit" >삭제</button>
-                    </form>
-                </td>
+                <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.userId}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.takeName}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.takeHp}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.takeAdd}</td>
+<%--                <td style="background-color: white; border: 1px solid #98dde3;">--%>
+<%--                    <form action="/product/productDelete" method="post">--%>
+<%--                        <input type="hidden" name="product" value="${productList.productId}">--%>
+<%--                        <button type="submit" >삭제</button>--%>
+<%--                    </form>--%>
+<%--                </td>--%>
             </tr>
         </c:forEach>
 
@@ -131,17 +125,17 @@
     <nav class="text-center">
         <ul class="pagination">
             <!-- 첫 페이지  -->
-            <li><a href="managerproduct.wow?curPage=1" data-page="1"><span aria-hidden="true">&laquo;</span></a></li>
+            <li><a href="Buyingmember.wow?curPage=1" data-page="1"><span aria-hidden="true">&laquo;</span></a></li>
             <!-- 이전 페이지 -->
             <c:if test="${paging.firstPage ne 1}">
-                <li><a href="managerproduct.wow?curPage=${paging.firstPage-1}" data-page="${paging.firstPage-1}"><span
+                <li><a href="Buyingmember.wow?curPage=${paging.firstPage-1}" data-page="${paging.firstPage-1}"><span
                         aria-hidden="true">&lt;</span></a></li>
             </c:if>
 
             <!-- 페이지 넘버링  -->
             <c:forEach begin="${paging.firstPage}" end="${paging.lastPage}" var="i">
                 <c:if test="${paging.curPage ne i}">
-                    <li><a href="managerproduct.wow?curPage=${i}" data-page="${i}">${i}</a></li>
+                    <li><a href="Buyingmember.wow?curPage=${i}" data-page="${i}">${i}</a></li>
                 </c:if>
                 <c:if test="${paging.curPage eq i}">
                     <li class="active"><a href="#">${i}</a></li>
@@ -151,12 +145,12 @@
 
             <!-- 다음  페이지  -->
             <c:if test="${paging.lastPage ne paging.totalPageCount}">
-                <li><a href="managerproduct.wow?curPage=${paging.lastPage+1}" data-page="${paging.lastPage+1}"><span
+                <li><a href="Buyingmember.wow?curPage=${paging.lastPage+1}" data-page="${paging.lastPage+1}"><span
                         aria-hidden="true">&gt;</span></a></li>
             </c:if>
 
             <!-- 마지막 페이지 -->
-            <li><a href="managerproduct.wow?curPage=${paging.totalPageCount}" data-page="${paging.totalPageCount}"><span
+            <li><a href="Buyingmember.wow?curPage=${paging.totalPageCount}" data-page="${paging.totalPageCount}"><span
                     aria-hidden="true">&raquo;</span></a></li>
         </ul>
     </nav>

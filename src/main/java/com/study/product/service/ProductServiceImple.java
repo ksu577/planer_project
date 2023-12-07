@@ -2,6 +2,8 @@ package com.study.product.service;
 
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.SearchVO;
+import com.study.member.vo.MemberVO;
+import com.study.product.dao.BuyingDao;
 import com.study.product.dao.ProductDao;
 import com.study.product.vo.ProductVO;
 import com.study.product.vo.SaveCartVO;
@@ -19,6 +21,9 @@ public class ProductServiceImple implements IproductService {
 
     @Autowired
     ProductDao productDao;
+
+    @Autowired
+    BuyingDao buyingDao;
 
 
     // 1. 상품 추가
@@ -120,5 +125,12 @@ public class ProductServiceImple implements IproductService {
         return productinfo;
     }
 
+    public List<SaveCartVO> buyingMemberInfo(PagingVO paging, SearchVO search) {
+        int totalRowCount = buyingDao.getTotalRowCount(paging, search);
+        paging.setTotalRowCount(totalRowCount);
+        paging.pageSetting();
+        List<SaveCartVO> buyingMemberList = buyingDao.getsavecartList(paging, search);
+        return buyingMemberList;
+    }
 
 }

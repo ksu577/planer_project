@@ -5,6 +5,7 @@ import com.study.common.vo.SearchVO;
 import com.study.login.vo.UserVO;
 import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
+import com.study.product.vo.SaveCartVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,6 +58,15 @@ public class managerController {
         }
     }
 
+    //세이브 카트 전부 불러오기 - 주문목록
+    @RequestMapping("/ManagerPage/Buyingmember")
+    public String buyingMemberInfo(Model model,
+                                   @ModelAttribute("paging")PagingVO paging,
+                                   @ModelAttribute("search") SearchVO search ){
+        List<SaveCartVO> buyingMemberList =  iproductService.buyingMemberInfo(paging, search);
+        model.addAttribute("buyingMemberList",buyingMemberList);
+        return "/ManagerPage/Buyingmember";
+    }
 }
 
 
