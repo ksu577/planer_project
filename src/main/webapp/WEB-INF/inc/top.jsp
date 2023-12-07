@@ -28,11 +28,7 @@
             margin: 10px;
             padding: 30px;
             transition: color 0.7s ease;
-
-        }
-        .letter:hover {
-            ;
-
+            color: white;
         }
 
 
@@ -64,7 +60,7 @@
     </div>
 
     <div class="navcategory">
-        <a class="letter" href="#box-title" > 여행지 </a>
+        <a class="letter" href="#box-title"> 여행지 </a>
         <a class="letter" href="/shop/minishop.wow"> 미니샵 </a>
         <a class="letter" href="/free/freeList.wow"> 게시판 </a>
     </div>
@@ -133,7 +129,7 @@
 <script>
 
 
-    window.onload = function() {
+    window.onload = function () {
         scrollFunction();
     };
 
@@ -143,14 +139,18 @@
         var letters = document.getElementsByClassName("letter");
 
         if (window.pageYOffset > 5) {
+            if (id != null) {
+                id.style.color = "#000000";
+            }
             navbar.style.backgroundColor = "#ffffff";
-            id.style.color = "#000000";
             for (var i = 0; i < letters.length; i++) {
                 letters[i].style.color = "#000000";
             }
         } else {
             navbar.style.backgroundColor = "transparent";
-            id.style.color = "#ffffff";
+            if (id != null) {
+                id.style.color = "#ffffff";
+            }
             for (var i = 0; i < letters.length; i++) {
                 letters[i].style.color = "#ffffff";
             }
@@ -158,11 +158,11 @@
     }
 
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const letterLink = document.querySelector('.letter');
         const boxTitle = document.querySelector('.box-title');
 
-        letterLink.addEventListener('click', function(e) {
+        letterLink.addEventListener('click', function (e) {
             e.preventDefault(); // 링크의 기본 동작(페이지 이동) 방지
 
             const targetOffset = boxTitle.offsetTop; // 대상 요소의 위치 계산
