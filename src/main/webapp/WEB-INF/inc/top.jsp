@@ -32,6 +32,7 @@
             font-weight: normal;
             font-style: normal;
         }
+
         .homepagelogo{
             display: flex;
             align-items: center;
@@ -83,7 +84,6 @@
     </style>
 </head>
 <body>
-
 <!-- navbar 시작 -->
 <div class="nav-bar fixed-top" id="navbar">
     <div class="homepagelogo" style="padding-left: 20px">
@@ -93,7 +93,7 @@
     </div>
 
     <div class="navcategory">
-        <a class="letter" id="place"> 여행지 </a>
+        <a class="letter" id="place" href="/"> 여행지 </a>
         <a class="letter" href="/shop/minishop.wow"> 미니샵 </a>
         <a class="letter" href="/free/freeList.wow"> 게시판 </a>
     </div>
@@ -135,8 +135,8 @@
     <c:if test="${user!=null}">
         <span class="letter2" id="login_log" style="border-bottom: 1px;">${user.name} 님, 환영합니다.</span>
 
-        <div class="btn-group" style="right: 10px">
-            <button type="button" class="btn btn-info dropdown-toggle h-100 w-100" data-bs-toggle="dropdown"
+        <div class="btn-group" style="height: 50px; width: 100px; right: 70px">
+            <button type="button" class="btn btn-primary dropdown-toggle h-100 w-100" data-bs-toggle="dropdown"
                     aria-expanded="false">
                 My page
             </button>
