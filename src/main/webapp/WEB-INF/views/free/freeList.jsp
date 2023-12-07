@@ -25,6 +25,9 @@
             color: inherit; /* 링크의 기본 색상 유지 */
         }
 
+        .page-header {
+            font-family: 'yg-jalnan';
+        }
         .panel-body {
             background-color: #98dde3; /* 배경색 설정 */
         }
@@ -55,6 +58,7 @@
             background-color: #98dde3; /* 헤더 배경색 */
             color: #ffffff; /* 글자 색깔 */
             font-size: 12px; /* 글자 크기 */
+            font-family: 'yg-jalnan';
         }
 
         #noticeTable thead tr {
@@ -73,6 +77,7 @@
         #noticeTable {
             border-collapse: collapse;
             width: 100%;
+
         }
 
         #noticeTable tbody tr:nth-child(odd) {
@@ -112,6 +117,7 @@
             position: relative;
             right: 15%;
             top: 123px;
+            font-family: 'yg-jalnan';
         }
 
 
