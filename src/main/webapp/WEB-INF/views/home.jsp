@@ -106,14 +106,22 @@
             width: 100%;
             height: 100%;
         }
+        @font-face {
+            font-family: 'GongGothicMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
 
         .cover1 > p {
-            font-family: 'JalnanGothic';
+            font-family: 'GongGothicMedium';
             color: white;
-            font-size: 55px;
+            font-size: 60px;
             font-weight: 200;
-            transform: translate(30%, 120%);
+            transform: translate(40%, 90%);
             position: absolute;
+            text-shadow: 2px 2px 3px #5e5e5e;
         }
 
         .container2 {
@@ -144,6 +152,7 @@
             font-weight: 200;
             transform: translate(30%, 100%);
             position: absolute;
+            font-family: 'GongGothicMedium';
         }
 
         .container3 {
@@ -174,6 +183,7 @@
             font-weight: 200;
             transform: translate(30%, 100%);
             position: absolute;
+            font-family: 'GongGothicMedium';
         }
 
         .container4 {
@@ -200,7 +210,7 @@
             font-size: 40px;
             position: absolute;
             transform: translate(0%, 120%);
-            font-family: 'JalnanGothic';
+            font-family: 'yg-jalnan';
         }
 
         .ranking-container {
@@ -216,8 +226,14 @@
         .number {
             width: 50px;
             font-size: 16px;
-            color: #555;
             margin-right: 10px; /* 여백을 추가했습니다. */
+        }
+
+        @font-face {
+            font-family: 'SOYOMapleBoldTTF';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/SOYOMapleBoldTTF.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
         }
 
         .ranking-item {
@@ -228,6 +244,7 @@
             align-items: center;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            font-family: 'SOYOMapleBoldTTF';
         }
 
         .ranking-item:hover {
@@ -235,21 +252,18 @@
         }
 
         .rank {
-            width: 50px;
+            width: 70px;
             font-size: 18px;
             font-weight: bold;
-            color: #333;
         }
 
         .keyword {
             width: 150px;
             font-size: 16px;
-            color: #555;
         }
 
         .addr {
             font-size: 16px;
-            color: #555;
         }
 
         .go-trip {
@@ -339,7 +353,7 @@
             align-items: self-end;
             /*align-items: center; 지역 글씨 가운데로 내 생각엔 오른쪽 끝이 이뻐서 그렇게 해둠*/
             justify-content: space-between;
-            width: 232px;
+            width: 90%;
             height: 65px;
             color: black;
             flex-direction: column;
@@ -503,6 +517,31 @@
             margin-right: 30px;
             background-color: white;
         }
+
+        .ranking-item:first-child {
+            background-color: #ade8ef;
+            color: #ffffff;
+            text-shadow: 1px 2px 2px black;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .ranking-item:nth-child(2) > .keyword {
+            animation: animate 1s infinite;
+            transform-origin: center;
+            padding: 0 0.5rem;
+        }
+
     </style>
 </head>
 <body>
@@ -516,7 +555,7 @@
                         <img src="/resources/img/한국지도.png" class="d-block w-100" alt="...">
                     </div>
                     <div class="cover1">
-                        <p>여행을 준비하는 연준이는 <br> G-Route를 통해 <br> 2시간을 아꼈어요!</p>
+                        <p>여행을 준비하는 연준이는 <br> G-ROUTE를 통해 <br> 2시간을 아꼈어요!</p>
                     </div>
                 </div>
             </div>
@@ -581,7 +620,7 @@
 <div class="container4">
     <div class="cover4">
         <div class="p_cover">
-            <p>G-Route 회원들이 선택한 장소 Top 5</p>
+            <p>G-ROUTE 회원들이 선택한 장소 Top 5</p>
         </div>
         <div class="ranking-container"></div>
     </div>
@@ -731,7 +770,7 @@
         const keywords = [];
         const name_count = [];
         const name_add = [];
-        keywords[0] = ("장소");
+        keywords[0] = ("여행장소");
         name_count[0] = ("선택 수");
         name_add[0] = ("지역");
         let address = ""
@@ -754,8 +793,12 @@
 
             const rank = document.createElement("div");
             rank.classList.add("rank");
-            if (i != 0) {
+            if (i == 1) {
+                rank.textContent = "TOP " + (i).toString();
+            } else if (i > 1) {
                 rank.textContent = (i).toString();
+            } else if (i == 0) {
+                rank.textContent = "순위";
             }
 
             const keywordElement = document.createElement("div");
