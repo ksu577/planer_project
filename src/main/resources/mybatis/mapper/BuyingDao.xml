@@ -27,4 +27,14 @@
         <include refid="searchInBuying"/>
     </select>
 
+    <select id="getcartList" resultType="com.study.cart.vo.CartVO">
+        select *
+        from cart c,
+             product p,
+             save_cart s
+        where c.product_id = p.id
+          and buy_yn = 'Y'
+          and c.save_cart_key = s.save_num
+    </select>
+
 </mapper>

@@ -106,7 +106,7 @@
 
             <tr style="font-size: 12px; text-align: center;" class="text-center">
                 <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.userId}</td>
-                <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.takeName}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" ><a style="text-decoration:none;" href="buyingMemberView.wow?saveNum=${buyingMemberList.saveNum}">${buyingMemberList.takeName}</a></td>
                 <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.takeHp}</td>
                 <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.takeAdd}</td>
                 <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.payDate}</td>

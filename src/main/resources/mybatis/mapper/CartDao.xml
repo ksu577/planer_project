@@ -44,18 +44,19 @@
         where m.id = c.user_id
           and p.id = c.product_id
           and m.id = #{userId}
+          and c.del_yn = 'N'
     </select>
 
     <!-- 3. 장바구니 삭제 -->
     <delete id="delete">
-        DELETE
-        From cart
+        update cart
+        set del_yn ='Y'
         where cart_id = #{cartId}
     </delete>
 
     <delete id="clearCart">
-        delete
-        from cart
+        update cart
+        set del_yn ='Y'
         where user_id = #{userId}
     </delete>
 

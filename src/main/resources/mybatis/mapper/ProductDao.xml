@@ -107,7 +107,8 @@
     </sql>
 
     <select id="getSaveCartKey" resultType="java.lang.Integer">
-        SELECT SAVE_CART_SEQ.nextval FROM DUAL
+        SELECT SAVE_CART_SEQ.nextval
+        FROM DUAL
     </select>
 
     <insert id="insertSaveCart">
@@ -119,9 +120,9 @@
                , #{takeDetailAdd}, #{takeAutoAdd}, #{takeReq}, sysdate)
 
     </insert>
-<!--                    #{select p.name-->
-<!--              from cart c, product p-->
-<!--              where c.product_id = p.id and user_id = #{userId}})-->
+    <!--                    #{select p.name-->
+    <!--              from cart c, product p-->
+    <!--              where c.product_id = p.id and user_id = #{userId}})-->
     <!--    장바구니의 정보를 가져오려고함 근데 가장 최신에 생성된 장바구니여야되니까 save_num이 max값인걸 불러온거임 11월 23일-->
     <select id="selectUserInfo" resultType="com.study.product.vo.SaveCartVO">
         SELECT s.take_name,
@@ -153,7 +154,12 @@
     </select>
 
     <update id="updateProductBuy">
-            UPDATE CART SET BUY_YN = 'Y', SAVE_CART_KEY = #{saveNum} WHERE USER_ID = #{userId} AND BUY_YN = 'N' AND SAVE_CART_KEY = NULL
+        UPDATE CART
+        SET BUY_YN        = 'Y',
+            SAVE_CART_KEY = #{saveNum}
+        WHERE USER_ID = #{userId}
+          AND BUY_YN = 'N'
+          AND SAVE_CART_KEY = NULL
     </update>
 
 </mapper>

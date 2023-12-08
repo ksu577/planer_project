@@ -1,7 +1,9 @@
 package com.study.manager;
 
+import com.study.cart.vo.CartVO;
 import com.study.common.vo.PagingVO;
 import com.study.common.vo.SearchVO;
+import com.study.exception.BizNotFoundException;
 import com.study.login.vo.UserVO;
 import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
@@ -67,6 +69,16 @@ public class managerController {
         
         model.addAttribute("buyingMemberList",buyingMemberList);
         return "/ManagerPage/Buyingmember";
+    }
+
+
+    // 매니저 구매물품 상세 페이지
+    @RequestMapping("/ManagerPage/buyingMemberView.wow")
+    public String buyingMemeberView(@RequestParam int saveNum, Model model) throws BizNotFoundException {
+        List<CartVO> view = managerService.getcartListMember(saveNum);
+        model.addAttribute("view",view);
+        return "ManagerPage/buyingMemberView";
+
     }
 }
 
