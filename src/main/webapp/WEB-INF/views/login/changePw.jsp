@@ -19,9 +19,8 @@
     }
 
     .container {
-        padding-top: 70px;
         width: 100vw;
-        height: 100vh;
+        height: 92vh;
         position: relative;
     }
 
@@ -41,58 +40,67 @@
     }
 
     .newpwcover {
-        border: 1px solid black;
-        width: 400px;
-        height: 50px;
-        border-radius: 10px;
-        margin-top: 80px;
-        margin-left: 50px;
+        margin-top: 60px;
+        margin-left: 20px;
+        width: 450px;
+        height: 60px;
+        border-radius: 5px;
+        position: relative;
+        background-color: rgba(220, 220, 220, 0.30);
     }
 
     .newpwcover2 {
-        border: 1px solid black;
-        width: 400px;
-        height: 50px;
-        border-radius: 10px;
-        margin-top: 50px;
-        margin-left: 50px;
+        margin-top: 60px;
+        margin-left: 20px;
+        width: 450px;
+        height: 60px;
+        border-radius: 5px;
+        position: relative;
+        background-color: rgba(220, 220, 220, 0.30);
     }
 
     .newpw {
-        width: 380px;
-        height: 45px;
-        margin-left: 10px;
-        border-radius: 10px;
-        border: 1px white;
+        width: 445px;
+        height: 60px;
+        margin-left: 5px;
+        font-size: 18px;
         outline: none;
-        font-size: 16px;
+        border: 1px rgba(220, 220, 220, 0.20);
+        background-color: rgba(220, 220, 220, 0);
+        border-radius: 5px;
     }
 
     .newpwcheck {
-        width: 380px;
-        height: 45px;
-        margin-left: 10px;
-        border-radius: 10px;
-        border: 1px white;
+        width: 445px;
+        height: 60px;
+        margin-left: 5px;
+        font-size: 18px;
         outline: none;
-        font-size: 16px;
+        border: 1px rgba(220, 220, 220, 0.20);
+        background-color: rgba(220, 220, 220, 0);
+        border-radius: 5px;
     }
 
     .pwbtn {
-        width: 400px;
-        height: 50px;
-        border-radius: 10px;
+        width: 450px;
+        height: 60px;
+        border-radius: 5px;
         margin-top: 80px;
-        margin-left: 50px;
+        margin-left: 20px;
         font-size: 20px;
         background-color: #98dde3;
         border: 1px solid white;
         color: white;
     }
 
+    .top-background {
+        background-color: #98dde3;
+        height: 70px;
+    }
+
 </style>
 <body>
-
+<div class="top-background"></div>
 <div class="container">
     <form id="changeForm" action="/login/changePw.wow" method="post" enctype="multipart/form-data">
         <div class="cover">

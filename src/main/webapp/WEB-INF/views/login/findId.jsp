@@ -19,9 +19,8 @@
     }
 
     .container {
-        padding-top: 70px;
         width: 100vw;
-        height: 100vh;
+        height: 92vh;
         position: relative;
     }
 
@@ -163,11 +162,17 @@
         z-index: 9999;
     }
 
+    .top-background {
+        background-color: #98dde3;
+        height: 70px;
+    }
+
 
 </style>
 <%session.invalidate();%>
 <body>
 <div class="overlay"></div>
+<div class="top-background"></div>
 <div class="container">
     <div class="cover">
         <form id="searchId" action="/login/myId.wow" method="post">

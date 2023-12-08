@@ -11,6 +11,19 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: gainsboro;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: darkgray;
+    }
+
     .body-container {
         height: 310px;
         position: relative;
@@ -23,6 +36,7 @@
         width: 800px;
         height: 500px;
         border-radius: 15px;
+        box-shadow: 0 0 10px 1px gainsboro;
     }
 
     table {
@@ -36,6 +50,17 @@
     input {
         border: 1px solid #98dde3;
         border-radius: 5px;
+    }
+
+    .parcel-container {
+        border: 2px solid #98dde3;
+        width: 800px;
+        height: 350px;
+        border-radius: 15px;
+        transform: translate(70%, 200%);
+        box-shadow: 0 0 10px 1px gainsboro;
+        object-fit: cover;
+        overflow: auto;
     }
 
 </style>
@@ -100,45 +125,46 @@
     </div>
     </c:if>
 
-    <div class="paycontainer mt-3" style="transform: translate(0%, 400%); padding-left: 100px; font-size: 15px;">
-        <div class="address col-md-8" style="transform: translate(20%, 350%)">
-            <h2>최근 주문정보</h2>
-            <hr>
-            <form>
-                <div class="mb-3">
-                    <span>수령인 : ${userinfo.takeName}</span>
-                </div>
-                <div class="mb-3">
-                    <span> 연락처 : ${userinfo.takeHp} </span>
+    <div class="parcel-container">
+        <div class="paycontainer mt-3" style="padding-top: 50px; padding-left: 190px; font-size: 15px;">
+            <div class="address col-md-8">
+                <h2>최근 주문정보</h2>
+                <hr>
+                <form>
+                    <div class="mb-3">
+                        <span>수령인 : ${userinfo.takeName}</span>
+                    </div>
+                    <div class="mb-3">
+                        <span> 연락처 : ${userinfo.takeHp} </span>
 
-                </div>
+                    </div>
+                    <div class="mb-3">
+                        <span>배송지 : ${userinfo.takeAdd}</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <span>배송 메모 : ${userinfo.takeReq}</span>
+                    </div>
+                </form>
+            </div>
+            <div class="bill col-md-8">
+                <c:set var="totalAmount" value="0"/>
+                <c:forEach items="${productinfo}" var="productinfo">
+                    <div class="mb-3" style="display: flex; flex-direction: column;">
+                        <span>상품명 : ${productinfo.productName} </span>
+                        <hr>
+                        <span>개수 : ${productinfo.amount} 개</span>
+                        <span>상품금액 : ${productinfo.price} 원</span>
+                        <hr>
+                    </div>
+                    <c:set var="totalAmount" value="${totalAmount + productinfo.price}"/>
+                </c:forEach>
+                <hr>
                 <div class="mb-3">
-                    <span>배송지 : ${userinfo.takeAdd}</span>
-                </div>
+                    <div class="mb-3" style="display: flex; flex-direction: column;">
 
-                <div class="mb-3">
-                    <span>배송 메모 : ${userinfo.takeReq}</span>
-                </div>
-            </form>
-        </div>
-        <div class="bill col-md-8" style="transform: translate(20%, 1150%)">
-            <c:set var="totalAmount" value="0"/>
-
-            <c:forEach items="${productinfo}" var="productinfo">
-                <div class="mb-3" style="display: flex; flex-direction: column;">
-                    <span>상품명 : ${productinfo.productName} </span>
-                    <hr>
-                    <span>개수 : ${productinfo.amount} 개</span>
-                    <span>상품금액 : ${productinfo.price} 원</span>
-                    <hr>
-                </div>
-                <c:set var="totalAmount" value="${totalAmount + productinfo.price}"/>
-            </c:forEach>
-            <hr>
-            <div class="mb-3">
-                <div class="mb-3" style="display: flex; flex-direction: column;">
-
-                    <span>결제된 금액 : 총액 ${totalAmount} 원</span>
+                        <span>결제된 금액 : 총액 ${totalAmount} 원</span>
+                    </div>
                 </div>
             </div>
         </div>

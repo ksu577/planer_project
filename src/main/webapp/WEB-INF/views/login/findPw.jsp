@@ -19,9 +19,8 @@
     }
 
     .container {
-        padding-top: 70px;
         width: 100vw;
-        height: 100vh;
+        height: 92vh;
         position: relative;
     }
 
@@ -162,10 +161,17 @@
         background-color: rgba(0, 0, 0, 0.1);
         z-index: 9999;
     }
+
+    .top-background {
+        background-color: #98dde3;
+        height: 70px;
+    }
+
 </style>
 
 <body>
 <div class="overlay"></div>
+<div class="top-background"></div>
 <div class="container">
     <div class="cover">
         <div class="findPw"><p>비밀번호 찾기</p></div>
