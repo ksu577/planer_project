@@ -14,7 +14,7 @@ public class MemberVO {
     private String address2;        /* 성세 주소 */
     private String phnum;         /* 연락처 */
     private String email;       /* 이메일 */
-    private String delYn;      /* 삭제여부 */
+    private String delYn;   /* 삭제여부 */
     private String createDate; /* 가입일 */
     private String role;   /* 어드민 */
     private String profile;     /* 프로필사진 */

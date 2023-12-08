@@ -14,6 +14,7 @@ public class ICartServiceImpl implements ICartService {
 
     private final CartDao cartDao;
 
+
     @Autowired
     public ICartServiceImpl(CartDao cartDao) {
         this.cartDao = cartDao;
@@ -40,6 +41,8 @@ public class ICartServiceImpl implements ICartService {
         } else if (amount >= maxAmount) {
             // 최대 수량 초과 시 처리
 
+        } else if (cartVO.getDelYn().equals("Y")) {
+            
         }
         // 없으면 새로운 상품으로 추가
         cartDao.insertCart(cartVO);

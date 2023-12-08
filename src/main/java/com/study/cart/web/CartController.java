@@ -43,12 +43,9 @@ public class CartController {
 
             return "redirect:/cart/shoppingcartview";
         }
-
         return "redirect:/login/login.wow";
-
     }
 
-    ;
 
 
     @GetMapping("/shoppingcartview")
