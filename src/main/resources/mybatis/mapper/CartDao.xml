@@ -44,7 +44,8 @@
         where m.id = c.user_id
           and p.id = c.product_id
           and m.id = #{userId}
-          and c.del_yn = 'N' or c.buy_yn = 'y'
+          and c.del_yn = 'N'
+          and c.buy_yn = 'N'
 
     </select>
 
@@ -77,6 +78,7 @@
         where c.product_id = p.id
           and c.user_id = #{userId}
           and c.del_yn = 'N'
+        and c.buy_yn = 'N'
     </select>
 
     <!--6. 장바구니에 있는 것과 동일한 상품 코드 확인-->
@@ -121,4 +123,6 @@
         from product
         where id = #{productId}
     </select>
+
+
 </mapper>
