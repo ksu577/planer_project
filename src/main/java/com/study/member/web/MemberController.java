@@ -11,6 +11,9 @@ import com.study.member.service.IMemberService;
 import com.study.member.service.MailService;
 import com.study.member.service.MemberServiceImpl;
 import com.study.member.vo.MemberVO;
+import com.study.product.service.IproductService;
+import com.study.product.vo.ProductVO;
+import com.study.product.vo.SaveCartVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -45,6 +48,8 @@ public class MemberController {
     private MailService mailService;
     @Autowired
     MemberServiceImpl memberServiceImpl;
+    @Autowired
+    IproductService iproductService;
 
     @Value("#{util['file.upload.path']}")
     private String uploadPath;
@@ -84,6 +89,10 @@ public class MemberController {
                 String userId = user.getId();
                 MemberVO member = memberService.getMember(userId);
                 model.addAttribute("member", member);
+                SaveCartVO userinfo = iproductService.viewUserInfo(user.getId());
+                List<ProductVO> productinfo = iproductService.viewProductInfo(user.getId());
+                model.addAttribute("userinfo", userinfo);
+                model.addAttribute("productinfo", productinfo);
             }
             return "member/memberView";
         } catch (BizNotFoundException e) {
