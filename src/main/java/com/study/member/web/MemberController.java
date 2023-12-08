@@ -85,6 +85,10 @@ public class MemberController {
             if ("MANAGER".equals(user.getRole()) && Id != null) {
                 MemberVO member = memberService.getMember(Id);
                 model.addAttribute("member", member);
+                SaveCartVO userinfo = iproductService.viewUserInfo(member.getId());
+                List<ProductVO> productinfo = iproductService.viewProductInfo(member.getId());
+                model.addAttribute("userinfo", userinfo);
+                model.addAttribute("productinfo", productinfo);
             } else {
                 String userId = user.getId();
                 MemberVO member = memberService.getMember(userId);
