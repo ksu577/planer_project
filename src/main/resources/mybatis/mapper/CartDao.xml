@@ -44,7 +44,8 @@
         where m.id = c.user_id
           and p.id = c.product_id
           and m.id = #{userId}
-          and c.del_yn = 'N'
+          and c.del_yn = 'N' or c.buy_yn = 'y'
+
     </select>
 
     <!-- 3. 장바구니 삭제 -->

@@ -159,7 +159,8 @@
             SAVE_CART_KEY = #{saveNum}
         WHERE USER_ID = #{userId}
           AND BUY_YN = 'N'
-          AND SAVE_CART_KEY = NULL
+          and del_yn= 'N'
+          AND SAVE_CART_KEY is NULL
     </update>
 
 </mapper>

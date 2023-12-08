@@ -57,13 +57,13 @@
         <tbody>
 
 
-        <c:forEach items="${buyingMemberList}" var="buyingMemberList" begin="${(paging.curPage - 1) * 15}" end="${(paging.curPage * 15) - 1}">
+        <c:forEach items="${view}" var="view">
 
             <tr style="font-size: 12px; text-align: center;" class="text-center">
-                <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.userId}</td>
-                <td style="background-color: white; border: 1px solid #98dde3;" ><a style="text-decoration:none;" href="buyingMemberView.wow?saveNum=${buyingMemberList.saveNum}">${buyingMemberList.takeName}</a></td>
-                <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.takeHp}</td>
-                <td style="background-color: white; border: 1px solid #98dde3;" >${buyingMemberList.takeAdd}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" >${view.cartId}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" >${view.userId}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" >${view.name}</td>
+                <td style="background-color: white; border: 1px solid #98dde3;" >${view.amount}</td>
             </tr>
         </c:forEach>
 
@@ -71,26 +71,6 @@
     </table>
 
 
-    <nav class="text-center">
-        <ul class="pagination">
-            <li><a href="Buyingmember?curpage=1">&laquo;</a></li>
-            <li><a href="Buyingmember?curpage=1${paging.curPage-1}">&lt;</a></li>
-
-            <c:forEach begin="${paging.firstPage}" end="${paging.lastPage}" var="i">
-                <c:if test="${paging.curPage eq i}">
-                    <li class="active"><a href="#">${paging.curPage}</a></li>
-                </c:if>
-                <c:if test="${paging.curPage ne i}">
-                    <li><a href="Buyingmember?curPage=${i}" data-page="${i}">${i}</a></li>
-                </c:if>
-            </c:forEach>
-
-            <li><a href="Buyingmember?curPage=${paging.curPage+1}">&gt;</a></li>
-            <li><a href="Buyingmember?curPage=${paging.totalPageCount}"
-                   data-page="${paging.totalPageCount}">&raquo;</a>
-            </li>
-        </ul>
-    </nav>
 </div>
 </body>
 

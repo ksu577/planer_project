@@ -189,6 +189,7 @@ public class ProductController {
         model.addAttribute("userinfo", userinfo);
         model.addAttribute("productinfo", productinfo);
 
+
         return "/shop/afterpay";
     }
 
