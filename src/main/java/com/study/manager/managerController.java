@@ -73,8 +73,8 @@ public class managerController {
 
 
     // 매니저 구매물품 상세 페이지
-    @RequestMapping("/ManagerPage/buyingMemberView.wow")
-    public String buyingMemeberView(@RequestParam int saveNum, Model model) throws BizNotFoundException {
+    @GetMapping("/ManagerPage/buyingMemberView.wow")
+    public String buyingMemeberView(@RequestParam("saveNum") int saveNum, Model model) throws BizNotFoundException {
         List<CartVO> view = managerService.getcartListMember(saveNum);
         model.addAttribute("view",view);
         return "ManagerPage/buyingMemberView";

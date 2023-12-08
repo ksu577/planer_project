@@ -33,8 +33,11 @@
              product p,
              save_cart s
         where c.product_id = p.id
+          and s.save_num = c.save_cart_key
+
           and buy_yn = 'Y'
-          and c.save_cart_key = s.save_num
+          and c.save_cart_key = #{saveNum}
+
     </select>
 
 </mapper>
