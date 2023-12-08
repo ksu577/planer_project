@@ -592,8 +592,8 @@
 
     <div class="search-local-cover">
         <input type="search" id="title-ip2" class="search-local" onkeyup="f_place()" placeholder="찾고있는 지역을 검색해주세요" onclick="hidePlaceholder2()" onblur="showPlaceholder2()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black"
-             class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(45%, 0%); cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+             class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(50%, -5%); cursor: pointer;">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg>
     </div>

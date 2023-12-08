@@ -14,6 +14,18 @@
 
     <!-- 추가된 스타일과 스크립트 -->
     <style type="text/css">
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: gainsboro;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: darkgray;
+        }
 
         body a {
             text-decoration: none; /* 밑줄 제거 */
