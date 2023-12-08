@@ -28,6 +28,7 @@
 </update>
 
 
+
     <select id="getTotalRowCount" resultType="int" parameterType="java.util.Map">
         SELECT  count(*)
         FROM free_board
@@ -35,6 +36,8 @@
         AND bo_del_yn='N'
         <include refid="searchInFree"  />
     </select>
+
+
 
     <select id="getBoardList" resultType="com.study.free.vo.FreeBoardVO" resultMap="freeAttaches">
         SELECT *
@@ -44,7 +47,7 @@
         SELECT
         id,free_num,free_context,
         create_date,update_date,view_rate,
-        free_like,title,bo_del_yn, notice,comment_count
+        title,bo_del_yn, notice,comment_count
         FROM free_board a
         where 1=1
         <include refid="searchInFree"/>
@@ -67,18 +70,17 @@
     <select id="getBoard" resultType="com.study.free.vo.FreeBoardVO" parameterType="int" resultMap="freeAttaches">
         SELECT id,free_num,free_context,
                create_date,update_date,view_rate,
-               free_like,title,notice,plan_title
+               title,notice,plan_title
         FROM free_board
         where free_num=#{free_num}
     </select>
 
 
-
     <update id="updateBoard"
-            parameterType="com.study.free.vo.FreeBoardVO">
+    parameterType="com.study.free.vo.FreeBoardVO">
         UPDATE free_board
         SET title=#{title}
-          , free_context = #{freeContext}
+        , free_context = #{freeContext}
         WHERE free_Num = #{freeNum}
     </update>
 
@@ -90,15 +92,10 @@
     </update>
 
 
-    <update id="updateLikeCount" parameterType="int">
-        UPDATE free_board
-        SET free_like = free_like+1
-        WHERE free_num = #{freeNum}
-    </update>
 
 
     <delete id="deleteBoard"
-            parameterType="com.study.free.vo.FreeBoardVO">
+    parameterType="com.study.free.vo.FreeBoardVO">
         UPDATE free_board
         SET bo_del_yn = 'Y'
         WHERE free_num = #{freeNum, jdbcType=INTEGER} AND bo_del_yn = 'N'
@@ -112,11 +109,11 @@
         INSERT INTO free_board (
         id, free_num, free_context,
         create_date, update_date, view_rate,
-        free_like, title, notice, plan_title
+         title, notice, plan_title
         )VALUES (
-            #{id}, #{freeNum}, #{freeContext},
+        #{id}, #{freeNum}, #{freeContext},
         SYSDATE, SYSTIMESTAMP, #{viewRate},
-        #{freeLike}, #{title}, #{notice}, #{planTitle})
+         #{title}, #{notice}, #{planTitle})
 
     </insert>
 
