@@ -106,14 +106,22 @@
             width: 100%;
             height: 100%;
         }
+        @font-face {
+            font-family: 'GongGothicMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
 
         .cover1 > p {
-            font-family: 'JalnanGothic';
+            font-family: 'GongGothicMedium';
             color: white;
-            font-size: 55px;
+            font-size: 60px;
             font-weight: 200;
-            transform: translate(30%, 120%);
+            transform: translate(40%, 90%);
             position: absolute;
+            text-shadow: 2px 2px 3px #5e5e5e;
         }
 
         .container2 {
@@ -144,6 +152,7 @@
             font-weight: 200;
             transform: translate(30%, 100%);
             position: absolute;
+            font-family: 'GongGothicMedium';
         }
 
         .container3 {
@@ -174,6 +183,7 @@
             font-weight: 200;
             transform: translate(30%, 100%);
             position: absolute;
+            font-family: 'GongGothicMedium';
         }
 
         .container4 {
@@ -200,7 +210,7 @@
             font-size: 40px;
             position: absolute;
             transform: translate(0%, 120%);
-            font-family: 'JalnanGothic';
+            font-family: 'yg-jalnan';
         }
 
         .ranking-container {
@@ -216,8 +226,14 @@
         .number {
             width: 50px;
             font-size: 16px;
-            color: #555;
             margin-right: 10px; /* 여백을 추가했습니다. */
+        }
+
+        @font-face {
+            font-family: 'SOYOMapleBoldTTF';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/SOYOMapleBoldTTF.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
         }
 
         .ranking-item {
@@ -228,6 +244,7 @@
             align-items: center;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            font-family: 'SOYOMapleBoldTTF';
         }
 
         .ranking-item:hover {
@@ -235,21 +252,18 @@
         }
 
         .rank {
-            width: 50px;
+            width: 70px;
             font-size: 18px;
             font-weight: bold;
-            color: #333;
         }
 
         .keyword {
             width: 150px;
             font-size: 16px;
-            color: #555;
         }
 
         .addr {
             font-size: 16px;
-            color: #555;
         }
 
         .go-trip {
@@ -339,7 +353,7 @@
             align-items: self-end;
             /*align-items: center; 지역 글씨 가운데로 내 생각엔 오른쪽 끝이 이뻐서 그렇게 해둠*/
             justify-content: space-between;
-            width: 232px;
+            width: 90%;
             height: 65px;
             color: black;
             flex-direction: column;
@@ -503,6 +517,31 @@
             margin-right: 30px;
             background-color: white;
         }
+
+        .ranking-item:first-child {
+            background-color: #ade8ef;
+            color: #ffffff;
+            text-shadow: 1px 2px 2px black;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .ranking-item:nth-child(2) > .keyword {
+            animation: animate 1s infinite;
+            transform-origin: center;
+            padding: 0 0.5rem;
+        }
+
     </style>
 </head>
 <body>
@@ -516,7 +555,7 @@
                         <img src="/resources/img/한국지도.png" class="d-block w-100" alt="...">
                     </div>
                     <div class="cover1">
-                        <p>여행을 준비하는 연준이는 <br> G-Route를 통해 <br> 2시간을 아꼈어요!</p>
+                        <p>여행을 준비하는 연준이는 <br> G-ROUTE를 통해 <br> 2시간을 아꼈어요!</p>
                     </div>
                 </div>
             </div>
@@ -581,7 +620,7 @@
 <div class="container4">
     <div class="cover4">
         <div class="p_cover">
-            <p>G-Route 회원들이 선택한 장소 Top 5</p>
+            <p>G-ROUTE 회원들이 선택한 장소 Top 5</p>
         </div>
         <div class="ranking-container"></div>
     </div>
@@ -592,8 +631,8 @@
 
     <div class="search-local-cover">
         <input type="search" id="title-ip2" class="search-local" onkeyup="f_place()" placeholder="찾고있는 지역을 검색해주세요" onclick="hidePlaceholder2()" onblur="showPlaceholder2()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
-             class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(50%, -5%); cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black"
+             class="bi bi-search svg-1" viewBox="0 0 16 16" style="transform: translate(45%, 0%); cursor: pointer;">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg>
     </div>
@@ -658,24 +697,26 @@
     <div class="footer-icons">
         <div class="footer-icon">
             <a href="https://blog.naver.com/nextit_center" target="_blank">
-                <img style="width: 30px; height: 30px; margin-top: 10px; margin-left: 10px"
-                     src="https://cdn-icons-png.flaticon.com/128/3959/3959425.png">
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-top: 10px;" width="30" height="30" fill="#2DB400" class="bi bi-bootstrap" viewBox="0 0 16 16">
+                    <path d="M5.062 12h3.475c1.804 0 2.888-.908 2.888-2.396 0-1.102-.761-1.916-1.904-2.034v-.1c.832-.14 1.482-.93 1.482-1.816 0-1.3-.955-2.11-2.542-2.11H5.062V12zm1.313-4.875V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762V8.162h1.822c1.236 0 1.887.463 1.887 1.348 0 .896-.627 1.377-1.811 1.377H6.375z"/>
+                    <path d="M0 4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4zm4-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V4a3 3 0 0 0-3-3H4z"/>
+                </svg>
             </a>
         </div>
 
         <div class="footer-icon">
             <a href="https://www.youtube.com/@nextit_center" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-top: 10px;" width="30"
-                     height="30" fill="black" class="bi bi-youtube" viewBox="0 0 16 16">
+                     height="30" fill="red" class="bi bi-youtube" viewBox="0 0 16 16">
                     <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
                 </svg>
             </a>
         </div>
 
-        <div class="footer-icon">
+        <div class="footer-icon" style="background: radial-gradient(circle farthest-corner at 32% 106%,#ffe17d 0%,#ffcd69 10%,#fa9137 28%,#eb4141 42%,transparent 82%) , linear-gradient(135deg,#234bd7 12%,#c33cbe 58%);">
             <a href="https://www.instagram.com/__nextit__/" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; margin-top: 10px;" width="30"
-                     height="30" fill="black" class="bi bi-instagram"
+                <svg xmlns="http://www.w3.org/2000/svg" style=" margin-left: 10px; margin-top: 10px;" width="30"
+                     height="30" fill="white" class="bi bi-instagram"
                      viewBox="0 0 16 16">
                     <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
                 </svg>
@@ -731,7 +772,7 @@
         const keywords = [];
         const name_count = [];
         const name_add = [];
-        keywords[0] = ("장소");
+        keywords[0] = ("여행장소");
         name_count[0] = ("선택 수");
         name_add[0] = ("지역");
         let address = ""
@@ -754,8 +795,12 @@
 
             const rank = document.createElement("div");
             rank.classList.add("rank");
-            if (i != 0) {
+            if (i == 1) {
+                rank.textContent = "TOP " + (i).toString();
+            } else if (i > 1) {
                 rank.textContent = (i).toString();
+            } else if (i == 0) {
+                rank.textContent = "순위";
             }
 
             const keywordElement = document.createElement("div");
