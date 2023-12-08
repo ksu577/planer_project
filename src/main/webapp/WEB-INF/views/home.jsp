@@ -582,7 +582,7 @@
 
         <div class="search-travel-cover" style="z-index: 1">
             <form action="/title" id="title" method="GET">
-                <input class="search-travel" type="text" placeholder="목적지를 입력해주세요" id="title-ip" name="planTitle"
+                <input class="search-travel" type="text" placeholder="여행 제목을 입력해주세요" id="title-ip" name="planTitle"
                        onclick="hidePlaceholder()" onblur="showPlaceholder()">
                 <div id="sm-div" style="display: inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white  "
@@ -841,7 +841,7 @@
 
     function showPlaceholder() {
         var input = document.getElementById('title-ip');
-        input.placeholder = '목적지를 입력해주세요';
+        input.placeholder = '여행 제목을 입력해주세요';
     }
 
     document.addEventListener('click', function (event) {

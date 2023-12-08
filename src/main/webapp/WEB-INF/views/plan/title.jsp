@@ -33,17 +33,17 @@
 
     <div class="container">
         <div class="input-group-lg has-validation">
-            <form action="/title" id="title" method="GET">
-                <div class="form-floating is-invalid">
-                    <input type="text" class="form-control form-control-lg is-invalid input-title" name="planTitle"
+            <form action="/title" id="title" method="GET" class="form-floating">
+                <div class="form-floating is-invalid fs-3 h-25">
+                    <input type="text" class="form-control form-control-lg is-invalid input-title h-25" name="planTitle"
                            id="floatingInputGroup2"
                            placeholder="Username" required>
-                    <label for="floatingInputGroup2">PLAN TITLE</label>
+                    <label for="floatingInputGroup2">여행 제목</label>
                 </div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback fs-2">
                     제목을 입력해주세요.
                 </div>
-                <button type="submit" class="btn-lg btn btn-outline-warning">저장</button>
+                <button type="submit" class="btn-lg btn btn-info">저장</button>
             </form>
         </div>
     </div>
