@@ -26,9 +26,9 @@ public class ICartServiceImpl implements ICartService {
 
         // 기존 수량 체크
         int amount = cartDao.getAmountInCart(cartVO.getProductId(), cartVO.getUserId());
-       // 카트에 담긴 물품의 전체 수량
+        // 카트에 담긴 물품의 전체 수량
         int maxAmount = cartDao.getProductAmountInCart(cartVO.getProductId(), cartVO.getUserId());
-        if(amount > 0 ) {
+        if (amount > 0 && cartVO.getDelYn().equals("N") && cartVO.getBuyYn().equals("N")) {
             // 기존 수량 + 추가 수량 업데이트
             int tempId = cartVO.getCartId();
             cartDao.returnProductCnt(amount, tempId);
@@ -40,14 +40,12 @@ public class ICartServiceImpl implements ICartService {
             return;
         } else if (amount >= maxAmount) {
             // 최대 수량 초과 시 처리
-
-        } else if (cartVO.getDelYn().equals("Y")) {
-            
         }
         // 없으면 새로운 상품으로 추가
         cartDao.insertCart(cartVO);
         cartDao.setProductCnt(cartVO);
     }
+
 
     // 2. 장바구니 목록 ===> 이게 진짜 장바구니
     @Override
@@ -94,7 +92,9 @@ public class ICartServiceImpl implements ICartService {
 
     //8. 장바구니 전체 삭제
     @Override
-    public void clearCart(String userId) { cartDao.clearCart(userId);}
+    public void clearCart(String userId) {
+        cartDao.clearCart(userId);
+    }
 
 
 }
