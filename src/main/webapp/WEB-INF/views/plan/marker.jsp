@@ -10,6 +10,7 @@
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
+
         .top-background {
             height: 70px;
             background-color: #ade8ef;
@@ -43,6 +44,17 @@
             font-style: normal;
         }
 
+        .plan-title {
+            padding-top: 20px;
+            font-family: 'yg-jalnan';
+        }
+
+        .date {
+            color: #838383;
+            font-size: 15px;
+            font-family: 'Pretendard-Regular';
+        }
+
         .container1 {
             display: flex;
             height: 91%;
@@ -50,7 +62,7 @@
 
         .box1 {
             position: absolute;
-            top: 30px;
+            top: 100px;
             width: 100%;
             height: 50px;
         }
@@ -91,7 +103,7 @@
         .btns {
             position: absolute;
             width: 100%;
-            bottom: 50px;
+            bottom: 10px;
         }
 
 
@@ -200,20 +212,28 @@
             justify-content: center;
             align-items: center;
         }
+
+        .date {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>
 <div class="top-background">
-
 </div>
-
 <div class="container1" onclick="f_drawer()">
     <div class="side-bar">
+        <div class="plan-title">${param.planTitle}</div>
+        <div id="date">
+        </div>
         <div class="box1">
             <button type="button" id="all-plan" class="btn btn-secondary h-100 w-75 day_count">전체일정</button>
+            <div class="place" id="day"></div>
         </div>
-        <div class="place" id="day"></div>
         <div class="btns">
             <div class="place-btn">
                 <button class="btn btn-outline-info w-25 h-75" onclick="f_return()">
@@ -322,6 +342,7 @@
     const titleH1 = document.getElementById("title");
     const day_div = document.getElementById("day");
     const tour_div = document.getElementById("select-box");
+    const date = document.getElementById("date");
 
     function f_shareDel() {
         location.href = encodeURI("/plan/shareDel.wow?id=${param.id}&planTitle=${param.planTitle}&shareId=${user.getId()}")
@@ -378,12 +399,9 @@
         let day_num = $(this).text();
         let regex = /[^0-9]/g;
         let result1 = day_num.replace(regex, "");
-        console.log(result1)
         if (result1 == null || result1 == "") {
             result1 = 0
         }
-
-        console.log(result1)
 
         $.ajax({
             url: "/plan/marker.wow",
@@ -395,6 +413,9 @@
                 "title": title
             },
             success: function (result) {
+                let start_day = result[0]["startDate"]
+                let end_day = result[0]["endDate"]
+                date.innerHTML = '<div class="date">' + start_day.substring(0, 10) + ' ~ ' + end_day.substring(0, 10) + '</div>';
                 let json_marker = result;
                 if (json_marker.length != 0) {
 
@@ -404,7 +425,6 @@
                         marker_list[i].setMap(null);
                     }
                     for (let i = 0; i < polyline_list.length; i++) {
-                        console.log(polyline_list[i]);
                         polyline_list[i].setMap(null);
                     }
 
@@ -417,7 +437,6 @@
 
                         points[i] = (new kakao.maps.LatLng(result[i].ylab, result[i].xlab));
 
-                        console.log(result[i].ylab, result[i].xlab);
 
                     }
 
@@ -617,8 +636,8 @@
     </c:forEach>
 
     let title = '${title}';
+
     // titleH1.innerHTML = title;
-    console.log(title)
 
     function f_delete() {
         if (confirm("삭제하면 복구할 수 없습니다. 정말 삭제하시겠습니까?") == true) {    //확인
