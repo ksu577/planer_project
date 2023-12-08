@@ -103,7 +103,10 @@
                        (SELECT amount
                         from cart
                         where user_id = #{userId}
-                          and product_id = #{product_id}), 0)
+                          and product_id = #{product_id}
+                          and del_yn = 'N'
+                          and buy_yn = 'N'),
+                        0)
         FROM DUAL
     </select>
 
@@ -114,7 +117,9 @@
                        (SELECT product_amount
                         from cart
                         where user_id = #{userId}
-                          and product_id = #{product_id}), 0)
+                          and product_id = #{product_id}
+                          and del_yn = 'N'
+                          and buy_yn = 'N'), 0)
         FROM DUAL
     </select>
 

@@ -28,7 +28,7 @@ public class ICartServiceImpl implements ICartService {
         int amount = cartDao.getAmountInCart(cartVO.getProductId(), cartVO.getUserId());
         // 카트에 담긴 물품의 전체 수량
         int maxAmount = cartDao.getProductAmountInCart(cartVO.getProductId(), cartVO.getUserId());
-        if (amount > 0 && cartVO.getDelYn().equals("N") && cartVO.getBuyYn().equals("N")) {
+        if (amount > 0) {
             // 기존 수량 + 추가 수량 업데이트
             int tempId = cartVO.getCartId();
             cartDao.returnProductCnt(amount, tempId);
