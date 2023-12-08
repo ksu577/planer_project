@@ -21,7 +21,8 @@ public class CartVO{
     private int amount; // 구매 수량
     private int productAmount;// 물품의 전체 수
     private String delYn; // 삭제여부
-    private String buyYn;
+    private String buyYn; // 구매 여부
+    private String name;
 
 
     public void addAmount(int amount) {

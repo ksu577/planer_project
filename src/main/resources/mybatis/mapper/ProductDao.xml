@@ -146,6 +146,7 @@
              product p
         WHERE c.USER_ID = #{id}
           AND c.product_id = p.id
+        and c.save_cart_key = (select max(save_num) from save_cart where user_id = #{id})
     </select>
 
     <select id="getBuyingMemberList" resultType="com.study.product.vo.SaveCartVO">

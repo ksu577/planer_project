@@ -55,10 +55,9 @@
         </tr>
         </thead>
         <tbody>
-
+        ${view}
 
         <c:forEach items="${view}" var="view">
-
             <tr style="font-size: 12px; text-align: center;" class="text-center">
                 <td style="background-color: white; border: 1px solid #98dde3;" >${view.cartId}</td>
                 <td style="background-color: white; border: 1px solid #98dde3;" >${view.userId}</td>
