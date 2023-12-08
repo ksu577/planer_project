@@ -17,8 +17,21 @@
         margin: 0;
     }
 
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: gainsboro;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: darkgray;
+    }
+
     .login-container {
-        width: 100vw;
+        width: 99.7vw;
         height: 92.5vh;
         background-color: rgba(220, 220, 220, 0.30);
         position: relative;

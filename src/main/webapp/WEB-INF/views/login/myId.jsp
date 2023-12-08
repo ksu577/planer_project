@@ -19,9 +19,8 @@
     }
 
     .container {
-        padding-top: 70px;
         width: 100vw;
-        height: 100vh;
+        height: 92vh;
         position: relative;
     }
 
@@ -56,9 +55,15 @@
         text-decoration: none;
     }
 
+    .top-background {
+        background-color: #98dde3;
+        height: 70px;
+    }
+
 </style>
 
 <body>
+<div class="top-background"></div>
 <div class="container">
     <div class="cover" id="cover">
         <div class="findId"><p>아이디 찾기</p></div>

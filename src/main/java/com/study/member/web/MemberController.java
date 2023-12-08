@@ -159,7 +159,7 @@ public class MemberController {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
         memberService.registMember(member);
         resultMessageVO.messageSetting(true, "회원가입", "회원가입이 성공하였습니다."
-                , "/member/memberRegist.wow", "회원가입");
+                , "/member/memberRegist.wow", "로그인");
         model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
     }
@@ -324,7 +324,7 @@ public class MemberController {
         session.setAttribute("member", user);
 
         resultMessageVO.messageSetting(true, "수정", "비밀번호가 변경되었습니다."
-                , "/login/login.wow", "목록으로");
+                , "/login/login.wow", "로그인");
         model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
     }

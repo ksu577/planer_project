@@ -16,7 +16,7 @@
 <style>
 
     .member-container {
-        width: 100vw;
+        width: 99.7vw;
         height: 100vh;
         background-color: rgba(220, 220, 220, 0.30);
         position: relative;
@@ -32,6 +32,19 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: gainsboro;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: darkgray;
     }
 
     /*.member logo {*/
