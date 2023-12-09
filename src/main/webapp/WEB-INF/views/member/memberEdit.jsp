@@ -66,12 +66,12 @@
 
 <body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
-<form action="memberModify.wow" method="post" enctype="multipart/form-data">
+<form name="modify" action="memberModify.wow" method="post" enctype="multipart/form-data">
     <div class="body-container">
         <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
              id="profile"
              style="background-color: white; border-radius: 75px; border: 10px solid white; width: 150px; height: 150px; transform: translate(590%, 160%)">
-        <input type="file" name="file"
+        <input type="file" name="file" id="profileinput"
                style="transform: translate(447%, 580%);">
 
         <div class="my-container">
@@ -167,5 +167,22 @@
             return false;
         }
     })
+
+    $("#profileinput").on("change", function(event) {
+
+        var file = event.target.files[0];
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+
+            $("#profile").attr("src", e.target.result);
+        }
+
+        reader.readAsDataURL(file);
+    });
+
+    $("#edit_btn").click(function () {
+        $("form[name='modify']").submit();
+    });
 </script>
 </html>

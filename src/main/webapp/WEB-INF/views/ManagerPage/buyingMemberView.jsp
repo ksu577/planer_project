@@ -21,10 +21,6 @@
         background-color: #98dde3;
     }
 
-
-
-
-
 </style>
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
@@ -43,9 +39,8 @@
     </div>
 
 
-    <div class="row">
-    </div>
-    <table class="table  table-bordered table-hover">
+    <div class="row"></div>
+    <table class="table table-bordered table-hover">
         <thead>
         <tr>
             <th style="background-color: #98dde3; color: white; border: 1px solid white;">카트 아이디</th>
@@ -55,7 +50,7 @@
         </tr>
         </thead>
         <tbody>
-        ${view}
+<%--        ${view}--%>
 
         <c:forEach items="${view}" var="view">
             <tr style="font-size: 12px; text-align: center;" class="text-center">
@@ -73,5 +68,4 @@
 </div>
 </body>
 
-</script>
 </html>
