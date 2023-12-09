@@ -31,7 +31,7 @@ public class ICartServiceImpl implements ICartService {
         if (amount > 0) {
             // 기존 수량 + 추가 수량 업데이트
             int tempId = cartVO.getCartId();
-            cartDao.returnProductCnt(amount, tempId);
+            cartDao.returnProductCnt(cartVO.getCartId());
 
             cartVO.addAmount(amount);
 
@@ -64,6 +64,8 @@ public class ICartServiceImpl implements ICartService {
     @Override
     public void delete(int cartId) {
         cartDao.delete(cartId);
+        cartDao.returnProductCnt(cartId);
+
     }
 
     // 4. 장바구니 수정

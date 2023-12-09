@@ -49,7 +49,7 @@ public interface CartDao {
 
     void setProductCnt(CartVO cartVo);
 
-    void returnProductCnt(@Param("amount") int amount, @Param("tempId") int tempId);
+    void returnProductCnt(int cartId);
 
     int getAmountinProduct(@Param("productId")int productId);
 

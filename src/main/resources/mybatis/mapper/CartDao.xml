@@ -21,8 +21,14 @@
     <!-- 장바구니 수정시 돌려주기 -->
     <update id="returnProductCnt">
         update PRODUCT
-        set PRODUCT_AMOUNT = (PRODUCT_AMOUNT + #{amount})
-        where ID = #{tempId}
+        set PRODUCT_AMOUNT = (PRODUCT_AMOUNT + (SELECT AMOUNT
+                                                FROM CART
+                                                WHERE CART_ID=#{cartId}))
+        where ID = (SELECT PRODUCT_ID
+                    FROM CART
+                    WHERE CART_ID=#{cartId})
+
+
     </update>
 
 
@@ -95,6 +101,8 @@
         set amount = #{amount}
         where user_id = #{userId}
           and product_id = #{productId}
+
+
     </update>
 
     <!--6. 장바구니에 있는 것과 동일한 상품 코드 확인-->
