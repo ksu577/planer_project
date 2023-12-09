@@ -176,11 +176,16 @@
 <%--https://postcode.map.daum.net/guide 다음우편주소api--%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
     function kpay() {
         var takeAddValue = document.getElementById("sample6_address").value;
+        var takedetailAddValue = document.getElementById("sample6_detailAddress").value;
         if (!takeAddValue || takeAddValue.trim() === "") {
-            alert('주소가 비었습니다.');
+            alert('주소를 입력해주세요.');
             return false;
+        }
+        if (!takedetailAddValue || takedetailAddValue.trim() === "") {
+            alert('상세주소를 입력해주세요.');
         } else {
             $.ajax({
                 url: '/test/kakaopay.wow',
