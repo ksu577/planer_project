@@ -194,6 +194,44 @@
             padding: 8px;
         }
 
+        .footer-container {
+            margin-top: 100px;
+            background-color: rgba(220, 220, 220, 0.30);
+            height: 310px;
+            color: #868e96;
+        }
+
+        h5 {
+            width: 500px;
+            transform: translate(40%, 100%);
+            padding-top: 10px;
+            color: white;
+        }
+
+        h4 {
+            width: 500px;
+            transform: translate(40%, 300%);
+        }
+
+        .footer-icons {
+            width: 350px;
+            /*border: 1px solid red;*/
+            transform: translate(430%, -180%);
+            display: flex;
+
+        }
+
+        .footer-icon {
+            height: 50px;
+            width: 50px;
+            border-radius: 50px;
+            /*border: 1px solid black;*/
+            box-shadow: 0 0 10px 5px gainsboro;
+            margin-right: 30px;
+            background-color: white;
+        }
+
+
     </style>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -263,12 +301,13 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2 col-sm-offset-9 text-right">
-                        <button type="button" id="id_btn_reset" class="btn btn-sm btn-light">
+                        <button type="button" id="id_btn_reset" class="btn btn-sm btn-default"
+                                style="background-color: white; font-size: 13px; width: 70px;">
                             <i class="fa fa-sync"></i> &nbsp;&nbsp;초기화
                         </button>
                     </div>
                     <div class="col-sm-1 text-right">
-                        <button type="submit" class="btn btn-sm btn-primary ">
+                        <button type="submit" class="btn btn-sm btn-primary " style="width: 50px; font-size: 13px;">
                             <i class="fa fa-search"></i> &nbsp;&nbsp;검 색
                         </button>
                     </div>
