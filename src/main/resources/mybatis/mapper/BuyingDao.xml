@@ -37,6 +37,7 @@
 
           and buy_yn = 'Y'
           and c.save_cart_key = #{saveNum}
+        order by s.pay_date desc
 
     </select>
 
