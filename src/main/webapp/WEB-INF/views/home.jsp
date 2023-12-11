@@ -543,6 +543,7 @@
         }
 
     </style>
+    <title>그루트</title>
 </head>
 <body>
 <%@include file="/WEB-INF/inc/top.jsp" %>

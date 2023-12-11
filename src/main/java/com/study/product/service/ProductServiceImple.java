@@ -33,7 +33,7 @@ public class ProductServiceImple implements IproductService {
         String imgName = "";
 
         String projectPath = System.getProperty("user.dir") + "/imgDownload/";
-
+        System.out.println("11111" + projectPath);
         // UUID 를 이용하여 파일명 새로 생성
         // UUID - 서로 다른 객체들을 구별하기 위한 클래스
         UUID uuid = UUID.randomUUID();

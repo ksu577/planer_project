@@ -7,7 +7,7 @@
 <html>
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
-    <title>loginpage</title>
+    <title>아이디 찾기</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <%@ include file="/WEB-INF/inc/top.jsp" %>

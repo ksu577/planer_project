@@ -4,9 +4,11 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
     request.setCharacterEncoding("UTF-8");
+
 %>
 <!DOCTYPE html>
 <html>
+
 <style>
     td {
         background-color: #98dde3;
@@ -24,8 +26,9 @@
 </style>
 <head>
     <%@include file="/WEB-INF/inc/header.jsp" %>
+    <title>구매 목</title>
 </head>
-<body>
+<body>록
 <%@ include file="/WEB-INF/inc/top.jsp" %>
 <div class="top-background">
 
