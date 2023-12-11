@@ -168,11 +168,11 @@ public class MemberController {
 
 
     @PostMapping("/member/memberRegist.wow")
-    public String memberRegist(Model model, MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException {
+    public String memberRegist(Model model, @ModelAttribute MemberVO member) throws BizNotEffectedException, BizDuplicateKeyException {
         ResultMessageVO resultMessageVO = new ResultMessageVO();
         memberService.registMember(member);
         resultMessageVO.messageSetting(true, "회원가입", "회원가입이 성공하였습니다."
-                , "/member/memberRegist.wow", "로그인");
+                , "/login/login.wow", "로그인");
         model.addAttribute("resultMessageVO", resultMessageVO);
         return "common/message";
     }
