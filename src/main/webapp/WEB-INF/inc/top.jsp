@@ -94,7 +94,7 @@
 
     <div class="navcategory">
         <a class="letter" id="place" href="/"> 여행지 </a>
-        <a class="letter" href="/shop/minishop.wow"> 미니샵 </a>
+        <a class="letter" href="/shop/minishop.wow"> G-샵 </a>
         <a class="letter" href="/free/freeList.wow"> 게시판 </a>
         <a class="letter" href="/plan/planHow.wow"> 이용방법 </a>
     </div>
