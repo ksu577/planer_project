@@ -208,7 +208,7 @@ public class ProductController {
     @RequestMapping("/imgDownload/showImg.wow")
     @ResponseBody
     public ResponseEntity<byte[]> showImage(@RequestParam("fileName") String img, @RequestParam("filePath") String imgPath) {
-        String projectPath = System.getProperty("user.dir");
+        String projectPath = "/home/pc31/Docker/team3/";
 
         File file = new File(projectPath + imgPath, img);
         ResponseEntity<byte[]> result = null;

@@ -112,7 +112,7 @@
 <c:if test="${bnf==null}">
 <form action="memberEdit.wow" method="get" enctype="multipart/form-data">
     <div class="body-container">
-        <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=member"
+        <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=/home/pc31/Docker/team3/imgDownload/"
              style="background-color: white; border-radius: 75px; border: 10px solid white; width: 150px; height: 150px; transform: translate(590%, 160%)">
 
         <div class="my-container">

@@ -8,8 +8,7 @@ import java.util.Iterator;
 import java.util.UUID;
 
 public class FileUtil {
-    private static final String filePath = "/usr/local/tomcat/webapps/imgDownload";
-
+    private static final String filePath = "/home/pc31/Docker/team3/imgDownload/";
     public static String modifyMember(MultipartHttpServletRequest Request) throws Exception {
 
         Iterator<String> iterator = Request.getFileNames();
