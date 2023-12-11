@@ -193,11 +193,10 @@
                 <c:set var="totalAmount" value="0"/>
                 <c:forEach items="${productinfo}" var="productinfo">
                     <div class="mb-3" style="display: flex; flex-direction: column;">
-                        <span>상품명 : ${productinfo.productName} </span>
                         <hr>
+                        <span>상품명 : ${productinfo.productName} </span>
                         <span>개수 : ${productinfo.amount} 개</span>
                         <span>상품금액 : ${productinfo.price} 원</span>
-                        <hr>
                     </div>
                     <c:set var="totalAmount" value="${totalAmount + productinfo.price}"/>
                 </c:forEach>
