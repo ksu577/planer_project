@@ -102,7 +102,7 @@
             /*border: 1px solid red;*/
             position: relative;
             right: 15%;
-            top: 123px;
+            top: 110px;
             font-family: 'yg-jalnan';
         }
 
@@ -231,6 +231,7 @@
             background-color: white;
         }
 
+
     </style>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -300,12 +301,13 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2 col-sm-offset-9 text-right">
-                        <button type="button" id="id_btn_reset" class="btn btn-sm btn-light">
+                        <button type="button" id="id_btn_reset" class="btn btn-sm btn-default"
+                                style="background-color: white; font-size: 13px; width: 70px;">
                             <i class="fa fa-sync"></i> &nbsp;&nbsp;초기화
                         </button>
                     </div>
                     <div class="col-sm-1 text-right">
-                        <button type="submit" class="btn btn-sm btn-primary ">
+                        <button type="submit" class="btn btn-sm btn-primary " style="width: 50px; font-size: 13px;">
                             <i class="fa fa-search"></i> &nbsp;&nbsp;검 색
                         </button>
                     </div>
