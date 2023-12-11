@@ -29,8 +29,8 @@ public class KakaoService {
         payParams.add("total_amount", params.get("total_amount"));
         payParams.add("tax_free_amount", params.get("tex_free_amount"));
         payParams.add("approval_url", "https://kapi.kakao.com/v1/payment/ready");
-        payParams.add("fail_url", "http://localhost:8081/pay/fail");
-        payParams.add("cancel_url", "http://localhost:8081/pay/cancel");
+        payParams.add("fail_url", "/pay/fail");
+        payParams.add("cancel_url", "/pay/cancel");
 
         HttpEntity<Map> request = new HttpEntity<Map>(payParams, headers);
 
