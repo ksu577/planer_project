@@ -143,8 +143,7 @@
             <th style="background-color: #98dde3; color: white; border: 1px solid white;">전화번호</th>
             <th style="background-color: #98dde3; color: white; border: 1px solid white;">주소</th>
             <th style="background-color: #98dde3; color: white; border: 1px solid white;">날짜</th>
-            <th style="background-color: #98dde3; color: white; border: 1px solid white;">물품</th>
-            <th style="background-color: #98dde3; color: white; border: 1px solid white;">삭제</th>
+
         </tr>
         </thead>
         <tbody>
