@@ -147,10 +147,6 @@
             <td>${freeBoard.viewRate }</td>
         </tr>
         <tr>
-            <th>좋아요</th>
-            <td>${reviewBoard.reviewLike}</td>
-        </tr>
-        <tr>
             <th>등록일</th>
             <td>${freeBoard.createDate }</td>
         </tr>
@@ -177,7 +173,6 @@
                                                                                  aria-hidden="true"></span> &nbsp;&nbsp;목록
                     </a>
                 </div>
-                <button id="likeButton" onclick="likeReview(${freeBoard.freeLike})">좋아요</button>
                 <c:if test="${canEdit}">
                     <div class="pull-right">
                         <a href="freeEdit.wow?freeNum=${freeBoard.freeNum }" class="btn btn-success btn-sm"> <span

@@ -43,7 +43,6 @@ public class FreeBoardServiceImpl implements IFreeBoardService {
         paging.setTotalRowCount(totalRowCount);
         paging.pageSetting();
 
-
         List<FreeBoardVO> freeBoardList = freeBoardDao.getBoardList(paging, search, searchCategory);
         return freeBoardList;
     }
