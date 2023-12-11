@@ -135,4 +135,8 @@ public class PlanController {
         return "redirect:/plan/myPlan.wow?user="+ user.getId();
     }
 
+    @GetMapping("/planHow.wow")
+    public String planHow(){
+        return "plan/planHow";
+    }
 }

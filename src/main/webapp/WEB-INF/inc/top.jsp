@@ -96,6 +96,7 @@
         <a class="letter" id="place" href="/"> 여행지 </a>
         <a class="letter" href="/shop/minishop.wow"> 미니샵 </a>
         <a class="letter" href="/free/freeList.wow"> 게시판 </a>
+        <a class="letter" href="/plan/planHow.wow"> 이용방법 </a>
     </div>
 
     <div class="manager-box">
@@ -165,8 +166,8 @@
     const place = document.getElementById("place");
 
     console.log(location.href)
-    if (location.href != "http://localhost:8081/"){
-        place.href = "http://localhost:8081/#box-title";
+    if (location.href != "/"){
+        place.href = "/#box-title";
         console.log(place.href)
     } else {
         place.href = "#box-title";
