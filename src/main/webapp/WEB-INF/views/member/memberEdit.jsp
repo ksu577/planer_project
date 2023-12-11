@@ -56,10 +56,10 @@
         border: 1px solid white;
         color: white;
         border-radius: 5px;
-        width: 192px;
-        height: 40px;
+        width: 100px;
+        height: 30px;
         cursor: pointer;
-        font-size: 18px;
+        font-size: 15px;
     }
 
 </style>
@@ -72,7 +72,7 @@
              id="profile"
              style="background-color: white; border-radius: 75px; border: 10px solid white; width: 150px; height: 150px; transform: translate(590%, 160%)">
         <input type="file" name="file" id="profileinput"
-               style="transform: translate(447%, 580%);">
+               style="transform: translate(910%, 850%); width: 100px; height: 30px; border: 1px solid white;">
 
         <div class="my-container">
             <table>
