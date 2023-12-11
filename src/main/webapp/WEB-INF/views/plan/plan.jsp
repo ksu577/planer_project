@@ -537,7 +537,7 @@
     });
 
     function f_turn() {
-        if (confirm("수정된 내용은 저장되지 않습니다.") == true) {    //확인
+        if (confirm("수정된 내용이 저장되지 않습니다.") == true) {    //확인
 
             location.href = "/plan/marker.wow?planTitle=${title}&id=${user.getId()}";
 
@@ -808,8 +808,9 @@
 
         // 24/1/1
         // 23/12/4
-        if (Math.ceil((startdate_date - today) / (60 * 60 * 24) / 1000) + 1) {
+        if ((Math.ceil((startdate_date - today) / (60 * 60 * 24) / 1000) + 1) >= 1) {
             returnBoolean = true;
+                console.log(Math.ceil((startdate_date - today) / (60 * 60 * 24) / 1000) + 1)
         }
         // if (start.getFullYear() >= today.getFullYear()) {
         //     if (start.getMonth() >= today.getMonth()) {
