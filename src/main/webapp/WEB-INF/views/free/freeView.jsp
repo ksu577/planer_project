@@ -88,7 +88,7 @@
 
     </style>
 
-    <title>자유게시판 - 글 보기</title>
+    <title>게시판 - 글 보기</title>
 
 </head>
 <body>
@@ -100,7 +100,7 @@
 <div class="container">
     <div class="page-header">
         <h3>
-            자유게시판 - <small>글 보기</small>
+            게시판 - <small>글 보기</small>
         </h3>
     </div>
     <table id="viewPage" class="table table-bordered">

@@ -470,7 +470,7 @@
                         <c:if test="${freeBoard.commentCount ne 0}">
                             <small><b>[&nbsp;<c:out value="${freeBoard.commentCount}"/>&nbsp;] </b></small>
                         </c:if>
-                        <c:if test="${freeBoard.viewRate >= 20}">
+                        <c:if test="${freeBoard.viewRate >= 25}">
                             <span class="hit">hit!</span>
                         </c:if>
                     </a></td>
