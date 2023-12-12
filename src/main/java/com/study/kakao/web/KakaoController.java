@@ -126,7 +126,7 @@ public class KakaoController {
             serverconnection.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
             serverconnection.setDoOutput(true);
 //            String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=MyCart&quantity=1&total_amount="+sumMoney+"&vat_amount=0&tax_free_amount=0&approval_url=http://localhost:8081/test/approval.wow&fail_url=http://localhost:8081/test/fail.wow&cancel_url=http://localhost:8081/test/cancel.wow";
-            String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=MyCart&quantity=1&total_amount="+sumMoney+"&vat_amount=0&tax_free_amount=0&approval_url=http://nextit.or.kr:23073/test/approval.wow&fail_url=http://nextit.or.kr:23073/test/fail.wow&cancel_url=http://nextit.or.kr:23073/test/cancel.wow";
+            String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=MyCart&quantity=1&total_amount="+sumMoney+"&vat_amount=0&tax_free_amount=0&approval_url=http://115.90.137.188:23073/test/approval.wow&fail_url=http://115.90.137.188:23073/test/fail.wow&cancel_url=http://115.90.137.188:23073/test/cancel.wow";
             OutputStream give = serverconnection.getOutputStream();
             DataOutputStream datagive = new DataOutputStream(give);
             datagive.writeBytes(parameter);

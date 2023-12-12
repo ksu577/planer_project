@@ -187,13 +187,13 @@
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="transform: translate(4.5%, 0%)">
         <div class="carousel-inner" style="height: 100%">
             <div class="carousel-item active" style="height: 100%;">
-                <img src="/resources/img/수면세트.jpg" class="d-block w-100" height="100%" alt="">
+                <img src="/resources/img/수면세트.png" class="d-block w-100" height="100%" alt="">
             </div>
             <div class="carousel-item" style="height: 100%;">
                 <img src="/resources/img/응급키트.png" class="d-block w-100" height="100%" alt="">
             </div>
             <div class="carousel-item" style="height: 100%;">
-                <img src="/resources/img/루트배송.png" class="d-block w-100" height="100%" alt="">
+                <img src="/resources/img/루트배송.jpg" class="d-block w-100" height="100%" alt="">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"

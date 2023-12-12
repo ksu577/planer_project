@@ -52,9 +52,6 @@ public class ProductController {
         this.kakaoService = kakaoService;
     }
 
-    @Value("#{util['file.upload.path']}")
-    private String uploadPath;
-
     @Autowired
     IproductService IproductService;
     @Autowired
@@ -211,9 +208,9 @@ public class ProductController {
     @RequestMapping("/imgDownload/showImg.wow")
     @ResponseBody
     public ResponseEntity<byte[]> showImage(@RequestParam("fileName") String img, @RequestParam("filePath") String imgPath) {
-//        String projectPath = "/home/pc31/Docker/team3/";
+        String projectPath = "/home/pc31/Docker/team3/";
 
-        File file = new File(uploadPath + imgPath, img);
+        File file = new File(projectPath + imgPath, img);
         log.debug("filepath: {}", file.toString());
         ResponseEntity<byte[]> result = null;
         try {
