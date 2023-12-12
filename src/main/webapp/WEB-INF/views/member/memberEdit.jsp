@@ -68,7 +68,7 @@
 <%@ include file="/WEB-INF/inc/top.jsp" %>
 <form name="modify" action="memberModify.wow" method="post" enctype="multipart/form-data">
     <div class="body-container">
-        <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=/home/pc31/Docker/team3/imgDownload/"
+        <img src="<%=request.getContextPath()%>/member/showProfile.wow?fileName=${member.profile}&filePath=/"
              id="profile"
              style="background-color: white; border-radius: 75px; border: 10px solid white; width: 150px; height: 150px; transform: translate(590%, 160%)">
         <input type="file" name="file" id="profileinput"
