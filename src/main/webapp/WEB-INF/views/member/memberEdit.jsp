@@ -92,7 +92,7 @@
 
                 <tr>
                     <th>생년월일</th>
-                    <td><input type="date" name="birth" value="${member.birth}" required="required"></td>
+                    <td><input type="date" name="birth" id="birth" value="${member.birth}" required="required"></td>
                 </tr>
 
                 <tr>
@@ -168,12 +168,12 @@
         }
     })
 
-    $("#profileinput").on("change", function(event) {
+    $("#profileinput").on("change", function (event) {
 
         var file = event.target.files[0];
 
         var reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
 
             $("#profile").attr("src", e.target.result);
         }
@@ -184,5 +184,6 @@
     $("#edit_btn").click(function () {
         $("form[name='modify']").submit();
     });
+
 </script>
 </html>

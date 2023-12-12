@@ -1,14 +1,20 @@
 package com.study.member.web;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
 import java.util.Iterator;
 import java.util.UUID;
-
 public class FileUtil {
-    private static final String filePath = "/home/pc31/Docker/team3/imgDownload/";
+
+//    private static final String filePath = "/home/pc31/Docker/team3/imgDownload/";
+
+    @Value("#{util['file.upload.path']}")
+    private static String filePath;
+
     public static String modifyMember(MultipartHttpServletRequest Request) throws Exception {
 
         Iterator<String> iterator = Request.getFileNames();

@@ -8,6 +8,8 @@ import com.study.product.dao.ProductDao;
 import com.study.product.vo.ProductVO;
 import com.study.product.vo.SaveCartVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,14 +28,15 @@ public class ProductServiceImple implements IproductService {
     BuyingDao buyingDao;
 
 
+    @Value("#{util['file.upload.path']}")
+    private String filePath;
+
     // 1. 상품 추가
     @Override
     public void insert(ProductVO productVO, MultipartFile imgFile) throws IOException {
         String oriImgName = imgFile.getOriginalFilename();
         String imgName = "";
 
-        String projectPath = System.getProperty("user.dir") + "/imgDownload/";
-        System.out.println("11111" + projectPath);
         // UUID 를 이용하여 파일명 새로 생성
         // UUID - 서로 다른 객체들을 구별하기 위한 클래스
         UUID uuid = UUID.randomUUID();
@@ -42,7 +45,7 @@ public class ProductServiceImple implements IproductService {
 
         imgName = savedFileName;
 
-        File saveFile = new File(projectPath, imgName);
+        File saveFile = new File(filePath, imgName);
 
         imgFile.transferTo(saveFile);
 

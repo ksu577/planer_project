@@ -132,7 +132,7 @@
           , address2 = #{address2}
           , phnum    = #{phnum}
           , email    = #{email}
-          , birth    = #{birth}
+          , birth    = to_date(#{birth}, 'YYYY-MM-DD')
           , profile  = #{profile}
         WHERE id = #{Id}
     </update>
@@ -171,7 +171,7 @@
                     #{address2},
                     #{phnum},
                     #{email},
-                    #{birth},
+                    to_date(#{birth},'YYYYMMDD'),
                     'mypageicon.png',
                     sysdate,
                     'N')

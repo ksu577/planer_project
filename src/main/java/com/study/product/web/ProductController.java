@@ -12,9 +12,11 @@ import com.study.product.dao.ProductDao;
 import com.study.product.service.IproductService;
 import com.study.product.vo.ProductVO;
 import com.study.product.vo.SaveCartVO;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.xmlbeans.impl.xb.xsdschema.Attribute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +36,7 @@ import java.util.List;
 import com.study.common.vo.SearchVO;
 import org.springframework.web.multipart.MultipartFile;
 
+@Slf4j
 @Controller
 public class ProductController {
 
@@ -208,9 +211,10 @@ public class ProductController {
     @RequestMapping("/imgDownload/showImg.wow")
     @ResponseBody
     public ResponseEntity<byte[]> showImage(@RequestParam("fileName") String img, @RequestParam("filePath") String imgPath) {
-        String projectPath = "/home/pc31/Docker/team3/";
+//        String projectPath = "/home/pc31/Docker/team3/";
 
-        File file = new File(projectPath + imgPath, img);
+        File file = new File(uploadPath + imgPath, img);
+        log.debug("filepath: {}", file.toString());
         ResponseEntity<byte[]> result = null;
         try {
             HttpHeaders headers = new HttpHeaders();

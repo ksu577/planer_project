@@ -28,7 +28,7 @@
     <%@include file="/WEB-INF/inc/header.jsp" %>
     <title>구매 목</title>
 </head>
-<body>록
+<body>
 <%@ include file="/WEB-INF/inc/top.jsp" %>
 <div class="top-background">
 
