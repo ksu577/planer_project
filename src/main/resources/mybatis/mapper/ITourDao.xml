@@ -26,6 +26,7 @@
              , reg_date
         FROM plan
         WHERE id = #{USER}
+        order by reg_date desc
     </select>
 
     <select id="sharePlan" resultType="com.study.plan.vo.ShareVO">
